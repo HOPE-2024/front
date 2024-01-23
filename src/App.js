@@ -1,11 +1,17 @@
+import "./App.css";
 import GlobalStyle from "./utils/GlobalStyle";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import { Login } from "./pages/member/Login";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Login />
+      <Router>
+        <Routes>
+          <Route path="/Login" element={<Login />} />
+        </Routes>
+      </Router>
     </>
   );
 }
