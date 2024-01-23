@@ -1,19 +1,24 @@
 import "./App.css";
 import GlobalStyle from "./utils/GlobalStyle";
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Login } from "./pages/member/Login";
 import { ChatList } from "./pages/chat/ChatList";
+import { Home } from "./pages/Home";
+import { Template } from "./component/Template/Template";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path="/Login" element={<Login />} />
-          <Route path="/ChatList" element={<ChatList />} />
+          <Route element={<Template />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/ChatList" element={<ChatList />} />
+          </Route>
         </Routes>
-      </Router>
+      </BrowserRouter>
     </>
   );
 }

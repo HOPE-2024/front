@@ -27,7 +27,6 @@ const TempContent = styled.div`
 
 const TempFooter = styled.div`
   grid-area: Footer;
-  background-color: yellow;
 `;
 
 export const Template = () => {

@@ -36,36 +36,18 @@ export const Menu = styled.div`
   height: 100%;
   list-style: none;
   width: 500px;
+  font-weight: bold;
 
   li {
     margin: 0 10px;
-    white-space: nowrap; // 텍스트 한줄로 표시
-    overflow: hidden;
-    text-overflow: ellipsis; // 텍스트가 넘칠 때 ... 로 표시
     cursor: pointer;
-  }
-
-  span:hover {
-    font-weight: bold;
-    text-decoration: underline double blue;
   }
 `;
 
-export const CityItem = styled.div`
-  line-height: 1.2;
-  background-image: linear-gradient(transparent 70%, #3c84f8 40%);
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
-  transition: background-size 0.8s;
-  color: var(--BLACK);
-  cursor: pointer;
-
-  &:hover {
-    background-size: 100% 100%;
-  }
-
-  &.clicked {
-    line-height: 1.2;
-    background-size: 100% 100%;
-  }
+export const Line = styled.div`
+  width: 2px;
+  height: 20px;
+  position: relative;
+  top: 5px;
+  background-color: #023b96;
 `;

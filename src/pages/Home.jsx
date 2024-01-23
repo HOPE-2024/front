@@ -1,9 +1,9 @@
-import { LifeExpectancy } from "../component/python/LifeExpectancy";
+import { Slide } from "../component/Slide";
 
 export const Home = () => {
   return (
     <>
-      <LifeExpectancy></LifeExpectancy>
+      <Slide></Slide>
     </>
   );
 };

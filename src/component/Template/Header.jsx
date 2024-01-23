@@ -6,8 +6,10 @@ import {
   Left,
   Right,
   Menu,
+  Line,
 } from "../../css/Template/HeaderStyle";
 import { FirstDropDown, SecondDropDown, ThirdDropDown } from "./HeaderDropDown";
+import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -34,36 +36,42 @@ export const Header = () => {
                   setFirstView(!firstView);
                 }}
               >
-                <span>지도</span>
+                <UnderLinedStyle>지도</UnderLinedStyle>
                 {firstView && (
                   <FirstDropDown onClose={() => setFirstView(false)} />
                 )}
               </li>
-              <strong>|</strong>
+
+              <Line></Line>
+
               <li
                 onClick={() => {
                   setSecondView(!secondView);
                 }}
               >
-                <span>커뮤니티</span>
+                <UnderLinedStyle>커뮤니티</UnderLinedStyle>
                 {secondView && (
                   <SecondDropDown onClose={() => setSecondView(false)} />
                 )}
               </li>
-              |
+
+              <Line></Line>
+
               <li
                 onClick={() => {
                   setThirdView(!thirdView);
                 }}
               >
-                <span>내 정보</span>
+                <UnderLinedStyle>내 정보</UnderLinedStyle>
                 {thirdView && (
                   <ThirdDropDown onClose={() => setThirdView(false)} />
                 )}
               </li>
-              |
+
+              <Line></Line>
+
               <li>
-                <span>로그아웃</span>
+                <UnderLinedStyle>로그아웃</UnderLinedStyle>
               </li>
             </Menu>
           </ul>
