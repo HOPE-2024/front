@@ -6,7 +6,7 @@ export const ChatListOutLine = styled.div`
   justify-content: center;
   border: 2px solid var(--BLACK);
   width: 90%;
-  height: 90%;
+  height: 98%;
   border-radius: 4px;
 `;
 
@@ -14,12 +14,12 @@ export const InLineLeft = styled.div`
   color: var(--BLACK);
   padding: 1em;
   gap: 0.5em;
-  font-size: 3vh;
+  font-size: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 25%;
+  width: 20%;
   border: 2px solid var(--BLACK);
   border-radius: 4px;
   margin: 2% 0 2% 2%;
@@ -27,7 +27,7 @@ export const InLineLeft = styled.div`
 
 export const InLineRight = styled.div`
   color: var(--BLACK);
-  width: 75%;
+  width: 80%;
   border: 2px solid var(--BLACK);
   border-radius: 4px;
   margin: 2% 2% 2% 2%;
