@@ -9,7 +9,7 @@ function App() {
       <GlobalStyle />
       <Router>
         <Routes>
-          <Route path="/Login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </>
