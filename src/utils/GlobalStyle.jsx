@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     --SKY : #3C84F8 ;
     --NAVY : #023382 ;
     --DEEPBLUE :  #023B96;
+    --BLACK : #333;
   }
   * {
     box-sizing: border-box;
