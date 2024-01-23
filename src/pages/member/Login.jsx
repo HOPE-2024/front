@@ -10,8 +10,10 @@ import {
   KakaoStyled,
   NaverStyled,
 } from "../../css/member/loginCss";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
+  const navigate = useNavigate;
   return (
     <>
       <LoginContainer>

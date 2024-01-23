@@ -46,6 +46,7 @@ export const Instruction = styled.div`
 export const Instruction2 = styled.div`
   color: gray;
   font-size: 0.65rem;
+  margin-bottom: 10px;
 `;
 
 export const Items = styled.div`
