@@ -33,7 +33,7 @@ export const Button = (props) => {
     width,
     height,
     fontSize,
-    active,
+    active = true,
     clickEvt,
     front,
     back,
