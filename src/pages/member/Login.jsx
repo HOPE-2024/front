@@ -25,7 +25,7 @@ export const Login = () => {
           <FindLink href="/find_id">Find Id</FindLink> |{" "}
           <FindLink href="/find_password">Find Password</FindLink>
         </Items>
-        <Button width="350px" height="45px" fontsize="1.2em" active={true}>
+        <Button width="350px" height="45px" fontsize="1.2em">
           Log In
         </Button>
       </LoginContainer>
