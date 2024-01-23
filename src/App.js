@@ -8,6 +8,7 @@ import { Template } from "./component/Template/Template";
 import { Map } from "./pages/map/Map";
 import { MemberList } from "./pages/admin/MemberList";
 import { Report } from "./pages/admin/Report";
+import { Signup } from "./pages/member/SignUp";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/Login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route element={<Template />}>
             <Route path="/" element={<Home />} />
             <Route path="/ChatList" element={<ChatList />} />
