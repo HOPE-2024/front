@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as Logo } from "../../images/logo.svg";
 
 export const Top = styled.div`
-  margin: 10px;
+  margin-left: 15px;
   display: flex;
   justify-content: space-between;
 `;

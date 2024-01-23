@@ -1,86 +1,75 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
+import {
+  Container,
+  Content,
+  Buttons,
+  Button,
+  Navigation,
+} from "../css/SlideStyle";
 
-const Test3Css = styled.div`
-  margin-top: -10px;
-  display: grid;
-  width: 100%;
-  height: 350px;
-  .slideBox {
-    display: flex;
-    width: 100%;
-    height: 350px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .slideBut {
-    display: flex;
-    margin-top: -380px;
-    justify-content: space-between;
-    align-items: center; /* 수직 중앙 정렬 추가 */
-    .but1,
-    .but2 {
-      width: 50px;
-      height: 50px;
-      background-color: #6363631f;
-      border-radius: 50px;
-      border: 1px solid #b4b4b421;
-    }
-  }
-`;
 export const Slide = () => {
-  const list = [];
-  list.push(
-    "https://image.idus.com/image/files/ebebbddfc2fc4b6ca1064cb28bbb447e.jpg"
-  );
-  list.push(
-    "https://image.idus.com/image/files/0590592b1598475c9b7c0b3f4331054c.jpg"
-  );
-  list.push(
-    "https://image.idus.com/image/files/3e01d0b3962f4f0297fea7a372243637.jpg"
-  );
-  const [i, setI] = useState(0);
-  const img1 = () => {
-    const images = [];
-    const numImagesToShow = 1;
-    console.log(i);
-    if (i == 0) {
-      setI(6);
-    }
-    for (let a = 0; a < numImagesToShow; a++) {
-      const index = (i + a) % list.length;
-      images.push(<img key={index} src={list[index]} alt={`Image ${index}`} />);
-    }
+  // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
+  const list = [
+    "https://image.idus.com/image/files/ebebbddfc2fc4b6ca1064cb28bbb447e.jpg",
+    "https://image.idus.com/image/files/0590592b1598475c9b7c0b3f4331054c.jpg",
+    "https://image.idus.com/image/files/3e01d0b3962f4f0297fea7a372243637.jpg",
+  ];
 
-    return images;
+  // 현재 활성화된 이미지의 인덱스
+  const [i, setI] = useState(0);
+
+  // i 값이 변경될 때 마다 유효한 범위를 확인하고 조정
+  useEffect(() => {
+    if (i < 0) {
+      // 첫번째 이미지에서 이전 버튼을 누르면
+      setI(list.length - 1); // 마지막 이미지로 이동
+    } else if (i >= list.length) {
+      // 마지막 이미지에서 다음 버튼을 누르면
+      setI(0); // 첫번째 이미지로 이동
+    }
+    console.log("Now in : " + i);
+  }, [i, list.length]);
+
+  // 현재 활성화
+  const NowWatching = () => {
+    return (
+      <Container>
+        <Content
+          style={{ transform: `translateX(-${i * (100 / list.length)}%)` }}
+          $numberOfImages={list.length} // Transient props : props앞에 $를 붙여 RealDom 조작을 방지
+        >
+          {list.map((url, index) => (
+            <img key={index} src={url} alt={`Loading ${index + 1}`} />
+          ))}
+        </Content>
+      </Container>
+    );
   };
 
-  console.log(i);
+  const GoToNextContent = () => {
+    setI(i + 1);
+  };
+
+  const GoToPrevContent = () => {
+    setI(i - 1);
+  };
 
   return (
-    <Test3Css>
-      <div className="slideBox">{img1()}</div>
-      <div className="slideBut">
-        <button
-          className="but1"
-          draggable={true}
-          onClick={() => {
-            setI(i + 1);
-          }}
-        >
-          〈
-        </button>
-        <button
-          className="but2"
-          onClick={() => {
-            setI(i - 1);
-          }}
-        >
-          〉
-        </button>
-      </div>
-    </Test3Css>
+    <>
+      {NowWatching()}
+      <Buttons>
+        <Button onClick={GoToPrevContent}>〈</Button>
+        <Button onClick={GoToNextContent}>〉</Button>
+      </Buttons>
+      <Navigation>
+        {list.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setI(index)}
+            className={i === index ? "current" : ""}
+          />
+        ))}
+      </Navigation>
+    </>
   );
 };

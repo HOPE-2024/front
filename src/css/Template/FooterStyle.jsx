@@ -17,12 +17,13 @@ export const Left = styled.div`
   width: 30%;
   height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   cursor: pointer;
 
   span {
     white-space: nowrap;
+    margin-left: 45px;
   }
 
   &:hover {
@@ -34,6 +35,10 @@ export const Right = styled.div`
   width: 20%;
   height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
+
+  span {
+    margin-right: 45px;
+  }
 `;
