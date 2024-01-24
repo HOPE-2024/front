@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  background-color: none;
 `;
 
 export const Content = styled.div`
@@ -11,17 +12,9 @@ export const Content = styled.div`
   width: calc(100% * ${(props) => props.$numberOfImages});
   height: 400px;
   transition: transform 0.5s ease-in-out;
-
-  img {
-    width: calc(100% / ${(props) => props.$numberOfImages});
-    height: 100%;
-    flex-shrink: 0;
-    box-sizing: border-box; // padding과 border를 전체 크기에 포함
-  }
 `;
 
 export const SlideListContent = styled.div`
-  max-width: 1280px;
   width: 100vw;
   height: 84vh;
   display: flex;
@@ -57,8 +50,8 @@ export const Buttons = styled.div`
 `;
 
 export const PrevButton = styled.button`
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 20vh;
   font-weight: bold;
   position: absolute;
   left: -48vw;
@@ -68,7 +61,8 @@ export const PrevButton = styled.button`
   color: #ccc;
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: right;
+  z-index: 1;
 
   @media screen and (min-width: 1200px) {
     left: -43vw;
@@ -87,11 +81,24 @@ export const PrevButton = styled.button`
     color: #3c84f8;
     transition: all 0.3s ease-in-out;
   }
+
+  @media screen and (max-width: 700px) {
+    width: 50px;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 50px;
+    color: rgba(0, 0, 0, 0);
+
+    &:hover {
+      color: rgba(0, 0, 0, 0);
+    }
+  }
 `;
 
 export const NextButton = styled.button`
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 20vh;
   font-weight: bold;
   position: absolute;
   right: -48vw;
@@ -101,7 +108,7 @@ export const NextButton = styled.button`
   color: #ccc;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: left;
 
   @media screen and (min-width: 1200px) {
     right: -43vw;
@@ -119,6 +126,15 @@ export const NextButton = styled.button`
     transform: scale(1.1);
     color: #3c84f8;
     transition: all 0.3s ease-in-out;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 50px;
+    color: rgba(0, 0, 0, 0);
+
+    &:hover {
+      color: rgba(0, 0, 0, 0);
+    }
   }
 `;
 

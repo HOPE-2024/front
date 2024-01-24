@@ -9,17 +9,22 @@ import {
   SlideListContent,
   NavBox,
 } from "../css/SlideStyle";
-import { StyledSearch } from "./StyledSearch";
+import { ElasticSearch } from "../component/slideElement/ElasticSearch";
+import { LifeExpectancy } from "../component/slideElement/LifeExpectancy";
 
 export const Slide = () => {
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      {/* 이 곳에 컴포넌트 정의하면 돼요^__^ */}
-      <StyledSearch></StyledSearch>
+      {/* ^__^ */}
+      <ElasticSearch></ElasticSearch>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <LifeExpectancy></LifeExpectancy>
+    </SlideListContent>,
+    <SlideListContent
+      style={{ backgroundColor: "yellowgreen" }}
+    ></SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스
