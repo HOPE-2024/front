@@ -8,7 +8,7 @@ export const SignupContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 45%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
@@ -41,6 +41,7 @@ export const Instruction = styled.div`
   color: #fc0000;
   font-size: 0.65rem;
   font-weight: bold;
+  width: 100%;
 `;
 
 export const Instruction2 = styled.div`
@@ -50,16 +51,15 @@ export const Instruction2 = styled.div`
 `;
 
 export const Items = styled.div`
-  display: flex;
-  align-items: center;
-
+  // 회원 정보 입력
   &.item1 {
     margin: 10px;
   }
+  // 경고창
   &.item2 {
-    position: relative;
-    right: 10%; //item2가 원래 있어야 할 위치에서 오른쪽으로 10%만큼 떨어진 곳에 위치
+    width: 330px;
   }
+  // 하단 가입 & 취소 버튼
   &.item3 {
     display: flex;
   }

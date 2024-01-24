@@ -9,6 +9,7 @@ import { Map } from "./pages/map/Map";
 import { MemberList } from "./pages/admin/MemberList";
 import { Report } from "./pages/admin/Report";
 import { Signup } from "./pages/member/SignUp";
+import { ChatRoom } from "./pages/chat/ChatRoom";
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
           <Route element={<Template />}>
             <Route path="/" element={<Home />} />
             <Route path="/ChatList" element={<ChatList />} />
+            <Route path="/ChatRoom" element={<ChatRoom />} />
             <Route path="/MemberList" element={<MemberList />} />
             <Route path="/Report" element={<Report />} />
             <Route path="/Map" element={<Map />} />

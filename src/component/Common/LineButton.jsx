@@ -1,12 +1,16 @@
 import styled from "styled-components";
 
-export const CityItem = styled.div`
+export const LineButton = styled.div`
   line-height: 1.2;
-  background-image: linear-gradient(transparent 70%, #3c84f8 40%);
+  background-image: linear-gradient(
+    transparent 70%,
+    ${(props) => props.color || "#3c84f8"} 40%
+  );
   background-repeat: no-repeat;
   background-size: 0% 100%;
   transition: background-size 0.8s;
-  color: var(--BLACK);
+  color: ${(props) => props.fontSize || "var(--BLACK)"};
+  font-size: ${(props) => props.fontSize || "1rem"};
   cursor: pointer;
 
   &:hover {
