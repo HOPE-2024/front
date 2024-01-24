@@ -6,6 +6,10 @@ import {
   CityList,
   CityItem,
 } from "../../css/chat/AreaListCss";
+import {
+  ChatToggle,
+  ComponentWrapper,
+} from "../../component/common/toggleSwitch";
 
 export const ChatList = () => {
   const [selectedCities, setSelectedCities] = useState([]);
@@ -33,7 +37,11 @@ export const ChatList = () => {
             </CityItem>
           ))}
         </InLineLeft>
-        <InLineRight></InLineRight>
+        <InLineRight>
+          <ComponentWrapper>
+            <ChatToggle />
+          </ComponentWrapper>
+        </InLineRight>
       </ChatListOutLine>
     </>
   );
