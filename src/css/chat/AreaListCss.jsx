@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const ChatListOutLine = styled.div`
+  background-color: rgba(255, 255, 255, 0.8);
   color: var(--BLACK);
   display: flex;
   justify-content: center;
-  border: 2px solid var(--BLACK);
-  width: 90%;
-  height: 70%;
+  width: 95vh;
+  height: 70vh;
   border-radius: 4px;
 `;
 

@@ -3,18 +3,17 @@ import styled from "styled-components";
 
 export const ToggleContainer = styled.div`
   position: relative;
-  margin-top: 1rem;
-  left: 46%;
   cursor: pointer;
 
   > .toggle-container {
-    width: 88px;
-    height: 30px;
+    width: 13vh;
+    height: 3.8vh;
     border-radius: 30px;
+    border: 1px solid var(--BLACK);
     background-color: ${(props) => props.backgroundColor || "var(--SKY)"};
   }
   > .toggle--checked {
-    background-color: ${(props) => props.backgroundColor || "var(--NAVY)"};
+    background-color: ${(props) => props.backgroundColor || "var(--SKY)"};
     transition: 0.5s;
   }
   > .toggle-circle {
@@ -22,21 +21,21 @@ export const ToggleContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
     font-size: 0.9rem;
-    top: 2px;
+    top: 0.4vh;
     left: 3px;
-    width: 40px;
-    height: 25px;
+    width: 6vh;
+    height: 3vh;
     border-radius: 30px;
     background-color: ${(props) => props.backgroundColor || "var(--WHITE)"};
     transition: 0.5s;
   }
   > .toggle--checked {
-    left: 45px;
+    left: 6.6vh;
     transition: 0.5s;
   }
   > .toggle-circle-text {
-    font-size: 0.5rem;
   }
 `;
 
