@@ -24,6 +24,7 @@ export const ChatList = () => {
     <>
       <ChatListOutLine>
         <InLineLeft>
+          <Toggle />
           {CityList.map((city, index) => (
             <LineButton
               key={index}
@@ -34,9 +35,7 @@ export const ChatList = () => {
             </LineButton>
           ))}
         </InLineLeft>
-        <InLineRight>
-          <Toggle />
-        </InLineRight>
+        <InLineRight></InLineRight>
       </ChatListOutLine>
     </>
   );
