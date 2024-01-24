@@ -36,9 +36,9 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6em;
   }
   .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    @media only screen and (max-width:1200px){
+    @media only screen and (max-width:1280px){
       padding: 0 20px;
     }
   }

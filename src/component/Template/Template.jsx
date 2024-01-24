@@ -7,7 +7,6 @@ const MainCss = styled.div`
   max-width: 1280px;
   min-width: 768px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: auto;
@@ -22,10 +21,15 @@ const TempHeader = styled.div`
 
 const TempContent = styled.div`
   grid-area: Content;
+  height: 100vh;
 `;
 
 const TempFooter = styled.div`
   grid-area: Footer;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  max-width: 1280px;
 `;
 
 export const Template = () => {
@@ -40,7 +44,6 @@ export const Template = () => {
       </TempContent>
 
       <TempFooter>
-        <div className="border"></div>
         <Footer></Footer>
       </TempFooter>
     </MainCss>

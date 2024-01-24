@@ -29,7 +29,7 @@ export const StyledLogo = styled(Logo)`
 
 export const Menu = styled.div`
   position: relative;
-  top: 15px;
+  top: 25px;
   display: flex;
   justify-content: end;
   font-size: 1rem;

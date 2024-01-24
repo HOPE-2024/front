@@ -10,13 +10,13 @@ export const FirstDropDownMenu = styled.ul`
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  z-index: 1;
 
   li {
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
     background: #ffffff;
-    z-index: 999;
     &:hover {
       background-color: #f0f0f0;
       font-weight: bold;
@@ -34,6 +34,7 @@ export const SecondDropDownMenu = styled.ul`
   background-color: #ffffff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  z-index: 1;
 
   li {
     padding: 10px;
@@ -57,6 +58,7 @@ export const ThirdDropDownMenu = styled.ul`
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  z-index: 1;
 
   li {
     padding: 10px;
