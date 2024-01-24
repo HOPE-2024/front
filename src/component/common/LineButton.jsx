@@ -9,8 +9,8 @@ export const LineButton = styled.div`
   background-repeat: no-repeat;
   background-size: 0% 100%;
   transition: background-size 0.8s;
-  color: ${(props) => props.fontSize || "var(--BLACK)"};
-  font-size: ${(props) => props.fontSize || "1rem"};
+  color: ${(props) => props.color || "var(--BLACK)"};
+  font-size: ${(props) => props.fontSize || "2vh"};
   cursor: pointer;
 
   &:hover {

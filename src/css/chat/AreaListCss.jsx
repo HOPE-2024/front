@@ -6,7 +6,7 @@ export const ChatListOutLine = styled.div`
   justify-content: center;
   border: 2px solid var(--BLACK);
   width: 90%;
-  height: 98%;
+  height: 70%;
   border-radius: 4px;
 `;
 
