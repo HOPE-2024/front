@@ -4,12 +4,9 @@ import {
   InLineRight,
   ChatListOutLine,
   CityList,
-  CityItem,
 } from "../../css/chat/AreaListCss";
-import {
-  ChatToggle,
-  ComponentWrapper,
-} from "../../component/common/toggleSwitch";
+import { LineButton } from "../../component/common/LineButton";
+import { Toggle } from "../../component/common/toggleSwitch";
 
 export const ChatList = () => {
   const [selectedCities, setSelectedCities] = useState([]);
@@ -28,19 +25,17 @@ export const ChatList = () => {
       <ChatListOutLine>
         <InLineLeft>
           {CityList.map((city, index) => (
-            <CityItem
+            <LineButton
               key={index}
               onClick={() => handleCityClick(city)}
               className={`${selectedCities.includes(city) ? "clicked" : ""}`}
             >
               {city}
-            </CityItem>
+            </LineButton>
           ))}
         </InLineLeft>
         <InLineRight>
-          <ComponentWrapper>
-            <ChatToggle />
-          </ComponentWrapper>
+          <Toggle />
         </InLineRight>
       </ChatListOutLine>
     </>
