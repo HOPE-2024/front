@@ -11,9 +11,10 @@ import {
   NaverStyled,
 } from "../../css/member/loginCss";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../../component/Template/Footer";
 
 export const Login = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   return (
     <>
       <LoginContainer>
