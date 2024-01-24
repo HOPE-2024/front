@@ -17,16 +17,28 @@ const MainCss = styled.div`
     "Content"
     "Footer";
 
-  // 배경설정
-  background-image: url(${backgroundSVG});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  // 가상 요소로 배경 설정
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(${backgroundSVG});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* opacity: 0.09; */
+    /* filter: blur(5px); */
+    z-index: -1;
+  }
 `;
 
 const BackGroundHeader = styled.div`
   background-color: white;
   width: 100vw;
+  height: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;

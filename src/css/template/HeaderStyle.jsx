@@ -19,17 +19,26 @@ export const Right = styled.div`
 `;
 
 export const StyledLogo = styled(Logo)`
-  width: 80%;
+  width: 150px;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  @media (max-width: 1200px) {
+    position: relative;
+    right: 15vw;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Menu = styled.div`
   position: relative;
-  top: 25px;
+  top: 2.5vh;
   display: flex;
   justify-content: end;
   font-size: 1rem;
@@ -41,6 +50,10 @@ export const Menu = styled.div`
   li {
     margin: 0 10px;
     cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    top: 0;
   }
 `;
 
