@@ -6,22 +6,23 @@ import { MemberListCss } from "../../css/admin/Report";
 export const Report = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState("");
+  const [list, setList] = useState("");
 
   const [data, setData] = useState([
     {
       reporter: "홍길동",
       reported: "길동이여라",
-      date: new Date(2024, 0, 23),
+      date: new Date,
       check: "욕설",
-      reason: "길똥아",
+      reason: "욕을합니다욕을합니다욕을합니다욕을합니다욕을합니다욕을합니다욕을합니다",
       status: "일반",
     },
     {
-      reporter: "홍길동",
+      reporter: "홍길1동",
       reported: "길동이여라",
-      date: new Date(2024, 0, 23),
+      date: new Date(2024, 1, 11),
       check: "혐오발언",
-      reason: "길똥아",
+      reason: "혐호합니다",
       status: "일반",
     },
     {
@@ -133,12 +134,15 @@ export const Report = () => {
         <div className="list">
           {data.map((item, index) => (
             <div
+              key={index}
               className={`list1 ${index % 2 === 0 ? "blue" : ""}`}
               onClick={() => {
-                setOpen(index);
+                // 모달이 이미 열려 있지 않은 경우에만 열기
+                setOpen(true);
+                setList(item);
               }}
             >
-              <div key={index} className="list1-1 listOption">
+              <div className="list1-1 listOption">
                 <ul>
                   <li>신고대상</li>
                   <li>신고자</li>
@@ -154,23 +158,22 @@ export const Report = () => {
                   <li>{item.reporter}</li>
                   <li>{item.reported}</li>
                   <li>{item.date.toLocaleDateString()}</li>
-                  <li style={{ height: "30px", marginTop: "7px" }}>
-                    {item.check}
-                  </li>
+                  <li>{item.check}</li>
                   <li>{item.reason}</li>
                   <li>{item.status}</li>
                 </ul>
               </div>
 
-              <ReportMadal
-                open={open === index}
-                setOpen={setOpen}
-                why={item.check}
-              ></ReportMadal>
+
             </div>
           ))}
         </div>
       </div>
-    </MemberListCss>
+      <ReportMadal
+        open={open}
+        setOpen={setOpen}
+        list={list}
+      ></ReportMadal>
+    </MemberListCss >
   );
 };
