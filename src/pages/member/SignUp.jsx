@@ -13,13 +13,14 @@ import {
 import { MemberAxiosApi } from "../../api/MemberAxiosApi";
 
 export const Signup = () => {
-  // 회원가입 정보
+  // 회원가입 정보 입력
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRecheck, setPasswordRecheck] = useState("");
   const [name, setName] = useState("");
-  const [nickName, setNickName] = useState(true);
+  const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(""); // 휴대폰 인증후 번호 받음.
 
   // 오류 메세지
   const [idMessage, setIdMessage] = useState("");
@@ -27,6 +28,7 @@ export const Signup = () => {
   const [passwordReCheckMessage, setPasswordRecheckMessage] = useState("");
   const [nickNameMeassage, setNickNameMessage] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
+  const [phoneMessage, setPhoneMessage] = useState("");
 
   // 유효성 검사
   const [isId, setIsId] = useState(false);
@@ -35,6 +37,7 @@ export const Signup = () => {
   const [isName, setIsName] = useState(false);
   const [isNickName, setIsNickName] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
+  const [isPhone, setIsPhone] = useState(false);
 
   // 아이디 조건에 맞는지 확인
   const onChangeId = (e) => {
@@ -156,20 +159,41 @@ export const Signup = () => {
     }
   };
 
+  // 휴대폰 번호 맞는지 확인
+  const onChangePhone = (e) => {
+    const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
+    const enteredPhoneNumber = e.target.value;
+    setPhoneNumber(enteredPhoneNumber);
+
+    if (!phoneRegex.test(enteredPhoneNumber)) {
+      setPhoneMessage("잘못 입력 했습니다.");
+      setIsPhone(false);
+    } else {
+      setPhoneMessage("맞는 양식입니다.");
+      setIsPhone(true);
+    }
+  };
+
   // 가입 버튼 클릭
   const onClickJoin = async () => {
-    const memberJoin = await MemberAxiosApi.memberJoin(
-      id,
-      password,
-      name,
-      nickName,
-      email
-    );
-    console.log("가입 정보 : ", memberJoin.data);
-    if (memberJoin.data.id === id) {
-      navigate("/login");
-    } else {
-      alert("회원가입에 실패했습니다. 다시 시도해 주세요.");
+    try {
+      const rsp = await MemberAxiosApi.memberJoin(
+        id,
+        password,
+        name,
+        nickName,
+        email,
+        phoneNumber
+      );
+      console.log("가입 응답 : ", rsp);
+      if (rsp.status === 200) {
+        alert("앞으로의 건강 케어를 함께 해요. 회원 가입을 축하 드립니다!");
+        navigate("/login");
+      } else {
+        console.log("회원가입 실패");
+      }
+    } catch (error) {
+      alert("회원가입에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -220,7 +244,11 @@ export const Signup = () => {
           <Input placeholder="이름 입력" value={name} onChange={onChangeName} />
         </Items>
         <Items className="item1">
-          <Input placeholder="닉네임 입력" />
+          <Input
+            placeholder="닉네임 입력"
+            value={nickName}
+            onChange={onChangeNickName}
+          />
         </Items>
         <Items className="item1">
           <Input
@@ -235,6 +263,13 @@ export const Signup = () => {
         </Instruction2>
         <Items className="item2">
           <Instruction>{emailMessage}</Instruction>
+        </Items>
+        <Items className="item1">
+          <Input
+            placeholder="휴대폰번호"
+            value={phoneNumber}
+            onChange={onChangePhone}
+          />
         </Items>
         <Items className="item3">
           <UnderLinedStyle
