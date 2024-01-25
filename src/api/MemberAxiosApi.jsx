@@ -31,4 +31,13 @@ export const MemberAxiosApi = {
     };
     return await axios.post();
   },
+  // 중복 체크
+  checkUnique: async (type, data) => {
+    console.log("중복 체크 !! : ", data);
+    const dataMap = {
+      type: type,
+      data: data,
+    };
+    return await axios.post(KH_DOMAIN + "/auth/isUnique", dataMap);
+  },
 };

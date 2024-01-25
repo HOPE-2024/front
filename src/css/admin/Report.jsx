@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
 export const MemberListCss = styled.div`
-    width: 1280px;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     margin-top: 10px;
     display: flex;
+    
     .content1{
    width: 200px;
    height: auto;
-   font-size: 24px;
+   font-size: 20px;
+   font-weight: lighter;
+   margin-top: 40px;
    li{
     margin: 10px;
       cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능한 상태로 표시 */
@@ -19,7 +22,7 @@ export const MemberListCss = styled.div`
       }
    }
    .font{
-    font-size: 18px;
+    font-size: 15px;
     margin-left: 35px;
    }
        .active {
@@ -36,6 +39,7 @@ export const MemberListCss = styled.div`
          display: flex;
          justify-content: end;
          input{     
+            border: 2px solid #3C84F8;
             margin-right:10px ;
          }
          }
@@ -60,6 +64,7 @@ background:white;
     border-radius: 10px;
     padding: 0;
     margin: 0;
+
     ul {
       width: 100%;
       height: auto;
@@ -68,10 +73,15 @@ background:white;
       list-style: none;
       margin-left: 10px; 
       li {
+        
         width: 90%;
         height: 20px;
         margin-top: 10px;
-        word-wrap: break-word;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        
+        
       }
     }
   }

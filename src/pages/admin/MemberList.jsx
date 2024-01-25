@@ -1,116 +1,91 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../utils/Button";
 import { useNavigate } from "react-router-dom";
 import { MemberListCss } from "../../css/admin/Report";
+import { AdminAxiosApi } from "../../api/AdminAxiosApi";
 
 export const MemberList = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("allMembers"); // 초기에 "모든 회원"이 선택되어 있는 상태
+  const [listType, setListType] = useState("all");
 
-  const handleTabClick = (tabName) => {
-    setActiveTab(tabName);
+  const [data, setData] = useState([]); // 초기에 "모든 회원"이 선택되어 있는 상태
+
+  const menuClick = (tabName) => {
+    setListType(tabName);
   };
-  const [data, setData] = useState([
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsaasdasdsadahjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "ydhjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsadhsadsdjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsadhjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsadhjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsadhjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsadhjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsadhjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-    {
-      name: "홍길동",
-      id: "길동이여라",
-      mail: "yanwsadhjk2@naver.com",
-      nickname: "길똥아",
-      contact: "010-1212-4545",
-      status: "일반",
-    },
-  ]);
+
   const memberSearch = () => {
-    alert(1);
+
   };
+  //화면 랜더링 시  데이터를 가져옴
+  useEffect(() => {
+    if (listType == 'all') {
+      memberList();
+    } if (listType == 'chatting') {
+      chattingMemberList();
+
+    } if (listType == 'stop') {
+      stopMemberList();
+    }
+
+  }, [listType]);
+
+  //모든 회원 조회
+  const memberList = async () => {
+    console.log('모든 회원 조회 axios 실행')
+    try {
+      const res = await AdminAxiosApi.selectMemberList();
+      setData(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //채팅 정지 회원 조회
+  const chattingMemberList = async () => {
+    console.log('모든 회원 조회 axios 실행')
+    try {
+      const res = await AdminAxiosApi.chattingMemberList();
+      setData(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //정지 회원 조회
+  const stopMemberList = async () => {
+    console.log('모든 회원 조회 axios 실행')
+    try {
+      const res = await AdminAxiosApi.stopMemberList();
+      setData(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <MemberListCss>
       <div className="content1">
         <ul>
           <li>회원 관리</li>
           <li
-            className={` ${activeTab === "allMembers" ? "active" : ""} font`}
-            onClick={() => handleTabClick("allMembers")}
+            className={` ${listType === "allMembers" ? "active" : ""} font`}
+            onClick={() => menuClick("all")}
           >
             모든 회원
           </li>
           <li
-            className={` ${
-              activeTab === "chatRestricted" ? "active" : ""
-            } font`}
-            onClick={() => handleTabClick("chatRestricted")}
+            className={` ${listType === "chatRestricted" ? "active" : ""
+              } font`}
+            onClick={() => menuClick("chatting")}
           >
             채팅 정지 회원
           </li>
           <li
-            className={` ${
-              activeTab === "blockedMembers" ? "active" : ""
-            } font`}
-            onClick={() => handleTabClick("blockedMembers")}
+            className={` ${listType === "blockedMembers" ? "active" : ""
+              } font`}
+            onClick={() => menuClick("stop")}
           >
             차단 회원
           </li>
@@ -151,14 +126,14 @@ export const MemberList = () => {
 
               <div className="list1-2 listOption">
                 <ul>
-                  <li>{item.id}</li>
+                  <li>{item.memberId}</li>
                   <li>{item.name}</li>
-                  <li>{item.nickname}</li>
+                  <li>{item.nickName}</li>
                   <li style={{ height: "30px", marginTop: "7px" }}>
-                    {item.mail}
+                    {item.email}
                   </li>
-                  <li>{item.contact}</li>
-                  <li>{item.status}</li>
+                  <li>{item.phone}</li>
+                  <li>{item.active}</li>
                 </ul>
               </div>
             </div>
