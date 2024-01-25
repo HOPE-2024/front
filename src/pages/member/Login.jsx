@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../../utils/Button";
 import {
   LoginContainer,
@@ -11,8 +11,36 @@ import {
   NaverStyled,
 } from "../../css/member/LoginCss";
 import { useNavigate } from "react-router-dom";
+import { MemberAxiosApi } from "../../api/MemberAxiosApi";
 
 export const Login = () => {
+  // 입력
+  const [inputId, setInputId] = useState("");
+  const [InputPw, setInputPw] = useState("");
+
+  const onChangeId = (e) => {
+    setInputId(e.target.value);
+  };
+  const onChangePw = (e) => {
+    setInputPw(e.target.value);
+  };
+
+  // 버튼 활성화
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    // 아이디, 비밀번호 입력시 로그인 버튼 활성화
+    if (inputId.length > 0 && InputPw.length > 0) setIsActive(true);
+    else setIsActive(false);
+  }, [inputId, InputPw]);
+
+  // const loginClink = async () => {
+  //   console.log("login!!")
+  //   try {
+  //     const rsp = await MemberAxiosApi.login
+  //   }
+  // }
+
   const navigate = useNavigate();
   return (
     <>
@@ -23,7 +51,7 @@ export const Login = () => {
           <Input placeholder="ID" />
         </Items>
         <Items className="item1">
-          <Input placeholder="Password" />
+          <Input type="password" placeholder="Password" />
         </Items>
         <Items className="item2">
           <FindLink href="/find_id">Find Id</FindLink>|
