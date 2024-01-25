@@ -10,6 +10,7 @@ import {
 } from "../../css/template/HeaderStyle";
 import { FirstDropDown, SecondDropDown, ThirdDropDown } from "./HeaderDropDown";
 import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
+import { Hamburger } from "./Hamburger";
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export const Header = () => {
     <>
       <Top>
         <Left>
+          <Hamburger></Hamburger>
           <StyledLogo
             onClick={() => {
               navigate("/");

@@ -12,7 +12,11 @@ const SearchBox = styled.div`
   z-index: 2;
 
   @media screen and (max-width: 1000px) {
-    width: 25%;
+    width: 70vw;
+  }
+
+  @media screen and (max-width: 300px) {
+    width: 60vw;
   }
 `;
 
@@ -20,14 +24,14 @@ const SearchMode = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 80%;
   height: 70px;
   margin: 20px;
   border: 2px solid #3c84f8;
   border-radius: 24px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   background: white; // 배경색을 흰색으로 설정
-  min-width: 350px;
+  min-width: 180px;
 
   @media (max-width: 768px) {
     height: 50px;

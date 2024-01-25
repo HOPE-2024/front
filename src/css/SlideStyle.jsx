@@ -94,6 +94,10 @@ export const PrevButton = styled.button`
       color: rgba(0, 0, 0, 0);
     }
   }
+
+  @media screen and (max-width: 300px) {
+    width: 25px;
+  }
 `;
 
 export const NextButton = styled.button`
@@ -135,6 +139,10 @@ export const NextButton = styled.button`
     &:hover {
       color: rgba(0, 0, 0, 0);
     }
+  }
+
+  @media screen and (max-width: 300px) {
+    width: 25px;
   }
 `;
 
