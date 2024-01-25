@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const UnderLinedStyle = styled.div`
   line-height: 1.8;
   background-image: linear-gradient(
-    transparent 80%,
+    transparent 85%,
     ${(props) => props.color || "#023b96"} 40%
   ); // 기본값 : #023b96
   background-repeat: no-repeat;
