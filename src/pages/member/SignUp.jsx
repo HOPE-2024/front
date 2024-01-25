@@ -177,6 +177,18 @@ export const Signup = () => {
   // 가입 버튼 클릭
   const onClickJoin = async () => {
     try {
+      // 비밀번호가 8자리 미만일 경우 회원가입 막음
+      if (password.length < 8) {
+        alert("비밀번호는 8자리 이상이어야 합니다.");
+        return;
+      }
+
+      //  비밀번호와 비밀번호 재확인 값이 일치하지 않으면 회원가입 막음
+      if (password !== passwordRecheck) {
+        alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요.");
+        return;
+      }
+
       const rsp = await MemberAxiosApi.memberJoin(
         id,
         password,

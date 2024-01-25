@@ -13,7 +13,6 @@ export const MemberAxiosApi = {
         email: email,
         phone: phoneNumber,
       };
-
       return await axios.post(KH_DOMAIN + "/auth/signup", data, {
         headers: {
           "Content-Type": "application/json",
