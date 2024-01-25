@@ -26,7 +26,7 @@ export const Signup = () => {
   const [idMessage, setIdMessage] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   const [passwordReCheckMessage, setPasswordRecheckMessage] = useState("");
-  const [nickNameMeassage, setNickNameMessage] = useState("");
+  const [nickNameMessage, setNickNameMessage] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
   const [phoneMessage, setPhoneMessage] = useState("");
 
@@ -38,6 +38,26 @@ export const Signup = () => {
   const [isNickName, setIsNickName] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
   const [isPhone, setIsPhone] = useState(false);
+
+  // 중복 체크
+  const isUnique = async (num, checkVal) => {
+    const msgList = [setIdMessage, setNickNameMessage];
+    const validList = [setIsId, setIsNickName];
+    try {
+      // type: 0(아이디), 1(닉네임) value: 체크할 값
+      const rsp = await MemberAxiosApi.checkUnique(num, checkVal);
+      console.log("중복 체크 : ", !rsp.data);
+      if (!rsp.data) {
+        msgList[num]("사용 가능합니다."); // 수정
+        validList[num](true); // 수정
+      } else {
+        msgList[num]("이미 사용 중 입니다.");
+        validList[num](false); // 수정
+      }
+    } catch (error) {
+      console.log("중복 !! : ", error);
+    }
+  };
 
   // 아이디 조건에 맞는지 확인
   const onChangeId = (e) => {
@@ -51,8 +71,8 @@ export const Signup = () => {
         setIdMessage("숫자, 영문자 조합으로 5자리 이상 입력해 주세요");
         setIsId(false);
       } else {
-        setIdMessage("멋있는 아이디네요 :)");
         setIsId(true);
+        isUnique(0, enteredId);
       }
     } else {
       // 입력된 아이디가 없을 때는 메시지를 숨김
@@ -116,25 +136,15 @@ export const Signup = () => {
 
   // 닉네임 입력
   const onChangeNickName = (e) => {
-    setNickName(e.target.value);
-    setIsNickName(true);
-    nickNameCheck(e.target.value);
-  };
+    const enteredNickName = e.target.value;
+    setNickName(enteredNickName);
 
-  // 닉네임 중복화인
-  const nickNameCheck = async (nickName) => {
-    try {
-      const rsp = await MemberAxiosApi.nickNameCheck(nickName);
-      console.log("닉네임 중복 확인 : ", rsp.data);
-
-      if (rsp.data === true) {
-        setNickNameMessage("사용 가능한 닉네임 입니다.");
-      } else {
-        setNickNameMessage("중복된 닉네임 입니다.");
-        setNickName(false);
-      }
-    } catch (error) {
-      console.log("에러 !!!", error);
+    if (enteredNickName.length < 2 || enteredNickName.length > 10) {
+      setNickNameMessage("2자 이상 10자 이내로 입력하세요.");
+      setIsNickName(false);
+    } else {
+      setIsNickName(true);
+      isUnique(1, enteredNickName);
     }
   };
 
@@ -257,10 +267,13 @@ export const Signup = () => {
         </Items>
         <Items className="item1">
           <Input
-            placeholder="닉네임 입력"
+            placeholder="닉네임 입력(2-10자)"
             value={nickName}
             onChange={onChangeNickName}
           />
+        </Items>
+        <Items className="item2">
+          <Instruction>{nickNameMessage}</Instruction>
         </Items>
         <Items className="item1">
           <Input
