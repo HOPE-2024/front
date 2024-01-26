@@ -27,14 +27,15 @@ export const MemberListCss = styled.div`
    }
        .active {
       color: #023B96; /* active 클래스가 적용되면 글씨 색상을 빨간색으로 변경 */
-    }
+    }   
+
     }
     .content2{
          display: flex;
          flex-direction: column;
          width:  100%;
          flex-wrap: wrap;      
-     
+
          .search{           
          display: flex;
          justify-content: end;
@@ -49,14 +50,18 @@ export const MemberListCss = styled.div`
         .list1 {
     border: 1px solid #023B96;
     width: 250px;
-    height: 200px;
+    height: auto;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
     background-color: #ffffff;
     /* background-color: #d6eff8; */
     margin: 8px;
+    @media (max-width: 768px) {            
+              margin-top: 40px;          
   }
+  }
+  
   .list1.blue {
 background:white;
 }
@@ -64,7 +69,7 @@ background:white;
     border-radius: 10px;
     padding: 0;
     margin: 0;
-
+ 
     ul {
       width: 100%;
       height: auto;
@@ -72,28 +77,43 @@ background:white;
       margin: 0;
       list-style: none;
       margin-left: 10px; 
+      padding-bottom: 8px;
       li {
-        
+        line-height: 20px;
         width: 90%;
-        height: 20px;
+        height: auto;
         margin-top: 10px;
         overflow: hidden;
         white-space: nowrap;
-        text-overflow: ellipsis;
-        
-        
+        text-overflow: ellipsis;     
       }
     }
+    .email{
+      height: auto;
+      padding-bottom: 10px;
+      overflow: visible;
+    word-wrap: break-word;
+    white-space: normal;
+    }
+    .status{
+     
+     
+    }
+
   }
   .list1-1 {
     width: 100px;
-    height: 100%;
+    height: auto;
     border-radius: 10px;
   }
   .list1-2 {
     width:150px;
-    height: 100%;
+    height: auto;
     border-radius: 10px;
+    display: flex;
+    flex-direction: row;
   }
-    }}
+    }
+
+    }
 `;
