@@ -61,7 +61,7 @@ export const Signup = () => {
 
   // 아이디 조건에 맞는지 확인
   const onChangeId = (e) => {
-    const idRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{5,20}$/;
+    const idRegex = /^(?=.*[a-zA-Z0-9])[a-zA-Z0-9]{5,20}$/;
     const enteredId = e.target.value;
     setId(enteredId);
 
@@ -192,13 +192,11 @@ export const Signup = () => {
         alert("비밀번호는 8자리 이상이어야 합니다.");
         return;
       }
-
       //  비밀번호와 비밀번호 재확인 값이 일치하지 않으면 회원가입 막음
       if (password !== passwordRecheck) {
         alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요.");
         return;
       }
-
       const rsp = await MemberAxiosApi.memberJoin(
         id,
         password,

@@ -11,6 +11,9 @@ export const SignupContainer = styled.div`
   top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
 `;
 
 export const StyledSvg = styled(DrugSvg)`

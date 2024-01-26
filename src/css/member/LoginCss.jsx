@@ -13,6 +13,9 @@ export const LoginContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
 `;
 
 export const StyledSvg = styled(DrugSvg)`
@@ -61,6 +64,9 @@ export const Items = styled.div`
     position: relative;
     margin: 15px;
     left: 10%; //item2가 원래 있어야 할 위치에서 왼쪽으로 10%만큼 떨어진 곳에 위치
+    @media screen and (max-width: 768px) {
+      left: 25%;
+    }
   }
   &.item3 {
     margin: 20px;

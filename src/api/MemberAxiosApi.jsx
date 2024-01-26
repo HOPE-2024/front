@@ -22,15 +22,6 @@ export const MemberAxiosApi = {
       console.log("회원가입 에러 : ", error);
     }
   },
-  // 로그인
-  login: async (id, password) => {
-    console.log("로그인 시도 : ", id);
-    const data = {
-      id: id,
-      password: password,
-    };
-    return await axios.post();
-  },
   // 중복 체크
   checkUnique: async (type, data) => {
     console.log("중복 체크 !! : ", data);
@@ -39,5 +30,14 @@ export const MemberAxiosApi = {
       data: data,
     };
     return await axios.post(KH_DOMAIN + "/auth/isUnique", dataMap);
+  },
+  // 로그인
+  login: async (id, password) => {
+    console.log("로그인 시도 : ", id);
+    const data = {
+      id: id,
+      password: password,
+    };
+    return await axios.post();
   },
 };
