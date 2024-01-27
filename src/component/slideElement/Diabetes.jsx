@@ -1,4 +1,4 @@
-import { StyledSearch } from "../StyledSearch";
+import { StyledSearch } from "./StyledSearch";
 
 export const Diabetes = () => {
   return (

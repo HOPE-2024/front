@@ -1,10 +1,8 @@
-import { StyledSearch } from "../StyledSearch";
-import { Which } from "../text/Which";
+import { StyledSearch } from "./StyledSearch";
 
 export const ElasticSearch = () => {
   return (
     <>
-      <Which></Which>
       <StyledSearch></StyledSearch>
     </>
   );
