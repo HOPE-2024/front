@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
-// 키프레임 정의
+// 단어가 서서히 나타났다가 사라지는 효과
 const opacityAnimation = keyframes`
   0% { opacity: 0; }
   50% { opacity: 1; }
   100% { opacity: 0; }
 `;
 
+// 단어가 바뀔 때 사용, 현재 단어가 사라지는 효과
 const leaveWordAnimation = keyframes`
   0% {
     transform: rotateX(0deg);
@@ -21,6 +22,7 @@ const leaveWordAnimation = keyframes`
   }
 `;
 
+// 단어가 바뀔 때 사용, 새로운 단어가 회전하며 등장
 const enterWordAnimation = keyframes`
   0% {
     transform: rotateX(90deg);
@@ -32,6 +34,7 @@ const enterWordAnimation = keyframes`
   }
 `;
 
+// 글자의 일부분만 보이게하는 효과
 const glitchAnimation = keyframes`
   0% { clip: rect(23px, 9999px, 17px, 0); }
   5% { clip: rect(34px, 9999px, 24px, 0); }
@@ -80,23 +83,23 @@ const glitch2Animation = keyframes`
   100% { clip: rect(38px, 9999px, 21px, 0); }
 `;
 
-// Styled Components
+// 전체
 const Content = styled.div`
-  background-color: yellow;
-  position: absolute;
-  top: 50%;
-  left: 30%;
+  width: 50vw;
+  height: 50vh;
+  background-color: green;
+
   &::after,
   &::before {
-    color: #000;
     font-size: 42px;
     animation: ${opacityAnimation} 2s ease-out 0s normal none infinite;
   }
 `;
 
+// 단어 전환
 const WordSwitcher = styled.span`
   position: relative;
-  display: inline-block;
+  display: flex;
   vertical-align: top;
   transition: width 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
   white-space: nowrap;
@@ -125,6 +128,7 @@ const WordSwitcher = styled.span`
   }
 `;
 
+// 특수 효과
 const Glitch = styled.p`
   color: white;
   position: absolute;
@@ -175,7 +179,8 @@ export const Which = () => {
     <Content>
       <h1>
         Hello. We
-        <WordSwitcher id="word-switcher" className="in">
+        {/* 전환되는 글자 */}
+        {/* <WordSwitcher id="word-switcher" className="in">
           <Glitch
             className={`glitch ${currentItem === 0 ? "active" : ""}`}
             data-text="design"
@@ -197,8 +202,8 @@ export const Which = () => {
           >
             love
           </Glitch>
-        </WordSwitcher>
-        apps.
+        </WordSwitcher> */}
+        &nbsp;apps.
       </h1>
     </Content>
   );

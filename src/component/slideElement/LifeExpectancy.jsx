@@ -1,9 +1,9 @@
-import { StyledSearch } from "./StyledSearch";
+import { Which } from "../text/Which";
 
 export const LifeExpectancy = () => {
   return (
     <>
-      <StyledSearch></StyledSearch>
+      <Which></Which>
     </>
   );
 };
