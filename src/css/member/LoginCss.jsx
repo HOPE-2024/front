@@ -21,6 +21,7 @@ export const LoginContainer = styled.div`
 export const StyledSvg = styled(DrugSvg)`
   width: 100px;
   height: 70px;
+  cursor: pointer;
 `;
 
 export const Title = styled.div`

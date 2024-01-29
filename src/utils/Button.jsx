@@ -14,7 +14,7 @@ const ButtonComp = styled.button`
   cursor: pointer;
   &.false {
     // false로 지정된 버튼은 비활성화 ex) <Button className="false">비활성화 버튼</Button>
-    background-color: #a7a7a7;
+    background-color: var(--DEEPBLUE);
     cursor: default;
     &:hover {
       background-color: gray;
