@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import down from "../../images/bown.svg";
-
+import { UpdateActive } from "../../component/admin/UpdateActive";
+import { DeleteReport } from "../../component/admin/DeleteReport";
+import { ReportRead } from "../../component/admin/ReportRead";
 const AA = styled.textarea`
  width: 100%;
-  height: 100%;
+
   padding: 0;
   border:1px solid #3C84F8;
 `;
@@ -24,7 +26,8 @@ const ModalStyle = styled.div`
   .modalContent{
     width: 400px;
     max-width: 450px;
-    height: 500px;
+    min-height: 500px;
+    height: auto;
     margin: 0 auto;
     border-radius: 20px;
     background-color: #fff;
@@ -68,6 +71,7 @@ const ModalStyle = styled.div`
       width: 80%;
       margin: 0 auto;
       margin-top: 20px;
+      padding-bottom: 20px;
       height: auto;
       display: flex;
         flex-direction: row;
@@ -123,7 +127,7 @@ const CustomRadio = styled.input`
   -moz-appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid #3C84F8;
+  border: 2px solid #86878a;
   border-radius: 4px;
   margin-right: 5px;
   cursor: pointer;
@@ -204,45 +208,38 @@ export function ReportMadal({ open, setOpen, list }) {
   //신고 이유 저장
   const [what, setWhat] = useState('');
   const [why, setWhy] = useState('');
+  const [view, setView] = useState('');
+  const [status, setStaus] = useState('상태 변경 없음');
 
   //확인 클릭시
-  const submit = () => {
-
+  const submit = async () => {
+    if (status !== '상태 변경 없음') {
+      await UpdateActive(list.reported.id, view);
+    }
+    setOpen(null)
   }
   //취소 클릭시
   const cancel = () => {
+    DeleteReport(list.id)
     setOpen(null);
   }
   const [isOpen, setIsOpen] = useState(false);
-  const [buttonVar, setButtonVar] = useState(false);
+
   const data = [
-    "일반",
+    "일반 회원",
     "7일 정지",
     "30일 정지",
     "회원 정지"
-
   ];
-  const save = (e) => {
-    setButtonVar(e)
-    const toDate = new Date();
-    const newDate = new Date(toDate)
-    switch (e) {
-      case data[0]:
-        alert(toDate);
-        break;
-      case data[1]:
-        newDate.setDate(toDate.getDate() + 7);
-        alert(newDate);
-        break;
-      case data[2]:
-        newDate.setDate(toDate.getDate() + 30);
-        alert(newDate);
-        break;
 
+  useEffect(() => {
 
-      default: ;
+    if (list.reported) {
+      ReportRead(list.id)
+      setView(list.reported.nickName);
     }
-  }
+  }, [list]
+  )
   return (
     <ModalStyle>
       {open &&
@@ -253,14 +250,15 @@ export function ReportMadal({ open, setOpen, list }) {
             </div>
 
             <ButtonVar
-              onMouseOver={() => setIsOpen(true)} // 마우스가 올라갔을 때 리스트를 열어줍니다.
-              onMouseOut={() => setIsOpen(false)} // 마우스가 벗어났을 때 리스트를 닫아줍니다.
+              onMouseOver={() => setIsOpen(true)}
+              onMouseOut={() => setIsOpen(false)}
             >
-
-              <div className="content1"> <img src={down} alt="" />  <p>{list.reported}</p> </div>
-              {isOpen && data.map((specialty, index) => ( // isOpen 상태에 따라 리스트를 보여줍니다.
+              <div className="content1"> <img src={down} alt="" />
+                <p>{view}
+                </p> </div>
+              {isOpen && data.map((pick, index) => (
                 <ul>
-                  <li onClick={() => { save(specialty); setIsOpen(false); }}><div className="content2">{specialty}</div></li>
+                  <li onClick={(e) => { setIsOpen(false); setView(pick); setStaus(pick) }}><div className="content2">{pick}</div></li>
                 </ul>
               ))}
             </ButtonVar>
@@ -326,8 +324,8 @@ export function ReportMadal({ open, setOpen, list }) {
             </div>
             <div className=" item3">
 
-              <button onClick={() => { setOpen(false) }}>확 인</button>
-              <button onClick={() => { setOpen(false) }}>취 소</button>
+              <button onClick={() => { submit() }}>확 인</button>
+              <button onClick={() => { cancel() }}>삭 제</button>
             </div>
 
           </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { KH_DOMAIN } from "../utils/Common";
+import { Common } from "../utils/Common";
 
-export const MemberAxiosApi = {
+export const AuthAxiosApi = {
   // 회원가입
   memberJoin: async (id, password, name, nickName, email, phoneNumber) => {
     try {
@@ -13,11 +13,7 @@ export const MemberAxiosApi = {
         email: email,
         phone: phoneNumber,
       };
-      return await axios.post(KH_DOMAIN + "/auth/signup", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      return await axios.post(Common.KH_DOMAIN + "/auth/signup", data);
     } catch (error) {
       console.log("회원가입 에러 : ", error);
     }
@@ -29,15 +25,26 @@ export const MemberAxiosApi = {
       type: type,
       data: data,
     };
-    return await axios.post(KH_DOMAIN + "/auth/isUnique", dataMap);
+    return await axios.post(Common.KH_DOMAIN + "/auth/isUnique", dataMap);
   },
   // 로그인
   login: async (id, password) => {
     console.log("로그인 시도 : ", id);
     const data = {
-      id: id,
+      memberId: id,
       password: password,
     };
-    return await axios.post();
+    try {
+      const response = await axios.post(Common.KH_DOMAIN + "/auth/login", data);
+      console.log(
+        "액세스 토큰: ",
+        response.data.accessToken,
+        "리프레시 토큰: ",
+        response.data.refreshToken
+      );
+      return response;
+    } catch (error) {
+      console.error("로그인 실패: ", error);
+    }
   },
 };
