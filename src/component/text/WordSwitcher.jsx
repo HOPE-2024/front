@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
-// 단어가 서서히 나타났다가 사라지는 효과
-const opacityAnimation = keyframes`
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
-`;
-
+// Animation
 // 단어가 바뀔 때 사용, 현재 단어가 사라지는 효과
 const leaveWordAnimation = keyframes`
   0% {
@@ -83,29 +77,39 @@ const glitch2Animation = keyframes`
   100% { clip: rect(38px, 9999px, 21px, 0); }
 `;
 
+// CSS
 // 전체
 const Content = styled.div`
-  width: 50vw;
-  height: 50vh;
-  background-color: green;
+  width: 32vw;
+  height: 30vh;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
 
-  &::after,
-  &::before {
-    font-size: 42px;
-    animation: ${opacityAnimation} 2s ease-out 0s normal none infinite;
+  @media screen and (max-width: 500px) {
+    font-size: 30px;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 25px;
+  }
+
+  @media screen and (max-width: 300px) {
+    font-size: 20px;
   }
 `;
 
 // 단어 전환
-const WordSwitcher = styled.span`
+const Switcher = styled.span`
   position: relative;
   display: flex;
-  vertical-align: top;
-  transition: width 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
-  white-space: nowrap;
-  margin-right: -5px;
-  margin-top: 0;
+  justify-content: flex-start;
+  align-items: baseline;
   font-weight: bold;
+  transition: width 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  height: 100%;
+
   &.in p {
     -webkit-animation: ${leaveWordAnimation} 300ms
       cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -118,10 +122,12 @@ const WordSwitcher = styled.span`
     animation: ${enterWordAnimation} 300ms 100ms
       cubic-bezier(0.215, 0.61, 0.355, 1);
   }
+
+  // 실제 텍스트
   p {
     visibility: hidden;
     position: absolute;
-    left: 0;
+    white-space: nowrap;
     &.active {
       visibility: visible;
     }
@@ -130,7 +136,7 @@ const WordSwitcher = styled.span`
 
 // 특수 효과
 const Glitch = styled.p`
-  color: white;
+  color: #136cfb;
   position: absolute;
   &:after {
     content: attr(data-text);
@@ -161,9 +167,9 @@ const Glitch = styled.p`
 `;
 
 // React 컴포넌트
-export const Which = () => {
+export const WordSwitcher = () => {
   const [currentItem, setCurrentItem] = useState(0);
-  const count = 3;
+  const count = 4; // 변경될 단어의 개수
 
   useEffect(() => {
     const doChange = () => {
@@ -171,40 +177,65 @@ export const Which = () => {
       setCurrentItem(nextItem);
     };
 
-    const interval = setInterval(doChange, 2000);
+    const interval = setInterval(doChange, 2000); // 단어 변경 주기
     return () => clearInterval(interval);
   }, [currentItem, count]);
 
+  // 단어의 길이에 맞춰서 공백을 조정
+  const generateSpaces = () => {
+    switch (currentItem) {
+      case 0:
+        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
+      case 1:
+        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
+      case 2:
+        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
+      case 3:
+        return (
+          <>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <Content>
-      <h1>
-        Hello. We
-        {/* 전환되는 글자 */}
-        {/* <WordSwitcher id="word-switcher" className="in">
-          <Glitch
-            className={`glitch ${currentItem === 0 ? "active" : ""}`}
-            data-text="design"
-            data-oid="0"
-          >
-            design
-          </Glitch>
-          <Glitch
-            className={`glitch ${currentItem === 1 ? "active" : ""}`}
-            data-text="develop"
-            data-oid="1"
-          >
-            develop
-          </Glitch>
-          <Glitch
-            className={`glitch ${currentItem === 2 ? "active" : ""}`}
-            data-text="love"
-            data-oid="2"
-          >
-            love
-          </Glitch>
-        </WordSwitcher> */}
-        &nbsp;apps.
-      </h1>
+      당신의&nbsp;
+      {/* 전환되는 글자 */}
+      <Switcher id="word-switcher" className="in">
+        <Glitch
+          className={`glitch ${currentItem === 0 ? "active" : ""}`}
+          data-text="design"
+          data-oid="0"
+        >
+          증상
+        </Glitch>
+        <Glitch
+          className={`glitch ${currentItem === 1 ? "active" : ""}`}
+          data-text="develop"
+          data-oid="1"
+        >
+          병원
+        </Glitch>
+        <Glitch
+          className={`glitch ${currentItem === 2 ? "active" : ""}`}
+          data-text="love"
+          data-oid="2"
+        >
+          약국
+        </Glitch>
+        <Glitch
+          className={`glitch ${currentItem === 3 ? "active" : ""}`}
+          data-text="love"
+          data-oid="2"
+        >
+          또뭐넣지
+        </Glitch>
+      </Switcher>
+      {generateSpaces()}을 검색해보세요.
     </Content>
   );
 };

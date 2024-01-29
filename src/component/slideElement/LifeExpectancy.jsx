@@ -1,9 +1,9 @@
-import { Which } from "../text/Which";
+import { Focus } from "../text/Focus";
 
 export const LifeExpectancy = () => {
   return (
     <>
-      <Which></Which>
+      <Focus></Focus>
     </>
   );
 };

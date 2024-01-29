@@ -1,9 +1,9 @@
-import { StyledSearch } from "./StyledSearch";
+import { Note } from "../text/Note";
 
 export const Country = () => {
   return (
     <>
-      <StyledSearch></StyledSearch>
+      <Note></Note>
     </>
   );
 };

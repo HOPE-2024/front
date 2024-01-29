@@ -25,7 +25,7 @@ export const Slide = () => {
     <SlideListContent style={{ backgroundColor: "none" }}>
       <LifeExpectancy></LifeExpectancy>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}>
+    <SlideListContent style={{ backgroundColor: "" }}>
       <Country></Country>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>

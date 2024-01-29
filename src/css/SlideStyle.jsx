@@ -4,7 +4,6 @@ export const Container = styled.div`
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  background-color: none;
 `;
 
 export const Content = styled.div`
