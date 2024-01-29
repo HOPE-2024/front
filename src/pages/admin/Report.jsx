@@ -1,122 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../utils/Button";
-import { ReportMadal } from "./ReportMadal";
+import { ReportMadal } from "../../utils/Modal/ReportMadal";
 import { useNavigate } from "react-router-dom";
 import { MemberListCss } from "../../css/admin/Report";
+import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+
+
 export const Report = () => {
+  //회원 조회 axios를 선택할 때 사용
+  const [listType, setListType] = useState("all");
   const navigate = useNavigate();
   const [open, setOpen] = useState("");
   const [list, setList] = useState("");
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    selectReportList()
+  }, [open])
 
-  const [data, setData] = useState([
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date,
-      check: "욕설",
-      reason: "욕을합니다욕을합니다욕을합니다욕을합니다욕을합니다욕을합니다욕을합니다",
-      status: "일반",
-    },
-    {
-      reporter: "홍길1동",
-      reported: "길동이여라",
-      date: new Date(2024, 1, 11),
-      check: "혐오발언",
-      reason: "혐호합니다",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "광고/스팸",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "부적절한 아이디",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "yanwsaasdasdsadahjk2@naver.com",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "yanwsaasdasdsadahjk2@naver.com",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "yanwsaasdasdsadahjk2@naver.com",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "yanwsaasdasdsadahjk2@naver.com",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "yanwsaasdasdsadahjk2@naver.com",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "yanwsaasdasdsadahjk2@naver.com",
-      reason: "길똥아",
-      status: "일반",
-    },
-    {
-      reporter: "홍길동",
-      reported: "길동이여라",
-      date: new Date(2024, 0, 23),
-      check: "yanwsaasdasdsadahjk2@naver.com",
-      reason: "길똥아",
-      status: "일반",
-    },
-  ]);
+  const selectReportList = async () => {
+    try {
+      const res = await AdminAxiosApi.selectReportList();
+      console.log(res.data);
+      setData(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const redate = (e) => {
+    const dateObject = new Date(e);
+    return <>
+      {dateObject.toLocaleDateString()}</>
+  }
   const memberSearch = () => {
     alert(1);
+  };
+  const menuClick = (tabName) => {
+    setListType(tabName);
   };
   return (
     <MemberListCss>
       <div className="content1">
         <ul>
-          <li>회원 관리</li>
-          <li
-            className={"font"}
-            onClick={() => {
-              navigate("/memberList");
-            }}
-          >
-            모든 회원
-          </li>
-          <li className={"font"}>채팅 정지 회원</li>
-          <li className={"font"}>차단 회원</li>
+          <li onClick={() => {
+            navigate("/memberList");
+          }}>회원 관리</li>
+
           <li style={{ color: " #023B96" }}>신고 내용</li>
+          <li className={` ${listType === "chatting" ? "active" : ""
+            } font`} onClick={() => menuClick("all")} >모두 보기</li>
+          <li className={"font"}>처리 전</li>
+          <li className={"font"}>처리 완료</li>
         </ul>
       </div>
 
@@ -155,9 +89,9 @@ export const Report = () => {
 
               <div className="list1-2 listOption">
                 <ul>
-                  <li>{item.reporter}</li>
-                  <li>{item.reported}</li>
-                  <li>{item.date.toLocaleDateString()}</li>
+                  <li>{item.reported.nickName}</li>
+                  <li>{item.reporter.nickName}</li>
+                  <li>{redate(item.date)}</li>
                   <li>{item.check}</li>
                   <li>{item.reason}</li>
                   <li>{item.status}</li>

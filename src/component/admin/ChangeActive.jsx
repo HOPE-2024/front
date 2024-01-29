@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+import { UpdateActive } from "./UpdateActive";
 
 const ActiveChangeCss = styled.div`  
     height: auto;  
@@ -50,19 +51,10 @@ export const ChangeActive = ({ setStatus, id, setActive }) => {
     ];
 
     const click = async (type) => {
-        await updateActive(type);
+
+        await UpdateActive(id, type);
         setStatus('')
         setActive('')
-    }
-
-    const updateActive = async (type) => {
-        const memberResDto = { id: id, active: type };
-        try {
-            const res = await AdminAxiosApi.updateActive(memberResDto);
-            console.log(res.data);
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     return (
