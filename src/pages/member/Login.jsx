@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Button } from "../../utils/Button";
 import {
   LoginContainer,
@@ -11,9 +11,14 @@ import {
   NaverStyled,
 } from "../../css/member/LoginCss";
 import { useNavigate } from "react-router-dom";
-import { MemberAxiosApi } from "../../api/MemberAxiosApi";
+import { AuthAxiosApi } from "../../api/AuthAxiosApi";
+import { Common } from "../../utils/Common";
+import { UserContext } from "../../context/AuthContext";
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { setLoginStatus, loginStatus } = context;
   // 입력
   const [inputId, setInputId] = useState("");
   const [InputPw, setInputPw] = useState("");
@@ -34,30 +39,51 @@ export const Login = () => {
     else setIsActive(false);
   }, [inputId, InputPw]);
 
-  // const loginClink = async () => {
-  //   console.log("login!!")
-  //   try {
-  //     const rsp = await MemberAxiosApi.login
-  //   }
-  // }
+  const loginClick = async () => {
+    console.log("login!!");
+    try {
+      const rsp = await AuthAxiosApi.login(inputId, InputPw);
+      if (rsp.data.grantType === "Bearer") {
+        Common.setAccessToken(rsp.data.accessToken);
+        Common.setRefreshToken(rsp.data.refreshToken);
+        setLoginStatus(true); // 로그인 성공 시 전역 상태 true로 업데이트
+        navigate("/");
+      } else {
+        alert("잘못된 아이디 또는 비밀번호 입니다.");
+      }
+    } catch (error) {
+      console.log("로그인 에러1 : ", error);
+      if (error.rsp && error.rsp.status === 405) {
+        console.log("로그인 실패 : " + error);
+        alert("잘못된 아이디 또는 비밀번호 입니다.");
+      } else {
+        console.log("로그인 에러2 : " + error);
+        alert("서버와 연결이 끊겼습니다.");
+      }
+    }
+  };
 
-  const navigate = useNavigate();
   return (
     <>
       <LoginContainer>
         <StyledSvg />
         <Title>Log In Now</Title>
         <Items className="item1">
-          <Input placeholder="ID" />
+          <Input placeholder="ID" onChange={onChangeId} />
         </Items>
         <Items className="item1">
-          <Input type="password" placeholder="Password" />
+          <Input type="password" placeholder="Password" onChange={onChangePw} />
         </Items>
         <Items className="item2">
           <FindLink href="/find_id">Find Id</FindLink>|
           <FindLink href="/find_password">Find Password</FindLink>
         </Items>
-        <Button width="350px" height="45px" fontsize="1.2em">
+        <Button
+          width="350px"
+          height="45px"
+          fontsize="1.2em"
+          clickEvt={loginClick}
+        >
           Log In
         </Button>
         <Items className="item3">

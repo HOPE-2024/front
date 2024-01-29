@@ -10,7 +10,7 @@ import {
   Instruction,
   Instruction2,
 } from "../../css/member/SignupCss";
-import { MemberAxiosApi } from "../../api/MemberAxiosApi";
+import { AuthAxiosApi } from "../../api/AuthAxiosApi";
 
 export const Signup = () => {
   // 회원가입 정보 입력
@@ -45,7 +45,7 @@ export const Signup = () => {
     const validList = [setIsId, setIsNickName];
     try {
       // type: 0(아이디), 1(닉네임) value: 체크할 값
-      const rsp = await MemberAxiosApi.checkUnique(num, checkVal);
+      const rsp = await AuthAxiosApi.checkUnique(num, checkVal);
       console.log("중복 체크 : ", !rsp.data);
       if (!rsp.data) {
         msgList[num]("사용 가능합니다."); // 수정
@@ -197,7 +197,7 @@ export const Signup = () => {
         alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요.");
         return;
       }
-      const rsp = await MemberAxiosApi.memberJoin(
+      const rsp = await AuthAxiosApi.memberJoin(
         id,
         password,
         name,

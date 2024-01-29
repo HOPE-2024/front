@@ -14,7 +14,7 @@ export const LoginContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   @media screen and (max-width: 768px) {
-    width: 85%;
+    width: 80%;
   }
 `;
 
@@ -65,7 +65,7 @@ export const Items = styled.div`
     margin: 15px;
     left: 10%; //item2가 원래 있어야 할 위치에서 왼쪽으로 10%만큼 떨어진 곳에 위치
     @media screen and (max-width: 768px) {
-      left: 25%;
+      left: 15%;
     }
   }
   &.item3 {
