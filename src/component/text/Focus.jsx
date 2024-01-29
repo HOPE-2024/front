@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 // Animation
 const maskAnimation = keyframes`
   to {
-    transform: translateX(-140px);
+    transform: translateX(-150px);
   }
 `;
 
@@ -32,16 +32,33 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 900px) {
+    font-size: 35px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 30px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 25px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 350px) {
+    font-size: 15px;
+  }
 `;
 
 const Highlight = styled.span`
+  font-size: 3.5rem;
   color: ${(props) => (props.highlight ? "#3C84F8" : "grey")};
 `;
 
 // 강조 글자
 const Mask = styled.div`
-  width: 45px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   font-weight: bold;
   font-size: 40px;
   background: linear-gradient(#023b96, #023b96) no-repeat,
@@ -56,26 +73,28 @@ const Mask = styled.div`
     10px 2px, 2px 10px, 10px 2px;
   color: #023b96;
   padding: 5px;
-  transform: translateX(0);
+  transform: translateX(30px);
   box-sizing: border-box;
   animation: ${maskAnimation} 2.5s ease infinite alternate;
   mix-blend-mode: difference;
 `;
 
 export const Focus = () => {
+  // useRef : 실제 DOM 요소에 대한 참조
   const maskRef = useRef(null);
   const letterRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const [highlights, setHighlights] = useState([false, false, false, false]);
 
   useEffect(() => {
+    // maskRect의 오른쪽 경계가, 글자의 왼쪽 경계보다 오른쪽에 존재하고, maskRect의 왼쪽 경게가 글자의 오른쪽 경계보다 왼쪽에 존재하면, mask가 해당 글자와 겹친 상태로 판단 후 효과 적용
     const interval = setInterval(() => {
       const maskRect = maskRef.current.getBoundingClientRect();
       const newHighlights = letterRefs.map((ref) => {
         const rect = ref.current.getBoundingClientRect();
-        return rect.left < maskRect.right && rect.right > maskRect.left;
+        return rect.left + 20 < maskRect.right && rect.right > maskRect.left;
       });
       setHighlights(newHighlights);
-    }, 50); // 주기적으로 체크
+    }, 50); // 주기적으로 확인
 
     return () => clearInterval(interval);
   }, []);

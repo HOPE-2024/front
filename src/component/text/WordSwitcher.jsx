@@ -82,10 +82,12 @@ const glitch2Animation = keyframes`
 const Content = styled.div`
   width: 32vw;
   height: 30vh;
-  font-size: 40px;
+  font-size: 35px;
   display: flex;
   justify-content: center;
   white-space: nowrap;
+  color: rgb(140, 140, 140);
+  font-weight: bold;
 
   @media screen and (max-width: 500px) {
     font-size: 30px;
@@ -103,6 +105,7 @@ const Content = styled.div`
 // 단어 전환
 const Switcher = styled.span`
   position: relative;
+  bottom: 1vh;
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
@@ -138,6 +141,7 @@ const Switcher = styled.span`
 const Glitch = styled.p`
   color: #136cfb;
   position: absolute;
+  font-size: 50px;
   &:after {
     content: attr(data-text);
     position: absolute;
@@ -184,58 +188,64 @@ export const WordSwitcher = () => {
   // 단어의 길이에 맞춰서 공백을 조정
   const generateSpaces = () => {
     switch (currentItem) {
-      case 0:
-        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
-      case 1:
-        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
-      case 2:
-        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
-      case 3:
+      case 0: // 증상
+        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
+      case 1: // 의약품명
         return (
           <>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </>
         );
+      case 2: // 제조사명
+        return (
+          <>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </>
+        );
+      case 3: // 성분
+        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
       default:
         return null;
     }
   };
 
   return (
-    <Content>
-      당신의&nbsp;
-      {/* 전환되는 글자 */}
-      <Switcher id="word-switcher" className="in">
-        <Glitch
-          className={`glitch ${currentItem === 0 ? "active" : ""}`}
-          data-text="design"
-          data-oid="0"
-        >
-          증상
-        </Glitch>
-        <Glitch
-          className={`glitch ${currentItem === 1 ? "active" : ""}`}
-          data-text="develop"
-          data-oid="1"
-        >
-          병원
-        </Glitch>
-        <Glitch
-          className={`glitch ${currentItem === 2 ? "active" : ""}`}
-          data-text="love"
-          data-oid="2"
-        >
-          약국
-        </Glitch>
-        <Glitch
-          className={`glitch ${currentItem === 3 ? "active" : ""}`}
-          data-text="love"
-          data-oid="2"
-        >
-          또뭐넣지
-        </Glitch>
-      </Switcher>
-      {generateSpaces()}을 검색해보세요.
-    </Content>
+    <>
+      <Content>
+        당신이 알고싶은&nbsp;
+        {/* 전환되는 글자 */}
+        <Switcher id="word-switcher" className="in">
+          <Glitch
+            className={`glitch ${currentItem === 0 ? "active" : ""}`}
+            data-text="design"
+            data-oid="0"
+          >
+            증상
+          </Glitch>
+          <Glitch
+            className={`glitch ${currentItem === 1 ? "active" : ""}`}
+            data-text="develop"
+            data-oid="1"
+          >
+            의약품명
+          </Glitch>
+          <Glitch
+            className={`glitch ${currentItem === 2 ? "active" : ""}`}
+            data-text="love"
+            data-oid="2"
+          >
+            제조사명
+          </Glitch>
+          <Glitch
+            className={`glitch ${currentItem === 3 ? "active" : ""}`}
+            data-text="love"
+            data-oid="2"
+          >
+            성분
+          </Glitch>
+        </Switcher>
+        {generateSpaces()}을 검색해보세요
+      </Content>
+    </>
   );
 };

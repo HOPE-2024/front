@@ -19,6 +19,8 @@ export const SlideListContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  /* 높이 조정 가능 */
 
   @media screen and (max-height: 800px) {
     height: 80vh;

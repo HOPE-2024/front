@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Content, Left, Right } from "../../css/template/FooterStyle";
-import { YesModal } from "../../utils/Modal/YesModal";
+import { YesModal } from "../../utils/modal/YesModal";
 
 export const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
