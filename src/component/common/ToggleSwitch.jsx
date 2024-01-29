@@ -2,7 +2,9 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export const ToggleContainer = styled.div`
-  position: relative;
+  position: fixed;
+  display: flex;
+  top: 12vh;
   cursor: pointer;
 
   > .toggle-container {
@@ -22,7 +24,7 @@ export const ToggleContainer = styled.div`
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 2vh;
     top: 0.4vh;
     left: 3px;
     width: 6vh;
@@ -43,24 +45,3 @@ export const Desc = styled.div`
   text-align: center;
   margin: 20px;
 `;
-
-export const Toggle = () => {
-  const [isOn, setIsOn] = useState(false);
-
-  const toggleHandler = () => {
-    setIsOn(!isOn);
-  };
-
-  return (
-    <>
-      <ToggleContainer onClick={toggleHandler}>
-        <div
-          className={`toggle-container ${isOn ? "toggle--checked" : null}`}
-        />
-        <div className={`toggle-circle ${isOn ? "toggle--checked" : null}`}>
-          <span className="toggle-circle-text">{isOn ? "지역" : "증상"}</span>
-        </div>
-      </ToggleContainer>
-    </>
-  );
-};

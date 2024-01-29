@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import addChat from "../../images/chat/addChat.svg";
 
 export const ChatListOutLine = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
@@ -6,13 +7,13 @@ export const ChatListOutLine = styled.div`
   display: flex;
   justify-content: center;
   width: 95vh;
-  height: 70vh;
+  height: 75vh;
   border-radius: 4px;
 `;
 
 export const InLineLeft = styled.div`
   color: var(--BLACK);
-  padding: 1em;
+  padding-top: 3vh;
   gap: 0.5em;
   font-size: 2vh;
   display: flex;
@@ -31,7 +32,32 @@ export const InLineRight = styled.div`
   border: 2px solid var(--BLACK);
   border-radius: 4px;
   margin: 2% 2% 2% 2%;
+  position: relative;
 `;
+
+export const AddChatListStyled = styled.img.attrs({
+  src: addChat,
+})`
+  width: 4vh;
+  margin: 1vh;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`;
+
+export const SickList = [
+  "두통",
+  "복통",
+  "외상",
+  "골절",
+  "내상",
+  "타박상",
+  "화상",
+  "피부",
+  "알러지",
+  "치통",
+];
 
 export const CityList = [
   "서울특별시",

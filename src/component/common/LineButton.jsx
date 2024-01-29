@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const LineButton = styled.div`
-  line-height: 1.2;
+  line-height: 1.1;
   background-image: linear-gradient(
-    transparent 70%,
-    ${(props) => props.color || "#3c84f8"} 40%
+    transparent 20%,
+    ${(props) => props.color || "#3c84f869"} 100%
   );
   background-repeat: no-repeat;
   background-size: 0% 100%;
-  transition: background-size 0.8s;
+  transition: background-size 0.5s;
   color: ${(props) => props.color || "var(--BLACK)"};
   font-size: ${(props) => props.fontSize || "2vh"};
   cursor: pointer;
