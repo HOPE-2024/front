@@ -17,7 +17,7 @@ export const Common = {
 
   // 발행된 토큰을 로컬에 저장
   setAccessToken: (token) => {
-    return localStorage.setItem("accesToken", token);
+    return localStorage.setItem("accessToken", token);
   },
 
   // 로컬에 저장된 리프레시 토큰 가져옴
@@ -33,6 +33,7 @@ export const Common = {
   // 해더
   tokenHeader: () => {
     const accessToken = Common.getAccessToken();
+    console.log("zzzz" + accessToken);
     return {
       headers: {
         "Content-Type": "application/json",

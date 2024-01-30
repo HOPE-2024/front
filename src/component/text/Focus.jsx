@@ -9,6 +9,7 @@ const maskAnimation = keyframes`
 `;
 
 // CSS
+// 전체
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
   height: 200px;
   white-space: nowrap;
   position: relative;
+  text-shadow: 5px 5px 5px white;
 `;
 
 // 배경 글자
@@ -76,7 +78,6 @@ const Mask = styled.div`
   transform: translateX(30px);
   box-sizing: border-box;
   animation: ${maskAnimation} 2.5s ease infinite alternate;
-  mix-blend-mode: difference;
 `;
 
 export const Focus = () => {
@@ -91,7 +92,9 @@ export const Focus = () => {
       const maskRect = maskRef.current.getBoundingClientRect();
       const newHighlights = letterRefs.map((ref) => {
         const rect = ref.current.getBoundingClientRect();
-        return rect.left + 20 < maskRect.right && rect.right > maskRect.left;
+        return (
+          rect.left + 10 < maskRect.right && rect.right > maskRect.left + 10
+        );
       });
       setHighlights(newHighlights);
     }, 50); // 주기적으로 확인

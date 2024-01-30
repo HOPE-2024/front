@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Content, Left, Right } from "../../css/template/FooterStyle";
-import { YesModal } from "../../utils/Modal/YesModal";
+import { YesModal } from "../../utils/modal/YesModal";
 
 export const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 상태 변경을 추적하기 위한 useEffect
   useEffect(() => {
-    console.log(isModalOpen); // 상태가 변경될 때마다 로그를 찍음
+    console.log("footer modla : " + isModalOpen); // 상태가 변경될 때마다 로그를 찍음
   }, [isModalOpen]); // isModalOpen 상태가 변경될 때마다 실행됨
 
   const handleLinkClick = () => {
