@@ -22,24 +22,51 @@ const ActiveChangeCss = styled.div`
            p{ color  :white ;
         }
     }
-
+    @media (max-width: 768px) {   
+        flex-wrap: wrap;
+  width:50%;
+     }  
     }
-    li{          
-        
+
+    li{         
         border: 1px solid  #023B96;   
         background: #ffffff;
         border-radius  :4px ;
         height: auto;       
         font-size: 1em;
-        margin: 4px;        
+        margin: 4px;      
+
      p{     
           width: 130px;
           display: flex;
           align-items: center;
           justify-content: center;      
      }
-        
+ 
+    
     }
+    @media (max-width: 768px) {   
+        margin-top: 240px;
+        width: 400px;    margin-left: -100px;
+        ul{          
+        
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            li{    
+              
+              
+                p{     
+          width: 100%;
+          display: flex; 
+          font-size: 10px;
+          align-items: center;
+          justify-content: center;      
+     }
+            }
+        }
+     }  
+  
 `
 export const ChangeActive = ({ setStatus, id, setActive }) => {
 
@@ -61,7 +88,7 @@ export const ChangeActive = ({ setStatus, id, setActive }) => {
         <ActiveChangeCss>
             <ul>
                 {data && data.map((type, index) => (
-                    <li onClick={() => { click(type) }} key={index}>
+                    <li className="list" onClick={() => { click(type) }} key={index}>
                         <div className="content2">
                             <p>{type}</p>
                         </div>

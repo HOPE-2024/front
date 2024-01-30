@@ -4,6 +4,9 @@ import { ReportMadal } from "../../utils/modal/ReportMadal";
 import { useNavigate } from "react-router-dom";
 import { MemberListCss } from "../../css/admin/Report";
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+import { SelectReportList } from "../../component/admin/SelectReportList";
+import { SearchVar } from "../../component/admin/SearchVar";
+
 
 export const Report = () => {
   //회원 조회 axios를 선택할 때 사용
@@ -12,30 +15,23 @@ export const Report = () => {
   const [open, setOpen] = useState("");
   const [list, setList] = useState("");
   const [data, setData] = useState([]);
-  useEffect(() => {
-    selectReportList();
-  }, [open]);
 
-  const selectReportList = async () => {
-    try {
-      const res = await AdminAxiosApi.selectReportList();
-      console.log(res.data);
-      setData(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   const redate = (e) => {
     const dateObject = new Date(e);
     return <>{dateObject.toLocaleDateString()}</>;
   };
-  const memberSearch = () => {
-    alert(1);
-  };
+
   const menuClick = (tabName) => {
     setListType(tabName);
   };
+
+  //화면 랜더링 시 메뉴에 맞게 데이터를 가져옵니다.
+  useEffect(() => {
+    SelectReportList(listType, setData);
+  }, [listType, open]);
+
   return (
     <MemberListCss>
       <div className="content1">
@@ -48,30 +44,37 @@ export const Report = () => {
             회원 관리
           </li>
 
-          <li style={{ color: " #023B96" }}>신고 내용</li>
+          <li className={` ${listType === "all" || listType === "after" || listType === "before" ? "active" : ""} `}>신고 관리</li>
           <li
-            className={` ${listType === "chatting" ? "active" : ""} font`}
+            className={` ${listType === "all" ? "active" : ""} font`}
             onClick={() => menuClick("all")}
           >
             모두 보기
           </li>
-          <li className={"font"}>처리 전</li>
-          <li className={"font"}>처리 완료</li>
+          <li
+            className={` ${listType === "before" ? "active" : ""
+              } font`}
+            onClick={() => menuClick("before")}
+          >
+            처리 전
+          </li>
+          <li
+            className={` ${listType === "after" ? "active" : ""
+              } font`}
+            onClick={() => menuClick("after")}
+          >
+            처리 후
+          </li>
         </ul>
       </div>
 
       <div className="content2">
         <div className="search">
-          <input type="text" />
-          <Button
-            width={"60px"}
-            height={"30px"}
-            children={"검 색"}
-            active={true}
-            clickEvt={() => memberSearch()}
-          />
+          <SearchVar list={"report"} setData={setData} >
+          </SearchVar>
         </div>
         <div className="list">
+
           {data.map((item, index) => (
             <div
               key={index}

@@ -4,18 +4,18 @@ import { ChangeActive } from "../../component/admin/ChangeActive";
 import { useNavigate } from "react-router-dom";
 import { MemberListCss } from "../../css/admin/Report";
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
-import { InsertMemberList } from '../../component/admin/InsertMemberList';
+import { SelectMemberList } from '../../component/admin/SelectMemberList';
 import { ChattingMemberList } from '../../component/admin/ChattingMemberList';
 import { StopMemberList } from '../../component/admin/StopMemberList';
 import { SelectMember } from '../../component/admin/SelectMember';
+import { SearchVar } from "../../component/admin/SearchVar";
 
 
 export const MemberList = () => {
   const navigate = useNavigate();
   //회원 조회 axios를 선택할 때 사용
   const [listType, setListType] = useState("all");
-  //검색창 입력 값 저장
-  const [inputValue, setInputValue] = useState('');
+
   //회원 id 저장
   const [id, setId] = useState('');
   //데이터 출력 값 저장
@@ -26,35 +26,26 @@ export const MemberList = () => {
   const [active, setActive] = useState('');
 
 
+
+
+
   //회원 조회 클릭시 listType을 변경 후  useEffect로 변경된 데이터를 가져옵니다.
   const menuClick = (tabName) => {
     setListType(tabName);
-  };
-  //검색 버튼 클릭시 axios실행
-  const memberSearch = (name) => {
-    SelectMember(name, setData, setInputValue, setStatus);
   };
 
   //화면 랜더링 시 메뉴에 맞게 데이터를 가져옵니다.
   useEffect(() => {
     if (listType === 'all') {
-      InsertMemberList(setData);
+      SelectMemberList(setData);
     } if (listType === 'chatting') {
       ChattingMemberList(setData, setStatus);
-
     } if (listType === 'stop') {
       StopMemberList(setData, setStatus);
     }
   }, [listType, active]);
 
-  const enter = () => {
-    memberSearch(inputValue);
-  };
-  const handleEnterKey = (event) => {
-    if (event.key === 'Enter') {
-      enter();
-    }
-  };
+
   return (
     <MemberListCss>
       <div className="content1">
@@ -93,14 +84,10 @@ export const MemberList = () => {
 
       <div className="content2">
         <div className="search">
-          <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} onKeyDown={handleEnterKey} />
-          <Button
-            width={"60px"}
-            height={"30px"}
-            children={"검 색"}
-            active={true}
-            clickEvt={() => memberSearch(inputValue)}
-          />
+          <SearchVar list={"member"} setData={setData} >
+
+          </SearchVar>
+
         </div>
         <div className="list">
           {data && data.map((item, index) => (

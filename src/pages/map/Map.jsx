@@ -4,7 +4,7 @@ import { Button } from "../../utils/Button";
 import { useParams } from "react-router-dom";
 import down from "../../images/bown.svg";
 const MapCss = styled.div`
-width: 100%;
+width: 1280px;
   height: auto;
   margin: 0 auto;
   display: flex;
@@ -125,7 +125,8 @@ export const Map = () => {
         onMouseOut={() => setIsOpen(false)} // 마우스가 벗어났을 때 리스트를 닫아줍니다.
       >
 
-        <div className="content1"> <img src={down} alt="" />  <p>{buttonVar}</p> </div>
+        <div className="content1">
+          <img src={down} alt="" />  <p>{buttonVar}</p> </div>
         {isOpen && data.map((specialty, index) => ( // isOpen 상태에 따라 리스트를 보여줍니다.
           <ul>
             <li onClick={() => { setButtonVar(specialty); setIsOpen(false); handleSearch(specialty); }}><div className="content2">{specialty}</div></li>
@@ -135,7 +136,6 @@ export const Map = () => {
 
 
       <div className="content1">
-
         {data.map((specialty, index) => (
           <Button
             key={index}

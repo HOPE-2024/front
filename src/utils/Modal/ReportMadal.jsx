@@ -2,15 +2,13 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import down from "../../images/bown.svg";
 import { UpdateActive } from "../../component/admin/UpdateActive";
+import { UpdateReportActive } from "../../component/admin/UpdateReportActive";
 import { DeleteReport } from "../../component/admin/DeleteReport";
 import { ReportRead } from "../../component/admin/ReportRead";
-const AA = styled.textarea`
- width: 100%;
 
-  padding: 0;
-  border:1px solid #3C84F8;
-`;
 const ModalStyle = styled.div`
+z-index: 9999;
+height: auto;
   .modal {
     position: fixed;
     top: 0;
@@ -23,10 +21,9 @@ const ModalStyle = styled.div`
     justify-content: center;
     align-items: center;
   }
-  .modalContent{
+  .modalContent{   
     width: 400px;
     max-width: 450px;
-    min-height: 500px;
     height: auto;
     margin: 0 auto;
     border-radius: 20px;
@@ -34,7 +31,10 @@ const ModalStyle = styled.div`
     /* 팝업이 열릴때 스르륵 열리는 효과 */
     animation: modal-show 0.3s;
     overflow: hidden;    
-  
+    display: flex;
+    flex-direction: column;
+
+      align-items: center;
     .title{
       width: 100%;
       height: 40px;
@@ -46,88 +46,109 @@ const ModalStyle = styled.div`
         margin-left: 10px;
         line-height: 40px;
       }
-    } 
+    }
     .content1{
       width: 340px;
       margin:  0 auto;
       margin-top: 25px;
-      border:2px solid #0a48ac;
-   
+      border:2px solid #0a48ac;   
     } 
     .item1{
       font-size   :1.1em ;
-      height: 170px;       
-
+      height: 170px;  
       }
-   
+      .item2{
+      min-height: 100PX;
+      height: auto;
+      font-size   :1.1em ;
     }
-    .item2{
-      height: 100px;
-      border: none;
-
-    }
-  
     .item3{
       width: 80%;
       margin: 0 auto;
       margin-top: 20px;
-      padding-bottom: 20px;
       height: auto;
       display: flex;
+      justify-content: center;
+      align-items: center;
         flex-direction: row;
         justify-content: space-around;
+        padding-bottom: 20px;
       button{
         width: 100px;
         height: 45px;
       background: #3C84F8;
+      color: white;
       }
     }
-  
-  .openModal {
-    display: flex;
-    align-items: center;
-    /* 팝업이 열릴때 스르륵 열리는 효과 */
-    animation: modal-bg-show 0.8s;
   }
-
-  section {
-   
-  }
-
-  @keyframes modal-show {
-    from {
-      opacity: 0;
-      margin-top: -50px;
-    }
-    to {
-      opacity: 1;
-      margin-top: 0;
-    }
-  }
-  @keyframes modal-bg-show {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+    
 `;
 
+const ButtonVar = styled.div`
+display: block; 
+  height: auto;
+  margin: 0 auto;
+  min-height: 30px;
+  
+.content1{
+  width: 100%;
+  display: flex;
+  margin-top: 0px;
+  img{
+    width: 20px;
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+  p{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -30px;
+  }
+
+}
+  &:hover {
+    color: red;
+    ul{   
+      display: block;
+    }
+  }
+  ul{
+    width: 100%;
+    display: none;
+ 
+  }
+  li{
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #3C84F8;
+    width: 340px;
+    margin: 0 auto;
+    .content2{
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+  align-items: center;
+    }
+  }
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
 const RadioLabel = styled.label`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   margin-top: 5px;
 `;
-
 const CustomRadio = styled.input`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid #86878a;
+  border: 2px solid #3C84F8;
   border-radius: 4px;
   margin-right: 5px;
   cursor: pointer;
@@ -148,73 +169,31 @@ const CustomRadio = styled.input`
     color: white;
   }
 `;
+const AA = styled.div`
+   width: 100%;
+  height: 100px;
+  padding: 0;
 
-const ButtonVar = styled.div`
-display: block;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-  min-height: 30px;
-.content1{
-  width: 100%;
-  display: flex;
-  margin-top: 0px;
-  flex-direction: row;
-  img{
-    width: 20px;
-    margin-top: 5px;
-    margin-left: 10px;
-  }
-  p{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: -30px;
-  }
-
-}
-  &:hover {
-    color: red;
-    ul{
- 
-      display: block;
-    }
-  }
-  ul{
-    width: 100%;
-    display: none;
-    margin-top:5px;
-  }
-  li{
-    height: 30px;
-    line-height: 30px;
-    border: 1px solid #3C84F8;
-    width: 340px;
-    margin: 0 auto;
-    .content2{
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-  align-items: center;
-    }
-  }
-  @media (max-width: 768px) {
-    display: block;
-  }
 `;
-
 export function ReportMadal({ open, setOpen, list }) {
   //신고 이유 저장
   const [what, setWhat] = useState('');
   const [why, setWhy] = useState('');
   const [view, setView] = useState('');
-  const [status, setStaus] = useState('상태 변경 없음');
+  const [status, setStatus] = useState('상태 변경 없음');
 
   //확인 클릭시
   const submit = async () => {
+    //회원 상태 변경을 했을 경우에만 업데이트
     if (status !== '상태 변경 없음') {
-      await UpdateActive(list.reported.id, view);
+      //회원 상태 변경
+      await UpdateActive(list.reported.id, status);
+      const isValueIncluded = data.includes(status);
+      if (isValueIncluded) {
+        //신고 글 상태 변경
+        await UpdateReportActive(list.id, status);
+      }
+
     }
     setOpen(null)
   }
@@ -236,7 +215,7 @@ export function ReportMadal({ open, setOpen, list }) {
 
     if (list.reported) {
       ReportRead(list.id)
-      setView(list.reported.nickName);
+      setView(list.reported.nickName + '(' + list.reported.active + ')');
     }
   }, [list]
   )
@@ -253,14 +232,15 @@ export function ReportMadal({ open, setOpen, list }) {
               onMouseOver={() => setIsOpen(true)}
               onMouseOut={() => setIsOpen(false)}
             >
-              <div className="content1"> <img src={down} alt="" />
+              <div className="content1">
+                <img src={down} alt="" />
                 <p>{view}
                 </p> </div>
-              {isOpen && data.map((pick, index) => (
-                <ul>
-                  <li onClick={(e) => { setIsOpen(false); setView(pick); setStaus(pick) }}><div className="content2">{pick}</div></li>
-                </ul>
-              ))}
+              <ul>  {isOpen && data.map((pick, index) => (
+
+                <li onClick={(e) => { setIsOpen(false); setView(pick); setStatus(pick) }}><div className="content2">{pick}</div></li>
+
+              ))} </ul>
             </ButtonVar>
             <div className="content1 item1">
               <RadioLabel>
@@ -316,14 +296,14 @@ export function ReportMadal({ open, setOpen, list }) {
 
             </div>
             <div className="content1 item2">
-              <AA id="content"
+              {list.reason}
+              {/* <AA id="content"
                 name="content"
-                value={list.reason}
+                value={"list.reason"}
                 onChange={(e) => { setWhat(e.target.value) }}
-                placeholder="신고 내용"></AA>
+                placeholder="신고 내용"></AA> */}
             </div>
             <div className=" item3">
-
               <button onClick={() => { submit() }}>확 인</button>
               <button onClick={() => { cancel() }}>삭 제</button>
             </div>
