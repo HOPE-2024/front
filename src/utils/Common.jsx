@@ -17,7 +17,7 @@ export const Common = {
 
   // 발행된 토큰을 로컬에 저장
   setAccessToken: (token) => {
-    return localStorage.getItem("accesToken", token);
+    return localStorage.setItem("accesToken", token);
   },
 
   // 로컬에 저장된 리프레시 토큰 가져옴
@@ -27,7 +27,7 @@ export const Common = {
 
   // 발행된 리프레시 토큰을 로컬에 저장
   setRefreshToken: (token) => {
-    return localStorage.getItem("refreshToken", token);
+    return localStorage.setItem("refreshToken", token);
   },
 
   // 해더
@@ -36,38 +36,29 @@ export const Common = {
     return {
       headers: {
         "Content-Type": "application/json",
-        Autorization: "Bearer" + accessToken,
+        Authorization: `Bearer ${accessToken}`,
       },
     };
   },
 
   // 액세스 토큰 만료됐을 때, 리프레시 토큰을 통해 액세스 토큰과 리프레시 토큰을 모두 재발급
   handleUnauthorized: async () => {
-    const accessToken = Common.getAccessToken();
+    // 로컬스토리지에서 리프레시 토큰을 가져와 서버에 재발급 요청
     const refreshToken = Common.getRefreshToken();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
-
     try {
       const rsp = await axios.post(
         `${Common.KH_DOMAIN}/refresh/new`,
-        refreshToken,
-        config
+        refreshToken
       );
-      console.log("리프레시 토큰 응답 !! : " + JSON.stringify(rsp));
+      console.log("handleUnauthorized 응답 데이터 : " + JSON.stringify(rsp));
 
+      // 서버로부터 받은 새 액세스 & 리프레시 토큰 로컬 스토리지에 덮어쓰기
       Common.setAccessToken(rsp.data.accessToken);
       Common.setRefreshToken(rsp.data.refreshToken);
-      alert(
-        "리프레시 토큰을 통해 액세스 토큰 및 리프레시 토큰이 재발급 되었습니다."
-      );
-      return rsp.data.accessToken;
+      alert("액세스 토큰 및 리프레시 토큰이 정상적으로 재발급 되었습니다.");
+      return rsp.data.accessToken; // 새로운 액세스 토큰 반환
     } catch (error) {
-      console.log(error);
+      console.log("handleUnauthorized 에서 에러가 발생했습니다.");
       return false;
     }
   },

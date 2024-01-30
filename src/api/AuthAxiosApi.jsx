@@ -35,7 +35,11 @@ export const AuthAxiosApi = {
       password: password,
     };
     try {
-      const response = await axios.post(Common.KH_DOMAIN + "/auth/login", data);
+      const response = await axios.post(
+        Common.KH_DOMAIN + "/auth/login",
+        data,
+        Common.tokenHeader
+      );
       console.log(
         "액세스 토큰: ",
         response.data.accessToken,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "../../utils/Button";
-import { ReportMadal } from "../../utils/modal/ReportMadal";
+import { ReportMadal } from "../../utils/Modal/ReportMadal";
 import { useNavigate } from "react-router-dom";
 import { MemberListCss } from "../../css/admin/Report";
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
