@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   StyledLogo,
@@ -13,26 +13,21 @@ import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
 import { Hamburger } from "./Hamburger";
 import { MemberAxiosApi } from "../../api/MemberAxiosApi";
 import { Common, Reload } from "../../utils/Common";
+import { UserContext } from "../../context/AuthContext";
 
 export const Header = () => {
   const navigate = useNavigate();
   const [firstView, setFirstView] = useState(false);
   const [secondView, setSecondView] = useState(false);
   const [thirdView, setThirdView] = useState(false);
-  // 로그인 여부 확인
-  const [login, setLogin] = useState(
-    window.localStorage.getItem("loginStatus")
-  );
+  // 로그인 전역관리
+  const context = useContext(UserContext);
+  const { setLoginStatus, loginStatus } = context;
   const [member, setMember] = useState({});
 
   useEffect(() => {
-    if (login !== "true") {
-      setLogin("false");
-    }
-  }, [login]);
-
-  useEffect(() => {
     const getMember = async () => {
+      // 로컬 스토리지에서 액세스 토큰 읽기
       try {
         //로그인한 회원의 상세 정보 조회
         const rsp = await MemberAxiosApi.memberGetOne();
@@ -47,22 +42,22 @@ export const Header = () => {
           console.log("재발급된 액세스 토큰 ; " + newAccessToken);
           const rsp = await MemberAxiosApi.memberGetOne(newAccessToken);
           setMember(rsp.data);
-          // window.localStorage.setItem("memberId", rsp.data.memberId); // 새로운 memberId를 로컬스토리지에 저장.
           Reload(navigate);
         }
       }
     };
 
-    if (login === "true") {
+    if (loginStatus === "true") {
       getMember();
     }
-  }, [login, navigate]);
+    console.log("loginStatus:", window.localStorage.getItem("loginStatus"));
+  }, [loginStatus, setLoginStatus, navigate]);
 
   // 로그아웃 함수
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("loginStatus"); // 로컬 스토리지에서 로그인 상태 제거
+    setLoginStatus(false); // 로그인 상태를 false로 업데이트
     navigate("/login"); // 사용자를 로그인 페이지로 리다이렉트
-    window.location.reload();
   };
 
   return (
