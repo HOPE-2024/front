@@ -9,7 +9,7 @@ import {
 } from "../../css/chat/AreaSickListCss";
 import { LineButton } from "../../component/common/LineButton";
 import { ToggleContainer } from "../../component/common/ToggleSwitch";
-import { AddChatModal } from "../../utils/Modal/AddChatModal";
+import { AddChatModal } from "../../utils/modal/AddChatModal";
 
 export const ChatList = () => {
   const [selectedItems, setSelectedItems] = useState([]);
