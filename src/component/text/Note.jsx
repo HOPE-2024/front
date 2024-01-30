@@ -2,22 +2,22 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const StyledContent = styled.div`
-  width: 50vw;
-  height: 50vh;
+  width: 45vw;
 `;
 
 // 노트북 배경
 const StyledNotebookPage = styled.div`
   padding-left: 5vw;
-  background-color: #fff;
+  background-color: rgb(255, 237, 165);
   background-image: linear-gradient(
     rgba(33, 150, 243, 0.27) 0.05em,
     transparent 0.05em
   );
   background-size: 100% 2em;
   position: relative;
-  min-height: 500px;
   box-shadow: 0 9px 20px rgba(0, 0, 0, 0.1);
+
+  // 빨간 줄
   &:after {
     content: "";
     position: absolute;
@@ -31,7 +31,7 @@ const StyledNotebookPage = styled.div`
 
 const StyledTextArea = styled.textarea`
   width: 100%;
-  height: 50vh;
+  height: ${(props) => props.height || "20vh"};
   background: none;
   border: none;
   color: #111;
@@ -69,26 +69,20 @@ function useInterval(callback, delay) {
   }, [delay]);
 }
 
-export const Note = () => {
-  const [landingTitle, setLandingTitle] = useState("");
-  const completedTitle = `
-  안녕하세요.
-  제 이름은 유동재입니다.
-  당신의 이름은 무엇입니까?
-  이 쓰레기 같은 자식아, 죽어라.
-  다음에 봐요.`;
+export const Note = ({ text, height }) => {
+  const [content, setContent] = useState("");
 
   useInterval(() => {
-    if (landingTitle.length >= completedTitle.length) {
+    if (content.length >= text.length) {
       return;
     }
-    setLandingTitle(completedTitle.substring(0, landingTitle.length + 1));
+    setContent(text.substring(0, content.length + 1));
   }, 150);
 
   return (
     <StyledContent>
       <StyledNotebookPage>
-        <StyledTextArea value={landingTitle} readOnly />
+        <StyledTextArea value={content} readOnly height={height} />
       </StyledNotebookPage>
     </StyledContent>
   );

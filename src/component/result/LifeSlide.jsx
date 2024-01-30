@@ -8,32 +8,23 @@ import {
   NextButton,
   SlideListContent,
   NavBox,
-} from "../css/SlideStyle";
-import { ElasticSearch } from "../component/slideElement/ElasticSearch";
-import { LifeExpectancy } from "../component/slideElement/LifeExpectancy";
-import { Country } from "../component/slideElement/Country";
-import { Diabetes } from "../component/slideElement/Diabetes";
-import { Face } from "../component/slideElement/Face";
+} from "../../css/SlideStyle";
+import { Note } from "../../component/text/Note";
 
-export const Slide = () => {
+export const LifeSlide = ({ prediction }) => {
+  const text = ` 너는 ${Math.round(
+    prediction
+  )}살에 죽을 것이다, 크하하!\n얼마 남지 않은 쓰레기 같은 인생을 잘 마무리하거라!`;
+
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      {/* ^__^ */}
-      <ElasticSearch></ElasticSearch>
+      <Note text={`${text}`} height="15vh"></Note>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}>
-      <LifeExpectancy></LifeExpectancy>
-    </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}>
-      <Country></Country>
-    </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}>
-      <Diabetes></Diabetes>
-    </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}>
-      <Face></Face>
-    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스

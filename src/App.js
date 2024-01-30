@@ -12,6 +12,8 @@ import { Signup } from "./pages/member/SignUp";
 import { ChatRoom } from "./pages/chat/ChatRoom";
 import { Template } from "../src/component/template/Template";
 import { AuthContextProvider } from "./context/AuthContext";
+import { LifeResult } from "./pages/result/LifeResult";
+
 function App() {
   return (
     <>
@@ -29,6 +31,7 @@ function App() {
               <Route path="/MemberList" element={<MemberList />} />
               <Route path="/Report" element={<Report />} />
               <Route path="/Map" element={<Map />} />
+              <Route path="/LifeResult" element={<LifeResult />} />
             </Route>
           </Routes>
         </BrowserRouter>
