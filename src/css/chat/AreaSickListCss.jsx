@@ -11,6 +11,44 @@ export const ChatListOutLine = styled.div`
   border-radius: 4px;
 `;
 
+export const ChatCon = styled.div`
+  list-style-type: none;
+  margin: 1vh;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
+  height: 98%;
+`;
+
+export const ChatRoom = styled.li`
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    background-color: var(--WHITE);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+export const ChatName = styled.p`
+  font-size: 1.5em;
+  margin: 0 0 10px 0;
+  color: #444;
+`;
+
+export const ChatDate = styled.p`
+  font-size: 1em;
+  color: #666;
+  margin: 0;
+  text-align: right;
+`;
+
 export const InLineLeft = styled.div`
   color: var(--BLACK);
   padding-top: 3vh;
@@ -44,6 +82,8 @@ export const AddChatListStyled = styled.img.attrs({
   position: absolute;
   bottom: 0;
   right: 0;
+  cursor: pointer;
+  z-index: 1;
 `;
 
 export const SickList = [
