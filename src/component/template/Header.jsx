@@ -55,9 +55,9 @@ export const Header = () => {
 
   // 로그아웃 함수
   const logout = () => {
-    localStorage.removeItem("loginStatus"); // 로컬 스토리지에서 로그인 상태 제거
-    setLoginStatus(false); // 로그인 상태를 false로 업데이트
+    localStorage.clear(); // 모든 로컬 스토리지 항목을 삭제
     navigate("/login"); // 사용자를 로그인 페이지로 리다이렉트
+    window.location.reload(); // 새로고침
   };
 
   return (
