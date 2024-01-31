@@ -11,15 +11,15 @@ export const ChatAxiosApi = {
     return await axios.get(Common.KH_DOMAIN + "/chat/list");
   },
   // 자유 채팅방 목록 보기 (postId 없음)
-  freeChatList: async () => {
-    return await axios.get(Common.KH_DOMAIN + "/chat/freeList");
+  ChatList: async () => {
+    return await axios.get(Common.KH_DOMAIN + "/chat/roomList");
   },
   // 채팅방 생성 (postId 없음)
   freeChatCreate: async (name) => {
     const chat = {
       name: name,
     };
-    return await axios.post(Common.KH_DOMAIN + "/chat/freeNew", chat);
+    return await axios.post(Common.KH_DOMAIN + "/chat/new", chat);
   },
   // 해당 채팅방의 이전 채팅 내역 가져오기
   recentChatLoad: async (roomId) => {

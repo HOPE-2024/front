@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ChatAxiosApi } from "../../api/ChatAixosApi";
 
 const ModalClickCss = styled.div`
   position: absolute;
@@ -82,15 +83,28 @@ export const AddChatModal = ({
 
   // 확인
   const CheckClick = () => {
+    if (inputValue.trim() === "") {
+      alert("채팅방 제목을 입력하세요.");
+      return;
+    }
+
     onSubmit(inputValue);
+
+    ChatAxiosApi.freeChatCreate(inputValue)
+      .then((response) => {
+        console.log("채팅방 생성 성공");
+        navigate(0);
+      })
+      .catch((error) => {
+        console.log("채팅방 생성 실패");
+      });
+
     setModalOpen();
-    navigate(0);
   };
 
   // 취소
   const closeClick = () => {
-    revertChanges();
-    setModalOpen();
+    setModalOpen(false);
   };
 
   return (
