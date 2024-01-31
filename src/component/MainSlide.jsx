@@ -9,31 +9,27 @@ import {
   SlideListContent,
   NavBox,
 } from "../css/SlideStyle";
-import { ElasticSearch } from "../component/slideElement/ElasticSearch";
-import { LifeExpectancy } from "../component/slideElement/LifeExpectancy";
-import { Country } from "../component/slideElement/Country";
-import { Diabetes } from "../component/slideElement/Diabetes";
-import { Face } from "../component/slideElement/Face";
+import { ElasticSearch } from "../component/mainSlideElement/ElasticSearch";
+import { LifeCover } from "./mainSlideElement/LifeCover";
+import { DiabCover } from "./mainSlideElement/DiabCover";
+import { FaceCover } from "./mainSlideElement/FaceCover";
 
 export const Slide = () => {
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      {/* ^__^ */}
       <ElasticSearch></ElasticSearch>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <LifeExpectancy></LifeExpectancy>
+      <LifeCover></LifeCover>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <Country></Country>
+      <DiabCover></DiabCover>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <Diabetes></Diabetes>
+      <FaceCover></FaceCover>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}>
-      <Face></Face>
-    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스

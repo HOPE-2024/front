@@ -2,12 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const StyledContent = styled.div`
-  width: 45vw;
+  width: 35vw;
+
+  @media (min-width: 1000px) {
+    position: relative;
+    top: 75px;
+  }
 `;
 
 // 노트북 배경
 const StyledNotebookPage = styled.div`
-  padding-left: 5vw;
+  /* padding-left: 5vw;
   background-color: rgb(255, 237, 165);
   background-image: linear-gradient(
     rgba(33, 150, 243, 0.27) 0.05em,
@@ -26,17 +31,19 @@ const StyledNotebookPage = styled.div`
     width: 1px;
     height: 100%;
     background: #ef5350;
-  }
+  } */
 `;
 
 const StyledTextArea = styled.textarea`
   width: 100%;
-  height: ${(props) => props.height || "20vh"};
+  height: ${(props) => props.height || "auto"};
   background: none;
   border: none;
   color: #111;
-  font-size: 24px;
+  font-size: 36px;
   line-height: 1.33;
+  text-align: center;
+  text-shadow: 0px 0px 5px white;
 `;
 
 // Custom Hook : 타자기 효과를 위해 구현

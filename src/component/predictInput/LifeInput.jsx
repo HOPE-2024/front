@@ -234,8 +234,16 @@ export const LifeInput = () => {
         "http://localhost:5000/predict_life_expectancy",
         userData
       );
+      console.log(JSON.stringify(response.data));
+
+      // 상태로 저장하여 데이터를 전달, 해당 상태는 전달되는 페이지에서만 사용 가능
+      // navigate로 다른 페이지로 값을 넘길 때는 상태로 넘기고, 부모에서 자식 컴포넌트로 값을 넘길 때는 props로 넘긴다.
       navigate("/LifeResult", {
-        state: { prediction: response.data.prediction },
+        state: {
+          prediction: response.data.prediction,
+          featureImportances: response.data.feature_importances,
+          correlation: response.data.correlation,
+        },
       });
     } catch (error) {
       alert("기대 수명을 예측하는데 오류가 발생했습니다.");

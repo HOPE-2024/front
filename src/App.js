@@ -13,6 +13,10 @@ import { ChatRoom } from "./pages/chat/ChatRoom";
 import { Template } from "../src/component/template/Template";
 import { AuthContextProvider } from "./context/AuthContext";
 import { LifeResult } from "./pages/result/LifeResult";
+import { Country } from "./pages/predict/Country";
+import { Diabetes } from "./pages/predict/Diabetes";
+import { Face } from "./pages/predict/Face";
+import { LifeExpectancy } from "./pages/predict/LifeExpectancy";
 
 function App() {
   return (
@@ -31,6 +35,10 @@ function App() {
               <Route path="/MemberList" element={<MemberList />} />
               <Route path="/Report" element={<Report />} />
               <Route path="/Map" element={<Map />} />
+              <Route path="/LifeExpectancy" element={<LifeExpectancy />} />
+              <Route path="/Country" element={<Country />} />
+              <Route path="/Face" element={<Face />} />
+              <Route path="/Diabetes" element={<Diabetes />} />
               <Route path="/LifeResult" element={<LifeResult />} />
             </Route>
           </Routes>

@@ -1,5 +1,5 @@
-import { StyledSearch } from "./StyledSearch";
 import { WordSwitcher } from "../text/WordSwitcher";
+import { StyledSearch } from "../../css/common/StyledSearch";
 
 export const ElasticSearch = () => {
   return (

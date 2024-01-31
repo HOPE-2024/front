@@ -10,8 +10,9 @@ import {
   NavBox,
 } from "../../css/SlideStyle";
 import { Note } from "../../component/text/Note";
+import { Rechart } from "./chart/Rechart";
 
-export const LifeSlide = ({ prediction }) => {
+export const LifeSlide = ({ prediction, featureImportances, correlation }) => {
   const text = ` 너는 ${Math.round(
     prediction
   )}살에 죽을 것이다, 크하하!\n얼마 남지 않은 쓰레기 같은 인생을 잘 마무리하거라!`;
@@ -19,9 +20,15 @@ export const LifeSlide = ({ prediction }) => {
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <Note text={`${text}`} height="15vh"></Note>
+      <Note text={`${text}`} height="30vh"></Note>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <Rechart
+        prediction={prediction}
+        featureImportances={featureImportances}
+        correlation={correlation}
+      />
+    </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
