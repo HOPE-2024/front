@@ -19,7 +19,8 @@ export const MemberList = () => {
   //회원 id 저장
   const [id, setId] = useState('');
   //데이터 출력 값 저장
-  const [data, setData] = useState([]); // 초기에 "모든 회원"이 선택되어 있는 상태
+  const [data, setData] = useState([]);
+
   //status변경 창을 열기 위한 입력 값 저장(index와 status가 같으면 상태 변경 창이 나타남)
   const [status, setStatus] = useState('');
   //회원 상태
