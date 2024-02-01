@@ -13,6 +13,7 @@ import { ElasticSearch } from "../component/mainSlideElement/ElasticSearch";
 import { LifeCover } from "./mainSlideElement/LifeCover";
 import { DiabCover } from "./mainSlideElement/DiabCover";
 import { FaceCover } from "./mainSlideElement/FaceCover";
+import { CountryCover } from "./mainSlideElement/CountryCover";
 
 export const Slide = () => {
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
@@ -20,16 +21,22 @@ export const Slide = () => {
     <SlideListContent style={{ backgroundColor: "none" }}>
       <ElasticSearch></ElasticSearch>
     </SlideListContent>,
+
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <CountryCover></CountryCover>
+    </SlideListContent>,
+
     <SlideListContent style={{ backgroundColor: "none" }}>
       <LifeCover></LifeCover>
     </SlideListContent>,
+
     <SlideListContent style={{ backgroundColor: "none" }}>
       <DiabCover></DiabCover>
     </SlideListContent>,
+
     <SlideListContent style={{ backgroundColor: "none" }}>
       <FaceCover></FaceCover>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스

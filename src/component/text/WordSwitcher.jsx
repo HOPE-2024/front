@@ -100,6 +100,10 @@ const Content = styled.div`
   @media screen and (max-width: 300px) {
     font-size: 20px;
   }
+
+  @media (max-width: 750px) {
+    display: none;
+  }
 `;
 
 // 단어 전환
@@ -155,6 +159,7 @@ const Glitch = styled.p`
     animation: ${(props) => (props.active ? glitchAnimation : "none")} 2s linear
       alternate-reverse;
   }
+
   &:before {
     content: attr(data-text);
     position: absolute;
@@ -244,7 +249,7 @@ export const WordSwitcher = () => {
             성분
           </Glitch>
         </Switcher>
-        {generateSpaces()}을 검색해보세요
+        {generateSpaces()} 을 검색해보세요
       </Content>
     </>
   );

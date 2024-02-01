@@ -31,7 +31,7 @@ export const MainCss = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    /* opacity: 0.09; */
+    opacity: 0.3;
     /* filter: blur(5px); */
     z-index: -1; // 배경 이미지가 다른 요소들을 가리지 않게 설정
   }

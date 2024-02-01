@@ -164,20 +164,8 @@ export const NavBox = styled.div`
   left: 50%;
   transform: translateX(-50%);
 
-  @media screen and (max-height: 800px) {
-    top: 70%;
-  }
-
-  @media screen and (max-height: 600px) {
-    top: 60%;
-  }
-
-  @media screen and (max-height: 400px) {
-    top: 50%;
-  }
-
-  @media screen and (max-height: 200px) {
-    top: 40%;
+  @media (max-height: 650px) {
+    display: none;
   }
 `;
 

@@ -26,6 +26,10 @@ export const Left = styled.div`
     white-space: nowrap;
     margin-left: 45px;
   }
+
+  @media (max-width: 410px) {
+    display: none;
+  }
 `;
 
 export const Right = styled.div`
@@ -38,5 +42,10 @@ export const Right = styled.div`
   span {
     white-space: nowrap;
     margin-right: 45px;
+  }
+
+  @media (max-width: 410px) {
+    position: relative;
+    left: 55vw;
   }
 `;

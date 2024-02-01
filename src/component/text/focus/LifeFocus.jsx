@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 // Animation
 const maskAnimation = keyframes`
   to {
-    transform: translateX(-150px);
+    transform: translateX(-220px);
   }
 `;
 
@@ -12,21 +12,27 @@ const maskAnimation = keyframes`
 // 전체
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 60vw;
-  height: 200px;
+  height: 10vh;
   white-space: nowrap;
-  position: relative;
   text-shadow: 5px 5px 5px white;
+
+  @media (max-height: 1000px) {
+    height: 15vh;
+  }
+
+  /* @media (max-width: 650px) {
+    display: none;
+  } */
 `;
 
 // 배경 글자
 const Content = styled.div`
   width: 100vw;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   letter-spacing: 2px;
   font-size: 40px;
   color: rgb(140, 140, 140);
@@ -75,16 +81,23 @@ const Mask = styled.div`
     10px 2px, 2px 10px, 10px 2px;
   color: #023b96;
   padding: 5px;
-  transform: translateX(30px);
+  transform: translateX(-20px);
   box-sizing: border-box;
   animation: ${maskAnimation} 2.5s ease infinite alternate;
+  position: relative;
+  bottom: 2.7vh;
 `;
 
-export const Focus = () => {
+export const LifeFocus = () => {
   // useRef : 실제 DOM 요소에 대한 참조
   const maskRef = useRef(null);
   const letterRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
-  const [highlights, setHighlights] = useState([false, false, false, false]);
+  const [highlights, setHighlights] = useState([
+    "false",
+    "false",
+    "false",
+    "false",
+  ]);
 
   useEffect(() => {
     // maskRect의 오른쪽 경계가, 글자의 왼쪽 경계보다 오른쪽에 존재하고, maskRect의 왼쪽 경게가 글자의 오른쪽 경계보다 왼쪽에 존재하면, mask가 해당 글자와 겹친 상태로 판단 후 효과 적용
@@ -104,8 +117,10 @@ export const Focus = () => {
 
   return (
     <Wrapper>
+      <h1>당신의 삶에서 가장 중요한 순간들,</h1>
+      <br></br>
+      <br></br>
       <Content>
-        당신의
         <Highlight ref={letterRefs[0]} highlight={highlights[0]}>
           &nbsp;기
         </Highlight>
@@ -118,7 +133,7 @@ export const Focus = () => {
         <Highlight ref={letterRefs[3]} highlight={highlights[3]}>
           명
         </Highlight>
-        을 알아보세요
+        를 알아보세요
       </Content>
       <Mask ref={maskRef}></Mask>
     </Wrapper>
