@@ -114,7 +114,7 @@ export const Login = () => {
         </Button>
         <Items className="item3">
           아직 회원이 아니신가요?
-          <FindLink href="/signup">Sign up</FindLink>
+          <FindLink href="/agreeCheck">Sign up</FindLink>
         </Items>
         <Items className="item4">Or Connect with</Items>
         <Items className="item5">
