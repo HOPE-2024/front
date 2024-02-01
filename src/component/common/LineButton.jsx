@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LineButton = styled.div`
-  line-height: 1.1;
+  line-height: 1.5;
   background-image: linear-gradient(
     transparent 20%,
     ${(props) => props.color || "#3c84f869"} 100%
@@ -10,7 +10,7 @@ export const LineButton = styled.div`
   background-size: 0% 100%;
   transition: background-size 0.5s;
   color: ${(props) => props.color || "var(--BLACK)"};
-  font-size: ${(props) => props.fontSize || "2vh"};
+  font-size: ${(props) => props.fontSize || "1.3rem"};
   cursor: pointer;
 
   &:hover {

@@ -17,6 +17,7 @@ import { Country } from "./pages/predict/Country";
 import { Diabetes } from "./pages/predict/Diabetes";
 import { Face } from "./pages/predict/Face";
 import { LifeExpectancy } from "./pages/predict/LifeExpectancy";
+import { AgreeCheck } from "./pages/agreeToTerms/AgreeCheck";
 
 function App() {
   return (
@@ -27,10 +28,11 @@ function App() {
           <Routes>
             <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/agreecheck" element={<AgreeCheck />} />
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />
-              <Route path="/ChatRoom" element={<ChatRoom />} />
+              <Route path="/ChatRoom/:roomId" element={<ChatRoom />} />
               <Route path="/MemberList2" element={<MemberList2 />} />
               <Route path="/MemberList" element={<MemberList />} />
               <Route path="/Report" element={<Report />} />

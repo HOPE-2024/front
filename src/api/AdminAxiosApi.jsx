@@ -75,7 +75,6 @@ export const AdminAxiosApi = {
 
   //신고 내역 삭제
   deleteReport: async (id) => {
-    alert(id)
     return await axios.post(Common.KH_DOMAIN + `/admin/deletereport/?id=${id}`, {});
   },
 
@@ -104,4 +103,28 @@ export const AdminAxiosApi = {
       {}
     );
   },
+
+  //1대1 문의 등록
+  InsertQuery: async (queryDto) => {
+    return await axios.post(
+      Common.KH_DOMAIN + `/admin/insertQuery`,
+      queryDto
+    );
+  },
+
+  //1대1 문의 전체 조회 
+  selectQuryList: async () => {
+    return await axios.get(Common.KH_DOMAIN + `/admin/selectQuryList`, {});
+  },
+  //1대1 문의 조회 
+  selectQury: async (id) => {
+    return await axios.get(Common.KH_DOMAIN + `/admin/selectQury/?id=${id}`, {});
+  },
+
+
+
+
+
+
+
 };

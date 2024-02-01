@@ -61,7 +61,7 @@ export const Signup = () => {
 
   // 아이디 조건에 맞는지 확인
   const onChangeId = (e) => {
-    const idRegex = /^(?=.*[a-zA-Z0-9])[a-zA-Z0-9]{5,20}$/;
+    const idRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{5,20}$/;
     const enteredId = e.target.value;
     setId(enteredId);
 

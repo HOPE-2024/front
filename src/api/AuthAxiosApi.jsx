@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Common } from "../utils/Common";
+import { Instance } from "../utils/AxiosInterceptor";
 
 export const AuthAxiosApi = {
   // 회원가입
@@ -35,15 +36,11 @@ export const AuthAxiosApi = {
       password: password,
     };
     try {
-      const response = await axios.post(
-        Common.KH_DOMAIN + "/auth/login",
-        data,
-        Common.tokenHeader
-      );
+      const response = await Instance.post("/auth/login", data);
       console.log(
-        "액세스 토큰: ",
+        "로그인 성공. 액세스 토큰:",
         response.data.accessToken,
-        "리프레시 토큰: ",
+        "리프레시 토큰:",
         response.data.refreshToken
       );
       return response;
