@@ -30,7 +30,7 @@ function App() {
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />
-              <Route path="/ChatRoom" element={<ChatRoom />} />
+              <Route path="/ChatRoom/:roomId" element={<ChatRoom />} />
               <Route path="/MemberList2" element={<MemberList2 />} />
               <Route path="/MemberList" element={<MemberList />} />
               <Route path="/Report" element={<Report />} />

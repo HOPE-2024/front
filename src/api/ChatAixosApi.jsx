@@ -6,14 +6,16 @@ export const ChatAxiosApi = {
   chatList: async () => {
     return await axios.get(Common.KH_DOMAIN + "/chat/chatList");
   },
-  // 게시글 채팅방 목록 보기 (postId 있음)
-  roomList: async () => {
-    return await axios.get(Common.KH_DOMAIN + "/chat/list");
-  },
   // 자유 채팅방 목록 보기 (postId 없음)
   ChatList: async () => {
     return await axios.get(Common.KH_DOMAIN + "/chat/roomList");
   },
+
+  // 해당 채팅방 정보 보기
+  chatDetail: async (roomId) => {
+    return await axios.get(Common.KH_DOMAIN + `/chat/room/${roomId}`);
+  },
+
   // 채팅방 생성 (postId 없음)
   freeChatCreate: async (name) => {
     const chat = {
@@ -24,5 +26,33 @@ export const ChatAxiosApi = {
   // 해당 채팅방의 이전 채팅 내역 가져오기
   recentChatLoad: async (roomId) => {
     return await axios.get(Common.KH_DOMAIN + `/chat/message/${roomId}`);
+  },
+
+  // 채팅방 삭제
+  roomDelete: async (roomId) => {
+    return await axios.delete(Common.KH_DOMAIN + `/chat/dellRoom/${roomId}`);
+  },
+
+  // 채팅방 활성화 / 비활성화
+  stateRoom: async (roomId, active) => {
+    const data = {
+      roomId: roomId,
+      active: active,
+    };
+    return await axios.put(Common.KH_DOMAIN + `/chat/stateRoom`, data);
+  },
+
+  // 전체 채팅 내역 페이지네이션 조회
+  chatPageAllList: async (page, size) => {
+    return await axios.get(
+      Common.KH_DOMAIN + `/chat/all/page?page=${page}&size=${size}`
+    );
+  },
+
+  // 전체 채팅 내역 페이지 수 조회
+  chatAllPage: async (page, size) => {
+    return await axios.get(
+      Common.KH_DOMAIN + `/chat/all/count?page=${page}&size=${size}`
+    );
   },
 };

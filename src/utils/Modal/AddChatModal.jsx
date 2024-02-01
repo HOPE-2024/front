@@ -104,6 +104,7 @@ export const AddChatModal = ({
 
   // 취소
   const closeClick = () => {
+    setInputValue(""); // 모달이 닫힐 때 입력값 초기화
     setModalOpen(false);
   };
 
