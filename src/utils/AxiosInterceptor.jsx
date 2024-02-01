@@ -33,7 +33,7 @@ Instance.interceptors.response.use(
       try {
         const newToken = await Common.handleUnauthorized();
         if (newToken) {
-          error.config.headers.Authorization = `Bearer ${Common.getAccessToken()}`;
+          error.config.headers.Authorization = `Bearer ${Common.getAccessToken()}`; // 헤더
           return Instance.request(error.config);
         }
       } catch (error) {
