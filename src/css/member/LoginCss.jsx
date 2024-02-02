@@ -4,15 +4,13 @@ import KakaoLogo from "../../images/member/kakao_logo.png";
 import NaverLogo from "../../images/member/naver_logo.png";
 
 export const LoginContainer = styled.div`
-  width: 50%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   @media screen and (max-width: 768px) {
     width: 80%;
   }

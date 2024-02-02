@@ -2,15 +2,12 @@ import styled from "styled-components";
 import { ReactComponent as DrugSvg } from "../../images/member/drug.svg";
 
 export const SignupContainer = styled.div`
-  width: 50%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   @media screen and (max-width: 768px) {
     width: 85%;
   }
