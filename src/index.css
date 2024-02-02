@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   /* 세로 스크롤 잠금 설정 */
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 
 code {

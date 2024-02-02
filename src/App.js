@@ -18,6 +18,7 @@ import { Diabetes } from "./pages/predict/Diabetes";
 import { Face } from "./pages/predict/Face";
 import { LifeExpectancy } from "./pages/predict/LifeExpectancy";
 import { AgreeCheck } from "./pages/agreeToTerms/AgreeCheck";
+import { MedicineResult } from "./pages/search/MedicineResult";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               <Route path="/Face" element={<Face />} />
               <Route path="/Diabetes" element={<Diabetes />} />
               <Route path="/LifeResult" element={<LifeResult />} />
+              <Route path="/medicineresult" element={<MedicineResult />} />
             </Route>
           </Routes>
         </BrowserRouter>
