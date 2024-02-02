@@ -5,8 +5,8 @@ import {
   BackGroundHeader,
   TempHeader,
   TempContent,
-  ContentWrapper,
 } from "../../css/template/TemplateStyle";
+import { Footer } from "./Footer";
 
 export const Template = () => {
   return (
@@ -17,11 +17,11 @@ export const Template = () => {
         </TempHeader>
       </BackGroundHeader>
 
-      <ContentWrapper>
-        <TempContent>
-          <Outlet></Outlet>
-        </TempContent>
-      </ContentWrapper>
+      <TempContent>
+        <Outlet></Outlet>
+      </TempContent>
+
+      <Footer></Footer>
     </MainCss>
   );
 };

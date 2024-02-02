@@ -19,7 +19,6 @@ import { Face } from "./pages/predict/Face";
 import { LifeExpectancy } from "./pages/predict/LifeExpectancy";
 import { AgreeCheck } from "./pages/agreeToTerms/AgreeCheck";
 import { MedicineResult } from "./pages/search/MedicineResult";
-import { Footer } from "./component/template/Footer";
 
 function App() {
   return (
@@ -47,7 +46,6 @@ function App() {
               <Route path="/medicineresult" element={<MedicineResult />} />
             </Route>
           </Routes>
-          <Footer></Footer>
         </BrowserRouter>
       </AuthContextProvider>
     </>

@@ -6,8 +6,8 @@ import ReactPaginate from "react-paginate";
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
-
+  height: 200vh;
+  border: 30px solid red;
   @media only screen and (max-width: 768px) {
     width: 100%;
   }
@@ -36,7 +36,7 @@ const SearchBox = styled.div`
 
 const ResultList = styled.div`
   width: 100vw;
-  height: 70vh;
+  height: 62vh;
   display: flex;
   align-items: center;
   flex-direction: column;

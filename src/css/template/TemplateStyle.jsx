@@ -4,8 +4,8 @@ import backgroundSVG from "../../images/backGround.svg";
 export const MainCss = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   justify-content: flex-start; // 컨텐츠 시작 부분부터 순서대로 배치
-  min-height: 100vh; // 뷰포트 높이의 최소값 설정
   position: relative;
   margin: 0 auto;
 
@@ -32,15 +32,9 @@ export const MainCss = styled.div`
   }
 `;
 
-export const ContentWrapper = styled.div`
-  flex: 1; // 컨텐츠 영역이 가능한 많은 공간을 차지하도록 함 */
-  overflow-x: hidden;
-`;
-
 export const BackGroundHeader = styled.div`
   background-color: white;
   width: 100vw;
-  height: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,13 +50,6 @@ export const TempHeader = styled.div`
 `;
 
 export const TempContent = styled.div`
-  height: 100vh;
-`;
-
-export const TempFooter = styled.div`
-  width: 100vw;
-  height: 75px; // Footer의 높이
-  position: absolute;
-  bottom: 0px;
-  z-index: 9413;
+  min-height: 84vh;
+  height: 100%;
 `;

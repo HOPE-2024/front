@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  height: 70vh;
 `;
 
 export const Content = styled.div`
