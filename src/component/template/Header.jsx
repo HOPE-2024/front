@@ -74,7 +74,7 @@ export const Header = () => {
               // 로그인 O
               <Menu>
                 <li onClick={() => setFirstView(!firstView)}>
-                  <UnderLinedStyle>지도</UnderLinedStyle>
+                  <UnderLinedStyle>예측</UnderLinedStyle>
                   {firstView && (
                     <FirstDropDown onClose={() => setFirstView(false)} />
                   )}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  Wrapper,
   Input,
   CountryBox,
   Button,
@@ -234,7 +235,6 @@ export const LifeInput = () => {
         "http://localhost:5000/predict_life_expectancy",
         userData
       );
-      console.log(JSON.stringify(response.data));
 
       // 상태로 저장하여 데이터를 전달, 해당 상태는 전달되는 페이지에서만 사용 가능
       // navigate로 다른 페이지로 값을 넘길 때는 상태로 넘기고, 부모에서 자식 컴포넌트로 값을 넘길 때는 props로 넘긴다.
@@ -243,6 +243,8 @@ export const LifeInput = () => {
           prediction: response.data.prediction,
           featureImportances: response.data.feature_importances,
           correlation: response.data.correlation,
+          correlation_x: response.data.correlation_x,
+          correlation_y: response.data.correlation_y,
         },
       });
     } catch (error) {
@@ -253,48 +255,50 @@ export const LifeInput = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <MiddleBox>
-          <Input
-            type="number"
-            value={height}
-            onChange={(e) => setHeight(e.target.value)}
-            placeholder="  키 (cm)"
-          />
+      <Wrapper>
+        <form onSubmit={handleSubmit}>
+          <MiddleBox>
+            <Input
+              type="number"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+              placeholder="  키 (cm)"
+            />
 
-          <Input
-            type="number"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-            placeholder="  몸무게 (kg)"
-          />
-        </MiddleBox>
+            <Input
+              type="number"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              placeholder="  몸무게 (kg)"
+            />
+          </MiddleBox>
 
-        <MiddleBox>
-          <Input
-            type="number"
-            value={alcoholConsumption}
-            onChange={(e) => setAlcoholConsumption(e.target.value)}
-            placeholder="  주간 알코올 섭취량 (L)"
-          />
+          <MiddleBox>
+            <Input
+              type="number"
+              value={alcoholConsumption}
+              onChange={(e) => setAlcoholConsumption(e.target.value)}
+              placeholder="  주간 알코올 섭취량 (L)"
+            />
 
-          <CountryBox value={nationality} onChange={handleNationalityChange}>
-            <option value="">&nbsp;&nbsp;국적</option>
-            {nationalityOptions.map((option, index) => (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            ))}
-          </CountryBox>
-        </MiddleBox>
+            <CountryBox value={nationality} onChange={handleNationalityChange}>
+              <option value="">&nbsp;&nbsp;국적</option>
+              {nationalityOptions.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </CountryBox>
+          </MiddleBox>
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <MiddleBox>
-          <Button type="submit">예측</Button>
-        </MiddleBox>
-      </form>
+          <MiddleBox>
+            <Button type="submit">예측</Button>
+          </MiddleBox>
+        </form>
+      </Wrapper>
     </>
   );
 };

@@ -3,16 +3,12 @@ import backgroundSVG from "../../images/backGround.svg";
 
 export const MainCss = styled.div`
   display: flex;
-  justify-items: center;
-  align-items: center;
+  flex-direction: column; // flex 컨테이너를 세로 방향으로 정렬
+  justify-content: space-between; // 컨텐츠를 상하에 균등하게 배치
+  min-height: 100vh; // 최소 높이를 뷰포트의 100%로 설정
+  position: relative; // Footer를 하단에 고정하기 위해 relative 설정
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "Header"
-    "Content"
-    "Footer";
+  padding-bottom: 50px; // Footer의 높이만큼 padding-bottom 설정, Footer 높이에 맞게 조정 필요
 
   // ::before : 가상 요소로, 선택한 요소의 내부에 콘텐츠를 추가할때 사용하는 CSS의 강력한 기능
   // 복잡한 레이아웃을 생성하거나, 추가적인 스타일을 적용하는데 유용
@@ -53,18 +49,17 @@ export const BackGroundHeader = styled.div`
 
 export const TempHeader = styled.div`
   width: 60vw;
-  grid-area: Header;
 `;
 
 export const TempContent = styled.div`
-  grid-area: Content;
   height: 100vh;
 `;
 
 export const TempFooter = styled.div`
-  grid-area: Footer;
   width: 100vw;
-  position: absolute;
+  height: 50px; // Footer의 높이, 실제 높이에 맞게 조정 필요
+  position: absolute; // Footer를 하단에 고정
   bottom: 0;
   z-index: 9413;
+  background-color: rgba(0, 0, 0, 0.5); // Footer 배경색, 필요에 따라 조정
 `;

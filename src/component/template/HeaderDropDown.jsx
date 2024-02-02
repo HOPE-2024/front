@@ -31,14 +31,14 @@ export const FirstDropDown = ({ onClose }) => {
     <FirstDropDownMenu ref={dropdownRef}>
       <li
         onClick={() => {
-          navigate("/");
+          navigate("/LifeExpectancy");
         }}
       >
-        내 정보 관리
+        기대수명예측
       </li>
       <li
         onClick={() => {
-          navigate("/");
+          navigate("/ChatList");
         }}
       >
         채팅

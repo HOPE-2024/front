@@ -8,14 +8,26 @@ import {
   NextButton,
   SlideListContent,
   NavBox,
-} from "../../css/SlideStyle";
-import { Note } from "../../component/text/Note";
-import { Rechart } from "./chart/Rechart";
+} from "../../../css/SlideStyle";
+import { Note } from "../../text/Note";
+import { ScatterGraph } from "../chart/ScatterGraph";
+import { BarGraph } from "../chart/BarGraph";
 
-export const LifeSlide = ({ prediction, featureImportances, correlation }) => {
-  const text = ` 너는 ${Math.round(
+export const LifeResultSlide = ({
+  prediction,
+  featureImportances,
+  correlation,
+  correlation_x,
+  correlation_y,
+}) => {
+  console.log("1 : " + correlation[1]);
+  console.log("2 : " + correlation[0]);
+
+  const text = `랜덤 포레스트 모델을 통해 예측된 결과, 당신은 ${Math.round(
     prediction
-  )}살에 죽을 것이다, 크하하!\n얼마 남지 않은 쓰레기 같은 인생을 잘 마무리하거라!`;
+  )}살까지 살 것으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
+    (correlation[1][0] + correlation[0][1]) * 50
+  )}% 입니다. 평가된 모델의 성능을 자세히 알고 싶으시다면 슬라이드를 넘겨주세요.`;
 
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
@@ -23,15 +35,20 @@ export const LifeSlide = ({ prediction, featureImportances, correlation }) => {
       <Note text={`${text}`} height="30vh"></Note>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <Rechart
-        prediction={prediction}
-        featureImportances={featureImportances}
-        correlation={correlation}
+      <ScatterGraph
+        correlation_x={correlation_x}
+        correlation_y={correlation_y}
       />
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <BarGraph featureImportances={featureImportances} />
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <p>건강조언, bmi</p>
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <p>뉴스 크롤링</p>
+    </SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스

@@ -1,20 +1,23 @@
 import { useLocation } from "react-router-dom";
-import { LifeSlide } from "../../component/result/LifeSlide";
+import { LifeResultSlide } from "../../component/result/slide/LifeResultSlide";
 
 export const LifeResult = () => {
   const location = useLocation();
   const { prediction } = location.state;
   const { featureImportances } = location.state;
   const { correlation } = location.state;
-  console.log("예측 결과 : " + prediction);
+  const { correlation_x } = location.state;
+  const { correlation_y } = location.state;
 
   return (
     <>
-      <LifeSlide
+      <LifeResultSlide
         prediction={String(prediction)}
         featureImportances={featureImportances}
         correlation={correlation}
-      ></LifeSlide>
+        correlation_x={correlation_x}
+        correlation_y={correlation_y}
+      ></LifeResultSlide>
     </>
   );
 };
