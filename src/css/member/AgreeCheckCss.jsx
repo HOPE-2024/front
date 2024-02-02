@@ -4,6 +4,10 @@ import { ReactComponent as Logo } from "../../images/logo.svg";
 export const Container = styled.div`
   width: 100%;
   padding-left: 10%;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 5%;
+  }
 `;
 
 export const HeaderContainer = styled.div`
@@ -15,6 +19,10 @@ export const FirstBox = styled.div`
   height: 150px;
   margin: 30px;
   padding-left: 200px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding-left: 1.875rem;
+  }
 `;
 
 export const LogoSvg = styled(Logo)`
@@ -30,11 +38,17 @@ export const Title = styled.div`
 
 // 약관 동의 체크 항목 나열
 export const SecondBox = styled.div`
-  width: 55%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   margin: 20px;
   padding-left: 250px;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-left: 0;
+  }
 `;
 
 export const CheckBoxContainer = styled.div`
@@ -83,4 +97,9 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 40px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-left: 0;
+  }
 `;

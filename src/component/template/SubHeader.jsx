@@ -12,7 +12,6 @@ const Container = styled.div`
 const ArrowBox = styled.div`
   font-size: 40px;
   color: var(--NAVY);
-  margin-left: 100px;
   cursor: pointer;
 `;
 
