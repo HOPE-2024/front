@@ -6,6 +6,7 @@ export const Content = styled.div`
   align-items: center;
   background-color: #023b96;
   width: 100vw;
+  z-index: 1000;
 
   span {
     font-size: 1.05rem;

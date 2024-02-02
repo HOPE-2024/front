@@ -1,14 +1,13 @@
-import { useActionData } from "react-router-dom";
 import { StyledSearch } from "../../css/common/StyledSearch";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { SearchAxiosApi } from "../../api/SearchAxiosApi";
-import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
+
   @media only screen and (max-width: 768px) {
     width: 100%;
   }

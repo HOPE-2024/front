@@ -19,6 +19,7 @@ import { Face } from "./pages/predict/Face";
 import { LifeExpectancy } from "./pages/predict/LifeExpectancy";
 import { AgreeCheck } from "./pages/agreeToTerms/AgreeCheck";
 import { MedicineResult } from "./pages/search/MedicineResult";
+import { Footer } from "./component/template/Footer";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Routes>
             <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/agreecheck" element={<AgreeCheck />} />
+            <Route path="/agreecheck" e lement={<AgreeCheck />} />
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />
@@ -46,6 +47,7 @@ function App() {
               <Route path="/medicineresult" element={<MedicineResult />} />
             </Route>
           </Routes>
+          <Footer></Footer>
         </BrowserRouter>
       </AuthContextProvider>
     </>

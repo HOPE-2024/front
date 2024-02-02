@@ -1,12 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
-import { Footer } from "./Footer";
 import {
   MainCss,
   BackGroundHeader,
   TempHeader,
   TempContent,
-  TempFooter,
+  ContentWrapper,
 } from "../../css/template/TemplateStyle";
 
 export const Template = () => {
@@ -18,13 +17,11 @@ export const Template = () => {
         </TempHeader>
       </BackGroundHeader>
 
-      <TempContent>
-        <Outlet></Outlet>
-      </TempContent>
-
-      <TempFooter>
-        <Footer></Footer>
-      </TempFooter>
+      <ContentWrapper>
+        <TempContent>
+          <Outlet></Outlet>
+        </TempContent>
+      </ContentWrapper>
     </MainCss>
   );
 };
