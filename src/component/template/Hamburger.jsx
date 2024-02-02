@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import {
   All,
   Items,
@@ -8,10 +8,12 @@ import {
   Content,
   ContentBox,
 } from "../../css/template/HamburgerStyle";
+import { UserContext } from "../../context/AuthContext";
 
 export const Hamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
   const itemsRealDom = useRef();
+  const { loginStatus } = useContext(UserContext);
 
   const PillClick = () => {
     setIsOpen(!isOpen);
@@ -42,39 +44,42 @@ export const Hamburger = () => {
       <All>
         <Button onClick={PillClick}></Button>
         <Items
-          ref={itemsRealDom} // DOM 요소에 직접 접근하기 위한 속성
+          ref={itemsRealDom}
           isOpen={isOpen}
           style={{
-            // false : 일때 48vw 오른쪽으로 이동한 위치에 남아있는 것이 아닌, 원위치로 회귀
             transform: isOpen ? "translateX(47vw)" : "translateX(0)",
           }}
         >
-          <Item isOpen={isOpen}>
-            <Title>제목 </Title>
-            <br />
-            <ContentBox>
-              <Content href="/Login">로그인</Content>
-            </ContentBox>
-            <ContentBox>
-              <Content href="/Signup">회원가입</Content>
-            </ContentBox>
-          </Item>
-
-          <Item isOpen={isOpen}>
-            <Title>제목뭘로하지? </Title>
-            <br />
-            <ContentBox>
-              <Content href="/Map">지도</Content>
-            </ContentBox>
-          </Item>
-
-          <Item isOpen={isOpen}>
-            <Title>커뮤니티 </Title>
-            <br />
-            <ContentBox>
-              <Content href="/ChatList">채팅</Content>
-            </ContentBox>
-          </Item>
+          {loginStatus === "true" ? (
+            // 로그인 되었을 때의 메뉴 항목
+            <>
+              <Item isOpen={isOpen}>
+                <Title>지도</Title>
+                <ContentBox>
+                  <Content href="/Map">지도 보기</Content>
+                </ContentBox>
+              </Item>
+              <Item isOpen={isOpen}>
+                <Title>커뮤니티</Title>
+                <ContentBox>
+                  <Content href="/ChatList">채팅</Content>
+                </ContentBox>
+              </Item>
+            </>
+          ) : (
+            // 로그인 되지 않았을 때의 메뉴 항목
+            <>
+              <Item isOpen={isOpen}>
+                <br />
+                <ContentBox>
+                  <Content href="/Login">로그인</Content>
+                </ContentBox>
+                <ContentBox>
+                  <Content href="/Signup">회원가입</Content>
+                </ContentBox>
+              </Item>
+            </>
+          )}
         </Items>
       </All>
     </>
