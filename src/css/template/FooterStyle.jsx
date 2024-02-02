@@ -14,6 +14,12 @@ export const Content = styled.div`
     color: white;
   }
 
+  @media only screen and (aspect-ratio: 16/9) {
+    body {
+      background-color: lightblue;
+    }
+  }
+
   @media (max-width: 400px) and (max-height: 650px) {
     display: none;
   }

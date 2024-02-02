@@ -50,6 +50,6 @@ export const TempHeader = styled.div`
 `;
 
 export const TempContent = styled.div`
-  min-height: 84vh;
-  height: 100%;
+  flex: 1; // 중요
+  overflow-x: hidden;
 `;
