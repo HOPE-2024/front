@@ -4,7 +4,13 @@ import styled, { keyframes } from "styled-components";
 // Animation
 const maskAnimation = keyframes`
   to {
-    transform: translateX(-150px);
+    transform: translateX(-330px);
+  }
+`;
+
+const maskAnimation_2 = keyframes`
+  to {
+    transform: translateX(-270px);
   }
 `;
 
@@ -12,43 +18,41 @@ const maskAnimation = keyframes`
 // 전체
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 60vw;
-  height: 200px;
-  white-space: nowrap;
-  position: relative;
   text-shadow: 5px 5px 5px white;
+
+  @media screen and (max-width: 900px) {
+    font-size: 3px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 25px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 // 배경 글자
 const Content = styled.div`
   width: 100vw;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   letter-spacing: 2px;
-  font-size: 40px;
-  color: rgb(140, 140, 140);
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgb(140, 140, 140);
+  top: 1vh;
+  font-size: 36px;
 
-  @media screen and (max-width: 900px) {
-    font-size: 35px;
-  }
-  @media screen and (max-width: 800px) {
-    font-size: 30px;
-  }
-  @media screen and (max-width: 700px) {
-    font-size: 25px;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 20px;
-  }
-  @media screen and (max-width: 350px) {
-    font-size: 15px;
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 
@@ -75,16 +79,60 @@ const Mask = styled.div`
     10px 2px, 2px 10px, 10px 2px;
   color: #023b96;
   padding: 5px;
-  transform: translateX(30px);
+  transform: translateX(-20px);
   box-sizing: border-box;
   animation: ${maskAnimation} 2.5s ease infinite alternate;
+  position: relative;
+  bottom: 5vh;
+  left: 6.5vw;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+  @media (max-width: 800px) {
+    display: none;
+  }
+
+  @media (min-height: 1200px) {
+    bottom: 3.2vh;
+  }
+
+  @media (min-height: 1500px) {
+    bottom: 2.5vh;
+  }
+
+  @media (min-height: 2000px) {
+    bottom: 2vh;
+  }
+
+  @media (max-width: 1300px) {
+    animation: ${maskAnimation_2} 2.5s ease infinite alternate;
+  }
+`;
+
+const TextBox = styled.div`
+  text-align: center;
+  max-width: 45vw;
+  color: rgb(140, 140, 140);
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
 `;
 
 export const DiabFocus = () => {
   // useRef : 실제 DOM 요소에 대한 참조
   const maskRef = useRef(null);
-  const letterRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const letterRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
   const [highlights, setHighlights] = useState([
+    "false",
+    "false",
     "false",
     "false",
     "false",
@@ -109,6 +157,11 @@ export const DiabFocus = () => {
 
   return (
     <Wrapper>
+      <TextBox>
+        적을 알고 나를 알면 백 번 싸워도 위태롭지 않다, 고대의 지혜가 말하는
+        바와 같이, 당뇨병이라는 은밀한 적을 깊이 이해하고, 건강 상태를
+        예측함으로써 질병과의 싸움에서 승리할 수 있을 것입니다.
+      </TextBox>
       <Content>
         1년 후의
         <Highlight ref={letterRefs[0]} highlight={highlights[0]}>
@@ -118,7 +171,7 @@ export const DiabFocus = () => {
           뇨
         </Highlight>
         <Highlight ref={letterRefs[2]} highlight={highlights[2]}>
-          병&nbsp;
+          병
         </Highlight>
         <Highlight ref={letterRefs[3]} highlight={highlights[3]}>
           진
@@ -129,7 +182,7 @@ export const DiabFocus = () => {
         <Highlight ref={letterRefs[5]} highlight={highlights[5]}>
           도
         </Highlight>
-        을 알아보세요
+        를 예측해보세요
       </Content>
       <Mask ref={maskRef}></Mask>
     </Wrapper>

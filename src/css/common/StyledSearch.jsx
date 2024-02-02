@@ -18,6 +18,11 @@ const SearchBox = styled.div`
   @media screen and (max-width: 300px) {
     width: 60vw;
   }
+
+  @media (max-width: 400px) and (max-height: 650px) {
+    position: relative;
+    top: 7vh;
+  }
 `;
 
 const SearchMode = styled.div`

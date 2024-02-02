@@ -1,9 +1,7 @@
-import { StyledSearch } from "../../css/common/StyledSearch";
-
 export const Face = () => {
   return (
     <>
-      <StyledSearch></StyledSearch>
+      <h1>얼굴 페이지</h1>
     </>
   );
 };

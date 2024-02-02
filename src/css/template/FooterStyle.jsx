@@ -12,6 +12,10 @@ export const Content = styled.div`
     font-weight: bold;
     color: white;
   }
+
+  @media (max-width: 400px) and (max-height: 650px) {
+    display: none;
+  }
 `;
 
 export const Left = styled.div`

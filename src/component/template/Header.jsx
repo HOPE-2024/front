@@ -65,59 +65,59 @@ export const Header = () => {
       <Top>
         <Left>
           <Hamburger></Hamburger>
-          <StyledLogo
-            onClick={() => {
-              navigate("/");
-            }}
-          ></StyledLogo>
+          <StyledLogo onClick={() => navigate("/")}></StyledLogo>
         </Left>
 
         <Right>
           <ul>
-            <Menu>
-              <li
-                onClick={() => {
-                  setFirstView(!firstView);
-                }}
-              >
-                <UnderLinedStyle>지도</UnderLinedStyle>
-                {firstView && (
-                  <FirstDropDown onClose={() => setFirstView(false)} />
-                )}
-              </li>
+            {loginStatus === "true" ? (
+              // 로그인 O
+              <Menu>
+                <li onClick={() => setFirstView(!firstView)}>
+                  <UnderLinedStyle>지도</UnderLinedStyle>
+                  {firstView && (
+                    <FirstDropDown onClose={() => setFirstView(false)} />
+                  )}
+                </li>
 
-              <Line></Line>
+                <Line></Line>
 
-              <li
-                onClick={() => {
-                  setSecondView(!secondView);
-                }}
-              >
-                <UnderLinedStyle>커뮤니티</UnderLinedStyle>
-                {secondView && (
-                  <SecondDropDown onClose={() => setSecondView(false)} />
-                )}
-              </li>
+                <li onClick={() => setSecondView(!secondView)}>
+                  <UnderLinedStyle>커뮤니티</UnderLinedStyle>
+                  {secondView && (
+                    <SecondDropDown onClose={() => setSecondView(false)} />
+                  )}
+                </li>
 
-              <Line></Line>
+                <Line></Line>
 
-              <li
-                onClick={() => {
-                  setThirdView(!thirdView);
-                }}
-              >
-                <UnderLinedStyle>내 정보</UnderLinedStyle>
-                {thirdView && (
-                  <ThirdDropDown onClose={() => setThirdView(false)} />
-                )}
-              </li>
+                <li onClick={() => setThirdView(!thirdView)}>
+                  <UnderLinedStyle>내 정보</UnderLinedStyle>
+                  {thirdView && (
+                    <ThirdDropDown onClose={() => setThirdView(false)} />
+                  )}
+                </li>
 
-              <Line></Line>
+                <Line></Line>
 
-              <li>
-                <UnderLinedStyle onClick={logout}>로그아웃</UnderLinedStyle>
-              </li>
-            </Menu>
+                <li>
+                  <UnderLinedStyle onClick={logout}>로그아웃</UnderLinedStyle>
+                </li>
+              </Menu>
+            ) : (
+              // 로그인 X
+              <Menu>
+                <li onClick={() => navigate("/Login")}>
+                  <UnderLinedStyle>로그인</UnderLinedStyle>
+                </li>
+
+                <Line></Line>
+
+                <li onClick={() => navigate("/AgreeCheck")}>
+                  <UnderLinedStyle>회원 가입</UnderLinedStyle>
+                </li>
+              </Menu>
+            )}
           </ul>
         </Right>
       </Top>

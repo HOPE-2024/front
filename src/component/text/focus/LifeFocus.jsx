@@ -16,30 +16,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 60vw;
-  height: 10vh;
-  white-space: nowrap;
   text-shadow: 5px 5px 5px white;
-
-  @media (max-height: 1000px) {
-    height: 15vh;
-  }
-
-  /* @media (max-width: 650px) {
-    display: none;
-  } */
-`;
-
-// 배경 글자
-const Content = styled.div`
-  width: 100vw;
-  position: absolute;
-  letter-spacing: 2px;
-  font-size: 40px;
-  color: rgb(140, 140, 140);
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   @media screen and (max-width: 900px) {
     font-size: 35px;
@@ -55,6 +32,24 @@ const Content = styled.div`
   }
   @media screen and (max-width: 350px) {
     font-size: 15px;
+  }
+`;
+
+// 배경 글자
+const Content = styled.div`
+  width: 100vw;
+  position: relative;
+  letter-spacing: 2px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(140, 140, 140);
+  top: 1vh;
+  font-size: 40px;
+
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 
@@ -85,7 +80,33 @@ const Mask = styled.div`
   box-sizing: border-box;
   animation: ${maskAnimation} 2.5s ease infinite alternate;
   position: relative;
-  bottom: 2.7vh;
+  bottom: 5vh;
+  left: 2.5vw;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+
+  @media (min-height: 1200px) {
+    bottom: 3.2vh;
+  }
+
+  @media (min-height: 1500px) {
+    bottom: 2.5vh;
+  }
+
+  @media (min-height: 2000px) {
+    bottom: 2vh;
+  }
+`;
+
+const TextBox = styled.div`
+  text-align: center;
+  max-width: 45vw;
+  color: rgb(140, 140, 140);
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
 `;
 
 export const LifeFocus = () => {
@@ -117,10 +138,12 @@ export const LifeFocus = () => {
 
   return (
     <Wrapper>
-      <h1>당신의 삶에서 가장 중요한 순간들,</h1>
-      <br></br>
-      <br></br>
+      <TextBox>
+        인생의 마지막 순간은 우리 모두에게 찾아오는 필연적인 여정입니다.
+      </TextBox>
+      <TextBox>당신의 마지막은 언제 찾아올까요?</TextBox>
       <Content>
+        당신의
         <Highlight ref={letterRefs[0]} highlight={highlights[0]}>
           &nbsp;기
         </Highlight>
@@ -133,7 +156,7 @@ export const LifeFocus = () => {
         <Highlight ref={letterRefs[3]} highlight={highlights[3]}>
           명
         </Highlight>
-        를 알아보세요
+        을 예측해보세요
       </Content>
       <Mask ref={maskRef}></Mask>
     </Wrapper>

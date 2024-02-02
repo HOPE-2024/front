@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 // Animation
 const maskAnimation = keyframes`
   to {
-    transform: translateX(-150px);
+    transform: translateX(-200px);
   }
 `;
 
@@ -12,43 +12,41 @@ const maskAnimation = keyframes`
 // 전체
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 60vw;
-  height: 200px;
-  white-space: nowrap;
-  position: relative;
   text-shadow: 5px 5px 5px white;
+
+  @media screen and (max-width: 900px) {
+    font-size: 3px;
+  }
+  @media screen and (max-width: 800px) {
+    font-size: 25px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 // 배경 글자
 const Content = styled.div`
   width: 100vw;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   letter-spacing: 2px;
-  font-size: 40px;
-  color: rgb(140, 140, 140);
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgb(140, 140, 140);
+  top: 1vh;
+  font-size: 36px;
 
-  @media screen and (max-width: 900px) {
-    font-size: 35px;
-  }
-  @media screen and (max-width: 800px) {
-    font-size: 30px;
-  }
-  @media screen and (max-width: 700px) {
-    font-size: 25px;
-  }
-  @media screen and (max-width: 600px) {
-    font-size: 20px;
-  }
-  @media screen and (max-width: 350px) {
-    font-size: 15px;
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 
@@ -75,9 +73,37 @@ const Mask = styled.div`
     10px 2px, 2px 10px, 10px 2px;
   color: #023b96;
   padding: 5px;
-  transform: translateX(30px);
+  transform: translateX(-20px);
   box-sizing: border-box;
   animation: ${maskAnimation} 2.5s ease infinite alternate;
+  position: relative;
+  bottom: 5vh;
+  left: 50px;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+
+  @media (min-height: 1200px) {
+    bottom: 3.2vh;
+  }
+
+  @media (min-height: 1500px) {
+    bottom: 2.5vh;
+  }
+
+  @media (min-height: 2000px) {
+    bottom: 2vh;
+  }
+`;
+
+const TextBox = styled.div`
+  text-align: center;
+  max-width: 45vw;
+  color: rgb(140, 140, 140);
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
 `;
 
 export const FaceFocus = () => {
@@ -109,6 +135,10 @@ export const FaceFocus = () => {
 
   return (
     <Wrapper>
+      <TextBox>
+        외모의 시간, 당신의 얼굴이 들려주는 이야기, 당신의 외모가 전하는 나이의
+      </TextBox>
+      <TextBox>비밀을 탐구해보세요. 당신은 몇 살로 보일까요?</TextBox>
       <Content>
         당신의
         <Highlight ref={letterRefs[0]} highlight={highlights[0]}>
