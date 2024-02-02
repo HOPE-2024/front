@@ -6,7 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  /* ^___^ */
   overflow-x: hidden;
+  position: relative;
+  right: 5px;
 }
 
 code {
