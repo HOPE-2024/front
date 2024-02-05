@@ -51,7 +51,7 @@ export const FindId = () => {
       console.log("이메일 값:", email);
       // 이메일로 인증 코드 요청
       try {
-        const rsp = await AuthAxiosApi.findEmail(email);
+        const rsp = await AuthAxiosApi.emailSand(email);
         const receivedCodeFromServer = rsp.data;
         setReceivedCode(receivedCodeFromServer);
         console.log("서버로부터 온 인증코드 :", receivedCodeFromServer);
@@ -80,16 +80,22 @@ export const FindId = () => {
   };
 
   const handleFindId = async () => {
-    // try {
-    //   const memberId = null;  // 초기값으로 null을 할당하고, 이후에 값이 변경될 수 있음을 명시
-    //   // 서버에서 받은 인증번호와 사용자가 입력한 인증번호 비교
-    //   if(verificationCode === receivedCode) {
-    //     // 인증번호 일치할 경우 아이디 찾기 요청
-    //     if (radioSelect === "email") {
-    //       const rsp = await
-    //     }
-    //   }
-    // }
+    try {
+      // 인증번호 일치 여부 확인
+      if (inputCode === receivedCode) {
+        // 인증번호가 일치하는 경우 이메일로 아이디 찾기 요청함
+        const rsp = await AuthAxiosApi.findIdByEmail(email);
+        const memberId = rsp.data;
+        console.log("찾은 회원 아이디: ", memberId);
+        // 찾은 아이디 가지고 페이지 이동
+        navigate("/idcomplement", { state: { memberId } });
+      } else {
+        // 인증번호가 일치하지 않은 경우
+        alert("인증번호 불일치! 다시 확인해 주세요.");
+      }
+    } catch (error) {
+      console.error("id 조회 실패 : ", error);
+    }
   };
 
   const handleInfoClick = () => {
@@ -182,7 +188,7 @@ export const FindId = () => {
                 marginRight: "50px",
                 fontWeight: "bold",
               }}
-              onClick={handleCancel}
+              onClick={handleFindId}
             >
               아이디 찾기
             </UnderLinedStyle>

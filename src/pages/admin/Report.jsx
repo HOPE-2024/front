@@ -65,6 +65,13 @@ export const Report = () => {
           >
             처리 후
           </li>
+          <li
+            onClick={() => {
+              navigate("/queryList");
+            }}
+          >
+            문의 관리
+          </li>
         </ul>
       </div>
 

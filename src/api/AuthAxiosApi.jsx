@@ -48,8 +48,8 @@ export const AuthAxiosApi = {
       console.error("로그인 실패: ", error);
     }
   },
-  // 아이디 찾기: 이메일 요청
-  findEmail: async (email) => {
+  // 아이디 찾기: 이메일로 인증번호 발송
+  emailSand: async (email) => {
     console.log("서버로 이메일 전송 완료!", email);
     const data = {
       email: email,
@@ -59,8 +59,20 @@ export const AuthAxiosApi = {
       data
     );
   },
-  // 아이디 찾기: 핸드폰번호 요청
-  findphoneNumber: async (phoneNumber) => {
+  // 아이디 찾기: 인증번호 입력 후 아이디 찾기
+  findIdByEmail: async (email) => {
+    console.log("인증 완료 후 이메일 전송 !", email);
+    const data = {
+      email: email,
+    };
+    return await axios.post(
+      `${Common.KH_DOMAIN}/email/findidbyemail?email=${email}`,
+      data
+    );
+  },
+
+  // 아이디 찾기: 핸드폰번호으로 인증번호 발송
+  phoneNumberSand: async (phoneNumber) => {
     console.log("서버로 전화번호 전송 완료!", phoneNumber);
     const data = {
       phoneNumber: phoneNumber,

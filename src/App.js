@@ -8,6 +8,9 @@ import { Map } from "./pages/map/Map";
 import { MemberList2 } from "./pages/admin/MemberList2";
 import { MemberList } from "./pages/admin/MemberList";
 import { Report } from "./pages/admin/Report";
+import { Query } from "./pages/admin/Query"; 
+import { QueryView } from "./pages/admin/QueryView"
+import { QueryList } from "./pages/admin/QueryList"
 import { Signup } from "./pages/member/SignUp";
 import { ChatRoom } from "./pages/chat/ChatRoom";
 import { Template } from "../src/component/template/Template";
@@ -25,6 +28,7 @@ import { MyPage } from "./pages/myPage/MyPage";
 import { DiabResult } from "./pages/result/DiabResult";
 import { FaceResult } from "./pages/result/FaceResult";
 import { CountryResult } from "./pages/result/CountryResult";
+import { IdComplement } from "./pages/member/IdComplete";
 
 function App() {
   return (
@@ -38,6 +42,7 @@ function App() {
             <Route path="/agreecheck" element={<AgreeCheck />} />
             <Route path="/findid" element={<FindId />} />
             <Route path="/findpw" element={<FindPw />} />
+            <Route path="/idcomplement" element={<IdComplement />} />
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />
@@ -45,6 +50,10 @@ function App() {
               <Route path="MyPage" element={<MyPage />} />
               <Route path="/MemberList2" element={<MemberList2 />} />
               <Route path="/MemberList" element={<MemberList />} />
+              <Route path="/Query" element={<Query />} />
+              <Route path="/Query/:id" element={<Query />} />
+              <Route path="/QueryView/:id" element={<QueryView/>} />
+              <Route path="/QueryList" element={<QueryList/>} />
               <Route path="/Report" element={<Report />} />
               <Route path="/Map" element={<Map />} />
               <Route path="/LifeExpectancy" element={<LifeExpectancy />} />
