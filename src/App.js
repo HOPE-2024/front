@@ -30,6 +30,8 @@ import { FaceResult } from "./pages/result/FaceResult";
 import { CountryResult } from "./pages/result/CountryResult";
 import { IdComplement } from "./pages/member/IdComplete";
 import { StartFindPw } from "./pages/member/StartFindPw";
+import { MedicineDetail } from "./pages/search/MedicineDetail";
+import { EffectModal } from "./utils/modal/EffectModal";
 
 function App() {
   return (
@@ -67,6 +69,12 @@ function App() {
               <Route path="/FaceResult" element={<FaceResult />} />
               <Route path="/CountryResult" element={<CountryResult />} />
               <Route path="/MedicineResult" element={<MedicineResult />} />
+              <Route path="/medicineresult" element={<MedicineResult />} />
+              <Route
+                path="/medicinedetail/:medicineId"
+                element={<MedicineDetail />}
+              />
+              <Route path="/effect" element={<EffectModal />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Common } from "../utils/Common";
-import { Instance } from "../utils/AxiosInterceptor";
 
 export const SearchAxiosApi = {
   // 다중 필터에 따른 의약품 검색
@@ -14,5 +13,29 @@ export const SearchAxiosApi = {
   // 의약품 전체 조회
   allList: async () => {
     return await axios.get(Common.KH_DOMAIN + `/elastic/medicine/all`);
+  },
+
+  // documentId에 따른 의약품 검색(상세보기)
+  searchId: async (documentId) => {
+    return await axios.get(
+      Common.KH_DOMAIN + `/elastic/medicine/searchId/?documentId=${documentId}`
+    );
+  },
+
+  // 즐겨찾기 추가
+  likesAdd: async (memberId, documentId) => {
+    const data = {
+      memberId: memberId,
+      documentId: documentId,
+    };
+    return await axios.post(Common.KH_DOMAIN + `/medicine/likes/add`, data);
+  },
+
+  // 즐겨찾기 삭제
+  likesDelete: async (memberId, documentId) => {
+    return await axios.delete(
+      Common.KH_DOMAIN +
+        `/medicine/likes/delete?memberId=${memberId}&documentId=${documentId}`
+    );
   },
 };

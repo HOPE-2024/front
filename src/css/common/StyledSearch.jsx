@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-
+import { Select } from "../../css/slideElementInput/InputStyle";
 const SearchBox = styled.div`
   position: absolute;
   width: 50vw;
@@ -29,18 +29,17 @@ const SearchMode = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 80%;
-  height: 70px;
+  border: 2px #5c9bff solid;
+  width: 500px;
+  height: 50px;
+  border-radius: 4px;
   margin: 20px;
-  border: 2px solid #3c84f8;
-  border-radius: 24px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   background: white; // 배경색을 흰색으로 설정
   min-width: 180px;
 
   @media (max-width: 768px) {
-    height: 50px;
-    border-radius: 20px;
+    border-radius: 4px;
   }
 `;
 
@@ -49,7 +48,7 @@ const Input = styled.input`
   height: 95%;
   border: none;
   outline: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 0 10px;
   background: rgba(0, 0, 0, 0);
   position: relative;
@@ -80,24 +79,49 @@ const SearchIcon = styled.div`
   }
 `;
 
-export const StyledSearch = () => {
-  const [search, setSearch] = useState("");
+export const StyledSearch = ({ onSearch }) => {
+  const [search, setSearch] = useState(""); // 검색어
+  const [searchOption, setSearchOption] = useState("전체"); // 검색필터
   const navigate = useNavigate();
 
-  const searchTitle = async () => {
-    navigate(`/` + search);
-    setSearch("");
+  // 검색 버튼 클릭 시 동작할 함수
+  const searchTitle = () => {
+    if (search === "") {
+      // 검색어가 없다면 alert 창 알림
+      alert("검색어를 입력해주세요.");
+    } else {
+      // 검색어가 있다면 onSearch() 호출하여 필터, 검색어 부모에게 전달
+      onSearch(searchOption, search);
+      // 해당 경로로 이동
+      navigate(`/medicineresult?searchoption=${searchOption}&search=${search}`);
+    }
   };
 
+  // Enter 키가 눌리면 실행될 함수
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       searchTitle();
     }
   };
 
+  // option이 바뀔 때 실행되는 함수
+  const handleOptionChange = (e) => {
+    // 바뀐 옵션 값을 searchOption에 저장
+    setSearchOption(e.target.value);
+  };
+
+  // selectbox의 옵션 지정
+  const searchOptionList = ["전체", "의약품명", "제조사명", "성분", "증상"];
   return (
     <>
       <SearchBox>
+        <Select value={searchOption} onChange={handleOptionChange}>
+          {searchOptionList.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </Select>
         <SearchMode>
           <Input
             type="text"
