@@ -2,8 +2,9 @@
 import styled from "styled-components"
 
 export const QueryCss = styled.div`
+
   width: 70vw;
-  margin: 0;
+  margin: 0 auto;
   height: 80%;
   margin-top: 50px;
   background: white;
@@ -58,7 +59,7 @@ export const QueryCss = styled.div`
           margin-top: -1px;
           width: 100%;
           display: block;
-      
+      border: 1px solid black;
           border-top: none;
           background: white;
         }
@@ -106,7 +107,7 @@ export const QueryCss = styled.div`
   .content4 {
     margin-top: 50px;
     width: 100%;
-    height: 50px;
+    height: auto;
     display: flex;
     p {
       line-height: 50px;
@@ -119,6 +120,11 @@ export const QueryCss = styled.div`
     }
     .filebox{
       margin-top: 15px;
+      height: auto;
+      .img1{
+        width: 100px;
+        height:  100px;
+      }
     }
   }
   .content5 {
@@ -127,7 +133,6 @@ export const QueryCss = styled.div`
     height: 50px;
 display: flex;
 justify-content: center;
-
     button{
       margin: 0 50px;
     }

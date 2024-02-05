@@ -93,6 +93,7 @@ export const QueryView = () => {
                     </div>
                     <div className="filebox">
                         <img src={data.queryImg} alt=""></img>
+                        <></>
                     </div>
                 </div>}
 

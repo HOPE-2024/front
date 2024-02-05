@@ -8,6 +8,9 @@ import { Map } from "./pages/map/Map";
 import { MemberList2 } from "./pages/admin/MemberList2";
 import { MemberList } from "./pages/admin/MemberList";
 import { Report } from "./pages/admin/Report";
+import { Query } from "./pages/admin/Query"; 
+import { QueryView } from "./pages/admin/QueryView"
+import { QueryList } from "./pages/admin/QueryList"
 import { Signup } from "./pages/member/SignUp";
 import { ChatRoom } from "./pages/chat/ChatRoom";
 import { Template } from "../src/component/template/Template";
@@ -47,6 +50,10 @@ function App() {
               <Route path="MyPage" element={<MyPage />} />
               <Route path="/MemberList2" element={<MemberList2 />} />
               <Route path="/MemberList" element={<MemberList />} />
+              <Route path="/Query" element={<Query />} />
+              <Route path="/Query/:id" element={<Query />} />
+              <Route path="/QueryView/:id" element={<QueryView/>} />
+              <Route path="/QueryList" element={<QueryList/>} />
               <Route path="/Report" element={<Report />} />
               <Route path="/Map" element={<Map />} />
               <Route path="/LifeExpectancy" element={<LifeExpectancy />} />

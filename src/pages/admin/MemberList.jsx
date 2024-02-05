@@ -77,9 +77,15 @@ export const MemberList = () => {
               navigate("/Report");
             }}
           >
-            신고 내용
+            신고 관리
           </li>
-
+          <li
+            onClick={() => {
+              navigate("/queryList");
+            }}
+          >
+            문의 관리
+          </li>
         </ul>
       </div>
 
