@@ -3,7 +3,6 @@ import { ReactComponent as Logo } from "../../images/logo.svg";
 
 export const Container = styled.div`
   width: 100%;
-  padding-left: 10%;
 
   @media screen and (max-width: 768px) {
     padding-left: 5%;
@@ -12,13 +11,18 @@ export const Container = styled.div`
 
 export const HeaderContainer = styled.div`
   margin-top: 50px;
+  padding-left: 10%;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 0;
+  }
 `;
 
 // 로고와 인삿말 묶음
 export const FirstBox = styled.div`
   height: 150px;
   margin: 30px;
-  padding-left: 200px;
+  padding-left: 15%;
   @media screen and (max-width: 768px) {
     flex-direction: column;
     padding-left: 1.875rem;
@@ -38,11 +42,11 @@ export const Title = styled.div`
 
 // 약관 동의 체크 항목 나열
 export const SecondBox = styled.div`
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin: 20px;
-  padding-left: 250px;
+  padding-left: 15%;
   flex-wrap: wrap;
 
   @media screen and (max-width: 768px) {
@@ -53,7 +57,7 @@ export const SecondBox = styled.div`
 
 export const CheckBoxContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 20px;
   font-size: 1.2rem;
@@ -61,7 +65,7 @@ export const CheckBoxContainer = styled.div`
 `;
 
 export const TextLabel = styled.div`
-  flex: 8;
+  flex: 4.5;
 `;
 
 // 약관 내용 자세히보기
@@ -93,7 +97,7 @@ export const CheckInput = styled.input`
 
 // 맨 하단
 export const ButtonContainer = styled.div`
-  width: 55%;
+  width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 40px;

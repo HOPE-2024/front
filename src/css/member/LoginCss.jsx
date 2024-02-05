@@ -62,7 +62,7 @@ export const Items = styled.div`
   &.item2 {
     position: relative;
     margin: 15px;
-    left: 10%; //item2가 원래 있어야 할 위치에서 왼쪽으로 10%만큼 떨어진 곳에 위치
+    left: 6%; //item2가 원래 있어야 할 위치에서 왼쪽으로 10%만큼 떨어진 곳에 위치
     @media screen and (max-width: 768px) {
       left: 15%;
     }

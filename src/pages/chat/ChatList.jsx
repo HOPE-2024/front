@@ -64,7 +64,7 @@ export const ChatList = () => {
     // 서버로부터 채팅방 목록을 가져오는 API 호출
     const getChatRoom = async () => {
       try {
-        const rsp = await ChatAxiosApi.ChatList();
+        const rsp = await ChatAxiosApi.chatListNow();
         setChatRooms(rsp.data);
         console.log("채팅리스트 : ", rsp.data);
       } catch (e) {

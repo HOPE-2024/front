@@ -31,6 +31,7 @@ export const ChatTitle = styled.div`
 `;
 
 export const MsgCon = styled.div`
+  background-color: #88b68b94;
   display: flex;
   flex-direction: column;
   height: 75vh;
@@ -38,17 +39,20 @@ export const MsgCon = styled.div`
 `;
 
 export const MsgBox = styled.div`
+  border: 2px solid yellow;
   display: flex;
   flex-direction: column;
-  max-width: 40vw;
+  max-width: 40vh;
   align-self: ${(props) => (props.isSender ? "flex-end" : "flex-start")};
 `;
 
 export const MsgSender = styled.div`
+  border: 1px solid red;
   align-self: ${(props) => (props.isSender ? "flex-end" : "flex-start")};
 `;
 
 export const Msg = styled.div`
+  border: 1px solid blue;
   padding: 1vh;
   margin: 1vh;
   border-radius: 10px;
