@@ -11,6 +11,8 @@ import {
   RadioContainer,
   InputAndButtonContainer,
   InfoContainer,
+  LowerContainer,
+  Instruction,
 } from "../../css/member/FindIdCss";
 import { Button } from "../../utils/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,7 +25,9 @@ export const FindId = () => {
   const [radioSelect, setRadioSelect] = useState("email");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [verificationCode, setVerificationCode] = useState("");
+  const [verificationCode, setVerificationCode] = useState(""); // 입력 인증번호 확인 문구
+  const [receivedCode, setReceivedCode] = useState(""); // 받은 인증번호
+  const [inputCode, setInputCode] = useState(""); // 입력 인증번호
   const [infoMessage, setInfoMessage] = useState(false);
 
   const handleRadioSelectChange = (e) => {
@@ -38,8 +42,8 @@ export const FindId = () => {
     setPhoneNumber(e.target.value);
   };
 
-  const handleVerificationCodeChange = (e) => {
-    setVerificationCode(e.target.value);
+  const handleInputCodeChange = (e) => {
+    setInputCode(e.target.value);
   };
 
   const handleSendCode = async () => {
@@ -48,8 +52,10 @@ export const FindId = () => {
       // 이메일로 인증 코드 요청
       try {
         const rsp = await AuthAxiosApi.findEmail(email);
-        const verificationCode = rsp.data.verificationCode;
-        console.log("인증코드 내놓아라 :", verificationCode);
+        const receivedCodeFromServer = rsp.data;
+        setReceivedCode(receivedCodeFromServer);
+        console.log("서버로부터 온 인증코드 :", receivedCodeFromServer);
+        alert("인증번호가 전송되었습니다.");
       } catch (error) {
         console.log("인증 코드 요청 실패 !!", error);
       }
@@ -65,9 +71,25 @@ export const FindId = () => {
     }
   };
 
-  const handleFindId = () => {
-    // 여기에 아이디 찾기 로직을 추가하세요.
-    console.log("Find ID:", radioSelect === "email" ? email : phoneNumber);
+  const handleCompareCode = () => {
+    if (inputCode === receivedCode) {
+      setVerificationCode("인증번호가 일치합니다.");
+    } else {
+      setVerificationCode("인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
+    }
+  };
+
+  const handleFindId = async () => {
+    // try {
+    //   const memberId = null;  // 초기값으로 null을 할당하고, 이후에 값이 변경될 수 있음을 명시
+    //   // 서버에서 받은 인증번호와 사용자가 입력한 인증번호 비교
+    //   if(verificationCode === receivedCode) {
+    //     // 인증번호 일치할 경우 아이디 찾기 요청
+    //     if (radioSelect === "email") {
+    //       const rsp = await
+    //     }
+    //   }
+    // }
   };
 
   const handleInfoClick = () => {
@@ -128,13 +150,14 @@ export const FindId = () => {
             <InputField
               type="text"
               placeholder="인증번호를 입력하세요"
-              value={verificationCode}
-              onChange={handleVerificationCodeChange}
+              value={inputCode}
+              onChange={handleInputCodeChange}
             />
-            <Button fontSize="12px" width="100px" onClick={handleFindId}>
-              아이디 찾기
+            <Button fontSize="12px" width="100px" clickEvt={handleCompareCode}>
+              인증번호 확인
             </Button>
           </InputAndButtonContainer>
+          <Instruction>{verificationCode}</Instruction>
           <InfoContainer>
             인증번호가 오지 않나요{" "}
             <FontAwesomeIcon
@@ -152,12 +175,24 @@ export const FindId = () => {
               </div>
             </div>
           )}
-          <UnderLinedStyle
-            style={{ marginTop: "30px", fontWeight: "bold" }}
-            onClick={handleCancel}
-          >
-            취소
-          </UnderLinedStyle>
+          <LowerContainer>
+            <UnderLinedStyle
+              style={{
+                marginTop: "30px",
+                marginRight: "50px",
+                fontWeight: "bold",
+              }}
+              onClick={handleCancel}
+            >
+              아이디 찾기
+            </UnderLinedStyle>
+            <UnderLinedStyle
+              style={{ marginTop: "30px", fontWeight: "bold" }}
+              onClick={handleCancel}
+            >
+              취소
+            </UnderLinedStyle>
+          </LowerContainer>
         </InputContainer>
       </ForgotIdContainer>
     </>

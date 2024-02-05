@@ -69,3 +69,16 @@ export const InfoContainer = styled.div`
   font-size: 0.85em;
   margin: 5px;
 `;
+
+export const LowerContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Instruction = styled.div`
+  color: #fc0000;
+  font-size: 0.65rem;
+  font-weight: bold;
+  width: 100%;
+  margin: 0px 0px 5px 70px;
+`;
