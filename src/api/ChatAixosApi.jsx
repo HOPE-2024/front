@@ -6,13 +6,15 @@ export const ChatAxiosApi = {
   chatList: async () => {
     return await axios.get(Common.KH_DOMAIN + "/chat/chatList");
   },
+
   // 자유 채팅방 목록 보기 (postId 없음)
-  ChatList: async () => {
-    return await axios.get(Common.KH_DOMAIN + "/chat/roomList");
+  chatListNow: async () => {
+    return await axios.get(Common.KH_DOMAIN + "/chat/freeList");
   },
 
   // 해당 채팅방 정보 보기
   chatDetail: async (roomId) => {
+    console.log("엑시오스에서 룸 아이디 보내기", roomId);
     return await axios.get(Common.KH_DOMAIN + `/chat/room/${roomId}`);
   },
 
@@ -23,6 +25,7 @@ export const ChatAxiosApi = {
     };
     return await axios.post(Common.KH_DOMAIN + "/chat/new", chat);
   },
+
   // 해당 채팅방의 이전 채팅 내역 가져오기
   recentChatLoad: async (roomId) => {
     return await axios.get(Common.KH_DOMAIN + `/chat/message/${roomId}`);

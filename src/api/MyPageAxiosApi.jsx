@@ -1,9 +1,9 @@
 import axios from "axios";
 import { Common } from "../utils/Common";
+import { Instance } from "../utils/AxiosInterceptor";
 
 export const MyPageAxiosApi = {
-  userGetOne: async (email) => {
-    console.log("이메일 들어옴? :", email);
-    return await axios.get(Common.KH_DOMAIN + `/members/detail/${email}`);
+  memberInfo: async (memberId) => {
+    return await axios.get(Common.KH_DOMAIN + `/myPage/detail/${memberId}`);
   },
 };

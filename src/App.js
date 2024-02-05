@@ -19,6 +19,7 @@ import { Face } from "./pages/predict/Face";
 import { LifeExpectancy } from "./pages/predict/LifeExpectancy";
 import { AgreeCheck } from "./pages/agreeToTerms/AgreeCheck";
 import { MedicineResult } from "./pages/search/MedicineResult";
+import { MyPage } from "./pages/myPage/MyPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />
               <Route path="/ChatRoom/:roomId" element={<ChatRoom />} />
+              <Route path="MyPage" element={<MyPage />} />
               <Route path="/MemberList2" element={<MemberList2 />} />
               <Route path="/MemberList" element={<MemberList />} />
               <Route path="/Report" element={<Report />} />
