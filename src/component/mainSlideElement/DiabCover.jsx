@@ -1,7 +1,7 @@
 import { FlexColumn } from "../../css/common/Boxs";
 import { CoverImage } from "../../css/cover/CoverStyle";
 import Image from "../../images/sugar_image.webp";
-import { DiabFocus } from "../../component/text/focus/DiabFocus";
+import { DiabFocus } from "../../css/text/focus/DiabFocus";
 import styled from "styled-components";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";

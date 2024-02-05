@@ -1,5 +1,5 @@
 import { FlexColumn } from "../../css/common/Boxs";
-import { CoverImage, TextBox, Text, Line } from "../../css/cover/CoverStyle";
+import { CoverImage, TextBox } from "../../css/cover/CoverStyle";
 import Image from "../../images/country_image.webp";
 import { useNavigate } from "react-router-dom";
 

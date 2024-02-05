@@ -1,9 +1,14 @@
-import { StyledSearch } from "../../css/common/StyledSearch";
+import { FlexColumn } from "../../css/common/Boxs";
+import { DiabInput } from "../../component/predictInput/DiabInput";
+import { Spark } from "../../css/text/Spark";
 
 export const Diabetes = () => {
   return (
     <>
-      <h1>당뇨병 페이지</h1>
+      <FlexColumn>
+        <Spark>당뇨병 진행도 예측</Spark>
+        <DiabInput></DiabInput>
+      </FlexColumn>
     </>
   );
 };

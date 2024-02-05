@@ -13,7 +13,7 @@ import { Note } from "../../../css/text/Note";
 import { ScatterGraph } from "../chart/ScatterGraph";
 import { BarGraph } from "../chart/BarGraph";
 
-export const LifeResultSlide = ({
+export const DiabResultSlide = ({
   prediction,
   featureImportances,
   correlation,
@@ -23,9 +23,9 @@ export const LifeResultSlide = ({
   console.log("1 : " + correlation[1]);
   console.log("2 : " + correlation[0]);
 
-  const text = `랜덤 포레스트 모델을 통해 예측된 결과, 당신은 ${Math.round(
+  const text = `랜덤 포레스트 모델을 통해 예측된 결과, 당신의 1년 후의 당뇨병 진행도는 ${Math.round(
     prediction
-  )}살까지 살 것으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
+  )}으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
     (correlation[1][0] + correlation[0][1]) * 50
   )}% 입니다. 평가된 모델의 성능을 자세히 알고 싶으시다면 슬라이드를 넘겨주세요.`;
 

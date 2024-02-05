@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import {
   Wrapper,
   Input,
-  CountryBox,
+  Select,
   Button,
-} from "../../css/slideElementInput/LifeInputStyle";
+} from "../../css/slideElementInput/InputStyle";
 import { MiddleBox } from "../../css/common/Boxs";
-import axios from "axios";
+import { MachineAxiosApi } from "../../api/MachineAxiosApi";
 
 const nationalityOptions = [
   "Afghanistan",
@@ -209,7 +209,7 @@ export const LifeInput = () => {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [alcoholConsumption, setAlcoholConsumption] = useState("");
-  const [nationality, setNationality] = useState("");
+  const [nationality, setNationality] = useState("Republic of Korea");
 
   const handleNationalityChange = (e) => {
     setNationality(e.target.value);
@@ -231,10 +231,7 @@ export const LifeInput = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/predict_life_expectancy",
-        userData
-      );
+      const response = await MachineAxiosApi.predictLifeExpect(userData);
 
       // 상태로 저장하여 데이터를 전달, 해당 상태는 전달되는 페이지에서만 사용 가능
       // navigate로 다른 페이지로 값을 넘길 때는 상태로 넘기고, 부모에서 자식 컴포넌트로 값을 넘길 때는 props로 넘긴다.
@@ -281,14 +278,14 @@ export const LifeInput = () => {
               placeholder="  주간 알코올 섭취량 (L)"
             />
 
-            <CountryBox value={nationality} onChange={handleNationalityChange}>
-              <option value="">&nbsp;&nbsp;국적</option>
+            <Select value={nationality} onChange={handleNationalityChange}>
+              <option value="">국적을 선택하세요</option>
               {nationalityOptions.map((option, index) => (
                 <option key={index} value={option}>
                   {option}
                 </option>
               ))}
-            </CountryBox>
+            </Select>
           </MiddleBox>
 
           <br />

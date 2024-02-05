@@ -17,7 +17,7 @@ export const Input = styled.input`
   font-size: 1rem;
 `;
 
-export const CountryBox = styled.select`
+export const Select = styled.select`
   border: 2px #5c9bff solid;
   width: 200px;
   height: 50px;
@@ -46,3 +46,4 @@ export const Button = styled.button`
     font-weight: bold;
   }
 `;
+

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CoverImage, CoverWrapper } from "../../css/cover/CoverStyle";
 import Image from "../../images/life_image.webp";
-import { LifeFocus } from "../text/focus/LifeFocus";
+import { LifeFocus } from "../../css/text/focus/LifeFocus";
 import { FlexColumn } from "../../css/common/Boxs";
 import { UserContext } from "../../context/AuthContext";
 

@@ -1,7 +1,7 @@
 import { FlexColumn } from "../../css/common/Boxs";
 import { CoverImage } from "../../css/cover/CoverStyle";
 import Image from "../../images/face_image.webp";
-import { FaceFocus } from "../../component/text/focus/FaceFocus";
+import { FaceFocus } from "../../css/text/focus/FaceFocus";
 import styled from "styled-components";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";

@@ -1,9 +1,14 @@
-import { StyledSearch } from "../../css/common/StyledSearch";
+import { FlexColumn } from "../../css/common/Boxs";
+import { Spark } from "../../css/text/Spark";
+import { CountryInput } from "../../component/predictInput/CountryInput";
 
 export const Country = () => {
   return (
     <>
-      <h1>나라 페이지</h1>
+      <FlexColumn>
+        <Spark>연도별 각국 평균 수명 시각화</Spark>
+        <CountryInput></CountryInput>
+      </FlexColumn>
     </>
   );
 };
