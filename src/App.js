@@ -25,6 +25,7 @@ import { MyPage } from "./pages/myPage/MyPage";
 import { DiabResult } from "./pages/result/DiabResult";
 import { FaceResult } from "./pages/result/FaceResult";
 import { CountryResult } from "./pages/result/CountryResult";
+import { IdComplement } from "./pages/member/IdComplete";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path="/agreecheck" element={<AgreeCheck />} />
             <Route path="/findid" element={<FindId />} />
             <Route path="/findpw" element={<FindPw />} />
+            <Route path="/idcomplement" element={<IdComplement />} />
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />
