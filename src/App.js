@@ -19,6 +19,8 @@ import { Face } from "./pages/predict/Face";
 import { LifeExpectancy } from "./pages/predict/LifeExpectancy";
 import { AgreeCheck } from "./pages/agreeToTerms/AgreeCheck";
 import { MedicineResult } from "./pages/search/MedicineResult";
+import { FindId } from "./pages/member/FindId";
+import { FindPw } from "./pages/member/FindPw";
 import { MyPage } from "./pages/myPage/MyPage";
 
 function App() {
@@ -30,7 +32,9 @@ function App() {
           <Routes>
             <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/agreecheck" e lement={<AgreeCheck />} />
+            <Route path="/agreecheck" element={<AgreeCheck />} />
+            <Route path="/findid" element={<FindId />} />
+            <Route path="/findpw" element={<FindPw />} />
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />
