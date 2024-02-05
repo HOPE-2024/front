@@ -13,4 +13,15 @@ export const MemberAxiosApi = {
       console.error("회원 정보 조회 에러: ", error);
     }
   },
+  // 토큰 없이 회원 상세 조회
+  memberGetDetail: async (memberId) => {
+    console.log("기존 회원 가입 여부 확인 id: ", memberId);
+    const data = {
+      memberId: memberId,
+    };
+    return await axios.get(
+      `${Common.KH_DOMAIN}/email/idcheck?memberId=${memberId}`,
+      data
+    );
+  },
 };

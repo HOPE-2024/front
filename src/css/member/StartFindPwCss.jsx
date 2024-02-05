@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ReactComponent as DrugSvg } from "../../images/member/drug.svg";
 
-export const ForgotPwContainer = styled.div`
+export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,24 +29,15 @@ export const Title = styled.div`
 `;
 
 export const InputContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
-export const RadioContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 20px;
-`;
-
-export const RadioLabel = styled.label`
-  margin: 0 10px;
-`;
-
-export const RadioInput = styled.input`
-  margin-right: 5px;
+export const InputTitle = styled.div`
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 25px;
 `;
 
 export const InputField = styled.input`
@@ -60,27 +51,22 @@ export const InputField = styled.input`
   outline-style: none;
 `;
 
-export const InputAndButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const InfoContainer = styled.div`
-  font-size: 0.85em;
-  margin: 5px;
-`;
-
 export const LowerContainer = styled.div`
   display: flex;
   flex-direction: row;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 1.3rem;
 `;
 
-export const Instruction = styled.div`
-  color: #fc0000;
-  font-size: 0.65rem;
-  font-weight: bold;
-  width: 100%;
-  margin: 0px 0px 5px 70px;
+export const LowerTitle = styled.div`
+  color: gray;
+  margin-right: 1.7rem;
+`;
+
+export const GoId = styled.div`
+  color: var(--NAVY);
+  cursor: pointer;
 `;
 
 export const FooterContainer = styled.div`
