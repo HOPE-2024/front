@@ -7,7 +7,7 @@ export const Footer = () => {
 
   // 상태 변경을 추적하기 위한 useEffect
   useEffect(() => {
-    console.log("footer modla : " + isModalOpen); // 상태가 변경될 때마다 로그를 찍음
+    console.log("footer modal : " + isModalOpen); // 상태가 변경될 때마다 로그를 기록
   }, [isModalOpen]); // isModalOpen 상태가 변경될 때마다 실행됨
 
   const handleLinkClick = () => {

@@ -53,7 +53,7 @@ export const DiabInput = () => {
       });
     } catch (error) {
       alert("당뇨병 진행도를 예측하는데 오류가 발생했습니다.");
-      console.log("handleSubmit 오류 : " + error);
+      console.log("DiabInput handleSubmit 오류 : " + error);
     }
   };
 

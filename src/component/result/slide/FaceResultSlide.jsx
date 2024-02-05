@@ -9,13 +9,13 @@ import {
   SlideListContent,
   NavBox,
 } from "../../../css/SlideStyle";
-import { LineGraph } from "../chart/LineGraph";
+import { FaceGenderAge } from "../FaceGenderAge";
 
-export const CountryResultSlide = ({ CountryResult }) => {
+export const FaceResultSlide = ({ result, image }) => {
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <LineGraph dataString={CountryResult}></LineGraph>
+      <FaceGenderAge result={result} image={image}></FaceGenderAge>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
   ];

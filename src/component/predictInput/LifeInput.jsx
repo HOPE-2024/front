@@ -246,7 +246,7 @@ export const LifeInput = () => {
       });
     } catch (error) {
       alert("기대 수명을 예측하는데 오류가 발생했습니다.");
-      console.log("handleSubmit 오류 : " + error);
+      console.log("LifeInput handleSubmit 오류 : " + error);
     }
   };
 

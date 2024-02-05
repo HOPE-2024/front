@@ -7,8 +7,8 @@ import { DeleteReport } from "../../component/admin/DeleteReport";
 import { ReportRead } from "../../component/admin/ReportRead";
 
 const ModalStyle = styled.div`
-z-index: 9999;
-height: auto;
+  z-index: 9999;
+  height: auto;
   .modal {
     position: fixed;
     top: 0;
@@ -17,11 +17,11 @@ height: auto;
     left: 0;
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.6);
-   display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
   }
-  .modalContent{   
+  .modalContent {
     width: 400px;
     max-width: 450px;
     height: auto;
@@ -30,16 +30,16 @@ height: auto;
     background-color: #fff;
     /* 팝업이 열릴때 스르륵 열리는 효과 */
     animation: modal-show 0.3s;
-    overflow: hidden;    
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 
-      align-items: center;
-    .title{
+    align-items: center;
+    .title {
       width: 100%;
       height: 40px;
-      background: #3C84F8;
-      p{
+      background: #3c84f8;
+      p {
         color: white;
         font-size: 1.2em;
         margin: 0;
@@ -47,22 +47,22 @@ height: auto;
         line-height: 40px;
       }
     }
-    .content1{
+    .content1 {
       width: 340px;
-      margin:  0 auto;
+      margin: 0 auto;
       margin-top: 25px;
-      border:2px solid #0a48ac;   
-    } 
-    .item1{
-      font-size   :1.1em ;
-      height: 170px;  
-      }
-      .item2{
-      min-height: 100PX;
-      height: auto;
-      font-size   :1.1em ;
+      border: 2px solid #0a48ac;
     }
-    .item3{
+    .item1 {
+      font-size: 1.1em;
+      height: 170px;
+    }
+    .item2 {
+      min-height: 100px;
+      height: auto;
+      font-size: 1.1em;
+    }
+    .item3 {
       width: 80%;
       margin: 0 auto;
       margin-top: 20px;
@@ -70,66 +70,63 @@ height: auto;
       display: flex;
       justify-content: center;
       align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        padding-bottom: 20px;
-      button{
+      flex-direction: row;
+      justify-content: space-around;
+      padding-bottom: 20px;
+      button {
         width: 100px;
         height: 45px;
-      background: #3C84F8;
-      color: white;
+        background: #3c84f8;
+        color: white;
       }
     }
   }
-    
 `;
 
 const ButtonVar = styled.div`
-display: block; 
+  display: block;
   height: auto;
   margin: 0 auto;
   min-height: 30px;
-  
-.content1{
-  width: 100%;
-  display: flex;
-  margin-top: 0px;
-  img{
-    width: 20px;
-    margin-top: 5px;
-    margin-left: 10px;
-  }
-  p{
+
+  .content1 {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: -30px;
+    margin-top: 0px;
+    img {
+      width: 20px;
+      margin-top: 5px;
+      margin-left: 10px;
+    }
+    p {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: -30px;
+    }
   }
-
-}
   &:hover {
     color: red;
-    ul{   
+    ul {
       display: block;
     }
   }
-  ul{
+  ul {
     width: 100%;
     display: none;
- 
   }
-  li{
+  li {
     height: 30px;
     line-height: 30px;
-    border: 1px solid #3C84F8;
+    border: 1px solid #3c84f8;
     width: 340px;
     margin: 0 auto;
-    .content2{
+    .content2 {
       margin: 0 auto;
       display: flex;
       justify-content: center;
-  align-items: center;
+      align-items: center;
     }
   }
   @media (max-width: 768px) {
@@ -148,18 +145,18 @@ const CustomRadio = styled.input`
   -moz-appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid #3C84F8;
+  border: 2px solid #3c84f8;
   border-radius: 4px;
   margin-right: 5px;
   cursor: pointer;
 
   &:checked {
-    background-color: #3C84F8;
-    border-color: #3C84F8;
+    background-color: #3c84f8;
+    border-color: #3c84f8;
   }
 
   &:checked::before {
-    content: '✔';
+    content: "✔";
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -170,22 +167,21 @@ const CustomRadio = styled.input`
   }
 `;
 const AA = styled.div`
-   width: 100%;
+  width: 100%;
   height: 100px;
   padding: 0;
-
 `;
 export function ReportMadal({ open, setOpen, list }) {
   //신고 이유 저장
-  const [what, setWhat] = useState('');
-  const [why, setWhy] = useState('');
-  const [view, setView] = useState('');
-  const [status, setStatus] = useState('상태 변경 없음');
+  const [what, setWhat] = useState("");
+  const [why, setWhy] = useState("");
+  const [view, setView] = useState("");
+  const [status, setStatus] = useState("상태 변경 없음");
 
   //확인 클릭시
   const submit = async () => {
     //회원 상태 변경을 했을 경우에만 업데이트
-    if (status !== '상태 변경 없음') {
+    if (status !== "상태 변경 없음") {
       //회원 상태 변경
       await UpdateActive(list.reported.id, status);
       const isValueIncluded = data.includes(status);
@@ -193,35 +189,27 @@ export function ReportMadal({ open, setOpen, list }) {
         //신고 글 상태 변경
         await UpdateReportActive(list.id, status);
       }
-
     }
-    setOpen(null)
-  }
+    setOpen(null);
+  };
   //취소 클릭시
   const cancel = () => {
-    DeleteReport(list.id)
+    DeleteReport(list.id);
     setOpen(null);
-  }
+  };
   const [isOpen, setIsOpen] = useState(false);
 
-  const data = [
-    "일반 회원",
-    "7일 정지",
-    "30일 정지",
-    "회원 정지"
-  ];
+  const data = ["일반 회원", "7일 정지", "30일 정지", "회원 정지"];
 
   useEffect(() => {
-
     if (list.reported) {
-      ReportRead(list.id)
-      setView(list.reported.nickName + '(' + list.reported.active + ')');
+      ReportRead(list.id);
+      setView(list.reported.nickName + "(" + list.reported.active + ")");
     }
-  }, [list]
-  )
+  }, [list]);
   return (
     <ModalStyle>
-      {open &&
+      {open && (
         <div className="modal">
           <div className="modalContent">
             <div className="title">
@@ -234,20 +222,29 @@ export function ReportMadal({ open, setOpen, list }) {
             >
               <div className="content1">
                 <img src={down} alt="" />
-                <p>{view}
-                </p> </div>
-              <ul>  {isOpen && data.map((pick, index) => (
-
-                <li onClick={(e) => { setIsOpen(false); setView(pick); setStatus(pick) }}><div className="content2">{pick}</div></li>
-
-              ))} </ul>
+                <p>{view}</p>{" "}
+              </div>
+              <ul>
+                {isOpen &&
+                  data.map((pick, index) => (
+                    <li
+                      onClick={(e) => {
+                        setIsOpen(false);
+                        setView(pick);
+                        setStatus(pick);
+                      }}
+                    >
+                      <div className="content2">{pick}</div>
+                    </li>
+                  ))}
+              </ul>
             </ButtonVar>
             <div className="content1 item1">
               <RadioLabel>
                 <CustomRadio
                   type="radio"
                   name="Declaration"
-                  value={'욕설'}
+                  value={"욕설"}
                   checked={list.check === "욕설"}
                   onChange={(e) => setWhy(e.target.value)}
                 />
@@ -293,7 +290,6 @@ export function ReportMadal({ open, setOpen, list }) {
                 />
                 허위,과장 정보 제공
               </RadioLabel>
-
             </div>
             <div className="content1 item2">
               {list.reason}
@@ -304,13 +300,24 @@ export function ReportMadal({ open, setOpen, list }) {
                 placeholder="신고 내용"></AA> */}
             </div>
             <div className=" item3">
-              <button onClick={() => { submit() }}>확 인</button>
-              <button onClick={() => { cancel() }}>삭 제</button>
+              <button
+                onClick={() => {
+                  submit();
+                }}
+              >
+                확 인
+              </button>
+              <button
+                onClick={() => {
+                  cancel();
+                }}
+              >
+                삭 제
+              </button>
             </div>
-
           </div>
         </div>
-      }
+      )}
     </ModalStyle>
   );
 }

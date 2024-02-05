@@ -295,21 +295,20 @@ export const CountryInput = () => {
     try {
       const response = await MachineAxiosApi.visualizeCountry(userData);
 
-      console.log(JSON.stringify(response));
-      //   navigate("/CountryResult", {
-      //     state: {
-      //       CountryResult: response.data,
-      //     },
-      //   });
+      navigate("/CountryResult", {
+        state: {
+          CountryResult: response.data,
+        },
+      });
     } catch (error) {
       alert("연도별 국가 평균 수명을 시각화하는데 오류가 발생했습니다.");
-      console.log("handleSubmit 오류 : " + error);
+      console.log("CountryInput handleSubmit 오류 : " + error);
     }
   };
 
   return (
     <>
-      <Wrapper>
+      <Wrapper height="60vh">
         <form onSubmit={handleSubmit}>
           <MiddleBox>
             <Select value={nationality} onChange={handleNationalityChange}>
@@ -320,12 +319,6 @@ export const CountryInput = () => {
                 </option>
               ))}
             </Select>
-          </MiddleBox>
-
-          <br />
-          <br />
-
-          <MiddleBox>
             <Button type="submit">출력</Button>
           </MiddleBox>
         </form>

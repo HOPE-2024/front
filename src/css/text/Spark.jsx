@@ -10,11 +10,11 @@ const shineAnimation = keyframes`
 `;
 
 export const Spark = styled.div`
-  background: linear-gradient(to right, #5c9bff 30%, white 50%, #5c9bff 70%);
+  background: linear-gradient(to right, #5c9bff 30%, SkyBlue 40%, #5c9bff 70%);
   background-size: 150% auto; // 그라데이션의 전체 길이를 조절
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: ${shineAnimation} 3s infinite linear;
+  animation: ${shineAnimation} 5s infinite linear;
   animation-fill-mode: forwards;
   -webkit-text-size-adjust: none;
   font-weight: bold;
@@ -22,5 +22,5 @@ export const Spark = styled.div`
   text-decoration: none;
   white-space: nowrap;
   position: relative;
-  top: 20vh;
+  top: ${(props) => props.top || "20vh"};
 `;

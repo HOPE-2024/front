@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 80vh;
+  height: ${(props) => props.height || "80vh"};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +25,7 @@ export const Select = styled.select`
   margin: 10px;
   text-align: center;
   font-size: 1rem;
+  margin-right: 10px;
 `;
 
 export const Button = styled.button`
@@ -46,4 +47,3 @@ export const Button = styled.button`
     font-weight: bold;
   }
 `;
-
