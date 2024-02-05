@@ -100,8 +100,8 @@ export const Login = () => {
           />
         </Items>
         <Items className="item2">
-          <FindLink href="/find_id">Find Id</FindLink>|
-          <FindLink href="/find_password">Find Password</FindLink>
+          <FindLink href="/findid">Find Id</FindLink>|
+          <FindLink href="/findpw">Find Password</FindLink>
         </Items>
         <Button
           width="350px"
