@@ -35,20 +35,6 @@ export const InputContainer = styled.div`
   align-items: center;
 `;
 
-export const RadioContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 20px;
-`;
-
-export const RadioLabel = styled.label`
-  margin: 0 10px;
-`;
-
-export const RadioInput = styled.input`
-  margin-right: 5px;
-`;
-
 export const InputField = styled.input`
   width: 350px;
   height: auto;
@@ -81,4 +67,10 @@ export const Instruction = styled.div`
   font-weight: bold;
   width: 100%;
   margin: 0px 0px 5px 70px;
+`;
+
+export const FooterContainer = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
