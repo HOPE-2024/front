@@ -58,4 +58,9 @@ export const ChatAxiosApi = {
       Common.KH_DOMAIN + `/chat/all/count?page=${page}&size=${size}`
     );
   },
+
+  // 채팅방 참여자 목록 가져오기
+  getChatMembers: async (roomId) => {
+    return await axios.get(Common.KH_DOMAIN + `/chat/members/${roomId}`);
+  },
 };

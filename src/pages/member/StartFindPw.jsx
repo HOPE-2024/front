@@ -36,7 +36,7 @@ export const StartFindPw = () => {
       const exists = rsp.data;
 
       if (exists) {
-        navigate("/findpw");
+        navigate("/findpw", { state: { memberId: inputId } });
       } else {
         alert("존재하지 않는 아이디 입니다.");
       }
@@ -64,7 +64,7 @@ export const StartFindPw = () => {
           />
         </InputContainer>
         <UnderLinedStyle
-          style={{ marginTop: "40px", fontWeight: "bold" }}
+          style={{ marginTop: "30px", fontWeight: "bold" }}
           onClick={handleNext}
         >
           다음

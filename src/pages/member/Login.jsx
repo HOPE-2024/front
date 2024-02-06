@@ -103,7 +103,7 @@ export const Login = () => {
         </Items>
         <Items className="item2">
           <FindLink href="/findid">Find Id</FindLink>|
-          <FindLink href="/findpw">Find Password</FindLink>
+          <FindLink href="/startfindpw">Find Password</FindLink>
         </Items>
         <Button
           width="350px"

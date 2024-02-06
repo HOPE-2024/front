@@ -25,6 +25,7 @@ export const ChatRoom = () => {
   const { roomId } = useParams();
   const [inputMsg, setInputMsg] = useState("");
   const [chatList, setChatList] = useState([]);
+  const [chatMember, setChatMember] = useState([]);
   const ws = useRef(null);
   const navigate = useNavigate(); // useNavigate 훅 추가
 
@@ -79,6 +80,31 @@ export const ChatRoom = () => {
       alert("error : 이전 대화내용을 불러오지 못했습니다.");
     }
   };
+
+  const updateChatParticipants = async () => {
+    try {
+      const response = await ChatAxiosApi.getChatMembers(roomId);
+      console.log("채팅 참여자 가져오기 : ", response.data);
+      setChatMember(response.data);
+    } catch (error) {
+      console.error("채팅방 참여자 목록을 가져오지 못했습니다.", error);
+    }
+  };
+
+  useEffect(() => {
+    // 컴포넌트가 처음 마운트될 때 채팅방 참여자 목록을 가져오기
+    updateChatParticipants();
+
+    // 3초마다 채팅방 참여자 목록 업데이트
+    const intervalId = setInterval(() => {
+      updateChatParticipants();
+    }, 3000);
+
+    // 컴포넌트가 언마운트될 때 clearInterval을 호출하여 타이머 중지
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [roomId]);
 
   useEffect(() => {
     // 이메일로 회원 닉네임 가져와서 sender에 저장
@@ -168,7 +194,12 @@ export const ChatRoom = () => {
   return (
     <>
       <ChatRoomContainer>
-        <RoomJoiners>채팅방 참여자</RoomJoiners>
+        <RoomJoiners>
+          채팅방 참여자 :{" "}
+          {chatMember.map((member, index) => (
+            <span key={index}>{member}</span>
+          ))}
+        </RoomJoiners>
         <RoomChat>
           <ChatTitle>&lt; {roomName} &gt;</ChatTitle>
           <MsgCon ref={chatConRef}>
