@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   ForgotPwContainer,
   StyledSvg,
@@ -21,11 +21,20 @@ import { Footer } from "../../component/template/Footer";
 
 export const FindPw = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [verificationCode, setVerificationCode] = useState(""); // 입력 인증번호 확인 문구
   const [receivedCode, setReceivedCode] = useState(""); // 받은 인증번호
   const [inputCode, setInputCode] = useState(""); // 입력 인증번호
   const [infoMessage, setInfoMessage] = useState(false);
+  const [prevPageId, setPrevPageId] = useState("");
+
+  useEffect(() => {
+    // 이전 페이지에서 전달 받은 아이디를 가져오기
+    if (location.state && location.state.memberId) {
+      setPrevPageId(location.state.memberId);
+    }
+  }, [location.state]);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -59,7 +68,8 @@ export const FindPw = () => {
 
   const handlePwReset = () => {
     if (inputCode === receivedCode) {
-      navigate("/pwreset");
+      navigate("/pwreset", { state: { prevPageId } });
+      console.log("다음 페이지로 이동하고 있는 id: ", prevPageId);
     } else {
       alert("인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
     }
@@ -76,7 +86,7 @@ export const FindPw = () => {
   return (
     <>
       <ForgotPwContainer>
-        <StyledSvg />
+        <StyledSvg onClick={() => navigate("/")} />
         <Title>비밀번호 찾기</Title>
         <InputContainer>
           <InputAndButtonContainer>

@@ -70,4 +70,20 @@ export const AuthAxiosApi = {
       data
     );
   },
+  // 비밀번호 재설정
+  passwordReset: async (dataset) => {
+    console.log("정보 변경 요청 아이디와 비번 : ", dataset);
+    const data = {
+      memberId: dataset.memberId,
+      password: dataset.password,
+    };
+    try {
+      const rsp = await axios.post(Common.KH_DOMAIN + "/email/resetpw", data);
+      console.log("비밀번호 api 재설정 결과 : ", rsp.data);
+      return rsp.data;
+    } catch (error) {
+      console.log("비밀번호 재설정 오류 !! :", error);
+      throw error;
+    }
+  },
 };

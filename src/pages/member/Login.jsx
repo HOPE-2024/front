@@ -81,6 +81,21 @@ export const Login = () => {
     }
   };
 
+  // 카카오 로그인
+  const KakaoLogin = () => {
+    const REST_API_KEY = "cea7f3c383b4104216bac4611d17d13b";
+    const REDIRECT_URI = "http://localhost:3000/auth/kakao";
+    // oauth 요청 url
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    const handleLogin = () => {
+      window.location.href = kakaoURL;
+    };
+
+    return <KakaoStyled onClick={handleLogin} />;
+  };
+
+  const code = new URL(window.location.href).searchParams.get("code");
+
   return (
     <>
       <LoginContainer>
@@ -120,7 +135,7 @@ export const Login = () => {
         </Items>
         <Items className="item4">Or Connect with</Items>
         <Items className="item5">
-          <KakaoStyled />
+          <KakaoLogin />
           <NaverStyled />
         </Items>
       </LoginContainer>

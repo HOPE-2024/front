@@ -37,6 +37,7 @@ export const StartFindPw = () => {
 
       if (exists) {
         navigate("/findpw", { state: { memberId: inputId } });
+        console.log("전달되고 있는 아이디: ", inputId);
       } else {
         alert("존재하지 않는 아이디 입니다.");
       }
@@ -52,7 +53,7 @@ export const StartFindPw = () => {
   return (
     <>
       <Container>
-        <StyledSvg />
+        <StyledSvg onClick={() => navigate("/")} />
         <Title>비밀번호 찾기</Title>
         <InputContainer>
           <InputTitle>아이디 입력</InputTitle>

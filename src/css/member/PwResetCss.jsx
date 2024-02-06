@@ -53,6 +53,9 @@ export const InputField = styled.input`
 export const InfoContainer = styled.div`
   font-size: 0.7rem;
   margin: 3px;
+  color: red;
+  font-weight: bold;
+  margin-right: 70px;
 `;
 
 export const LowerContainer = styled.div`

@@ -87,6 +87,7 @@ export const KakaoStyled = styled.img.attrs({
   width: 80px;
   height: 40px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 export const NaverStyled = styled.img.attrs({
