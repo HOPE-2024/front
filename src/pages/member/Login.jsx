@@ -50,6 +50,7 @@ export const Login = () => {
     if (savedLoginStatus) {
       setLoginStatus(true);
       navigate("/");
+      window.location.reload();
     }
   }, [setLoginStatus, navigate]);
 
@@ -64,6 +65,7 @@ export const Login = () => {
         setLoginStatus(true); // 로그인 성공 시 전역 상태 true로 업데이트
         localStorage.setItem("loginStatus", "true"); // 로컬 스토리지에 로그인 상태 저장
         navigate("/");
+        window.location.reload();
       } else {
         alert("잘못된 아이디 또는 비밀번호 입니다.");
       }

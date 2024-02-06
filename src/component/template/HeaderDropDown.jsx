@@ -31,31 +31,31 @@ export const FirstDropDown = ({ onClose }) => {
     <FirstDropDownMenu ref={dropdownRef}>
       <li
         onClick={() => {
+          navigate("/Country");
+        }}
+      >
+        국가 평균 수명
+      </li>
+      <li
+        onClick={() => {
           navigate("/LifeExpectancy");
         }}
       >
-        기대수명예측
+        기대 수명
       </li>
       <li
         onClick={() => {
-          navigate("/ChatList");
+          navigate("/Diabetes");
         }}
       >
-        채팅
+        당뇨병 진행도
       </li>
       <li
         onClick={() => {
-          navigate("/");
+          navigate("/Face");
         }}
       >
-        구매 목록
-      </li>
-      <li
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        판매 목록
+        얼굴 나이
       </li>
     </FirstDropDownMenu>
   );
@@ -86,24 +86,10 @@ export const SecondDropDown = ({ onClose }) => {
     <SecondDropDownMenu ref={dropdownRef}>
       <li
         onClick={() => {
-          navigate("/");
+          navigate("/ChatList");
         }}
       >
-        상품 보기
-      </li>
-      <li
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        상품 등록
-      </li>
-      <li
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        장바구니
+        증상 별 채팅
       </li>
     </SecondDropDownMenu>
   );
@@ -112,6 +98,11 @@ export const SecondDropDown = ({ onClose }) => {
 export const ThirdDropDown = ({ onClose }) => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+    window.location.reload();
+  };
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -134,25 +125,19 @@ export const ThirdDropDown = ({ onClose }) => {
     <ThirdDropDownMenu ref={dropdownRef}>
       <li
         onClick={() => {
-          navigate("/");
+          navigate("/MyPage");
         }}
       >
-        상품 보기
+        내 정보 수정
       </li>
       <li
         onClick={() => {
-          navigate("/");
+          navigate("/Query");
         }}
       >
-        상품 등록
+        고객 지원
       </li>
-      <li
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        장바구니
-      </li>
+      <li onClick={logout}>로그아웃</li>
     </ThirdDropDownMenu>
   );
 };

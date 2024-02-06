@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Common } from "../utils/Common";
+import { Instance } from "../utils/AxiosInterceptor";
 
 export const AdminAxiosApi = {
   //모든 회원 조회
@@ -46,7 +47,10 @@ export const AdminAxiosApi = {
 
   //신고 상태 변경
   UpdateReportActive: async (ReportDto) => {
-    return await axios.post(Common.KH_DOMAIN + `/admin/ReportActive`, ReportDto);
+    return await axios.post(
+      Common.KH_DOMAIN + `/admin/ReportActive`,
+      ReportDto
+    );
   },
 
   //신고 내용 출력
@@ -63,22 +67,21 @@ export const AdminAxiosApi = {
     return await axios.get(Common.KH_DOMAIN + `/admin/afterreport`, {});
   },
 
-
-
-
   //신고 내용 읽음으로 변경
   updateReportStatus: async (id) => {
-    return await axios.post(Common.KH_DOMAIN + `/admin/updateReportStatus?id=${id}`, {});
+    return await axios.post(
+      Common.KH_DOMAIN + `/admin/updateReportStatus?id=${id}`,
+      {}
+    );
   },
-
-
 
   //신고 내역 삭제
   deleteReport: async (id) => {
-    return await axios.post(Common.KH_DOMAIN + `/admin/deletereport/?id=${id}`, {});
+    return await axios.post(
+      Common.KH_DOMAIN + `/admin/deletereport/?id=${id}`,
+      {}
+    );
   },
-
-
 
   //이름으로 신고테이블 조회
   selectReport: async (name) => {
@@ -106,61 +109,58 @@ export const AdminAxiosApi = {
 
   //1대1 문의 등록
   InsertQuery: async (queryDto) => {
-    return await axios.post(
+    return await Instance.post(
       Common.KH_DOMAIN + `/admin/insertQuery`,
       queryDto
     );
   },
 
-  //1대1 문의 전체 조회 
+  //1대1 문의 전체 조회
   selectQuryList: async () => {
     return await axios.get(Common.KH_DOMAIN + `/admin/selectQuryList`, {});
   },
 
-  //1대1 문의 닉네임 조회 
+  //1대1 문의 닉네임 조회
   nickNameSelectQuryList: async () => {
-    return await axios.get(Common.KH_DOMAIN + `/admin/nickNameSelectQuryList`, {});
+    return await axios.get(
+      Common.KH_DOMAIN + `/admin/nickNameSelectQuryList`,
+      {}
+    );
   },
 
-
-
-
-  //1대1 문의 조회 
+  //1대1 문의 조회
   selectQury: async (id) => {
-    return await axios.get(Common.KH_DOMAIN + `/admin/selectQury/?id=${id}`, {});
+    return await axios.get(
+      Common.KH_DOMAIN + `/admin/selectQury/?id=${id}`,
+      {}
+    );
   },
 
   //문의 댓글
   InsertReply: async (replyDto) => {
-    return await axios.post(
-      Common.KH_DOMAIN + `/admin/InsertReply`,
-      replyDto
-    );
+    return await axios.post(Common.KH_DOMAIN + `/admin/InsertReply`, replyDto);
   },
   //문의글 삭제
   deleteQuery: async (id) => {
     return await axios.post(
-      Common.KH_DOMAIN + `/admin/deleteQuery/?id=${id}`, {});
+      Common.KH_DOMAIN + `/admin/deleteQuery/?id=${id}`,
+      {}
+    );
   },
   //댓글 삭제
   deleteReply: async (id) => {
     return await axios.post(
-      Common.KH_DOMAIN + `/admin/deleteReply/?id=${id}`, {});
+      Common.KH_DOMAIN + `/admin/deleteReply/?id=${id}`,
+      {}
+    );
   },
   //댓글 수정
   UpdateReply: async (replyDto) => {
-    return await axios.post(
-      Common.KH_DOMAIN + `/admin/updateReply`,
-      replyDto
-    );
+    return await axios.post(Common.KH_DOMAIN + `/admin/updateReply`, replyDto);
   },
-
 
   //문의 글 수정
   updateQuery: async (queryDto) => {
-    return await axios.post(
-      Common.KH_DOMAIN + `/admin/updateQuery`,
-      queryDto
-    );
+    return await axios.post(Common.KH_DOMAIN + `/admin/updateQuery`, queryDto);
   },
 };

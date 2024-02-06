@@ -53,13 +53,6 @@ export const Header = () => {
     console.log("loginStatus:", window.localStorage.getItem("loginStatus"));
   }, [loginStatus, setLoginStatus, navigate]);
 
-  // 로그아웃 함수
-  const logout = () => {
-    localStorage.clear(); // 모든 로컬 스토리지 항목을 삭제
-    navigate("/login"); // 사용자를 로그인 페이지로 리다이렉트
-    window.location.reload(); // 새로고침
-  };
-
   return (
     <>
       <Top>
@@ -92,16 +85,10 @@ export const Header = () => {
                 <Line></Line>
 
                 <li onClick={() => setThirdView(!thirdView)}>
-                  <UnderLinedStyle>내 정보</UnderLinedStyle>
+                  <UnderLinedStyle>계정</UnderLinedStyle>
                   {thirdView && (
                     <ThirdDropDown onClose={() => setThirdView(false)} />
                   )}
-                </li>
-
-                <Line></Line>
-
-                <li>
-                  <UnderLinedStyle onClick={logout}>로그아웃</UnderLinedStyle>
                 </li>
               </Menu>
             ) : (
