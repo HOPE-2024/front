@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Logo } from "../../images/logo.svg";
+import { ReactComponent as Logo } from "../../images/logoHope.svg";
 
 export const Container = styled.div`
   width: 100%;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as Logo } from "../../images/logo.svg";
+import { ReactComponent as Logo } from "../../images/logoHope.svg";
 
 export const Top = styled.div`
   display: flex;
@@ -16,7 +16,6 @@ export const Left = styled.div`
 `;
 
 export const StyledLogo = styled(Logo)`
-  order: 2; // flex 순서
   width: 150px;
   height: 80px;
   display: flex;

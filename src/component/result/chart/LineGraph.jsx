@@ -104,6 +104,8 @@ export const LineGraph = ({ dataString }) => {
               fill: "red",
               fontSize: 20,
               fontWeight: "bold",
+              dx: 30,
+              dy: -15,
             }}
           />
           <Line type="monotone" dataKey="lifeExpectancy" stroke="#023382" />
