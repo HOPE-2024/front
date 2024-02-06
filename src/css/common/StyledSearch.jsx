@@ -79,11 +79,15 @@ const SearchIcon = styled.div`
   }
 `;
 
-export const StyledSearch = ({ onSearch }) => {
+export const StyledSearch = ({ onSearch, rspSearch, rspSearchOption }) => {
   const [search, setSearch] = useState(""); // 검색어
   const [searchOption, setSearchOption] = useState("전체"); // 검색필터
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setSearch(rspSearch);
+    setSearchOption(rspSearchOption);
+  }, [rspSearch, rspSearchOption]);
   // 검색 버튼 클릭 시 동작할 함수
   const searchTitle = () => {
     if (search === "") {

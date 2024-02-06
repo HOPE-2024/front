@@ -5,6 +5,8 @@ import { SearchAxiosApi } from "../../api/SearchAxiosApi";
 import ReactPaginate from "react-paginate";
 import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { NoResult } from "../../component/search/NoResult";
+
 export const Container = styled.div`
   width: 100vw;
   height: 100%;
@@ -108,22 +110,29 @@ export const Pagenation = styled.div`
 
   /* 각 페이지 번호 */
   .pagination li {
-    list-style: none;
     margin: 0 5px; /* 페이지 간의 간격 조절 */
     display: inline-block;
   }
 
   /* 페이지 번호 링크 스타일 */
   .pagination a {
-    text-decoration: none;
     padding: 8px 12px;
-    color: #333;
-  }
+    line-height: 1.8;
+    background-image: linear-gradient(
+      transparent 85%,
+      ${(props) => props.color || "#023b96"} 40%
+    ); // 기본값 : #023b96
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.4s;
+    font-size: ${(props) => props.fontSize || "1rem"};
 
-  /* 활성화된 페이지 번호 스타일 */
-  .pagination a.active {
-    background-color: #4caf50;
-    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background-size: 100% 100%;
+      transform: scale(1.1);
+    }
   }
 `;
 export const MedicineResult = () => {
@@ -199,6 +208,11 @@ export const MedicineResult = () => {
   // 페이징 처리 (현재 페이지를 정함)
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
   // 해당 의약품 상세보기 페이지로 이동
@@ -212,42 +226,53 @@ export const MedicineResult = () => {
         <TitleBox>
           <TitleText>알고 싶은 의약품을 검색해보세요!</TitleText>
           <SearchBox>
-            <StyledSearch onSearch={onSearch}></StyledSearch>
+            <StyledSearch
+              onSearch={onSearch}
+              rspSearch={searchParam}
+              rspSearchOption={searchOptionParam}
+            ></StyledSearch>
           </SearchBox>
         </TitleBox>
-        <ResultList>
-          <ListBox>
-            {dataList.map((data) => (
-              <DetailBox key={data.id} onClick={() => onClickBtn(data.id)}>
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/hopeimage2.appspot.com/o/img_noimage.jpg?alt=media&token=883ba6ad-bc2e-4ec1-a7ff-5853bb377dcd"
-                  alt="이미지"
-                />
-                <div className="Box">
-                  <div className="box1">
-                    <p className="box2">제품명</p>
-                    <p className="box3"> {data.sourceAsMap.name}</p>
+        {dataList.length === 0 ? (
+          <NoResult keyword={search}></NoResult>
+        ) : (
+          <ResultList>
+            <ListBox>
+              {dataList.map((data) => (
+                <DetailBox key={data.id} onClick={() => onClickBtn(data.id)}>
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/hopeimage2.appspot.com/o/img_noimage.jpg?alt=media&token=883ba6ad-bc2e-4ec1-a7ff-5853bb377dcd"
+                    alt="이미지"
+                  />
+                  <div className="Box">
+                    <div className="box1">
+                      <p className="box2">제품명</p>
+                      <p className="box3"> {data.sourceAsMap.name}</p>
+                    </div>
+                    <div className="box1">
+                      <p className="box2">제조사명</p>
+                      <p className="box3"> {data.sourceAsMap.company}</p>
+                    </div>
                   </div>
-                  <div className="box1">
-                    <p className="box2">제조사명</p>
-                    <p className="box3"> {data.sourceAsMap.company}</p>
-                  </div>
-                </div>
-                {/* </Link> */}
-              </DetailBox>
-            ))}
-          </ListBox>
-          <Pagenation>
-            <ReactPaginate
-              pageCount={totalPages}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={handlePageChange}
-              containerClassName={"pagination"}
-              activeClassName={"active"}
-            />
-          </Pagenation>
-        </ResultList>
+                  {/* </Link> */}
+                </DetailBox>
+              ))}
+            </ListBox>
+            <Pagenation>
+              <ReactPaginate
+                pageCount={totalPages}
+                pageRangeDisplayed={5} // 한 번에 띄울 페이지의 수
+                marginPagesDisplayed={1} // 페이지 수가 많을 때, 몇개의 구분으로 나눌 지
+                onPageChange={handlePageChange} // 페이지 클릭했을 때 실행될 메서드
+                breakLabel={"..."} // 구분한 라벨 표시 방법 ex) ""으로 설정하면 ...같은 줄임이 표시되지 않음
+                previousLabel={"<"} // 이전 페이지 표시 방법
+                nextLabel={">"} // 다음 페이지 표시 방법
+                containerClassName={"pagination"} // Container 클래스 이름
+                activeClassName={"active"}
+              />
+            </Pagenation>
+          </ResultList>
+        )}
       </Container>
     </>
   );
