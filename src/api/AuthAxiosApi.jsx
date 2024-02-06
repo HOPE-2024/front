@@ -70,13 +70,4 @@ export const AuthAxiosApi = {
       data
     );
   },
-
-  // 아이디 찾기: 핸드폰번호으로 인증번호 발송
-  phoneNumberSand: async (phoneNumber) => {
-    console.log("서버로 전화번호 전송 완료!", phoneNumber);
-    const data = {
-      phoneNumber: phoneNumber,
-    };
-    return await axios.post(Common.KH_DOMAIN + "/email/code", data);
-  },
 };

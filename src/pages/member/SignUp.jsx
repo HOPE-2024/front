@@ -289,7 +289,7 @@ export const Signup = () => {
         </Items>
         <Items className="item1">
           <Input
-            placeholder="휴대폰번호"
+            placeholder="휴대폰번호 ('-'포함 13자리)"
             value={phoneNumber}
             onChange={onChangePhone}
           />
