@@ -32,6 +32,7 @@ import { IdComplement } from "./pages/member/IdComplete";
 import { StartFindPw } from "./pages/member/StartFindPw";
 import { MedicineDetail } from "./pages/search/MedicineDetail";
 import { EffectModal } from "./utils/modal/EffectModal";
+import { PwReset } from "./pages/member/PwReset";
 
 function App() {
   return (
@@ -47,6 +48,8 @@ function App() {
             <Route path="/findpw" element={<FindPw />} />
             <Route path="/idcomplement" element={<IdComplement />} />
             <Route path="/startfindpw" element={<StartFindPw />} />
+            <Route path="/startfindpw" element={<StartFindPw />} />
+            <Route path="/pwreset" element={<PwReset />} />
             <Route element={<Template />}>
               <Route path="/" element={<Home />} />
               <Route path="/ChatList" element={<ChatList />} />

@@ -81,22 +81,11 @@ export const FindPw = () => {
     }
   };
 
-  const handleFindId = async () => {
-    try {
-      // 인증번호 일치 여부 확인
-      if (inputCode === receivedCode) {
-        // 인증번호가 일치하는 경우 이메일로 아이디 찾기 요청함
-        const rsp = await AuthAxiosApi.findIdByEmail(email);
-        const memberId = rsp.data;
-        console.log("찾은 회원 아이디: ", memberId);
-        // 찾은 아이디 가지고 페이지 이동
-        navigate("/idcomplement", { state: { memberId } });
-      } else {
-        // 인증번호가 일치하지 않은 경우
-        alert("인증번호 불일치! 다시 확인해 주세요.");
-      }
-    } catch (error) {
-      console.error("id 조회 실패 : ", error);
+  const handlePwReset = () => {
+    if (inputCode === receivedCode) {
+      navigate("/pwreset");
+    } else {
+      alert("인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
     }
   };
 
@@ -190,6 +179,7 @@ export const FindPw = () => {
                 marginRight: "50px",
                 fontWeight: "bold",
               }}
+              onClick={handlePwReset}
             >
               다음
             </UnderLinedStyle>

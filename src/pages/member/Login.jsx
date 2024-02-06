@@ -64,6 +64,8 @@ export const Login = () => {
         setLoginStatus(true); // 로그인 성공 시 전역 상태 true로 업데이트
         localStorage.setItem("loginStatus", "true"); // 로컬 스토리지에 로그인 상태 저장
         navigate("/");
+
+        window.location.reload();
       } else {
         alert("잘못된 아이디 또는 비밀번호 입니다.");
       }
@@ -101,7 +103,7 @@ export const Login = () => {
         </Items>
         <Items className="item2">
           <FindLink href="/findid">Find Id</FindLink>|
-          <FindLink href="/findpw">Find Password</FindLink>
+          <FindLink href="/startfindpw">Find Password</FindLink>
         </Items>
         <Button
           width="350px"
