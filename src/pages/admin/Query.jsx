@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components"
 import { Button } from "../../utils/Button"
 import { storage } from "../../api/Firebase";
-import { InputBox, QueryCss } from "../../css/admin/QueryCss";
+import { InputBox, QueryCss, Select } from "../../css/admin/QueryCss";
 import { InsertQuery } from "../../component/admin/InsertQuery";
 import { UpdateQuery } from "../../component/admin/UpdateQuery";
 import { useParams } from "react-router-dom";
@@ -15,6 +15,7 @@ export const Query = () => {
   const { id } = useParams();
   const [substance, setSubstance] = useState('')
   const [division, setDivision] = useState();
+  const [title, setTitle] = useState();
   const [list, setList] = useState([]);
   const [File, setFile] = useState("");
   const [url, setUrl] = useState("");
@@ -26,6 +27,7 @@ export const Query = () => {
     "기대 수명",
     "기타"
   ];
+  const [newData, setNewData] = useState([]);
   useEffect(() => {
     selectQuery()
   }, [mode])
@@ -34,6 +36,12 @@ export const Query = () => {
       setDivision('선택해 주세요 ∨')
     } else {
       setDivision(list.division)
+    }
+    if (mode === 'view') {
+      setNewData(list.di)
+    }
+    if (mode === 'edit') {
+      setTitle(list.title)
     }
     setSubstance(list.substance)
     setUrl(list.img)
@@ -51,6 +59,7 @@ export const Query = () => {
   const submit = () => {
     const queryDto = {
       division: division,
+      title: title,
       substance: substance,
       queryImg: url
     };
@@ -63,6 +72,7 @@ export const Query = () => {
 
     const queryDto = {
       id: id,
+      title: title,
       division: division,
       substance: substance,
       queryImg: url
@@ -90,6 +100,14 @@ export const Query = () => {
       console.error("Upload failed", error);
     }
   };
+  const [searchOption, setSearchOption] = useState("전체"); // 검색필터
+  // option이 바뀔 때 실행되는 함수
+  const handleOptionChange = (e) => {
+    // 바뀐 옵션 값을 searchOption에 저장
+    setSearchOption(e.target.value);
+    setDivision(e.target.value);
+  };
+
   return (
     <QueryCss>
       {id === 'write' ? <>
@@ -100,18 +118,19 @@ export const Query = () => {
           <div className="text">
             <p>문의 유형 :</p>
           </div>
-
-          <div className="type">
-            <p>{division}</p>
-            <ul>
-
-              {data.map((pick, index) => (
-                <li key={index} onClick={() => { setDivision(pick) }}>
-                  <p>{pick}</p>
-                </li>
-              ))}
-            </ul>
+          <Select value={searchOption} onChange={handleOptionChange}>
+            {data.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className="content2">
+          <div className="text">
+            <p>제 목 :</p>
           </div>
+          <input value={title} onChange={(e) => { setTitle(e.target.value) }}></input>
         </div>
         <div className="content3">
           <div className="text">
@@ -145,25 +164,36 @@ export const Query = () => {
           <div className="text">
             <p>문의 유형    :</p>
           </div>
+          {mode === 'view' &&
+            <div className="type">
+              <input value={list.division}></input>
+            </div>
+          }
+          {mode === 'edit' && <>
+            <Select value={searchOption} onChange={handleOptionChange}>
+              {data.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </Select>
+          </>}
 
-          <div className="type">
-            {mode === 'view' && <>
-              <div className="textBox">
-                <p>{list.division}</p>
-              </div>
-            </>}
-            {mode === 'edit' && <>
-              <p>{division}</p>
-              <ul>
-                {data.map((pick, index) => (
-                  <li key={index} onClick={() => { setDivision(pick) }}>
-                    <p>{pick}</p>
-                  </li>
-                ))}
-              </ul>
-            </>}
 
+        </div>
+        <div className="content2">
+          <div className="text">
+            <p>제 목 :</p>
           </div>
+          {mode === 'view' && <>
+            <input value={list.title} ></input>
+          </>}
+          {mode === 'edit' && <>
+            <input value={title} onChange={(e) => { setTitle((prevTitle) => e.target.value); }} >
+
+            </input>
+          </>}
+
         </div>
         <div className="content3">
           <div className="text">

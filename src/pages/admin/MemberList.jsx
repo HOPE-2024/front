@@ -9,6 +9,7 @@ import { ChattingMemberList } from '../../component/admin/ChattingMemberList';
 import { StopMemberList } from '../../component/admin/StopMemberList';
 import { SelectMember } from '../../component/admin/SelectMember';
 import { SearchVar } from "../../component/admin/SearchVar";
+import { CurrentVar } from "../../component/admin/CurrentVar";
 
 
 export const MemberList = () => {
@@ -25,7 +26,8 @@ export const MemberList = () => {
   const [status, setStatus] = useState('');
   //회원 상태
   const [active, setActive] = useState('');
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
 
 
 
@@ -37,14 +39,9 @@ export const MemberList = () => {
 
   //화면 랜더링 시 메뉴에 맞게 데이터를 가져옵니다.
   useEffect(() => {
-    if (listType === 'all') {
-      SelectMemberList(setData);
-    } if (listType === 'chatting') {
-      ChattingMemberList(setData, setStatus);
-    } if (listType === 'stop') {
-      StopMemberList(setData, setStatus);
-    }
-  }, [listType, active]);
+    setStatus('')
+    SelectMemberList(listType, setData, currentPage, setMaxPage);
+  }, [listType, active, currentPage]);
 
 
   return (
@@ -130,6 +127,10 @@ export const MemberList = () => {
           ))}
 
         </div>
+        <div className="currentVar">
+          <CurrentVar maxPage={maxPage} currentPage={currentPage} setCurrentPage={setCurrentPage}></CurrentVar>
+        </div>
+
       </div>
     </MemberListCss>
   );

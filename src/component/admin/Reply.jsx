@@ -37,8 +37,8 @@ const ReplyCss = styled.div`
   .output{
     width: 100%; 
     height: auto;
-    border-bottom: 1px solid black;
-    border-top:solid 1px black;
+    border: 2px solid #023b96;
+    border-top: 2px solid #023b96;
     background: rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@ const ReplyCss = styled.div`
     line-height :30px ;
     ul{
           display: flex;
-          border: 1px solid black;
+          border: 2px solid #023b96;
           flex-direction: column;
           margin: 10px 0;
           border-radius: 10px;
@@ -73,7 +73,7 @@ const ReplyCss = styled.div`
          .delete{
             width: 50px;     
             height: 30px;
-            border: 1px solid black;
+            border: 2px solid #023b96;
             display: flex;
             justify-content: center;
             margin-left: 10px;       
@@ -100,6 +100,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
     const [data, setData] = useState('');
     const [show, setShow] = useState();
     const [newReply, setNewReply] = useState();
+
     const submit = () => {
         const ReplyDto = {
             answer: data,

@@ -6,7 +6,7 @@ import { MemberListCss } from "../../css/admin/Report";
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
 import { SelectReportList } from "../../component/admin/SelectReportList";
 import { SearchVar } from "../../component/admin/SearchVar";
-
+import { CurrentVar } from "../../component/admin/CurrentVar";
 
 export const Report = () => {
   //회원 조회 axios를 선택할 때 사용
@@ -15,8 +15,8 @@ export const Report = () => {
   const [open, setOpen] = useState("");
   const [list, setList] = useState("");
   const [data, setData] = useState([]);
-
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
 
   const redate = (e) => {
     const dateObject = new Date(e);
@@ -29,8 +29,10 @@ export const Report = () => {
 
   //화면 랜더링 시 메뉴에 맞게 데이터를 가져옵니다.
   useEffect(() => {
-    SelectReportList(listType, setData);
-  }, [listType, open]);
+    SelectReportList(listType, setData, currentPage, setMaxPage);
+
+  }, [listType, open, currentPage]);
+
 
   return (
     <MemberListCss>
@@ -116,6 +118,10 @@ export const Report = () => {
             </div>
           ))}
         </div>
+        <div className="currentVar">
+          <CurrentVar maxPage={maxPage} currentPage={currentPage} setCurrentPage={setCurrentPage}></CurrentVar>
+        </div>
+
       </div>
       <ReportMadal open={open} setOpen={setOpen} list={list}></ReportMadal>
     </MemberListCss>

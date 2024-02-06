@@ -21,7 +21,7 @@ export const QueryCss = styled.div`
      background-color: rgba(0,0,0,0); /* 스크롤바 색상 */
   }
   .content1 {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #023b96;
     width: 100%;
     height: 50px;
     p {
@@ -31,35 +31,49 @@ export const QueryCss = styled.div`
   }
 
   .content2 {
-    margin-top: 50px;
-    width: 100%;
+    margin-top: 20px;
+    width: 80%;
     height: 50px;
     display: flex;
     z-index: 33;
     position: relative;
-    p {
+   
+    input{
+      width: 100%;
+      border: 2px solid #023b96;
+    }
+    .text {
+           
+      margin-right:10px;
+      width: 200px;
+ 
+      height: auto; 
+     p {     
       line-height: 50px;
       font-size: 1.3em;
-      margin-left: 50px;
+      display: flex;
+      justify-content: end;
+      width: 200px;   
+
+    }
     }
 
-    .text {
-      width: 170px;
+    .type {  
       height: auto;
-    }
-
-    .type {
-      width: 250px;
-      height: auto;
-      border: 1px solid black;
-
+      font-size: 20px;
+      margin-top: 15px;
+      input{
+        height: 40px;
+        margin-top: -20px;
+        padding-left: 10px;        
+      }
       &:hover {
         
         ul {
           margin-top: -1px;
           width: 100%;
           display: block;
-      border: 1px solid black;
+      border: 1px solid #023b96;
           border-top: none;
           background: white;
         }
@@ -85,22 +99,30 @@ export const QueryCss = styled.div`
   }
 
   .content3 {
-    margin-top: 10px;
+    margin-top: 20px;
     width: 80%;
     height: 350px;
     display: flex;    
-    p {
-      line-height: 50px;
-      font-size: 1.3em;
-      margin-left: 50px;
-    }
+
     .text {
-      width: 200px;
-      height: auto;
-    }
+           
+           margin-right:0px;
+           width: 200px;
+       
+           height: auto; 
+          p {     
+           line-height: 50px;
+           font-size: 1.3em;
+           display: flex;
+           justify-content: end;
+           width: 200px;
+     
+         }
+         }
     .textBox{
     width: 100%;
     height: auto;
+    margin-left: 10px;
     }
   }
 
@@ -140,5 +162,18 @@ justify-content: center;
 `;
 export const InputBox = styled.textarea`
       width: 100%;
+      padding: 10px;
+      font-size: 1.1em;
     height: 100%;
+    border :2px solid #023b96;
+`;
+export const Select = styled.select`
+  border: 2px #5c9bff solid;
+  width: 150px;
+  height: 40px;
+  border-radius: 4px;
+  margin: 10px;
+  text-align: center;
+  font-size: 1rem;
+  margin-right: 10px;
 `;

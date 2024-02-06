@@ -63,6 +63,7 @@ export const MemberListCss = styled.div`
  
     }
     .content2{
+        height: auto;
          display: flex;
          flex-direction: column;
          width:  100%;
@@ -88,12 +89,12 @@ export const MemberListCss = styled.div`
          .list{
             display: flex;
         flex-wrap:wrap;
-        margin-top: -20px;
-
+        margin-top: -20px;   
+        height: 500px;
         .list1 {
     border: 1px solid #023B96;
     width: 250px;      
-    height: auto;
+    height: 200px;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -156,6 +157,9 @@ background:white;
     flex-direction: row;
   }
     }
-
+.currentVar{
+  width: 100%;
+  height: auto;
+}
     }
 `;

@@ -82,8 +82,7 @@ export const QueryList = () => {
   const selectQury = async () => {
     console.log('채팅 정지 회원 조회 axios 실행')
     try {
-      const res = await AdminAxiosApi.nickNameSelectQuryList();
-      // const res = await AdminAxiosApi.selectQuryList();
+      const res = await AdminAxiosApi.selectQuryList();
       setData(res.data);
       console.log(res.data);
     } catch (error) {
@@ -135,7 +134,7 @@ export const QueryList = () => {
                 <li className="p1">{pick.id}</li>
                 <li className="p1">{pick.division}</li>
                 {/* <li className="p1">{pick.queryImg}</li> */}
-                <li style={{ width: "400px" }}>{pick.substance}</li>
+                <li style={{ width: "400px" }}>{pick.title}</li>
                 <li className="p1">{pick.questioner.nickName}</li>
               </ul>))}
           </div>
