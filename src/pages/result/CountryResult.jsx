@@ -3,11 +3,15 @@ import { CountryResultSlide } from "../../component/result/slide/CountryResultSl
 
 export const CountryResult = () => {
   const location = useLocation();
+  const { Country } = location.state;
   const { CountryResult } = location.state;
 
   return (
     <>
-      <CountryResultSlide CountryResult={CountryResult}></CountryResultSlide>
+      <CountryResultSlide
+        Country={Country}
+        CountryResult={CountryResult}
+      ></CountryResultSlide>
     </>
   );
 };

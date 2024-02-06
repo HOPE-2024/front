@@ -7,6 +7,7 @@ import {
 } from "../../css/slideElementInput/InputStyle";
 import { MiddleBox } from "../../css/common/Boxs";
 import { MachineAxiosApi } from "../../api/MachineAxiosApi";
+import { Earth } from "./Earth";
 
 const nationalityOptions = [
   "Aruba",
@@ -119,7 +120,6 @@ const nationalityOptions = [
   "IDA only",
   "Isle of Man",
   "India",
-  "Not classified",
   "Ireland",
   "Iran, Islamic Rep.",
   "Iraq",
@@ -297,6 +297,7 @@ export const CountryInput = () => {
 
       navigate("/CountryResult", {
         state: {
+          Country: nationality,
           CountryResult: response.data,
         },
       });
@@ -308,7 +309,8 @@ export const CountryInput = () => {
 
   return (
     <>
-      <Wrapper height="60vh">
+      <Wrapper height="75vh">
+        <Earth Country={nationality}></Earth>
         <form onSubmit={handleSubmit}>
           <MiddleBox>
             <Select value={nationality} onChange={handleNationalityChange}>

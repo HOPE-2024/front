@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const StyledContent = styled.div`
-  width: 35vw;
+  width: 40vw;
+  position: relative;
+  top: 50px;
 
-  @media (min-width: 1000px) {
-    position: relative;
-    top: 75px;
+  @media (max-width: 1200px) {
+    width: 60vw;
   }
 `;
 
@@ -40,7 +41,7 @@ const StyledTextArea = styled.textarea`
   background: none;
   border: none;
   color: #111;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 1.33;
   text-align: center;
   text-shadow: 0px 0px 5px white;
@@ -84,7 +85,7 @@ export const Note = ({ text, height }) => {
       return;
     }
     setContent(text.substring(0, content.length + 1));
-  }, 150);
+  }, 50);
 
   return (
     <StyledContent>

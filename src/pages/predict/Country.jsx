@@ -6,7 +6,7 @@ export const Country = () => {
   return (
     <>
       <FlexColumn>
-        <Spark top="20vh">연도별 국가 평균 수명</Spark>
+        <Spark top="15vh">연도별 국가 평균 수명</Spark>
         <CountryInput></CountryInput>
       </FlexColumn>
     </>

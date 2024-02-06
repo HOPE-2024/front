@@ -23,4 +23,8 @@ export const Spark = styled.div`
   white-space: nowrap;
   position: relative;
   top: ${(props) => props.top || "20vh"};
+
+  @media (max-width: 500px) {
+    font-size: 28px;
+  }
 `;

@@ -26,6 +26,7 @@ export const MainCss = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed; // 배경 이미지를 스크롤 시에도 고정된 위치에 있도록 설정
     opacity: 0.3;
     /* filter: blur(5px); */
     z-index: -1; // 배경 이미지가 다른 요소들을 가리지 않게 설정

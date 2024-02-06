@@ -10,14 +10,59 @@ import {
   NavBox,
 } from "../../../css/SlideStyle";
 import { LineGraph } from "../chart/LineGraph";
+import { LineGraphDesc } from "../description/LineGraphDesc";
 
-export const CountryResultSlide = ({ CountryResult }) => {
+export const CountryResultSlide = ({ Country, CountryResult }) => {
+  const [trendInfo, setTrendInfo] = useState({}); // 객체
+  const [max, setMax] = useState("");
+  const [min, setMin] = useState("");
+  const [yearOfMax, setYearOfMax] = useState("");
+  const [yearOfMin, setYearOfMin] = useState("");
+  const [trend, setTrend] = useState("");
+
+  // 자식 컴포넌트에서 받은 값
+  const handleTrendResult = (info) => {
+    console.log("꺾은선 그래프 분석 결과:", info); // 그래프 분석 결과
+    setTrendInfo(info); // trendInfo 상태 업데이트
+  };
+
+  useEffect(() => {
+    if (trendInfo.max !== undefined) {
+      setMax(trendInfo.max);
+    }
+    if (trendInfo.min !== undefined) {
+      setMin(trendInfo.min);
+    }
+    if (trendInfo.yearOfMax !== undefined) {
+      setYearOfMax(trendInfo.yearOfMax);
+    }
+    if (trendInfo.yearOfMin !== undefined) {
+      setYearOfMin(trendInfo.yearOfMin);
+    }
+    if (trendInfo.trend !== undefined) {
+      setTrend(trendInfo.trend);
+    }
+  }, [trendInfo]);
+
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <LineGraph dataString={CountryResult}></LineGraph>
+      <LineGraph
+        Country={Country}
+        dataString={CountryResult}
+        onTrendAnalyzed={handleTrendResult}
+      ></LineGraph>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <LineGraphDesc
+        Country={Country}
+        max={max}
+        min={min}
+        yearOfMax={yearOfMax}
+        yearOfMin={yearOfMin}
+        trend={trend}
+      ></LineGraphDesc>
+    </SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스

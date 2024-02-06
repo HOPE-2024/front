@@ -26,16 +26,7 @@ export const ScatterGraph = ({ correlation_x, correlation_y }) => {
   });
 
   console.log("ScatterGraph : " + correlation_x);
-  const COLORS = [
-    "#136CFB",
-    "#3C84F8",
-    "#023382",
-    "#023B96",
-    "#abcdef",
-    "SkyBlue",
-    "Green",
-    "DarkRed",
-  ];
+  const COLORS = ["#136CFB", "#3C84F8", "#023382", "#023B96", "#abcdef"];
 
   return (
     <>

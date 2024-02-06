@@ -5,6 +5,7 @@ export const FaceResult = () => {
   const location = useLocation();
   const { result } = location.state;
   const { image } = location.state;
+  console.log(result);
 
   return (
     <>

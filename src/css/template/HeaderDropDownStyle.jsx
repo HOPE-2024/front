@@ -16,6 +16,7 @@ export const FirstDropDownMenu = styled.ul`
     padding: 10px;
     cursor: pointer;
     margin: 5px;
+    text-align: center;
 
     transition: background-color 0.3s;
     background: #ffffff;
@@ -43,6 +44,7 @@ export const SecondDropDownMenu = styled.ul`
     cursor: pointer;
     transition: background-color 0.3s;
     margin: 5px;
+    text-align: center;
 
     &:hover {
       background-color: #f0f0f0;
@@ -68,6 +70,7 @@ export const ThirdDropDownMenu = styled.ul`
     cursor: pointer;
     transition: background-color 0.3s;
     margin: 5px;
+    text-align: center;
 
     &:hover {
       background-color: #f0f0f0;
