@@ -9,9 +9,9 @@ import {
   SlideListContent,
   NavBox,
 } from "../../../css/SlideStyle";
-import { Note } from "../../../css/text/Note";
 import { ScatterGraph } from "../chart/ScatterGraph";
 import { BarGraph } from "../chart/BarGraph";
+import { TypeWriter } from "../../../css/text/TypeWriter";
 
 export const DiabResultSlide = ({
   prediction,
@@ -23,16 +23,21 @@ export const DiabResultSlide = ({
   console.log("1 : " + correlation[1]);
   console.log("2 : " + correlation[0]);
 
-  const text = `랜덤 포레스트 모델을 통해 예측된 결과, 당신의 1년 후의 당뇨병 진행도는 ${Math.round(
-    prediction
-  )}으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
+  const beforeText =
+    "랜덤 포레스트 모델을 통해 예측된 결과, 당신의 1년 후의 당뇨병 진행도는 ";
+  const emphasizedText = `${Math.round(prediction)}`;
+  const afterText = `으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
     (correlation[1][0] + correlation[0][1]) * 50
   )}% 입니다. 평가된 모델의 성능을 자세히 알고 싶으시다면 슬라이드를 넘겨주세요.`;
 
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <Note text={`${text}`} height="30vh"></Note>
+      <TypeWriter
+        beforeText={beforeText}
+        emphasizedText={emphasizedText}
+        afterText={afterText}
+      />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <ScatterGraph
@@ -44,10 +49,10 @@ export const DiabResultSlide = ({
       <BarGraph featureImportances={featureImportances} />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <p>건강조언, bmi</p>
+      <p> bmi 계기판 출력, 당뇨병 진행도에 의거해서 건강조언,</p>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <p>뉴스 크롤링</p>
+      <p>당뇨병에 관련된 최신 뉴스기사를 크롤링하여 출력</p>
     </SlideListContent>,
   ];
 

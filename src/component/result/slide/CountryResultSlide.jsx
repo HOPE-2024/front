@@ -63,6 +63,10 @@ export const CountryResultSlide = ({ Country, CountryResult }) => {
         trend={trend}
       ></LineGraphDesc>
     </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      그래프에 나와있지 않은 미래나 과거의 연도를 입력하면 평균 수명 예측하는
+      기능 추가 (회원 전용, 로그인하지 않는 사용자는 X)
+    </SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스

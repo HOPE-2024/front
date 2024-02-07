@@ -252,7 +252,7 @@ export const LifeInput = () => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper height="60vh">
         <form onSubmit={handleSubmit}>
           <MiddleBox>
             <Input

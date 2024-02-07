@@ -18,6 +18,14 @@ const Wrapper = styled.div`
   bottom: 5vh;
 `;
 
+const Description = styled.div`
+  width: 40vw;
+  padding: 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+`;
+
 export const ScatterGraph = ({ correlation_x, correlation_y }) => {
   // 상관 계수 그래프용 데이터 구조 조정
   const correlationData = correlation_x.map((value, index) => {
@@ -25,7 +33,7 @@ export const ScatterGraph = ({ correlation_x, correlation_y }) => {
     return { id: index, x: value + noise, y: correlation_y[index] + noise };
   });
 
-  console.log("ScatterGraph : " + correlation_x);
+  // console.log("ScatterGraph : " + correlation_x);
   const COLORS = ["#136CFB", "#3C84F8", "#023382", "#023B96", "#abcdef"];
 
   return (
@@ -72,6 +80,11 @@ export const ScatterGraph = ({ correlation_x, correlation_y }) => {
           </ScatterChart>
         </ResponsiveContainer>
       </Wrapper>
+      <Description>
+        이 그래프는 예측값과 실제값의 상관계수를 나타냅니다. 그래프의 점들이
+        선형 구조에 가까울수록 랜덤 포레스트 모델의 평가가 좋다는 것을
+        의미합니다.
+      </Description>
     </>
   );
 };

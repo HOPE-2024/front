@@ -18,11 +18,12 @@ export const Spark = styled.div`
   animation-fill-mode: forwards;
   -webkit-text-size-adjust: none;
   font-weight: bold;
-  font-size: 45px;
+  font-size: ${(props) => props.font || "45px"};
   text-decoration: none;
   white-space: nowrap;
   position: relative;
-  top: ${(props) => props.top || "20vh"};
+  top: ${(props) => props.top || "15vh"};
+  z-index: 5;
 
   @media (max-width: 500px) {
     font-size: 28px;

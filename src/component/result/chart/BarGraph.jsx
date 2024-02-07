@@ -20,13 +20,21 @@ const Wrapper = styled.div`
   top: 2vh;
 `;
 
-export const BarGraph = ({ featureImportances }) => {
-  console.log("BarGraph : " + featureImportances);
+const Description = styled.div`
+  margin-top: 20px;
+`;
 
+export const BarGraph = ({ featureImportances }) => {
+  // console.log("BarGraph : " + featureImportances);
   const featureImportanceData = featureImportances.map((fi) => ({
     name: fi[0],
     value: fi[1],
   }));
+
+  // 특성 중요도를 내림차순으로 정렬하고 상위 5개만 선택
+  const topFeatures = [...featureImportanceData]
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5);
 
   return (
     <>
@@ -85,6 +93,17 @@ export const BarGraph = ({ featureImportances }) => {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+        <Description>
+          <h3>특성 중요도 Top 5</h3>
+          <ul>
+            {topFeatures.map((feature, index) => (
+              <li key={index}>
+                {index + 1}위: {feature.name} -{" "}
+                {(feature.value * 100).toFixed(0)}%
+              </li>
+            ))}
+          </ul>
+        </Description>
       </Wrapper>
     </>
   );

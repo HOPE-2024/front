@@ -9,9 +9,9 @@ import {
   SlideListContent,
   NavBox,
 } from "../../../css/SlideStyle";
-import { Note } from "../../../css/text/Note";
 import { ScatterGraph } from "../chart/ScatterGraph";
 import { BarGraph } from "../chart/BarGraph";
+import { TypeWriter } from "../../../css/text/TypeWriter";
 
 export const LifeResultSlide = ({
   prediction,
@@ -23,16 +23,20 @@ export const LifeResultSlide = ({
   console.log("1 : " + correlation[1]);
   console.log("2 : " + correlation[0]);
 
-  const text = `랜덤 포레스트 모델을 통해 예측된 결과, 당신은 ${Math.round(
-    prediction
-  )}살까지 살 것으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
+  const beforeText = "랜덤 포레스트 모델을 통해 예측된 결과, 당신은 ";
+  const emphasizedText = `${Math.round(prediction)}살`;
+  const afterText = `까지 살 것으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
     (correlation[1][0] + correlation[0][1]) * 50
   )}% 입니다. 평가된 모델의 성능을 자세히 알고 싶으시다면 슬라이드를 넘겨주세요.`;
 
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <Note text={`${text}`} height="30vh"></Note>
+      <TypeWriter
+        beforeText={beforeText}
+        emphasizedText={emphasizedText}
+        afterText={afterText}
+      />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <ScatterGraph
@@ -44,10 +48,11 @@ export const LifeResultSlide = ({
       <BarGraph featureImportances={featureImportances} />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <p>건강조언, bmi</p>
-    </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}>
-      <p>뉴스 크롤링</p>
+      <p>
+        bmi를 계기판처럼 출력(저체중,정상,과제충), 계산된 bmi와 알코올 섭취량에
+        기반해서 건강조언, 알코올 섭취량은 해당 국가의 평균값에 비해서 몇퍼센트
+        많이 마시는지, 적게 마시는지를 계산하여 이에 기반하여 건강 조언을 출력
+      </p>
     </SlideListContent>,
   ];
 

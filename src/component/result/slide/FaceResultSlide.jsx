@@ -12,12 +12,23 @@ import {
 import { FaceGenderAge } from "../FaceGenderAge";
 
 export const FaceResultSlide = ({ result, image }) => {
+  console.log("FaceResultSlide 결과 : " + result);
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
       <FaceGenderAge result={result} image={image}></FaceGenderAge>
     </SlideListContent>,
-    <SlideListContent style={{ backgroundColor: "none" }}></SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      머신 러닝, 딥 러닝 중 어떤 모델로 얼굴 검출을 하였는지 기술
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      사진을 입력하는 창에, 나이 입력 input 를 출력하고, 결과값과 input을
+      비교해서 동안, 노안을 판별
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      노안일 경우에는 노안 해결 뉴스 크롤링, 동안일 경우에는 동안 유지 방법 뉴스
+      크롤링
+    </SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스
