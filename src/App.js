@@ -33,7 +33,7 @@ import { StartFindPw } from "./pages/member/StartFindPw";
 import { MedicineDetail } from "./pages/search/MedicineDetail";
 import { EffectModal } from "./utils/modal/EffectModal";
 import { PwReset } from "./pages/member/PwReset";
-import { MyCalender } from "./pages/myCalender/MyCalender";
+import { MyCalendar } from "./pages/myCalendar/MyCalendar";
 
 function App() {
   return (
@@ -42,6 +42,7 @@ function App() {
       <AuthContextProvider>
         <BrowserRouter>
           <Routes>
+            {/* 소문자로 통일 */}
             <Route path="/Login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/agreecheck" element={<AgreeCheck />} />
@@ -73,7 +74,7 @@ function App() {
               <Route path="/FaceResult" element={<FaceResult />} />
               <Route path="/CountryResult" element={<CountryResult />} />
               <Route path="/medicineresult" element={<MedicineResult />} />
-              <Route path="/MyCalender" element={<MyCalender />} />
+              <Route path="/MyCalendar" element={<MyCalendar />} />
               <Route
                 path="/medicinedetail/:medicineId"
                 element={<MedicineDetail />}

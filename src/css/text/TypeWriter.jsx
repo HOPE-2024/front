@@ -6,11 +6,11 @@ const Wrapper = styled.div`
   height: ${(props) => props.height || "30vh"};
   position: relative;
   font-size: ${(props) => props.font || "35px"};
-  line-height: 60px;
+  line-height: ${(props) => props.lineHeight || "60px"};
 
   @media (max-width: 1200px) {
-    width: 60vw;
-    height: 25vh;
+    width: ${(props) => props.mWidth || "30vw"};
+    height: ${(props) => props.mHeight || "25vh"};
     font-size: 28px;
     line-height: 40px;
   }
@@ -35,12 +35,13 @@ export const TypeWriter = ({
   beforeText = "",
   emphasizedText = "",
   afterText = "",
+  ...rest // 위 선언된 props 이외의 모든 props를 호출, Wrapper 에 props 전달 가능
 }) => {
   return (
     <>
       {/* 전체 타이핑 딜레이 */}
       <Typist cursor={{ show: false }} avgTypingDelay={20}>
-        <Wrapper>
+        <Wrapper {...rest}>
           <Normal> {beforeText} </Normal>
           {/* 문자열 사이의 딜레이 */}
           <Typist.Delay ms={100} />
