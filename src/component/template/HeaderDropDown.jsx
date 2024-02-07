@@ -125,6 +125,13 @@ export const ThirdDropDown = ({ onClose }) => {
     <ThirdDropDownMenu ref={dropdownRef}>
       <li
         onClick={() => {
+          navigate("/MyCalender");
+        }}
+      >
+        일정
+      </li>
+      <li
+        onClick={() => {
           navigate("/MyPage");
         }}
       >

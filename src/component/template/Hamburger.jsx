@@ -90,6 +90,9 @@ export const Hamburger = () => {
               <Item isOpen={isOpen}>
                 <Title>계정</Title>
                 <ContentBox>
+                  <Content href="/MyCalender">일정</Content>
+                </ContentBox>
+                <ContentBox>
                   <Content href="/MyPage">내 정보 수정</Content>
                 </ContentBox>
                 <ContentBox>

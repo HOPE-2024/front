@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChatAxiosApi } from "../../api/ChatAixosApi";
 import { SickList } from "../../css/chat/AreaSickListCss";
+import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
 
 const ModalClickCss = styled.div`
   position: absolute;
@@ -47,13 +48,6 @@ const Message = styled.div`
   align-items: center;
 `;
 
-const Button = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 350px;
-  margin: 20px;
-`;
-
 const InputField = styled.input`
   width: 100%;
   margin-top: 1vh;
@@ -74,6 +68,13 @@ const TitleCon = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1%;
+`;
+
+const ButtonBox = styled.div`
+  width: 50%;
+  margin-top: 4%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const AddChatModal = ({
@@ -155,10 +156,10 @@ export const AddChatModal = ({
                   placeholder={checkInput}
                 />
               </TitleCon>
-              <Button>
-                <button onClick={CheckClick}>확인</button>
-                <button onClick={closeClick}>취소</button>
-              </Button>
+              <ButtonBox>
+                <UnderLinedStyle onClick={CheckClick}>확인</UnderLinedStyle>
+                <UnderLinedStyle onClick={closeClick}>취소</UnderLinedStyle>
+              </ButtonBox>
             </Message>
           </ModalWrapper>
         </>

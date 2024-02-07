@@ -26,7 +26,11 @@ export const FaceGenderAge = ({ result, image }) => {
     <>
       <FlexColumn>
         <TextBox>{text}</TextBox>
-        <img src={`data:image/png;base64,${image}`} alt="Detected Faces" />
+        <img
+          src={`data:image/png;base64,${image}`}
+          alt="Detected Faces"
+          style={{ width: "300px", height: "400px" }}
+        />
       </FlexColumn>
     </>
   );
