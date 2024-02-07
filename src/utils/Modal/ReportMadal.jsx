@@ -166,12 +166,12 @@ const CustomRadio = styled.input`
     color: white;
   }
 `;
-const AA = styled.div`
+const AA = styled.textarea`
   width: 100%;
   height: 100px;
   padding: 0;
 `;
-export function ReportMadal({ open, setOpen, list }) {
+export const ReportMadal = ({ open, setOpen, list, member, type }) => {
   //신고 이유 저장
   const [what, setWhat] = useState("");
   const [why, setWhy] = useState("");
@@ -180,6 +180,7 @@ export function ReportMadal({ open, setOpen, list }) {
 
   //확인 클릭시
   const submit = async () => {
+    alert(1)
     //회원 상태 변경을 했을 경우에만 업데이트
     if (status !== "상태 변경 없음") {
       //회원 상태 변경
@@ -189,8 +190,9 @@ export function ReportMadal({ open, setOpen, list }) {
         //신고 글 상태 변경
         await UpdateReportActive(list.id, status);
       }
+      setOpen(null);
     }
-    setOpen(null);
+
   };
   //취소 클릭시
   const cancel = () => {
@@ -202,7 +204,7 @@ export function ReportMadal({ open, setOpen, list }) {
   const data = ["일반 회원", "7일 정지", "30일 정지", "회원 정지"];
 
   useEffect(() => {
-    if (list.reported) {
+    if (list && list.reported && list.reported !== ' ' && list.reported !== null) {
       ReportRead(list.id);
       setView(list.reported.nickName + "(" + list.reported.active + ")");
     }
@@ -215,38 +217,48 @@ export function ReportMadal({ open, setOpen, list }) {
             <div className="title">
               <p>신고하기</p>
             </div>
+            {type === '채팅' ?
+              <ButtonVar
+                onMouseOver={() => setIsOpen(true)}
+                onMouseOut={() => setIsOpen(false)}
+              >
+                <div className="content1">
+                  <p style={{ height: "30px", marginLeft: "0" }}>{member}</p>{" "}
+                </div>
+              </ButtonVar>
+              :
+              <ButtonVar
+                onMouseOver={() => setIsOpen(true)}
+                onMouseOut={() => setIsOpen(false)}
+              >
+                <div className="content1">
+                  <img src={down} alt="" />
+                  <p>{view}</p>{" "}
+                </div>
+                <ul>
+                  {isOpen &&
+                    data.map((pick, index) => (
+                      <li
+                        onClick={(e) => {
+                          setIsOpen(false);
+                          setView(pick);
+                          setStatus(pick);
+                        }}
+                      >
+                        <div className="content2">{pick}</div>
+                      </li>
+                    ))}
+                </ul>
+              </ButtonVar>}
 
-            <ButtonVar
-              onMouseOver={() => setIsOpen(true)}
-              onMouseOut={() => setIsOpen(false)}
-            >
-              <div className="content1">
-                <img src={down} alt="" />
-                <p>{view}</p>{" "}
-              </div>
-              <ul>
-                {isOpen &&
-                  data.map((pick, index) => (
-                    <li
-                      onClick={(e) => {
-                        setIsOpen(false);
-                        setView(pick);
-                        setStatus(pick);
-                      }}
-                    >
-                      <div className="content2">{pick}</div>
-                    </li>
-                  ))}
-              </ul>
-            </ButtonVar>
             <div className="content1 item1">
               <RadioLabel>
                 <CustomRadio
                   type="radio"
                   name="Declaration"
                   value={"욕설"}
-                  checked={list.check === "욕설"}
-                  onChange={(e) => setWhy(e.target.value)}
+                  checked={what === "욕설"}
+                  onChange={(e) => setWhat(e.target.value)}
                 />
                 욕설
               </RadioLabel>
@@ -255,8 +267,8 @@ export function ReportMadal({ open, setOpen, list }) {
                   type="radio"
                   name="Declaration"
                   value={"혐오발언"}
-                  checked={list.check === "혐오발언"}
-                  onChange={(e) => setWhy(e.target.value)}
+                  checked={what === "혐오발언"}
+                  onChange={(e) => setWhat(e.target.value)}
                 />
                 혐오발언
               </RadioLabel>
@@ -265,8 +277,8 @@ export function ReportMadal({ open, setOpen, list }) {
                   type="radio"
                   name="Declaration"
                   value={"광고/스팸"}
-                  checked={list.check === "광고/스팸"}
-                  onChange={(e) => setWhy(e.target.value)}
+                  checked={what === "광고/스팸"}
+                  onChange={(e) => setWhat(e.target.value)}
                 />
                 광고/스팸
               </RadioLabel>
@@ -275,8 +287,8 @@ export function ReportMadal({ open, setOpen, list }) {
                   type="radio"
                   name="Declaration"
                   value={"부적절한 아이디"}
-                  checked={list.check === "부적절한 아이디"}
-                  onChange={(e) => setWhy(e.target.value)}
+                  checked={what === "부적절한 아이디"}
+                  onChange={(e) => setWhat(e.target.value)}
                 />
                 부적절한 아이디
               </RadioLabel>
@@ -285,19 +297,19 @@ export function ReportMadal({ open, setOpen, list }) {
                   type="radio"
                   name="Declaration"
                   value={"허위,과장 정보 제공"}
-                  checked={list.check === "허위,과장 정보 제공"}
-                  onChange={(e) => setWhy(e.target.value)}
+                  checked={what === "허위,과장 정보 제공"}
+                  onChange={(e) => setWhat(e.target.value)}
                 />
                 허위,과장 정보 제공
               </RadioLabel>
             </div>
             <div className="content1 item2">
-              {list.reason}
-              {/* <AA id="content"
+
+              <AA id="content"
                 name="content"
-                value={"list.reason"}
-                onChange={(e) => { setWhat(e.target.value) }}
-                placeholder="신고 내용"></AA> */}
+                value={why}
+                onChange={(e) => { setWhy(e.target.value) }}
+                placeholder="신고 내용"></AA>
             </div>
             <div className=" item3">
               <button

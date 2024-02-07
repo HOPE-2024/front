@@ -20,16 +20,19 @@ import {
 import { KH_SOCKET_URL } from "../../utils/Common";
 import { ChatAxiosApi } from "../../api/ChatAixosApi";
 import { MyPageAxiosApi } from "../../api/MyPageAxiosApi";
-
+import { ReportMadal } from "../../utils/modal/ReportMadal";
 export const ChatRoom = () => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [sender, setSender] = useState("");
   const [roomName, setRoomName] = useState("");
   const { roomId } = useParams();
   const [inputMsg, setInputMsg] = useState("");
+  const [member, setMember] = useState("");
   const [chatList, setChatList] = useState([]);
   const [chatMember, setChatMember] = useState([]);
   const [profile, setProfile] = useState("");
+  const [open, setOpen] = useState(false);
+  const type = '채팅';
   const ws = useRef(null);
   const navigate = useNavigate(); // useNavigate 훅 추가
 
@@ -192,7 +195,7 @@ export const ChatRoom = () => {
               if (chat.type !== "ENTER" && chat.type !== "CLOSE") {
                 // 입장 및 퇴장 메시지가 아닌 경우에만 출력
                 return (
-                  <MsgBox key={index} isSender={chat.sender === sender}>
+                  <MsgBox Key={index} inSender={chat.sender === sender} onClick={() => { setMember(chat.sender); setOpen(true) }}>
                     <MsgProfile
                       isSender={chat.sender === sender}
                       src={`/images/profile/${chat.profile || "Ellipse3"}.png`}
@@ -211,6 +214,7 @@ export const ChatRoom = () => {
               }
               return null; // 입장 및 퇴장 메시지인 경우에는 null 반환하여 렌더링하지 않음
             })}
+            <ReportMadal open={open} member={member} type={type}></ReportMadal>
           </MsgCon>
           <InputCon>
             <Input
