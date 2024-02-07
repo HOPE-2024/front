@@ -39,7 +39,7 @@ export const Bottom = styled.div`
   justify-content: center;
 `;
 export const DataBox = styled.div`
-  padding: 5%;
+  padding: 0 5%;
   background-color: white; /* 배경 투명하게 설정 */
   box-shadow: 1px 2px 5px 1px #d5d5d5;
   display: flex;
@@ -53,23 +53,31 @@ export const DataBox = styled.div`
   }
 `;
 export const ImageBox = styled.div`
-  width: 25%;
-  height: 120px;
+  width: 30%;
+  height: 170px;
+  position: absolute;
+  right: 8%;
   box-shadow: 1px 2px 5px 1px #e3e3e3;
 
   img {
     width: 100%;
     height: 100%;
   }
+  p {
+    text-align: right;
+    margin: 1%;
+    font-size: 14px;
+    color: gray;
+  }
 
   @media (max-width: 768px) {
+    position: relative;
     width: 100%;
     height: 120px;
-    margin-bottom: 10%;
+    margin: 0 0 10% 8%;
   }
 `;
 export const TextBox = styled.div`
-  padding: 0 40px;
   width: 70%;
   @media (max-width: 768px) {
     padding: 0;
@@ -111,7 +119,7 @@ export const TextBox = styled.div`
     font-weight: bold;
     color: var(--DEEPBLUE);
   }
-  .item > button {
+  .item4 > button {
     border: 1px solid gray;
     background-color: white;
     cursor: pointer;
@@ -128,13 +136,12 @@ export const TextBox = styled.div`
     font-weight: bold;
   }
 
-  &.ver2 {
-    width: 100%;
-    padding: 7%;
-  }
-
   &.ver1 {
-    margin-bottom: 5%;
+    width: 100%;
+  }
+  &.ver2 {
+    padding: 7%;
+    width: 100%;
   }
 `;
 export const MenuTable = styled.div`
@@ -153,7 +160,7 @@ export const MenuTable = styled.div`
     color: gray;
     &.active {
       background-color: var(--SKY);
-      color: black;
+      color: white;
     }
     @media (max-width: 768px) {
       font-size: 12px;
@@ -169,8 +176,7 @@ export const FavoritesBox = styled.button`
   right: 0;
   cursor: pointer;
   @media (max-width: 768px) {
-    top: 140px;
-    right: -7px;
+    right: -6px;
   }
 `;
 export const HeartSvgBox = styled(HeartSvg)`
@@ -184,6 +190,7 @@ export const Heart2SvgBox = styled(Heart2Svg)`
 
 export const TopBox = styled.div`
   width: 100%;
+  padding: 6%;
   display: flex;
   position: relative;
   @media (max-width: 768px) {
@@ -204,14 +211,24 @@ export const MedicineDetail = () => {
   const precautionsRef = useRef(null);
   const manualRef = useRef(null);
 
-  // params로 얻은 id로 의약품 상세 조회
+  // params로 얻은 id로 의약품 상세 조회, 즐겨찾기 여부 조회
   useEffect(() => {
     const medicineData = async () => {
+      // 해당 의약품 상세 조회
       const rsp = await SearchAxiosApi.searchId(medicineId, "id");
       // 해당 의약품에 대한 즐겨찾기 정보 조회하여 favorites에 저장
+      const rsp2 = await SearchAxiosApi.getLikes(
+        localStorage.getItem("memberId"),
+        medicineId
+      );
       if (rsp) {
         console.log("상세 조회 성공 : ", rsp.data.hits.hits[0]);
         setData(rsp.data.hits.hits[0].sourceAsMap);
+        if (rsp2.data) {
+          setFavorites(true);
+        } else {
+          setFavorites(false);
+        }
       }
     };
     medicineData();
@@ -219,45 +236,52 @@ export const MedicineDetail = () => {
 
   // 즐겨찾기
   const onClickFavorites = async () => {
-    console.log(localStorage.getItem("memberId"), medicineId);
-    // 현재 즐겨찾기 상태에 따른 조건문
-    if (favorites) {
-      // 즐겨찾기 이미 추가한 상태라면, 삭제하기
-      const rsp = await SearchAxiosApi.likesDelete(
-        localStorage.getItem("memberId"),
-        medicineId
-      );
-      if (rsp) {
-        alert("즐겨찾기가 삭제되었습니다.");
-        setFavorites(false);
-      } else {
-        alert(
-          "즐겨찾기 삭제가 정상적으로 처리되지 않았습니다. 관리자에게 문의해주세요."
+    // 로그인 되어 있으면 즐겨찾기 가능
+    if (localStorage.getItem("memberId")) {
+      // 현재 즐겨찾기 상태에 따른 조건문
+      if (favorites) {
+        // 즐겨찾기 이미 추가한 상태라면, 삭제하기
+        const rsp = await SearchAxiosApi.likesDelete(
+          localStorage.getItem("memberId"),
+          medicineId
         );
+        if (rsp) {
+          alert("즐겨찾기가 삭제되었습니다.");
+          setFavorites(false);
+        } else {
+          alert(
+            "즐겨찾기 삭제가 정상적으로 처리되지 않았습니다. 관리자에게 문의해주세요."
+          );
+        }
+      } else {
+        // 즐겨찾기 추가하지 않은 상태라면, 추가하기
+        const rsp = await SearchAxiosApi.likesAdd(
+          localStorage.getItem("memberId"),
+          medicineId
+        );
+        if (rsp) {
+          // 정상적으로 추가 됐다면 꽉찬 하트로 변경
+          alert("즐겨찾기가 추가되었습니다.");
+          setFavorites(true);
+        } else {
+          alert(
+            "즐겨찾기 추가가 정상적으로 처리되지 않았습니다. 관리자에게 문의해주세요."
+          );
+        }
       }
     } else {
-      // 즐겨찾기 추가하지 않은 상태라면, 추가하기
-      const rsp = await SearchAxiosApi.likesAdd(
-        localStorage.getItem("memberId"),
-        medicineId
-      );
-      if (rsp) {
-        // 정상적으로 추가 됐다면 꽉찬 하트로 변경
-        alert("즐겨찾기가 추가되었습니다.");
-        setFavorites(true);
-      } else {
-        alert(
-          "즐겨찾기 추가가 정상적으로 처리되지 않았습니다. 관리자에게 문의해주세요."
-        );
-      }
+      alert("로그인을 해주세요.");
+      // 추후에 모달로 대체
     }
   };
 
+  // 버튼 눌렀을 때 스크롤 되는 기능
   const handleScrollTo = (ref, elementId) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
     setActiveBtn(elementId);
   };
 
+  // 데이터 불러오지 못했을 때 -> 로딩화면으로 대체해야 함
   if (!data) {
     return <></>;
   }
@@ -272,15 +296,8 @@ export const MedicineDetail = () => {
               &nbsp;&nbsp;&gt;&nbsp; 의약품검색 &nbsp;&gt;&nbsp; 의약품 상세정보
             </p>
           </TitleBox>
-
           <DataBox>
             <TopBox>
-              <ImageBox>
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/hopeimage2.appspot.com/o/img_noimage.jpg?alt=media&token=883ba6ad-bc2e-4ec1-a7ff-5853bb377dcd"
-                  alt="이미지"
-                />
-              </ImageBox>
               <TextBox className="ver1">
                 <div className="item2">
                   <div className="title">제품 기본정보</div>
@@ -338,10 +355,22 @@ export const MedicineDetail = () => {
                   <div className="contents">{data.period}</div>
                 </div>
               </TextBox>
+              <ImageBox>
+                {/* <img
+                  src="https://firebasestorage.googleapis.com/v0/b/hopeimage2.appspot.com/o/img_noimage.jpg?alt=media&token=883ba6ad-bc2e-4ec1-a7ff-5853bb377dcd"
+                  alt="이미지"
+                /> */}
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/hopeimage-74788.appspot.com/o/img_195900043.jpg?alt=media&token=afe578c0-e3d0-480a-9be4-5fe5439787b9"
+                  alt="이미지"
+                />
+                <p>&lt;그림 1&gt;&nbsp;낱알 식별 이미지</p>
+              </ImageBox>
               <FavoritesBox onClick={() => onClickFavorites()}>
                 {favorites ? <HeartSvgBox /> : <Heart2SvgBox />}
               </FavoritesBox>
             </TopBox>
+
             <hr />
             <BottomBox>
               <TextBox className="ver2">
@@ -394,8 +423,8 @@ export const MedicineDetail = () => {
                   <div className="title2">주의사항</div>
                   <div className="contents">{data.precautions}</div>
                 </div>
-                <div className="item" ref={manualRef}>
-                  <div className="title">설명서</div>
+                <div className="item4" ref={manualRef}>
+                  <div className="title2">설명서</div>
                   {data.image === "-" ? (
                     <div className="contents">{data.image}</div>
                   ) : (

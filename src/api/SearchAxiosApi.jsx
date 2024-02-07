@@ -38,4 +38,17 @@ export const SearchAxiosApi = {
         `/medicine/likes/delete?memberId=${memberId}&documentId=${documentId}`
     );
   },
+
+  // 한 회원의 특정 의약품 즐겨찾기 여부 조회
+  getLikes: async (memberId, documentId) => {
+    console.log(memberId, documentId);
+    const data = {
+      memberId: memberId,
+      documentId: documentId,
+    };
+    return await axios.post(
+      Common.KH_DOMAIN + `/medicine/likes/getLikes`,
+      data
+    );
+  },
 };

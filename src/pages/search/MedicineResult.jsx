@@ -6,6 +6,7 @@ import ReactPaginate from "react-paginate";
 import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { NoResult } from "../../component/search/NoResult";
+import { ReactComponent as HomeSvg } from "../../images/home.svg";
 
 export const Container = styled.div`
   width: 100vw;
@@ -15,7 +16,7 @@ export const Container = styled.div`
     width: 100%;
   }
 `;
-export const TitleBox = styled.div`
+export const TopBox = styled.div`
   width: 100%;
   height: 200px;
   display: flex;
@@ -55,8 +56,8 @@ export const ListBox = styled.div`
 export const DetailBox = styled.button`
   width: 100%;
   // 한 칸의 크기 조절 가능
-  height: 130px;
-  margin: 3% 0;
+  height: 150px;
+  margin: 2% 0;
   padding: 0 3%;
 
   display: flex;
@@ -95,8 +96,24 @@ export const DetailBox = styled.button`
   }
   img {
     box-shadow: 1px 2px 5px 1px #e3e3e3;
-    width: 27%;
-    height: 100px;
+    width: 25%;
+    height: 120px;
+    @media (max-width: 768px) {
+      width: 40%;
+      height: 100px;
+    }
+  }
+`;
+export const TitleBox = styled.div`
+  width: 60%;
+  text-align: left;
+  .text1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--NAVY);
+  }
+  .text2 {
+    margin: 20px 0;
   }
 `;
 
@@ -223,7 +240,7 @@ export const MedicineResult = () => {
   return (
     <>
       <Container>
-        <TitleBox>
+        <TopBox>
           <TitleText>알고 싶은 의약품을 검색해보세요!</TitleText>
           <SearchBox>
             <StyledSearch
@@ -232,16 +249,23 @@ export const MedicineResult = () => {
               rspSearchOption={searchOptionParam}
             ></StyledSearch>
           </SearchBox>
-        </TitleBox>
+        </TopBox>
         {dataList.length === 0 ? (
           <NoResult keyword={search}></NoResult>
         ) : (
           <ResultList>
+            <TitleBox>
+              <p className="text1">'{search}' 검색 결과</p>
+              <p className="text2">
+                <HomeSvg />
+                &nbsp;&nbsp;&gt;&nbsp; 의약품검색
+              </p>
+            </TitleBox>
             <ListBox>
               {dataList.map((data) => (
                 <DetailBox key={data.id} onClick={() => onClickBtn(data.id)}>
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/hopeimage2.appspot.com/o/img_noimage.jpg?alt=media&token=883ba6ad-bc2e-4ec1-a7ff-5853bb377dcd"
+                    src="https://firebasestorage.googleapis.com/v0/b/hopeimage-74788.appspot.com/o/img_195900043.jpg?alt=media&token=afe578c0-e3d0-480a-9be4-5fe5439787b9"
                     alt="이미지"
                   />
                   <div className="Box">
@@ -249,7 +273,7 @@ export const MedicineResult = () => {
                       <p className="box2">제품명</p>
                       <p className="box3"> {data.sourceAsMap.name}</p>
                     </div>
-                    <div className="box1">
+                    <div className="box2">
                       <p className="box2">제조사명</p>
                       <p className="box3"> {data.sourceAsMap.company}</p>
                     </div>
