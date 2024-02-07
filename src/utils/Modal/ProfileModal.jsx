@@ -56,9 +56,10 @@ const ProfileItem = styled.img`
   height: 5vh;
 `;
 
-export const ProfileModal = ({ onImageSelect }) => {
+export const ProfileModal = ({ memberId, onImageSelect }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [profile, setProfile] = useState("");
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -67,10 +68,17 @@ export const ProfileModal = ({ onImageSelect }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  const handleImageSelect = (imageName) => {
+  const handleImageSelect = async (imageName) => {
     setSelectedImage(imageName);
-    onImageSelect(imageName);
+    onImageSelect(imageName, memberId);
+    console.log("모달 데이터 확인", memberId);
+    // 선택된 프로필 이미지 이름을 서버로 전송하여 업데이트
+    try {
+      await MyPageAxiosApi.memberUpdate(memberId, imageName);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      // 에러 처리 로직 추가
+    }
     closeModal();
   };
 

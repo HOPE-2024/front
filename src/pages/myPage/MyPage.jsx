@@ -5,13 +5,20 @@ import {
   MyPageLineCon,
   Line,
   ProfileCon,
+  TextCon,
   EditButton,
 } from "../../css/myPage/MyPageCss";
 import { ProfileModal } from "../../utils/modal/ProfileModal";
 import { useEffect, useState } from "react";
 import { MemberAxiosApi } from "../../api/MemberAxiosApi";
+import styled from "styled-components";
+
+const Profile = styled.img`
+  height: 5vh;
+`;
 
 export const MyPage = () => {
+  const [memberId, setMemberId] = useState("");
   const { email } = useParams();
   const [member, setMember] = useState("");
   const [isCurrentMember, setIsCurrentMember] = useState(false);
@@ -20,16 +27,29 @@ export const MyPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const memberInfo = async () => {
-      const rsp = await MemberAxiosApi.memberGetOne();
-      console.log("멤버 데이터 : ", rsp.data);
-      if (rsp.status === 200) {
-        setMember(rsp.data);
+    const fetchData = async () => {
+      try {
+        const memberRsp = await MemberAxiosApi.memberGetOne(); // 멤버 데이터 요청
+        const memberId = memberRsp.data.memberId;
+        setMemberId(memberId);
+
+        const memberProfileRsp = await MyPageAxiosApi.memberInfo(memberId); // 멤버 프로필 데이터 요청
+
+        console.log("멤버 데이터:", memberId);
+        console.log("멤버 프로필 데이터:", memberProfileRsp.data);
+
+        if (memberRsp.status === 200) {
+          setMember(memberProfileRsp.data);
+        }
+        setIsCurrentMember(true);
+      } catch (error) {
+        console.error("멤버 정보 요청 오류:", error);
+        // 오류 처리 로직 추가
       }
-      setIsCurrentMember(true);
     };
-    memberInfo();
-  }, [email]);
+
+    fetchData();
+  }, []);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -57,17 +77,20 @@ export const MyPage = () => {
           )}
           {isModalOpen && (
             <ProfileModal
-              memberId={member.id}
+              memberId={memberId}
               closeModal={closeModal}
               onImageSelect={handleImageSelect}
             />
           )}
-          <>프로필 : {}</>
-          <>닉네임 : {member.nickName}</>
+          <Profile
+            src={`/images/profile/${member.profile}.png`}
+            alt="Profile"
+          />
+          <TextCon>닉네임 : {member.nickName}</TextCon>
         </ProfileCon>
         <Line />
-        <>키 : </>
-        <>몸무게 : </>
+        <TextCon>키 : </TextCon>
+        <TextCon>몸무게 : </TextCon>
       </MyPageLineCon>
     </MyPageCon>
   );

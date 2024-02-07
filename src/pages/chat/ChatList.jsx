@@ -9,6 +9,8 @@ import {
   ChatRoom,
   ChatName,
   ChatDate,
+  ChatCategory,
+  ChatInfoCon,
 } from "../../css/chat/AreaSickListCss";
 import { LineButton } from "../../component/common/LineButton";
 import { formatDate } from "../../utils/Common";
@@ -22,19 +24,26 @@ export const ChatList = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [chatRoomTitle, setChatRoomTitle] = useState("");
   const [isTitle, setIsTitle] = useState("");
+  const [selectedButton, setSelectedButton] = useState(null);
   const navigate = useNavigate();
 
-  //중복선택 불가
-  const handleListClick = (item) => {
-    // 이미 선택된 항목인 경우 아무 작업도 하지 않음
+  // 버튼 클릭 핸들러
+  const handleListClick = (item, index) => {
+    // 이미 선택된 항목이라면 선택 해제하고 상태 업데이트
     if (selectedItems.includes(item)) {
-      return;
+      setSelectedItems(
+        selectedItems.filter((selectedItem) => selectedItem !== item)
+      );
+      setSelectedButton(null); // 선택된 버튼 상태 업데이트
+    } else {
+      // 중복 선택 방지
+      if (selectedItems.length === 1) return;
+
+      // 새로운 항목 선택
+      setSelectedItems([item]);
+      setSelectedButton(index); // 선택된 버튼 상태 업데이트
     }
-
-    // 현재 선택된 항목 추가
-    setSelectedItems([item]);
   };
-
   const openModal = () => {
     setModalOpen(true);
   };
@@ -71,10 +80,10 @@ export const ChatList = () => {
         alert(
           "error : 채팅방 목록을 불러오지 못했습니다. 이전 페이지로 이동합니다."
         );
-        // navigate(-1);
+        navigate(-1);
       }
     };
-    const intervalID = setInterval(getChatRoom, 1000);
+    const intervalID = setInterval(getChatRoom, 2000);
     return () => {
       clearInterval(intervalID);
     };
@@ -83,6 +92,11 @@ export const ChatList = () => {
   const enterChatRoom = (roomId) => {
     navigate(`/chatroom/${roomId}`);
   };
+
+  const filteredChatRooms =
+    selectedItems.length === 0
+      ? chatRooms
+      : chatRooms.filter((room) => selectedItems.includes(room.category));
 
   return (
     <>
@@ -93,6 +107,7 @@ export const ChatList = () => {
               key={index}
               onClick={() => handleListClick(item)}
               className={`${selectedItems.includes(item) ? "clicked" : ""}`}
+              selected={selectedButton === index} // 선택된 버튼인지 확인`}
             >
               {item}
             </LineButton>
@@ -100,13 +115,16 @@ export const ChatList = () => {
         </InLineLeft>
         <InLineRight>
           <ChatCon>
-            {chatRooms.map((room) => (
+            {filteredChatRooms.map((room) => (
               <ChatRoom
                 key={room.roomId}
                 onClick={() => enterChatRoom(room.roomId)}
               >
                 <ChatName>{room.name}</ChatName>
-                <ChatDate>{formatDate(room.createdAt)}</ChatDate>
+                <ChatInfoCon>
+                  <ChatCategory>{room.category}</ChatCategory>
+                  <ChatDate>{formatDate(room.regDate)}</ChatDate>
+                </ChatInfoCon>
               </ChatRoom>
             ))}
           </ChatCon>

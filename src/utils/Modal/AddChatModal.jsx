@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChatAxiosApi } from "../../api/ChatAixosApi";
+import { SickList } from "../../css/chat/AreaSickListCss";
 
 const ModalClickCss = styled.div`
   position: absolute;
@@ -54,11 +55,25 @@ const Button = styled.div`
 `;
 
 const InputField = styled.input`
-  width: 90%;
+  width: 100%;
   margin-top: 1vh;
   padding: 1vh;
   border: 1px solid #ccc;
   border-radius: 4px;
+`;
+
+const Select = styled.select`
+  width: 40%;
+  margin-top: 1vh;
+  padding: 1vh;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+const TitleCon = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
 `;
 
 export const AddChatModal = ({
@@ -72,6 +87,7 @@ export const AddChatModal = ({
   type,
 }) => {
   const [inputValue, setInputValue] = useState(""); // 추가: 입력값을 상태로 관리
+  const [selectedSick, setSelectedSick] = useState("");
   const navigate = useNavigate();
 
   // 모달 바깥 부분 클릭 시,
@@ -87,10 +103,14 @@ export const AddChatModal = ({
       alert("채팅방 제목을 입력하세요.");
       return;
     }
+    if (selectedSick === "") {
+      alert("질병을 선택하세요.");
+      return;
+    }
 
     onSubmit(inputValue);
 
-    ChatAxiosApi.freeChatCreate(inputValue)
+    ChatAxiosApi.freeChatCreate(inputValue, selectedSick)
       .then((response) => {
         console.log("채팅방 생성 성공");
         navigate(0);
@@ -104,7 +124,8 @@ export const AddChatModal = ({
 
   // 취소
   const closeClick = () => {
-    setInputValue(""); // 모달이 닫힐 때 입력값 초기화
+    setInputValue("");
+    setSelectedSick(""); // 모달이 닫힐 때 입력값 초기화
     setModalOpen(false);
   };
 
@@ -115,12 +136,25 @@ export const AddChatModal = ({
           <ModalWrapper ModalWrapper onClick={modalClick}>
             <Message>
               <p>{checkMmessage}</p>
-              <InputField
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder={checkInput}
-              />
+              <TitleCon>
+                <Select
+                  value={selectedSick}
+                  onChange={(e) => setSelectedSick(e.target.value)}
+                >
+                  <option value="">질병 선택</option>
+                  {SickList.map((sick, index) => (
+                    <option key={index} value={sick}>
+                      {sick}
+                    </option>
+                  ))}
+                </Select>
+                <InputField
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder={checkInput}
+                />
+              </TitleCon>
               <Button>
                 <button onClick={CheckClick}>확인</button>
                 <button onClick={closeClick}>취소</button>

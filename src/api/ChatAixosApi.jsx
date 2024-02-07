@@ -19,9 +19,11 @@ export const ChatAxiosApi = {
   },
 
   // 채팅방 생성 (postId 없음)
-  freeChatCreate: async (name) => {
+  freeChatCreate: async (name, category) => {
+    console.log("채팅방 만들러 서버간다", name, category);
     const chat = {
       name: name,
+      category: category,
     };
     return await axios.post(Common.KH_DOMAIN + "/chat/new", chat);
   },
@@ -57,10 +59,5 @@ export const ChatAxiosApi = {
     return await axios.get(
       Common.KH_DOMAIN + `/chat/all/count?page=${page}&size=${size}`
     );
-  },
-
-  // 채팅방 참여자 목록 가져오기
-  getChatMembers: async (roomId) => {
-    return await axios.get(Common.KH_DOMAIN + `/chat/members/${roomId}`);
   },
 };

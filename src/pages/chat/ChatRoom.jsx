@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import {
   ChatRoomContainer,
   RoomJoiners,
@@ -12,7 +11,11 @@ import {
   InputCon,
   Input,
   SendBtn,
+  ChatTitleCon,
+  MsgTextCon,
+  MsgProfile,
   MsgCon,
+  ChatInner,
 } from "../../css/chat/ChatRoomCss";
 import { KH_SOCKET_URL } from "../../utils/Common";
 import { ChatAxiosApi } from "../../api/ChatAixosApi";
@@ -26,6 +29,7 @@ export const ChatRoom = () => {
   const [inputMsg, setInputMsg] = useState("");
   const [chatList, setChatList] = useState([]);
   const [chatMember, setChatMember] = useState([]);
+  const [profile, setProfile] = useState("");
   const ws = useRef(null);
   const navigate = useNavigate(); // useNavigate 훅 추가
 
@@ -50,6 +54,7 @@ export const ChatRoom = () => {
             roomId: roomId,
             sender: sender,
             msg: inputMsg,
+            profile: profile,
           })
         );
         setInputMsg("");
@@ -81,38 +86,14 @@ export const ChatRoom = () => {
     }
   };
 
-  const updateChatParticipants = async () => {
-    try {
-      const response = await ChatAxiosApi.getChatMembers(roomId);
-      console.log("채팅 참여자 가져오기 : ", response.data);
-      setChatMember(response.data);
-    } catch (error) {
-      console.error("채팅방 참여자 목록을 가져오지 못했습니다.", error);
-    }
-  };
-
-  useEffect(() => {
-    // 컴포넌트가 처음 마운트될 때 채팅방 참여자 목록을 가져오기
-    updateChatParticipants();
-
-    // 3초마다 채팅방 참여자 목록 업데이트
-    const intervalId = setInterval(() => {
-      updateChatParticipants();
-    }, 3000);
-
-    // 컴포넌트가 언마운트될 때 clearInterval을 호출하여 타이머 중지
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [roomId]);
-
   useEffect(() => {
     // 이메일로 회원 닉네임 가져와서 sender에 저장
     const getMember = async () => {
       try {
         const rsp = await MyPageAxiosApi.memberInfo(localStorage.memberId);
-        console.log("멤버 데이터 들어옴? : ", rsp.data);
+        console.log("멤버 데이터 들어옴? : ", rsp.data.profile);
         setSender(rsp.data.nickName);
+        setProfile(rsp.data.profile);
       } catch (error) {
         alert(
           "error : 회원 닉네임을 불러오지 못했습니다. 이전 페이지로 이동합니다."
@@ -160,6 +141,7 @@ export const ChatRoom = () => {
           type: "ENTER",
           roomId: roomId,
           sender: sender,
+          profile: profile,
           msg: "처음으로 접속 합니다.",
         })
       );
@@ -177,6 +159,7 @@ export const ChatRoom = () => {
           type: "CLOSE",
           roomId: roomId,
           sender: sender,
+          profile: profile,
           msg: "종료 합니다.",
         })
       );
@@ -192,25 +175,42 @@ export const ChatRoom = () => {
   }, [chatList]);
 
   return (
-    <>
-      <ChatRoomContainer>
+    <ChatRoomContainer>
+      <ChatInner>
         <RoomJoiners>
-          채팅방 참여자 :{" "}
+          채팅방 참여자
           {chatMember.map((member, index) => (
             <span key={index}>{member}</span>
           ))}
         </RoomJoiners>
         <RoomChat>
-          <ChatTitle>&lt; {roomName} &gt;</ChatTitle>
+          <ChatTitleCon>
+            <ChatTitle> {roomName} </ChatTitle>
+          </ChatTitleCon>
           <MsgCon ref={chatConRef}>
-            {chatList.map((chat, index) => (
-              <MsgBox Key={index} inSender={chat.sender === sender}>
-                <MsgSender
-                  isSender={chat.sender === sender}
-                >{`${chat.sender}`}</MsgSender>
-                <Msg>{`${chat.msg}`}</Msg>
-              </MsgBox>
-            ))}
+            {chatList.map((chat, index) => {
+              if (chat.type !== "ENTER" && chat.type !== "CLOSE") {
+                // 입장 및 퇴장 메시지가 아닌 경우에만 출력
+                return (
+                  <MsgBox key={index} isSender={chat.sender === sender}>
+                    <MsgProfile
+                      isSender={chat.sender === sender}
+                      src={`/images/profile/${chat.profile || "Ellipse3"}.png`}
+                      alt="Profile"
+                    />
+                    <MsgTextCon>
+                      <MsgSender isSender={chat.sender === sender}>
+                        {`${chat.sender}`}
+                      </MsgSender>
+                      <Msg isSender={chat.sender === sender}>
+                        {`${chat.msg}`}
+                      </Msg>
+                    </MsgTextCon>
+                  </MsgBox>
+                );
+              }
+              return null; // 입장 및 퇴장 메시지인 경우에는 null 반환하여 렌더링하지 않음
+            })}
           </MsgCon>
           <InputCon>
             <Input
@@ -219,10 +219,10 @@ export const ChatRoom = () => {
               onChange={onChangMsg}
               onKeyUp={onEnterKey}
             />
-            <SendBtn onClick={onClickMsgSend}> 전송 </SendBtn>
+            <SendBtn onClick={onClickMsgSend}>전송</SendBtn>
           </InputCon>
         </RoomChat>
-      </ChatRoomContainer>
-    </>
+      </ChatInner>
+    </ChatRoomContainer>
   );
 };
