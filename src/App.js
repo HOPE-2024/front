@@ -33,6 +33,7 @@ import { StartFindPw } from "./pages/member/StartFindPw";
 import { MedicineDetail } from "./pages/search/MedicineDetail";
 import { EffectModal } from "./utils/modal/EffectModal";
 import { PwReset } from "./pages/member/PwReset";
+import { MyCalender } from "./pages/myCalender/MyCalender";
 
 function App() {
   return (
@@ -71,8 +72,8 @@ function App() {
               <Route path="/DiabResult" element={<DiabResult />} />
               <Route path="/FaceResult" element={<FaceResult />} />
               <Route path="/CountryResult" element={<CountryResult />} />
-              <Route path="/MedicineResult" element={<MedicineResult />} />
               <Route path="/medicineresult" element={<MedicineResult />} />
+              <Route path="/MyCalender" element={<MyCalender />} />
               <Route
                 path="/medicinedetail/:medicineId"
                 element={<MedicineDetail />}
