@@ -54,6 +54,9 @@ export const DiabResultSlide = ({
     <SlideListContent style={{ backgroundColor: "none" }}>
       <p>당뇨병에 관련된 최신 뉴스기사를 크롤링하여 출력</p>
     </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <p>당뇨병 채팅방 목록 출력</p>
+    </SlideListContent>,
   ];
 
   // 현재 활성화된 이미지의 인덱스

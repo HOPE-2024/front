@@ -10,6 +10,7 @@ import {
   Cell,
 } from "recharts";
 import styled from "styled-components";
+import { TypeWriter } from "../../../css/text/TypeWriter";
 
 const Wrapper = styled.div`
   width: 40vw;
@@ -81,9 +82,11 @@ export const ScatterGraph = ({ correlation_x, correlation_y }) => {
         </ResponsiveContainer>
       </Wrapper>
       <Description>
-        이 그래프는 예측값과 실제값의 상관계수를 나타냅니다. 그래프의 점들이
-        선형 구조에 가까울수록 랜덤 포레스트 모델의 평가가 좋다는 것을
-        의미합니다.
+        <TypeWriter
+          beforeText="이 그래프는 예측값과 실제값의 상관계수를 나타냅니다. 그래프의 점들이
+          선형 구조에 가까울수록 랜덤 포레스트 모델의 평가가 좋다는 것을
+          의미합니다."
+        ></TypeWriter>
       </Description>
     </>
   );

@@ -31,7 +31,11 @@ const Special = styled.span`
   }
 `;
 
-export const TypeWriter = ({ beforeText, emphasizedText, afterText }) => {
+export const TypeWriter = ({
+  beforeText = "",
+  emphasizedText = "",
+  afterText = "",
+}) => {
   return (
     <>
       {/* 전체 타이핑 딜레이 */}
