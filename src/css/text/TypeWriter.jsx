@@ -2,10 +2,10 @@ import Typist from "react-typist";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  width: 40vw;
-  height: 30vh;
+  width: ${(props) => props.width || "40vw"};
+  height: ${(props) => props.height || "30vh"};
   position: relative;
-  font-size: 35px;
+  font-size: ${(props) => props.font || "35px"};
   line-height: 60px;
 
   @media (max-width: 1200px) {
