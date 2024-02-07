@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import addChat from "../../images/chat/addChat.svg";
 
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 export const ChatListOutLine = styled.div`
   background-color: rgba(255, 255, 255, 0.8);
   color: var(--BLACK);

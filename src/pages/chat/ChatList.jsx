@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {
+  Container,
   InLineLeft,
   InLineRight,
   ChatListOutLine,
@@ -100,46 +101,48 @@ export const ChatList = () => {
 
   return (
     <>
-      <ChatListOutLine>
-        <InLineLeft>
-          {SickList.map((item, index) => (
-            <LineButton
-              key={index}
-              onClick={() => handleListClick(item)}
-              className={`${selectedItems.includes(item) ? "clicked" : ""}`}
-              selected={selectedButton === index} // 선택된 버튼인지 확인`}
-            >
-              {item}
-            </LineButton>
-          ))}
-        </InLineLeft>
-        <InLineRight>
-          <ChatCon>
-            {filteredChatRooms.map((room) => (
-              <ChatRoom
-                key={room.roomId}
-                onClick={() => enterChatRoom(room.roomId)}
+      <Container>
+        <ChatListOutLine>
+          <InLineLeft>
+            {SickList.map((item, index) => (
+              <LineButton
+                key={index}
+                onClick={() => handleListClick(item)}
+                className={`${selectedItems.includes(item) ? "clicked" : ""}`}
+                selected={selectedButton === index} // 선택된 버튼인지 확인`}
               >
-                <ChatName>{room.name}</ChatName>
-                <ChatInfoCon>
-                  <ChatCategory>{room.category}</ChatCategory>
-                  <ChatDate>{formatDate(room.regDate)}</ChatDate>
-                </ChatInfoCon>
-              </ChatRoom>
+                {item}
+              </LineButton>
             ))}
-          </ChatCon>
-          <AddChatListStyled onClick={openModal} />
-          <AddChatModal
-            value={chatRoomTitle}
-            modalOpen={modalOpen}
-            setModalOpen={closeModal}
-            onSubmit={onSubmitModal}
-            checkMmessage="채팅방 제목"
-            checkInput="채팅방 제목을 입력하세요"
-            type="input"
-          ></AddChatModal>
-        </InLineRight>
-      </ChatListOutLine>
+          </InLineLeft>
+          <InLineRight>
+            <ChatCon>
+              {filteredChatRooms.map((room) => (
+                <ChatRoom
+                  key={room.roomId}
+                  onClick={() => enterChatRoom(room.roomId)}
+                >
+                  <ChatName>{room.name}</ChatName>
+                  <ChatInfoCon>
+                    <ChatCategory>{room.category}</ChatCategory>
+                    <ChatDate>{formatDate(room.regDate)}</ChatDate>
+                  </ChatInfoCon>
+                </ChatRoom>
+              ))}
+            </ChatCon>
+            <AddChatListStyled onClick={openModal} />
+            <AddChatModal
+              value={chatRoomTitle}
+              modalOpen={modalOpen}
+              setModalOpen={closeModal}
+              onSubmit={onSubmitModal}
+              checkMmessage="채팅방 제목"
+              checkInput="채팅방 제목을 입력하세요"
+              type="input"
+            ></AddChatModal>
+          </InLineRight>
+        </ChatListOutLine>
+      </Container>
     </>
   );
 };

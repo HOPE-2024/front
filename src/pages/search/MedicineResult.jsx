@@ -273,7 +273,7 @@ export const MedicineResult = () => {
                       <p className="box2">제품명</p>
                       <p className="box3"> {data.sourceAsMap.name}</p>
                     </div>
-                    <div className="box2">
+                    <div className="box1">
                       <p className="box2">제조사명</p>
                       <p className="box3"> {data.sourceAsMap.company}</p>
                     </div>
