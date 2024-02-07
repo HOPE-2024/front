@@ -139,7 +139,7 @@ export const ThirdDropDown = ({ onClose }) => {
       </li>
       <li
         onClick={() => {
-          navigate("/Query");
+          navigate("/Query/write");
         }}
       >
         고객 지원
