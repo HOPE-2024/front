@@ -137,3 +137,15 @@ export const SendBtn = styled.button`
     outline: none;
   }
 `;
+
+export const ReportBox = styled.button`
+  border-radius: 2px;
+  border: 0;
+  padding: 4px 8px;
+  background-color: var(--NAVY);
+  color: white;
+  display: block;
+  position: absolute;
+  z-index: 1;
+  left: "100%";
+`;

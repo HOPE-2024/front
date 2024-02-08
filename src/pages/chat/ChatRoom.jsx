@@ -16,6 +16,7 @@ import {
   MsgProfile,
   MsgCon,
   ChatInner,
+  ReportBox,
 } from "../../css/chat/ChatRoomCss";
 import { KH_SOCKET_URL } from "../../utils/Common";
 import { ChatAxiosApi } from "../../api/ChatAixosApi";
@@ -37,10 +38,20 @@ export const ChatRoom = () => {
   const [selectedProfile, setSelectedProfile] = useState(null); // 선택된 프로필 정보 추가
 
   // MsgProfile 컴포넌트에서 오른쪽 마우스 클릭 이벤트 핸들러
-  const handleRightClick = (profile) => (e) => {
+  const handleRightClick = (sender) => (e) => {
     e.preventDefault();
-    setSelectedProfile(profile); // 선택된 프로필 정보 설정
+    setSelectedProfile(sender); // 선택된 프로필 정보 설정
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.display = "block";
+    contextMenu.style.top = `${e.clientY}px`;
+    contextMenu.style.left = `${e.clientX}px`;
+  };
+
+  // 우클릭 메뉴 구성 및 신고하기 옵션 클릭 핸들러
+  const handleReportClick = () => {
     setReportModalOpen(true); // 신고하기 모달 열기
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.display = "none"; // 우클릭 메뉴 닫기
   };
 
   const onChangMsg = (e) => {
@@ -207,7 +218,7 @@ export const ChatRoom = () => {
                       isSender={chat.sender === sender}
                       src={`/images/profile/${chat.profile || "Ellipse3"}.png`}
                       alt="Profile"
-                      onContextMenu={handleRightClick(chat.profile)}
+                      onContextMenu={handleRightClick(chat.sender)}
                     />
                     <MsgTextCon>
                       <MsgSender isSender={chat.sender === sender}>
@@ -240,6 +251,16 @@ export const ChatRoom = () => {
         member={selectedProfile} // 선택된 프로필 정보 전달
         type="채팅"
       />
+      <ReportBox id="contextMenu" style={{ display: "none" }}>
+        <div
+          style={{
+            color: "white",
+          }}
+          onClick={handleReportClick}
+        >
+          신고하기
+        </div>
+      </ReportBox>
     </ChatRoomContainer>
   );
 };
