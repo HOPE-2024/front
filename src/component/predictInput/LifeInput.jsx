@@ -242,6 +242,8 @@ export const LifeInput = () => {
           correlation: response.data.correlation,
           correlation_x: response.data.correlation_x,
           correlation_y: response.data.correlation_y,
+          bmi: response.data.bmi,
+          alcohol: response.data.alcohol,
         },
       });
     } catch (error) {

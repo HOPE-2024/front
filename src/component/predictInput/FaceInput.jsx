@@ -18,6 +18,9 @@ export const FaceInput = () => {
 
     try {
       const response = await MachineAxiosApi.predictFace(formData);
+      console.log(
+        "FaceInput response : " + JSON.stringify(response.data.results[2])
+      );
 
       navigate("/FaceResult", {
         state: {

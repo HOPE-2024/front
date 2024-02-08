@@ -11,7 +11,7 @@ export const All = styled.nav`
   right: 18vw;
   top: 2vh;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     display: none;
   }
 

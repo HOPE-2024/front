@@ -9,18 +9,55 @@ const Wrapper = styled.div`
   line-height: ${(props) => props.lineHeight || "60px"};
 
   @media (max-width: 1200px) {
-    width: ${(props) => props.mWidth || "30vw"};
-    height: ${(props) => props.mHeight || "25vh"};
-    font-size: 28px;
+    width: 50vw;
+    height: 30vh;
+    font-size: 30px;
     line-height: 40px;
+  }
+
+  @media (max-width: 600px) {
+    width: 60vw;
+    height: 30vh;
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  @media (max-height: 900px) {
+    width: 60vw;
+    height: 20vh;
+    font-size: 35px;
+    line-height: 40px;
+  }
+
+  @media (max-width: 500px) {
+    @media (max-height: 1000px) {
+      width: 60vw;
+      height: 60vh;
+      font-size: 28px;
+      line-height: 40px;
+    }
+
+    @media (max-height: 800px) {
+      font-size: 24px;
+      line-height: 40px;
+    }
+
+    @media (max-width: 300px) {
+      width: 60vw;
+      height: 50vh;
+      font-size: 16px;
+      line-height: 30px;
+    }
   }
 `;
 
 const Normal = styled.span`
+  /* font-family: "DungGeunMo", sans-serif; */
   color: black;
 `;
 
 const Special = styled.span`
+  /* font-family: "DungGeunMo", sans-serif; */
   font-weight: bold;
   color: #3c84f8;
   font-size: 50px;

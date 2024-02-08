@@ -2,7 +2,15 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
-        ${reset}
+  ${reset}
+
+  @font-face {
+     font-family: 'DungGeunMo';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+  }
+
   :root {
     --BLUE : #136CFB ;  
     --SKY : #3C84F8 ;
@@ -11,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     --BLACK : #333;
     --WHITE : #fff;
   }
+
   * {
     box-sizing: border-box;
   }
@@ -31,19 +40,24 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans KR', sans-serif;
     color: #333333;
   }
+
   h2 {
     font-size: 2.2em;
   }
+
   h3 {
     font-size: 1.6em;
   }
+
   .container {
     max-width: 1280px;
     margin: 0 auto;
+
     @media only screen and (max-width:1280px){
       padding: 0 20px;
     }
   }
+
   @media only screen and (max-width:768px) {
     body {
       font-size: 12px;
@@ -53,7 +67,5 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
     }
   }
-  
-
 `;
 export default GlobalStyle;
