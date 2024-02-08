@@ -8,7 +8,7 @@ import { AdminAxiosApi } from "../../api/AdminAxiosApi";
 import { Reply } from "../../component/admin/Reply";
 import { MemberListCss } from "../../css/admin/Report";
 const QueryViewCss = styled.div`
-  width: 60vw;
+  width: 100%;
   margin: 0 auto;
   height: 100%;
   margin-top: 40px;
@@ -24,7 +24,7 @@ const QueryViewCss = styled.div`
   }
 
   .info{
-    width: 70%;
+    width: 100%;
     border: 2px solid  #3C84F8;
     background: white;    
     border-radius: 10px;
@@ -53,7 +53,7 @@ const QueryViewCss = styled.div`
     align-items: center;
 
     ul{
-      width: 70%;
+      width:100%;
       margin-top: 10px;
       border: 2px solid  #3C84F8;    
       background: white;    

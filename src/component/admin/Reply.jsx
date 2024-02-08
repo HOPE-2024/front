@@ -21,7 +21,8 @@ const ReplyCss = styled.div`
         display: flex;
        justify-content: center;
 
-    }
+    }    
+ 
     .content2{
         margin: 0;
         width: 100%;  
@@ -37,8 +38,8 @@ const ReplyCss = styled.div`
   .output{
     width: 100%; 
     height: auto;
-    border: 2px solid #023b96;
-    border-top: 2px solid #023b96;
+    /* border: 2px solid #023b96; */
+
     background: rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
@@ -47,13 +48,13 @@ const ReplyCss = styled.div`
     line-height :30px ;
     ul{
           display: flex;
-          border: 2px solid #023b96;
+          border: 2px solid #adadad ;
           flex-direction: column;
           margin: 10px 0;
           border-radius: 10px;
           height: auto;
           padding-bottom: 5px;
-          width: 80%;         
+          width: 100%;         
         li{
           width: 100%;
         }
@@ -65,6 +66,7 @@ const ReplyCss = styled.div`
         input{
            width: 100%;
         }
+   
         .info{
             width: auto;     
          display: flex;
@@ -73,11 +75,14 @@ const ReplyCss = styled.div`
          .delete{
             width: 50px;     
             height: 30px;
-            border: 2px solid #023b96;
+            border: 2px solid  #adadad ;
             display: flex;
             justify-content: center;
             margin-left: 10px;       
             font-size  : 12px ;
+         }
+      :hover{
+            border: 2px solid #023b96; 
          }
     }
     }
@@ -88,8 +93,11 @@ const ReplyCss = styled.div`
 
 const InputBox = styled.textarea`
  width: 70%;
- height: 100%;
-
+ height: 50%;
+ padding: 10px;
+ &:hover  {
+      border: 3px #023b96 solid;
+    }
 `;
 
 
@@ -145,7 +153,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
         } catch (error) {
             console.log(error);
         }
-        refresh();
+
     };
     const updateSubmit = (id) => {
         const ReplyDto = {
@@ -195,7 +203,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
                 ))}
 
             </div>
-            <div className="input">
+            {/* <div className="input">
                 <div className="content1" style={{ borderBottom: "none" }}>
                     <InputBox placeholder="댓글" value={data} onChange={(e) => { setData(e.target.value) }} />
                 </div>
@@ -211,7 +219,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
                     }
                     <Button children={"문의 글 삭제"} clickEvt={submit2}></Button>
                 </div>
-            </div>
+            </div> */}
         </ReplyCss>
     );
 };
