@@ -8,13 +8,14 @@ export const Container = styled.div`
 `;
 
 export const ChatListOutLine = styled.div`
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #136cfb35;
+  border-radius: 12px;
   color: var(--BLACK);
   display: flex;
   justify-content: center;
-  width: 95vh;
+  width: 80%;
   height: 75vh;
-  border-radius: 4px;
+  border-radius: 12px;
 `;
 
 export const ChatCon = styled.div`
@@ -43,13 +44,13 @@ export const ChatRoom = styled.li`
 `;
 
 export const ChatName = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.2em;
   margin: 0 0 10px 0;
   color: #444;
 `;
 
 export const ChatCategory = styled.p`
-  font-size: 0.6rem;
+  font-size: 0.6em;
   color: #aaaaaa;
   margin: 0;
 `;
@@ -61,7 +62,7 @@ export const ChatInfoCon = styled.div`
 `;
 
 export const ChatDate = styled.p`
-  font-size: 0.6rem;
+  font-size: 0.6em;
   color: #aaaaaa;
   margin: 0;
   text-align: right;
@@ -69,25 +70,40 @@ export const ChatDate = styled.p`
 
 export const InLineLeft = styled.div`
   color: var(--BLACK);
-  gap: 0.5em;
+  /* gap: 1em; */
   font-size: 2vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  width: 20%;
+  margin: 2% 2% 2% 2%;
+`;
+
+export const ChatListCon = styled.div`
+  display: flex;
   justify-content: center;
-  width: 30%;
-  border: 2px solid var(--BLACK);
-  border-radius: 4px;
-  margin: 2% 0 2% 2%;
+  align-items: center;
+  background-color: var(--NAVY);
+  margin-bottom: 0.5vh;
+  padding: 0.5em;
+  width: 100%;
+  font-size: 2vh;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 `;
 
 export const InLineRight = styled.div`
+  background-color: white;
   color: var(--BLACK);
-  width: 70%;
-  border: 2px solid var(--BLACK);
-  border-radius: 4px;
+  width: 80%;
+  border-radius: 10px;
   margin: 2% 2% 2% 2%;
   position: relative;
+  padding: 2vh;
 `;
 
 export const AddChatListStyled = styled.img.attrs({

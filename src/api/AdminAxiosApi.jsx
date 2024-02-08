@@ -45,6 +45,12 @@ export const AdminAxiosApi = {
     return await Instance.post(Common.KH_DOMAIN + `/admin/active`, memberResDto);
   },
 
+  //신고 하기
+  insertReport: async (reportDto) => {
+    return await Instance.post(Common.KH_DOMAIN + `/admin/insertReport`, reportDto);
+  },
+
+
   //신고 상태 변경
   UpdateReportActive: async (ReportDto) => {
     return await Instance.post(Common.KH_DOMAIN + `/admin/ReportActive`, ReportDto);
@@ -261,7 +267,11 @@ export const AdminAxiosApi = {
   },
 
 
-
-
+  //자주하는 질문 가져오기
+  oftenQuery: async () => {
+    return await axios.get(
+      Common.KH_DOMAIN + `/admin/oftenQuery`, {}
+    );
+  },
 
 };

@@ -11,6 +11,7 @@ import {
   ChatName,
   ChatDate,
   ChatCategory,
+  ChatListCon,
   ChatInfoCon,
 } from "../../css/chat/AreaSickListCss";
 import { LineButton } from "../../component/common/LineButton";
@@ -30,12 +31,12 @@ export const ChatList = () => {
 
   // 버튼 클릭 핸들러
   const handleListClick = (item, index) => {
-    // 이미 선택된 항목이라면 선택 해제하고 상태 업데이트
-    if (selectedItems.includes(item)) {
+    // 이미 선택된 항목이고 선택된 버튼이라면 선택 해제
+    if (selectedItems.includes(item) && selectedButton === index) {
       setSelectedItems(
         selectedItems.filter((selectedItem) => selectedItem !== item)
       );
-      setSelectedButton(null); // 선택된 버튼 상태 업데이트
+      setSelectedButton(null); // 선택된 버튼 상태 해제
     } else {
       // 중복 선택 방지
       if (selectedItems.length === 1) return;
@@ -116,6 +117,7 @@ export const ChatList = () => {
             ))}
           </InLineLeft>
           <InLineRight>
+            <ChatListCon>채팅방 리스트</ChatListCon>
             <ChatCon>
               {filteredChatRooms.map((room) => (
                 <ChatRoom

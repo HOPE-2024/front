@@ -16,25 +16,43 @@ import {
   MsgProfile,
   MsgCon,
   ChatInner,
+  ReportBox,
 } from "../../css/chat/ChatRoomCss";
 import { KH_SOCKET_URL } from "../../utils/Common";
 import { ChatAxiosApi } from "../../api/ChatAixosApi";
 import { MyPageAxiosApi } from "../../api/MyPageAxiosApi";
 import { ReportMadal } from "../../utils/modal/ReportMadal";
+
 export const ChatRoom = () => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [sender, setSender] = useState("");
   const [roomName, setRoomName] = useState("");
   const { roomId } = useParams();
   const [inputMsg, setInputMsg] = useState("");
-  const [member, setMember] = useState("");
   const [chatList, setChatList] = useState([]);
   const [chatMember, setChatMember] = useState([]);
   const [profile, setProfile] = useState("");
-  const [open, setOpen] = useState(false);
-  const type = '채팅';
   const ws = useRef(null);
   const navigate = useNavigate(); // useNavigate 훅 추가
+  const [reportModalOpen, setReportModalOpen] = useState(false); // 신고하기 모달 오픈 상태 추가
+  const [selectedProfile, setSelectedProfile] = useState(null); // 선택된 프로필 정보 추가
+
+  // MsgProfile 컴포넌트에서 오른쪽 마우스 클릭 이벤트 핸들러
+  const handleRightClick = (sender) => (e) => {
+    e.preventDefault();
+    setSelectedProfile(sender); // 선택된 프로필 정보 설정
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.display = "block";
+    contextMenu.style.top = `${e.clientY}px`;
+    contextMenu.style.left = `${e.clientX}px`;
+  };
+
+  // 우클릭 메뉴 구성 및 신고하기 옵션 클릭 핸들러
+  const handleReportClick = () => {
+    setReportModalOpen(true); // 신고하기 모달 열기
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.display = "none"; // 우클릭 메뉴 닫기
+  };
 
   const onChangMsg = (e) => {
     setInputMsg(e.target.value);
@@ -195,11 +213,12 @@ export const ChatRoom = () => {
               if (chat.type !== "ENTER" && chat.type !== "CLOSE") {
                 // 입장 및 퇴장 메시지가 아닌 경우에만 출력
                 return (
-                  <MsgBox Key={index} inSender={chat.sender === sender} onClick={() => { setMember(chat.sender); setOpen(true) }}>
+                  <MsgBox key={index} isSender={chat.sender === sender}>
                     <MsgProfile
                       isSender={chat.sender === sender}
                       src={`/images/profile/${chat.profile || "Ellipse3"}.png`}
                       alt="Profile"
+                      onContextMenu={handleRightClick(chat.sender)}
                     />
                     <MsgTextCon>
                       <MsgSender isSender={chat.sender === sender}>
@@ -214,7 +233,6 @@ export const ChatRoom = () => {
               }
               return null; // 입장 및 퇴장 메시지인 경우에는 null 반환하여 렌더링하지 않음
             })}
-            <ReportMadal open={open} member={member} type={type}></ReportMadal>
           </MsgCon>
           <InputCon>
             <Input
@@ -227,6 +245,22 @@ export const ChatRoom = () => {
           </InputCon>
         </RoomChat>
       </ChatInner>
+      <ReportMadal
+        open={reportModalOpen}
+        setOpen={setReportModalOpen}
+        member={selectedProfile} // 선택된 프로필 정보 전달
+        type="채팅"
+      />
+      <ReportBox id="contextMenu" style={{ display: "none" }}>
+        <div
+          style={{
+            color: "white",
+          }}
+          onClick={handleReportClick}
+        >
+          신고하기
+        </div>
+      </ReportBox>
     </ChatRoomContainer>
   );
 };

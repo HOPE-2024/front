@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import down from "../../images/bown.svg";
 import { UpdateActive } from "../../component/admin/UpdateActive";
+import { InsertReport } from "../../component/admin/InsertReport";
 import { UpdateReportActive } from "../../component/admin/UpdateReportActive";
 import { DeleteReport } from "../../component/admin/DeleteReport";
 import { ReportRead } from "../../component/admin/ReportRead";
@@ -180,7 +181,6 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
 
   //확인 클릭시
   const submit = async () => {
-    alert(1)
     //회원 상태 변경을 했을 경우에만 업데이트
     if (status !== "상태 변경 없음") {
       //회원 상태 변경
@@ -192,17 +192,24 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
       }
       setOpen(null);
     }
-
   };
+  const ReportSubmit = async () => {
+    const reportDto = {
+      reporter: { nickName: member },
+      check: what,
+      reason: why
+    }
+    await InsertReport(reportDto);
+    setOpen(false)
+  }
+
   //취소 클릭시
   const cancel = () => {
     DeleteReport(list.id);
     setOpen(null);
   };
   const [isOpen, setIsOpen] = useState(false);
-
   const data = ["일반 회원", "7일 정지", "30일 정지", "회원 정지"];
-
   useEffect(() => {
     if (list && list.reported && list.reported !== ' ' && list.reported !== null) {
       ReportRead(list.id);
@@ -312,20 +319,40 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
                 placeholder="신고 내용"></AA>
             </div>
             <div className=" item3">
-              <button
-                onClick={() => {
-                  submit();
-                }}
-              >
-                확 인
-              </button>
-              <button
-                onClick={() => {
-                  cancel();
-                }}
-              >
-                삭 제
-              </button>
+              {type !== '채팅' ?
+                <>   <button
+                  onClick={() => {
+                    submit();
+                  }}
+                >
+                  확 인
+                </button>
+                  <button
+                    onClick={() => {
+                      cancel();
+                    }}
+                  >
+                    삭 제
+                  </button></> :
+                <>   <button
+                  onClick={() => {
+                    ReportSubmit();
+                  }}
+                >
+                  확 인
+                </button>
+                  <button
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    닫 기
+                  </button></>
+
+              }
+
+
+
             </div>
           </div>
         </div>

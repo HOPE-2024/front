@@ -34,7 +34,7 @@ import { MedicineDetail } from "./pages/search/MedicineDetail";
 import { EffectModal } from "./utils/modal/EffectModal";
 import { PwReset } from "./pages/member/PwReset";
 import { MyCalendar } from "./pages/myCalendar/MyCalendar";
-
+import { Support } from "./pages/support/Support"; 
 function App() {
   return (
     <>
@@ -64,6 +64,7 @@ function App() {
               <Route path="/QueryView/:id" element={<QueryView />} />
               <Route path="/QueryList" element={<QueryList />} />
               <Route path="/Report" element={<Report />} />
+              <Route path="/Support" element={<Support />} />
               <Route path="/Map" element={<Map />} />
               <Route path="/LifeExpectancy" element={<LifeExpectancy />} />
               <Route path="/Country" element={<Country />} />
