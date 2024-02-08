@@ -10,7 +10,7 @@ export const ChatRoomContainer = styled.div`
 export const ChatInner = styled.div`
   background-color: #136cfb35;
   border-radius: 12px;
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: row;
 `;
@@ -31,7 +31,7 @@ export const RoomChat = styled.div`
   /* border: 2px solid var(--NAVY); */
   border-radius: 10px;
   width: 80%;
-  margin: 2vh 2vh 2vh 0vh;
+  margin: 2% 2% 2% 2%;
   padding: 2vh;
 `;
 export const ChatTitleCon = styled.div`
@@ -41,7 +41,6 @@ export const ChatTitleCon = styled.div`
 `;
 
 export const ChatTitle = styled.div`
-  color: var(--black);
   background-color: var(--NAVY);
   margin-bottom: 0.5vh;
   padding: 0.5rem;
