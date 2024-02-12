@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "../../utils/Button";
 import { InsertReport } from "./InsertReport";
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+import { useNavigate } from "react-router-dom";
 const ReplyInsertCss = styled.div`
   width  :100% ;
   height: auto;
@@ -101,6 +102,7 @@ const InputBox = styled.textarea`
 
 export const ReplyInsert = ({ list }) => {
     const [newReply, setNewReply] = useState('')
+    const navigate = useNavigate();
     const InsertReply = async (ReplyDto) => {
         console.log('댓글 등록 실행')
         try {
@@ -119,7 +121,10 @@ export const ReplyInsert = ({ list }) => {
         };
         InsertReply(ReplyDto)
     }
-
+    const edit = () => {   
+        navigate("../write/"+list.id)
+    }
+ 
     return (
         <ReplyInsertCss>
             <div className="input">
@@ -127,11 +132,8 @@ export const ReplyInsert = ({ list }) => {
                     <InputBox placeholder="댓글" value={newReply} onChange={(e) => { setNewReply(e.target.value) }} />
                 </div>
                 <div className="content2">
-                    <Button children={"댓글 등록"} clickEvt={submit}></Button>
-
-
-
-
+                    <Button width={"100px"} children={"댓글 등록"} clickEvt={submit}></Button>
+                    <Button width={"100px"}  children={"수정"} clickEvt={edit}></Button>
                     {/* <Button children={"문의 글 삭제"} clickEvt={submit2}></Button> */}
                 </div>
             </div>

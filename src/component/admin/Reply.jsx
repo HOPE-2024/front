@@ -118,7 +118,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
         setData('')
     }
     const submit2 = () => {
-        DeleteQuery(id)
+        // DeleteQuery(id)
     }
     const deleteSubmit = (id) => {
         DeleteReply(id)
@@ -142,7 +142,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
         } catch (error) {
             console.log(error);
         }
-        refresh();
+        // refresh();
         setShow();
     };
     const InsertReply = async (ReplyDto) => {
@@ -156,6 +156,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
 
     };
     const updateSubmit = (id) => {
+        console.log(id);
         const ReplyDto = {
             answer: newReply,
             id: id,
@@ -165,6 +166,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
     }
 
     const UpdateReply = async (ReplyDto) => {
+     
         console.log('댓글 수정 실행')
         try {
             const res = await AdminAxiosApi.UpdateReply(ReplyDto);
@@ -173,7 +175,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
             console.log(error);
         }
         setShow();
-        refresh();
+        // refresh();
     };
 
 

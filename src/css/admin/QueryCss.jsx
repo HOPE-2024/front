@@ -7,7 +7,7 @@ export const QueryCss = styled.div`
   height: 80%;
   margin-top: 50px;
   background: white;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   &::-webkit-scrollbar {
     width: 10px; /* 세로 스크롤바 너비 */
   }

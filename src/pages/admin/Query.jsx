@@ -21,7 +21,7 @@ export const Query = () => {
   const [File, setFile] = useState("");
   const [url, setUrl] = useState("");
   const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState("view");
+  const [mode, setMode] = useState("edit");
   const data = ["문의 종류를 선택해주세요.", "약품", "사이트 이용", "기대 수명", "기타"];
   const [newData, setNewData] = useState([]);
   // useRef를 사용하여 파일 입력(input) 요소의 참조 생성
