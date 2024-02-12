@@ -244,6 +244,7 @@ export const LifeInput = () => {
           correlation_y: response.data.correlation_y,
           bmi: response.data.bmi,
           alcohol: response.data.alcohol,
+          alcoholA: response.data.alcoholA,
         },
       });
     } catch (error) {

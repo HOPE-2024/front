@@ -12,6 +12,9 @@ import {
 import { ScatterGraph } from "../chart/ScatterGraph";
 import { BarGraph } from "../chart/BarGraph";
 import { TypeWriter } from "../../../css/text/TypeWriter";
+import { Gauge } from "../Gauge";
+import { HealthAdvice } from "../HealthAdvice";
+import { NewsSearch } from "../NewsSearch";
 
 export const LifeResultSlide = ({
   prediction,
@@ -21,12 +24,18 @@ export const LifeResultSlide = ({
   correlation_y,
   bmi,
   alcohol,
+  alcoholA,
 }) => {
   const beforeText = "랜덤 포레스트 모델을 통해 예측된 결과, 당신은 ";
   const emphasizedText = `${Math.round(prediction)}살`;
   const afterText = `까지 살 것으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
     (correlation[1][0] + correlation[0][1]) * 50
   )}% 입니다. 평가된 모델의 성능을 자세히 알고 싶으시다면 슬라이드를 넘겨주세요.`;
+  const [diseaseFromChild, setDiseaseFromChild] = useState("");
+
+  const handleDiseaseInfo = (disease) => {
+    setDiseaseFromChild(disease);
+  };
 
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
@@ -47,7 +56,22 @@ export const LifeResultSlide = ({
       <BarGraph featureImportances={featureImportances} />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      
+      <Gauge Bmi={bmi}></Gauge>
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      나의 알코올 섭취량 : {alcohol}
+      알코올 섭취량 평균 : {alcoholA}
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      <HealthAdvice
+        onDiseaseInfo={handleDiseaseInfo}
+        bmi={bmi}
+        alcohol={alcohol}
+      ></HealthAdvice>
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
+      뉴스기사 크롤링
+      <NewsSearch keyWord={diseaseFromChild}></NewsSearch>
     </SlideListContent>,
   ];
 
