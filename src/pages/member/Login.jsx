@@ -58,6 +58,11 @@ export const Login = () => {
     console.log("login!!");
     try {
       const rsp = await AuthAxiosApi.login(inputId, InputPw);
+      console.log(rsp.data);
+      console.log(rsp.data);
+      console.log(rsp.data);
+      console.log(rsp.data);
+      console.log(rsp.data);
       if (rsp.data.grantType === "Bearer") {
         // 받은 토큰을 저장
         Common.setAccessToken(rsp.data.accessToken);

@@ -10,7 +10,8 @@ const SupportScc = styled.div`
     max-width: 1280px;
     margin: 0 auto;
     height: auto;
-    background: white;
+    background: #ffffff;
+    overflow: hidden;
     margin-top: 50px;
     .content1{
 width: 100%;
@@ -32,10 +33,11 @@ ul{
 flex-direction: row;
 justify-content: center;
 li{
-    width: 300px;
-    height: 300px;
-    margin: 0 20px;
-    background: #d4d4d4;
+    width: 250px;
+    height: 250px;
+    margin: 0 15px;
+    //고객지원 목록 색상
+    background: #dcdcdc;
     display: flex;
        justify-content: center;
        align-items: center;    
@@ -43,7 +45,7 @@ li{
 
 }
 :hover{
-    background: red;
+    background: #b8b8b8;
 }
 }
 
@@ -59,6 +61,7 @@ p{
  }
     }
     .content4{       
+        height: auto;
          margin-top: 20px;
         ul{
     
@@ -68,9 +71,9 @@ p{
             }  
             
             .title{
-                border: 1px solid green;
+                border: 1px solid black;
                 height: 40px;
-                background: #b0b0b0;
+                background: #136CFB;
                 display: flex;
                 justify-content: space-between;
                 p{               
@@ -88,11 +91,11 @@ p{
                 }
             }
               &:hover > .title{
-                background:red;
+                /* background:red; */
             }
          
             .content{   
-                border: 1px solid red;
+                /* border: 1px solid red; */
                 height: auto;
                 padding: 30px;
                p{                 
@@ -136,8 +139,8 @@ export const Support = () => {
             {type === 1 && <Support1 ></Support1>}
             {type === 2 && <Support2 ></Support2>}
             {/* {type === 3 && <Support1 data={data} setView={setView} view={view} ></Support1>} */}
-            <div className="content5">
-            </div>
+            {/* <div className="content5">
+            </div> */}
         </SupportScc >
     )
 }

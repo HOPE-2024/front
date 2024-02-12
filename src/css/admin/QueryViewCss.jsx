@@ -6,6 +6,7 @@ export const QueryViewCss = styled.div`
     margin: 0 auto;
   height: 80%;
   background: white;
+ 
   .Viewa {
     width: 70%;
     margin: 0 ;
