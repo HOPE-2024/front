@@ -53,6 +53,10 @@ export const DiabInput = () => {
           correlation: response.data.correlation,
           correlation_x: response.data.correlation_x,
           correlation_y: response.data.correlation_y,
+          bmi: response.data.bmi,
+          bp: response.data.bp,
+          grade: response.data.grade,
+          advice: response.data.advice,
         },
       });
     } catch (error) {

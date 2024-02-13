@@ -37,6 +37,7 @@ export const FaceInput = () => {
   return (
     <>
       <Wrapper>
+        <Input></Input>
         <Input type="file" onChange={handleFileSelect} />
         <Button onClick={handleUpload}>Upload</Button>
       </Wrapper>

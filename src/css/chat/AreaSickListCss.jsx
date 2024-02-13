@@ -120,12 +120,12 @@ export const AddChatListStyled = styled.img.attrs({
 `;
 
 export const SickList = [
+  "당뇨",
   "감염병",
   "신경계 질환",
   "종양 및 암",
   "심혈관계 질환",
   "호흡기 질환",
-  "대사 및 영양 장애",
   "면역계 질환",
   "소화기 질환",
   "피부 질환",

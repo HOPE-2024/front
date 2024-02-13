@@ -34,7 +34,7 @@ import { MedicineDetail } from "./pages/search/MedicineDetail";
 import { EffectModal } from "./utils/modal/EffectModal";
 import { PwReset } from "./pages/member/PwReset";
 import { MyCalendar } from "./pages/myCalendar/MyCalendar";
-import { Support } from "./pages/support/Support"; 
+import { Support } from "./pages/support/Support";
 function App() {
   return (
     <>

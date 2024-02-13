@@ -16,7 +16,7 @@ const NewsGrid = styled.div`
 const NewsItem = styled.div`
   border: 1px solid #ddd;
   border-radius: 8px;
-  /* overflow: hidden; */
+  overflow: hidden;
 `;
 
 const NewsImage = styled.img`
@@ -28,8 +28,9 @@ const NewsTitle = styled.p`
   padding: 10px;
 `;
 
-export const NewsSearch = ({ keyWord }) => {
+export const NewsSearch = ({ keyWord = "당뇨" }) => {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchNews = async () => {
     try {
@@ -37,10 +38,12 @@ export const NewsSearch = ({ keyWord }) => {
         `http://localhost:5000/search-news?query=${encodeURIComponent(keyWord)}`
       );
       setArticles(response.data);
+      setIsLoading(false); // 로딩 종료
 
       console.log(response);
     } catch (error) {
       console.error("News fetching error:", error);
+      setIsLoading(false); // 에러 발생 시에도 로딩 종료
     }
   };
 
@@ -52,7 +55,7 @@ export const NewsSearch = ({ keyWord }) => {
 
   return (
     <NewsContainer>
-      <h2>검색어: {keyWord}</h2>
+      {isLoading ? <h2>Loading...</h2> : <h2>검색어: {keyWord}</h2>}
       <NewsGrid>
         {articles.map((article, index) => (
           <NewsItem key={index}>

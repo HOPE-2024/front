@@ -12,6 +12,8 @@ import {
 import { ScatterGraph } from "../chart/ScatterGraph";
 import { BarGraph } from "../chart/BarGraph";
 import { TypeWriter } from "../../../css/text/TypeWriter";
+import { Gauge } from "../../../component/result/Gauge";
+import { NewsSearch } from "../../../component/result/NewsSearch";
 
 export const DiabResultSlide = ({
   prediction,
@@ -19,10 +21,11 @@ export const DiabResultSlide = ({
   correlation,
   correlation_x,
   correlation_y,
+  bmi,
+  bp,
+  grade,
+  advice,
 }) => {
-  console.log("1 : " + correlation[1]);
-  console.log("2 : " + correlation[0]);
-
   const beforeText =
     "랜덤 포레스트 모델을 통해 예측된 결과, 당신의 1년 후의 당뇨병 진행도는 ";
   const emphasizedText = `${Math.round(prediction)}`;
@@ -49,10 +52,11 @@ export const DiabResultSlide = ({
       <BarGraph featureImportances={featureImportances} />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <p> bmi 계기판 출력, 당뇨병 진행도에 의거해서 건강조언,</p>
+      <Gauge bmi={bmi}></Gauge>
+      등급 : {grade}, 건강 조언 : {advice}
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <p>당뇨병에 관련된 최신 뉴스기사를 크롤링하여 출력</p>
+      <NewsSearch></NewsSearch>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <p>당뇨병 채팅방 목록 출력</p>

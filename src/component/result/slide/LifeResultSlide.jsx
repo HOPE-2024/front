@@ -59,8 +59,7 @@ export const LifeResultSlide = ({
       <Gauge Bmi={bmi}></Gauge>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      나의 알코올 섭취량 : {alcohol}
-      알코올 섭취량 평균 : {alcoholA}
+      나의 알코올 섭취량 : {alcohol}, 알코올 섭취량 평균 : {alcoholA}
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <HealthAdvice
@@ -70,7 +69,6 @@ export const LifeResultSlide = ({
       ></HealthAdvice>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      뉴스기사 크롤링
       <NewsSearch keyWord={diseaseFromChild}></NewsSearch>
     </SlideListContent>,
   ];

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export const HealthAdvice = ({ bmi, alcohol, onDiseaseInfo }) => {
+export const HealthAdvice = ({ bmi, alcohol = 0, onDiseaseInfo }) => {
   const getAdviceAndDisease = () => {
     let advice = "";
     let disease = "";

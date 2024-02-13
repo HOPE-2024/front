@@ -42,18 +42,26 @@ export const AdminAxiosApi = {
 
   //회원 상태 변경
   updateActive: async (memberResDto) => {
-    return await Instance.post(Common.KH_DOMAIN + `/admin/active`, memberResDto);
+    return await Instance.post(
+      Common.KH_DOMAIN + `/admin/active`,
+      memberResDto
+    );
   },
 
   //신고 하기
   insertReport: async (reportDto) => {
-    return await Instance.post(Common.KH_DOMAIN + `/admin/insertReport`, reportDto);
+    return await Instance.post(
+      Common.KH_DOMAIN + `/admin/insertReport`,
+      reportDto
+    );
   },
-
 
   //신고 상태 변경
   UpdateReportActive: async (ReportDto) => {
-    return await Instance.post(Common.KH_DOMAIN + `/admin/ReportActive`, ReportDto);
+    return await Instance.post(
+      Common.KH_DOMAIN + `/admin/ReportActive`,
+      ReportDto
+    );
   },
 
   //신고 내용 출력
@@ -70,22 +78,21 @@ export const AdminAxiosApi = {
     return await Instance.get(Common.KH_DOMAIN + `/admin/afterreport`, {});
   },
 
-
-
-
   //신고 내용 읽음으로 변경
   updateReportStatus: async (id) => {
-    return await Instance.post(Common.KH_DOMAIN + `/admin/updateReportStatus?id=${id}`, {});
+    return await Instance.post(
+      Common.KH_DOMAIN + `/admin/updateReportStatus?id=${id}`,
+      {}
+    );
   },
-
-
 
   //신고 내역 삭제
   deleteReport: async (id) => {
-    return await Instance.post(Common.KH_DOMAIN + `/admin/deletereport/?id=${id}`, {});
+    return await Instance.post(
+      Common.KH_DOMAIN + `/admin/deletereport/?id=${id}`,
+      {}
+    );
   },
-
-
 
   //이름으로 신고테이블 조회
   selectReport: async (name) => {
@@ -119,22 +126,23 @@ export const AdminAxiosApi = {
     );
   },
 
-  //1대1 문의 전체 조회 
+  //1대1 문의 전체 조회
   selectQuryList: async () => {
     return await Instance.get(Common.KH_DOMAIN + `/admin/selectQuryList`, {});
   },
 
-  //내 문의 글 조회 
+  //내 문의 글 조회
   selectMyQury: async () => {
     return await Instance.get(Common.KH_DOMAIN + `/admin/selectMyQury`, {});
   },
 
-
-
-
-  //1대1 문의 조회 
+  //1대1 문의 조회
   selectQury: async (id) => {
-    return await Instance.get(Common.KH_DOMAIN + `/admin/selectQury/?id=${id}`, {});
+    console.log("아이디 : " + id);
+    return await Instance.get(
+      Common.KH_DOMAIN + `/admin/selectQury/?id=${id}`,
+      {}
+    );
   },
 
   //문의 댓글 등록
@@ -147,12 +155,16 @@ export const AdminAxiosApi = {
   //문의글 삭제
   deleteQuery: async (id) => {
     return await Instance.post(
-      Common.KH_DOMAIN + `/admin/deleteQuery/?id=${id}`, {});
+      Common.KH_DOMAIN + `/admin/deleteQuery/?id=${id}`,
+      {}
+    );
   },
   //댓글 삭제
   deleteReply: async (id) => {
     return await Instance.post(
-      Common.KH_DOMAIN + `/admin/deleteReply/?id=${id}`, {});
+      Common.KH_DOMAIN + `/admin/deleteReply/?id=${id}`,
+      {}
+    );
   },
   //댓글 수정
   UpdateReply: async (replyDto) => {
@@ -162,7 +174,6 @@ export const AdminAxiosApi = {
     );
   },
 
-
   //문의 글 수정
   updateQuery: async (queryDto) => {
     return await Instance.post(
@@ -170,7 +181,6 @@ export const AdminAxiosApi = {
       queryDto
     );
   },
-
 
   //신고 목록 페이지 네이션으로 출력
   selectReportPageList: async (page, size) => {
@@ -217,8 +227,6 @@ export const AdminAxiosApi = {
     );
   },
 
-
-
   //회원 페이지 네이션으로 출력
   selectMemberPageList: async (page, size) => {
     return await Instance.get(
@@ -233,7 +241,6 @@ export const AdminAxiosApi = {
       Common.KH_DOMAIN + `/admin/member/count?page=${page}&size=${size}`
     );
   },
-
 
   //채팅 정지 회원 페이지네이션으로 출력
   chatingMember: async (page, size) => {
@@ -250,7 +257,6 @@ export const AdminAxiosApi = {
     );
   },
 
-
   //정지 회원 페이지네이션으로 출력
   stopMember: async (page, size) => {
     return await Instance.get(
@@ -266,12 +272,8 @@ export const AdminAxiosApi = {
     );
   },
 
-
   //자주하는 질문 가져오기
   oftenQuery: async () => {
-    return await axios.get(
-      Common.KH_DOMAIN + `/admin/oftenQuery`, {}
-    );
+    return await axios.get(Common.KH_DOMAIN + `/admin/oftenQuery`, {});
   },
-
 };
