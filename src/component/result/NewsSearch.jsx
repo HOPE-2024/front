@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { MachineAxiosApi } from "../../api/MachineAxiosApi";
 
 // Styled-components로 스타일을 적용한 컴포넌트 정의
 const NewsContainer = styled.div`
@@ -34,9 +35,7 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
 
   const fetchNews = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/search-news?query=${encodeURIComponent(keyWord)}`
-      );
+      const response = await MachineAxiosApi.fetchNews(keyWord);
       setArticles(response.data);
       setIsLoading(false); // 로딩 종료
 

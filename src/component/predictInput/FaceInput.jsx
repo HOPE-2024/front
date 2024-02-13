@@ -7,9 +7,16 @@ import { MachineAxiosApi } from "../../api/MachineAxiosApi";
 export const FaceInput = () => {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
+  // 나이 상태 관리를 위한 useState 추가
+  const [age, setAge] = useState("");
 
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0]);
+  };
+
+  // 나이 변경 핸들러 함수
+  const handleAgeChange = (event) => {
+    setAge(event.target.value);
   };
 
   const handleUpload = async () => {
@@ -18,14 +25,13 @@ export const FaceInput = () => {
 
     try {
       const response = await MachineAxiosApi.predictFace(formData);
-      console.log(
-        "FaceInput response : " + JSON.stringify(response.data.results[2])
-      );
 
       navigate("/FaceResult", {
         state: {
           result: response.data.results[0],
           image: response.data.results[1],
+          model: response.data.results[2],
+          age: age,
         },
       });
     } catch (error) {
@@ -37,8 +43,13 @@ export const FaceInput = () => {
   return (
     <>
       <Wrapper>
-        <Input></Input>
         <Input type="file" onChange={handleFileSelect} />
+        <Input
+          type="number"
+          placeholder="나이 입력"
+          value={age}
+          onChange={handleAgeChange}
+        />
         <Button onClick={handleUpload}>Upload</Button>
       </Wrapper>
     </>

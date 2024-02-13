@@ -35,6 +35,8 @@ import { EffectModal } from "./utils/modal/EffectModal";
 import { PwReset } from "./pages/member/PwReset";
 import { MyCalendar } from "./pages/myCalendar/MyCalendar";
 import { Support } from "./pages/support/Support";
+import { CoutryFutureResult } from "./pages/result/CoutryFutureResult";
+
 function App() {
   return (
     <>
@@ -81,6 +83,10 @@ function App() {
                 element={<MedicineDetail />}
               />
               <Route path="/effect" element={<EffectModal />} />
+              <Route
+                path="/coutryfutureresult"
+                element={<CoutryFutureResult />}
+              />
             </Route>
           </Routes>
         </BrowserRouter>

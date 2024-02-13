@@ -5,11 +5,18 @@ export const FaceResult = () => {
   const location = useLocation();
   const { result } = location.state;
   const { image } = location.state;
-  // console.log(result);
+  const { age } = location.state;
+  const { model } = location.state;
+  console.log(result);
 
   return (
     <>
-      <FaceResultSlide result={result} image={image}></FaceResultSlide>
+      <FaceResultSlide
+        result={result}
+        image={image}
+        model={model}
+        age={age}
+      ></FaceResultSlide>
     </>
   );
 };

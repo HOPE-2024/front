@@ -11,6 +11,7 @@ import {
 } from "../../../css/SlideStyle";
 import { LineGraph } from "../chart/LineGraph";
 import { LineGraphDesc } from "../description/LineGraphDesc";
+import { CountryFutureInput } from "../../predictInput/CountryFutureInput";
 
 export const CountryResultSlide = ({ Country, CountryResult }) => {
   const [trendInfo, setTrendInfo] = useState({}); // 객체
@@ -64,8 +65,7 @@ export const CountryResultSlide = ({ Country, CountryResult }) => {
       ></LineGraphDesc>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      그래프에 나와있지 않은 미래나 과거의 연도를 입력하면 평균 수명 예측하는
-      기능 추가 (회원 전용, 로그인하지 않는 사용자는 X)
+      <CountryFutureInput country={Country}></CountryFutureInput>
     </SlideListContent>,
   ];
 

@@ -2,6 +2,10 @@ import axios from "axios";
 import { FLASK_SERVER } from "../utils/Common";
 
 export const MachineAxiosApi = {
+  predictFuture: async (data) => {
+    return await axios.post(FLASK_SERVER + "/predict_future", data);
+  },
+
   predictLifeExpect: async (data) => {
     return await axios.post(FLASK_SERVER + "/predict_life_expectancy", data);
   },
@@ -21,5 +25,12 @@ export const MachineAxiosApi = {
         "Content-Type": "multipart/form-data",
       },
     });
+  },
+
+  fetchNews: async (data) => {
+    console.log(data);
+    return await axios.get(
+      `${FLASK_SERVER}/search-news?query=${encodeURIComponent(data)}`
+    );
   },
 };
