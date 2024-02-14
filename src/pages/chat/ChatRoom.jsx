@@ -19,7 +19,7 @@ import {
   ReportBox,
 } from "../../css/chat/ChatRoomCss";
 import { KH_SOCKET_URL } from "../../utils/Common";
-import { ChatAxiosApi } from "../../api/ChatAxiosApi";
+import { ChatAxiosApi } from "../../api/ChatAixosApi";
 import { MyPageAxiosApi } from "../../api/MyPageAxiosApi";
 import { ReportMadal } from "../../utils/modal/ReportMadal";
 
@@ -36,7 +36,6 @@ export const ChatRoom = () => {
   const navigate = useNavigate(); // useNavigate 훅 추가
   const [reportModalOpen, setReportModalOpen] = useState(false); // 신고하기 모달 오픈 상태 추가
   const [selectedProfile, setSelectedProfile] = useState(null); // 선택된 프로필 정보 추가
-  const reportBoxRef = useRef(null); // ReportBox 요소를 참조하기 위한 useRef
 
   // MsgProfile 컴포넌트에서 오른쪽 마우스 클릭 이벤트 핸들러
   const handleRightClick = (sender) => (e) => {
@@ -196,28 +195,6 @@ export const ChatRoom = () => {
     }
   }, [chatList]);
 
-  // 클릭 이벤트 핸들러
-  const handleClick = (e) => {
-    // 클릭된 요소가 ReportBox 안에 있는지 확인
-    if (reportBoxRef.current && reportBoxRef.current.contains(e.target)) {
-      // 클릭된 요소가 ReportBox 안에 있다면 아무 작업도 하지 않음
-      return;
-    }
-    // 클릭된 요소가 ReportBox 안에 없다면 메뉴를 닫음
-    const contextMenu = document.getElementById("contextMenu");
-    if (contextMenu) {
-      contextMenu.style.display = "none";
-    }
-  };
-
-  // 전체 문서에 클릭 이벤트 리스너 추가
-  useEffect(() => {
-    document.addEventListener("click", handleClick);
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, []);
-
   return (
     <ChatRoomContainer>
       <ChatInner>
@@ -234,42 +211,22 @@ export const ChatRoom = () => {
           <MsgCon ref={chatConRef}>
             {chatList.map((chat, index) => {
               if (chat.type !== "ENTER" && chat.type !== "CLOSE") {
-                // 내가 보낸 메시지인지 여부를 판단
-                const isMyMessage = chat.sender === sender;
-                // 내가 보낸 메시지이면 ReportBox를 렌더링하지 않음
-                if (isMyMessage) {
-                  return (
-                    <MsgBox key={index} isSender={isMyMessage}>
-                      <MsgProfile
-                        isSender={isMyMessage}
-                        src={`/images/profile/${
-                          chat.profile || "Ellipse3"
-                        }.png`}
-                        alt="Profile"
-                      />
-                      <MsgTextCon>
-                        <MsgSender isSender={isMyMessage}>
-                          {`${chat.sender}`}
-                        </MsgSender>
-                        <Msg isSender={isMyMessage}>{`${chat.msg}`}</Msg>
-                      </MsgTextCon>
-                    </MsgBox>
-                  );
-                }
-                // 내가 보낸 메시지가 아닌 경우에만 ReportBox를 렌더링
+                // 입장 및 퇴장 메시지가 아닌 경우에만 출력
                 return (
-                  <MsgBox key={index} isSender={isMyMessage}>
+                  <MsgBox key={index} isSender={chat.sender === sender}>
                     <MsgProfile
-                      isSender={isMyMessage}
-                      src={`/images/profile/${chat.profile || "Ellipse3"}.png`}
+                      isSender={chat.sender === sender}
+                      src={`/images/profile/${chat.profile || "Ellipse5"}.png`}
                       alt="Profile"
                       onContextMenu={handleRightClick(chat.sender)}
                     />
                     <MsgTextCon>
-                      <MsgSender isSender={isMyMessage}>
+                      <MsgSender isSender={chat.sender === sender}>
                         {`${chat.sender}`}
                       </MsgSender>
-                      <Msg isSender={isMyMessage}>{`${chat.msg}`}</Msg>
+                      <Msg isSender={chat.sender === sender}>
+                        {`${chat.msg}`}
+                      </Msg>
                     </MsgTextCon>
                   </MsgBox>
                 );
@@ -294,11 +251,7 @@ export const ChatRoom = () => {
         member={selectedProfile} // 선택된 프로필 정보 전달
         type="채팅"
       />
-      <ReportBox
-        id="contextMenu"
-        style={{ display: "none" }}
-        ref={reportBoxRef}
-      >
+      <ReportBox id="contextMenu" style={{ display: "none" }}>
         <div
           style={{
             color: "white",

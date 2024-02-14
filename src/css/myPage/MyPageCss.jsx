@@ -8,11 +8,6 @@ export const MyPageCon = styled.div`
   justify-content: center;
 `;
 
-export const TextCon = styled.div`
-  font-size: 130%;
-  text-align: center;
-`;
-
 export const MyPageLineCon = styled.div`
   border: 1px solid var(--BLUE);
   border-radius: 15px;
@@ -25,6 +20,12 @@ export const ProfileCon = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
+`;
+
+export const TextCon = styled.div`
+  font-size: 130%;
+  text-align: center;
 `;
 
 export const Line = styled.div`

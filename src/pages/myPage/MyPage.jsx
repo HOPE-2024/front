@@ -23,14 +23,12 @@ const Profile = styled.img`
 `;
 
 export const MyPage = () => {
-  const { email } = useParams();
   const [memberId, setMemberId] = useState("");
-  const [member, setMember] = useState("");
-  const [memberAll, setMemberAll] = useState("");
+  const [memberInfo, setMemberInfo] = useState("");
+  const [memberProfile, setMemberProfile] = useState("");
   const [isCurrentMember, setIsCurrentMember] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [nickName, setNickName] = useState("");
   const [editNickName, setEditNickName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState([]);
@@ -46,13 +44,8 @@ export const MyPage = () => {
         setMemberId(memberId);
 
         const memberProfileRsp = await MyPageAxiosApi.memberInfoAll(memberId); // 멤버 프로필 데이터 요청
-        console.log("멤버 데이터:", memberId);
-        console.log("멤버 프로필 데이터:", memberProfileRsp);
-
-        const { memberInfo, memberProfile } = memberProfileRsp;
-        setMemberAll(memberProfileRsp);
-        console.log("멤버 정보:", memberInfo);
-        console.log("멤버 프로필:", memberProfile);
+        setMemberInfo(memberProfileRsp.memberInfo);
+        setMemberProfile(memberProfileRsp.memberProfile);
 
         setIsCurrentMember(true);
       } catch (error) {
@@ -63,11 +56,11 @@ export const MyPage = () => {
 
     fetchData();
 
-    // const loginUserEmail = localStorage.getItem("memberId");
-    // if (loginUserEmail === memberId) {
-    //   setIsCurrentMember(true);
-    // }
-  }, []);
+    const loginUserEmail = localStorage.getItem("memberId");
+    if (loginUserEmail === memberId) {
+      setIsCurrentMember(true);
+    }
+  }, [memberId]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -97,11 +90,11 @@ export const MyPage = () => {
     e.preventDefault();
     try {
       const nickNameRsp = await MyPageAxiosApi.memberUpdate(
-        member.memberId,
+        memberId,
         editNickName
       );
       if (nickNameRsp.status === 200) {
-        setNickName(editNickName);
+        // setNickName(editNickName);
         const infoRsp = await MyPageAxiosApi.memberUpdateInfo(
           memberId,
           editBirthDate,
@@ -110,10 +103,12 @@ export const MyPage = () => {
         );
         if (infoRsp.status === 200) {
           setEditMode(false);
-          const updatedMemberRsp = await MyPageAxiosApi.memberInfoGet(memberId);
-          console.log("업데이트 된 멤버인포 정보 : ", updatedMemberRsp);
+          const updatedMemberRsp = await MyPageAxiosApi.memberInfoAll(memberId);
+          console.log("마지막업데이트 되기를", updatedMemberRsp);
           if (updatedMemberRsp.status === 200) {
-            setMember(updatedMemberRsp.data);
+            setMemberId(updatedMemberRsp.memberInfo.memberId);
+            setMemberInfo(updatedMemberRsp.memberInfo);
+            setMemberProfile(updatedMemberRsp.memberProfile);
           }
         }
       }
@@ -139,7 +134,7 @@ export const MyPage = () => {
             />
           )}
           <Profile
-            src={`/images/profile/${memberAll.memberInfo.profile}.png`}
+            src={`/images/profile/${memberInfo.profile}.png`}
             alt="Profile"
           />
           {!editMode ? (
@@ -154,7 +149,7 @@ export const MyPage = () => {
             )
           )}
           {!editMode ? (
-            <TextCon>{memberAll.memberInfo.nickName}</TextCon>
+            <TextCon>{memberInfo.nickName}</TextCon>
           ) : (
             <Input
               type="text"
@@ -175,7 +170,7 @@ export const MyPage = () => {
               onChange={handleBirthDateChange}
             />
           ) : (
-            <TextCon>{memberAll.memberProfile.birthDate}</TextCon>
+            <TextCon>{memberProfile.birthDate}</TextCon>
           )}
           <TextCon>키 : </TextCon>
           {editMode ? (
@@ -185,7 +180,7 @@ export const MyPage = () => {
               onChange={handleHeightChange}
             />
           ) : (
-            <TextCon>{memberAll.memberProfile.height}</TextCon>
+            <TextCon>{memberProfile.height}</TextCon>
           )}
           <TextCon>몸무게 : </TextCon>
           {editMode ? (
@@ -195,7 +190,7 @@ export const MyPage = () => {
               onChange={handleWeightChange}
             />
           ) : (
-            <TextCon>{memberAll.memberProfile.weight}</TextCon>
+            <TextCon>{memberProfile.weight}</TextCon>
           )}
           {editMode && (
             <EditBtnCon>

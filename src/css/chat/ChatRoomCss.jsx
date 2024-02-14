@@ -115,8 +115,8 @@ export const Input = styled.input`
   padding: 0.7vh;
   width: 55vh;
   border-radius: 2px;
-  border: 0;
-  background: #136cfb35;
+  border: 1px solid var(--SKY);
+  background: none;
   &:focus {
     outline: none;
     background-color: #ffffffaf;
@@ -145,7 +145,7 @@ export const ReportBox = styled.button`
   background-color: var(--NAVY);
   color: white;
   display: block;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   left: "100%";
 `;
