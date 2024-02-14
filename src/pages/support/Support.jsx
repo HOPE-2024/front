@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components"
-import { SelectOftenQuery } from "../../component/admin/SelectOftenQuery";
 import { Support1 } from "./Support1";
 import { Support2 } from "./Support2";
-import { SelectMyQury } from "../../component/admin/SelectMyQury";
+import { useNavigate, useParams } from "react-router-dom";
+import query1 from "../../images/query1.svg";
+import query2 from "../../images/query2.svg";
+import query3 from "../../images/query3.svg";
+
+
+
+
+
 
 const SupportScc = styled.div`
     width: 100%;
@@ -37,15 +44,17 @@ li{
     height: 250px;
     margin: 0 15px;
     //고객지원 목록 색상
-    background: #dcdcdc;
+    background: #e5e5e5;
     display: flex;
+    flex-direction: column;
        justify-content: center;
        align-items: center;    
         font-size: 2em;  
+        padding-bottom: 20px;
 
 }
 :hover{
-    background: #b8b8b8;
+    background: #afc5e0;
 }
 }
 
@@ -91,7 +100,7 @@ p{
                 }
             }
               &:hover > .title{
-                /* background:red; */
+                background: #488eff;
             }
          
             .content{   
@@ -113,34 +122,31 @@ p{
     }
 `;
 export const Support = () => {
-    const [view, setView] = useState(-1);
-    const [data, setData] = useState([]);
+    const navigate = useNavigate();
     const [type, setType] = useState(1);
-
-    // useEffect(() => {
-    //     if (type === 1) {
-    //         SelectOftenQuery(setData);
-    //     }
-    //     if (type === 2) {
-    //         SelectMyQury(setData);
-    //     }
-
-    // }, [type])
+    const { id } = useParams();
+    useEffect(() => {
+        if (id === "1") {
+            setType(1)
+        } else {
+            setType(2)
+        }
+    },
+        [id])
     return (
-        <SupportScc>
-            <div className="content1"> <p>고객 지원</p></div>
+        <SupportScc type={type}>
+            <div className="content1"> <p>고객 지원 </p></div>
             <div className="content2">
                 <ul>
-                    <li onClick={() => { setType(1) }}>자주 묻는 질문</li>
-                    <li onClick={() => { setType(2) }}>나의 질문</li>
-                    <li onClick={() => { setType(3) }}>1대1 문의 작성</li>
+                    <li onClick={() => { setType(1) }} style={{ background: type === 1 && '#afc5e0' }}>   <img src={query1} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} />자주 묻는 질문</li>
+                    <li onClick={() => { setType(2) }} style={{ background: type === 2 && '#afc5e0' }}>  <img src={query3} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} />나의 질문 보기</li>
+                    <li onClick={() => { navigate("/QueryWrite") }}> <img src={query2} alt="Logo" width="60" height="80" style={{ marginBottom: "10px" }} />문의 작성하기</li>
                 </ul>
             </div>
             {type === 1 && <Support1 ></Support1>}
             {type === 2 && <Support2 ></Support2>}
-            {/* {type === 3 && <Support1 data={data} setView={setView} view={view} ></Support1>} */}
-            {/* <div className="content5">
-            </div> */}
+
+
         </SupportScc >
     )
 }

@@ -65,6 +65,7 @@ const ReplyCss = styled.div`
         margin-left: 30px;
         input{
            width: 100%;
+           min-height: 30px;
         }
    
         .info{
@@ -91,19 +92,11 @@ const ReplyCss = styled.div`
 `;
 
 
-const InputBox = styled.textarea`
- width: 70%;
- height: 50%;
- padding: 10px;
- &:hover  {
-      border: 3px #023b96 solid;
-    }
-`;
 
 
 
 
-export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
+export const Reply = ({ list, id, setRefresh, mode, setMode, submit3 }) => {
     const navigate = useNavigate();
     const [data, setData] = useState('');
     const [show, setShow] = useState();
@@ -144,6 +137,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
         }
         // refresh();
         setShow();
+        setRefresh(prevRefresh => !prevRefresh);
     };
     const InsertReply = async (ReplyDto) => {
         console.log('댓글 등록 실행')
@@ -166,7 +160,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
     }
 
     const UpdateReply = async (ReplyDto) => {
-     
+
         console.log('댓글 수정 실행')
         try {
             const res = await AdminAxiosApi.UpdateReply(ReplyDto);
@@ -175,7 +169,7 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
             console.log(error);
         }
         setShow();
-        // refresh();
+        setRefresh(prevRefresh => !prevRefresh);
     };
 
 
@@ -186,7 +180,6 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
         <ReplyCss>
             <div className="output" >
                 {list && list.map((pick, index) => (
-
                     <ul key={index} onClick={() => { setShow(index); setNewReply('') }}>
                         <li className="p1"> <div className="info"> {pick.answerer}
                             {show === index && <>
@@ -194,11 +187,11 @@ export const Reply = ({ list, id, refresh, mode, setMode, submit3 }) => {
                                 <div className="delete" onClick={() => { updateSubmit(pick.id); }}>수정</div></>
                             }
                         </div></li>
-
                         {show !== index ? <li className="p2"> {pick.answer}</li> :
-                            <li className="p2"> <input type="text" value={newReply} onChange={(e) => { setNewReply(e.target.value) }}
+                            <li className="p2">
+                                <input type="text" value={newReply} onChange={(e) => { setNewReply(e.target.value) }}
 
-                                placeholder={pick.answer} /></li>}
+                                    placeholder={pick.answer} /></li>}
 
                     </ul>
 

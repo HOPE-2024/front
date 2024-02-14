@@ -1,19 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 
-import { Button } from "../../utils/Button";
-import { storage } from "../../api/Firebase";
-import { InputBox, QueryViewCss } from "../../css/admin/QueryViewCss";
-import { InsertQuery } from "../../component/admin/InsertQuery";
-import { UpdateQuery } from "../../component/admin/UpdateQuery";
-import { useParams } from "react-router-dom";
-import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+import { QueryViewCss } from "../../css/admin/QueryViewCss";
 import { Reply } from "../../component/admin/Reply";
+import { useState } from "react";
 import { ImgModal } from "../../utils/modal/ImgModal";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-export const QueryView = ({ list }) => {
 
-
+export const QueryView = ({ list, setRefresh }) => {
+    const [open, setOpen] = useState(false);
     return (
         <QueryViewCss>
             <div className="Viewa">
@@ -22,13 +14,26 @@ export const QueryView = ({ list }) => {
                 </div>
             </div>
             <div className="Viewb">
-                <div >{list.substance} </div>
+                <div >{list.substance}
+                </div>
             </div>
+            {list.queryImg &&
+                <div className="ViewC">
+                    <div>        <p>첨부 이미지 :</p> </div>
+                    <div>
+                        <img src={list.queryImg} onClick={() => { setOpen(true) }} alt=""></img> </div>
+
+                </div>}
             <Reply
                 list={list.reply}
                 id={list.id}
+                setRefresh={setRefresh}
             />
-
+            <ImgModal
+                url={list.queryImg}
+                open={open}
+                setOpen={setOpen}
+            ></ImgModal>
         </QueryViewCss >
     );
 };

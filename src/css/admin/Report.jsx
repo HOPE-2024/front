@@ -5,6 +5,7 @@ export const MemberListCss = styled.div`
     max-width: 1280px;
     height: auto;
     margin: 0 auto;
+    background: white;
     margin-top: 10px;
     display: flex;
     @media (max-width: 768px) {            
