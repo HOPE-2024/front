@@ -15,6 +15,7 @@ import { TypeWriter } from "../../../css/text/TypeWriter";
 import { Gauge } from "../Gauge";
 import { HealthAdvice } from "../HealthAdvice";
 import { NewsSearch } from "../NewsSearch";
+import { AlcoholDesc } from "../description/AlcoholDesc";
 
 export const LifeResultSlide = ({
   prediction,
@@ -59,7 +60,10 @@ export const LifeResultSlide = ({
       <Gauge Bmi={bmi}></Gauge>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      나의 알코올 섭취량 : {alcohol}, 알코올 섭취량 평균 : {alcoholA}
+      <AlcoholDesc
+        userAlcohol={alcohol}
+        averageAlcohol={alcoholA}
+      ></AlcoholDesc>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <HealthAdvice
