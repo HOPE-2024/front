@@ -126,23 +126,20 @@ export const AdminAxiosApi = {
     );
   },
 
-  //1대1 문의 전체 조회
-  selectQuryList: async () => {
-    return await Instance.get(Common.KH_DOMAIN + `/admin/selectQuryList`, {});
+  //1대1 문의 전체 조회 
+  selectQueryList: async () => {
+    return await Instance.get(Common.KH_DOMAIN + `/admin/selectQueryList`, {});
   },
 
-  //내 문의 글 조회
-  selectMyQury: async () => {
-    return await Instance.get(Common.KH_DOMAIN + `/admin/selectMyQury`, {});
+  //내 문의 글 조회 
+  selectMyQuery: async () => {
+    return await Instance.get(Common.KH_DOMAIN + `/admin/selectMyQuery`, {});
   },
 
   //1대1 문의 조회
   selectQury: async (id) => {
-    console.log("아이디 : " + id);
-    return await Instance.get(
-      Common.KH_DOMAIN + `/admin/selectQury/?id=${id}`,
-      {}
-    );
+
+    return await Instance.get(Common.KH_DOMAIN + `/admin/selectQuery/?id=${id}`, {});
   },
 
   //문의 댓글 등록
