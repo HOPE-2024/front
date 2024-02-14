@@ -4,6 +4,7 @@ import { Button } from "../../utils/Button";
 import { InsertReport } from "./InsertReport";
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
 import { useNavigate } from "react-router-dom";
+import { DeleteQuery } from "./DeleteQuery";
 const ReplyInsertCss = styled.div`
   width  :100% ;
   height: auto;
@@ -32,7 +33,8 @@ const ReplyInsertCss = styled.div`
        justify-content: center;
        margin-top: 10px;
        button{
-        margin: 20px 50px;
+        margin: 20px 10px;
+        height: 50px;
        }
     }
   }
@@ -66,6 +68,7 @@ const ReplyInsertCss = styled.div`
         margin-left: 30px;
         input{
            width: 100%;
+           min-height: 30px;
         }
    
         .info{
@@ -100,7 +103,7 @@ const InputBox = styled.textarea`
     }
 `;
 
-export const ReplyInsert = ({ list }) => {
+export const ReplyInsert = ({ list, setRefresh }) => {
     const [newReply, setNewReply] = useState('')
     const navigate = useNavigate();
     const InsertReply = async (ReplyDto) => {
@@ -108,23 +111,27 @@ export const ReplyInsert = ({ list }) => {
         try {
             const res = await AdminAxiosApi.InsertReply(ReplyDto);
             console.log(res.data);
+            setNewReply('')
+            setRefresh(prevRefresh => !prevRefresh);
         } catch (error) {
             console.log(error);
         }
-
     };
 
-    const submit = () => {
+    const submit = async () => {
         const ReplyDto = {
             answer: newReply,
             queryId: list.id,
         };
-        InsertReply(ReplyDto)
+        await InsertReply(ReplyDto)
     }
-    const edit = () => {   
-        navigate("../write/"+list.id)
+    const edit = () => {
+        navigate("../QueryEdit/" + list.id)
     }
- 
+    const delete1 = async () => {
+        await DeleteQuery(list.id)
+        setRefresh(prevRefresh => !prevRefresh);
+    }
     return (
         <ReplyInsertCss>
             <div className="input">
@@ -133,10 +140,11 @@ export const ReplyInsert = ({ list }) => {
                 </div>
                 <div className="content2">
                     <Button width={"100px"} children={"댓글 등록"} clickEvt={submit}></Button>
-                    <Button width={"100px"}  children={"수정"} clickEvt={edit}></Button>
+                    <Button width={"100px"} children={"문의 수정"} clickEvt={edit}></Button>
+                    <Button width={"100px"} children={"문의 삭제"} clickEvt={delete1}></Button>
                     {/* <Button children={"문의 글 삭제"} clickEvt={submit2}></Button> */}
                 </div>
             </div>
-        </ReplyInsertCss>
+        </ReplyInsertCss >
     );
 };

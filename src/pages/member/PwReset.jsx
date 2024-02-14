@@ -15,7 +15,7 @@ import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Footer } from "../../component/template/Footer";
-import { AuthAxiosApi } from "../../api/AuthAxiosApi";
+import { EmailAxiosApi } from "../../api/EmailAxiosApi";
 
 export const PwReset = () => {
   const location = useLocation();
@@ -54,7 +54,7 @@ export const PwReset = () => {
           memberId: memberId,
           password: newPw,
         };
-        const rsp = await AuthAxiosApi.passwordReset(data);
+        const rsp = await EmailAxiosApi.passwordReset(data);
         alert("비밀번호가 성공적으로 변경 되었습니다!");
         // 변경 완료후 로그인 페이지로 이동
         navigate("/login");

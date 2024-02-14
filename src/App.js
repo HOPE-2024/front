@@ -10,6 +10,8 @@ import { MemberList } from "./pages/admin/MemberList";
 import { Report } from "./pages/admin/Report";
 import { Query } from "./pages/admin/Query";
 import { QueryView } from "./pages/admin/QueryView";
+import { QueryWrite } from "./pages/admin/QueryWrite";
+import { QueryEdit } from "./pages/admin/QueryEdit"
 import { QueryList } from "./pages/admin/QueryList";
 import { Signup } from "./pages/member/SignUp";
 import { ChatRoom } from "./pages/chat/ChatRoom";
@@ -62,11 +64,13 @@ function App() {
               <Route path="/MemberList2" element={<MemberList2 />} />
               <Route path="/MemberList" element={<MemberList />} />
               <Route path="/Query" element={<Query />} />
+              <Route path="/QueryWrite" element={<QueryWrite />} />
               <Route path="/Query/:id" element={<Query />} />
-              <Route path="/QueryView/:id" element={<QueryView />} />
+              <Route path="/QueryView/:id" element={<QueryView />} /> 
+              <Route path="/QueryEdit/:id" element={<QueryEdit />} />
               <Route path="/QueryList" element={<QueryList />} />
               <Route path="/Report" element={<Report />} />
-              <Route path="/Support" element={<Support />} />
+              <Route path="/Support/:id" element={<Support />} />
               <Route path="/Map" element={<Map />} />
               <Route path="/LifeExpectancy" element={<LifeExpectancy />} />
               <Route path="/Country" element={<Country />} />

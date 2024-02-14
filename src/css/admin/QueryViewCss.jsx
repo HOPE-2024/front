@@ -6,7 +6,11 @@ export const QueryViewCss = styled.div`
     margin: 0 auto;
   height: 80%;
   background: white;
- 
+  margin-top: 40px;
+ img{
+  width: 300px;
+  height: 300px;
+ }
   .Viewa {
     width: 70%;
     margin: 0 ;
@@ -25,11 +29,27 @@ export const QueryViewCss = styled.div`
     margin-top: 20px ;
     height: auto;
     min-height: 500px;
-    padding: 10px;
-
- 
-  
+    padding: 10px;  
 border: 1px solid black;
+  }
+    .ViewC {
+    width: 100%;
+    height: 200px;
+    display  : flex ;
+    align-content: center;
+    margin-top: 10px;
+    div{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    img{
+      width: 200px;
+      height: 200px;
+    }
+    }
+
+
 
   }
   `;

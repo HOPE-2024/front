@@ -170,6 +170,7 @@ export const QueryCss = styled.div`
     height: 50px;
     display: flex;
     justify-content: center;
+    padding-bottom: 100px;
     button {
       margin: 0 50px;
     }

@@ -81,13 +81,22 @@ export const Items = styled.div`
   }
 `;
 
-export const KakaoStyled = styled.img.attrs({
-  src: KakaoLogo,
-})`
+export const KakaoStyled = styled.div`
   width: 80px;
   height: 40px;
   margin-right: 10px;
   cursor: pointer;
+  background-image: url(${KakaoLogo});
+  background-size: cover;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+  }
 `;
 
 export const NaverStyled = styled.img.attrs({
