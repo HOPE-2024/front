@@ -9,7 +9,7 @@ export const ForgotIdContainer = styled.div`
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 768px) {
-    width: 85%;
+    width: 100%;
   }
 `;
 
@@ -49,6 +49,9 @@ export const InputField = styled.input`
 export const InputAndButtonContainer = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -73,4 +76,6 @@ export const FooterContainer = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
+  @media screen and (max-width: 768px) {
+  }
 `;

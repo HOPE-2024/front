@@ -12,7 +12,7 @@ export const LoginContainer = styled.div`
   align-items: center;
   position: absolute;
   @media screen and (max-width: 768px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 
@@ -64,7 +64,7 @@ export const Items = styled.div`
     margin: 15px;
     left: 6%; //item2가 원래 있어야 할 위치에서 왼쪽으로 10%만큼 떨어진 곳에 위치
     @media screen and (max-width: 768px) {
-      left: 15%;
+      left: 25%;
     }
   }
   &.item3 {

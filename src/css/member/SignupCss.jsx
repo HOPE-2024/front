@@ -9,7 +9,7 @@ export const SignupContainer = styled.div`
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 768px) {
-    width: 85%;
+    width: 100%;
   }
 `;
 

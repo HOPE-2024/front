@@ -41,7 +41,9 @@ export const AuthAxiosApi = {
         "로그인 성공. 액세스 토큰:",
         response.data.accessToken,
         "리프레시 토큰:",
-        response.data.refreshToken
+        response.data.refreshToken,
+        "권한 정보",
+        response.data.authority
       );
       return response;
     } catch (error) {
