@@ -14,12 +14,33 @@ import { Hamburger } from "./Hamburger";
 import { MemberAxiosApi } from "../../api/MemberAxiosApi";
 import { Common, Reload } from "../../utils/Common";
 import { UserContext } from "../../context/AuthContext";
+import { FaSearch } from "react-icons/fa";
+import styled from "styled-components";
+import { FourthModal } from "./HeaderDropDown";
+
+export const SearchIcon = styled.div`
+  position: relative;
+  font-size: 1.5rem;
+  margin: 3px 10px 0 5px;
+  height: 40px;
+  width: 20px;
+  cursor: pointer;
+  svg {
+    color: #023b96;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: #136cfb;
+    }
+  }
+`;
 
 export const Header = () => {
   const navigate = useNavigate();
   const [firstView, setFirstView] = useState(false);
   const [secondView, setSecondView] = useState(false);
   const [thirdView, setThirdView] = useState(false);
+  const [fourthView, setFourthView] = useState(false);
+
   // 로그인 전역관리
   const context = useContext(UserContext);
   const { setLoginStatus, loginStatus } = context;
@@ -66,6 +87,13 @@ export const Header = () => {
             {loginStatus === "true" ? (
               // 로그인 O
               <Menu>
+                <li onClick={() => setFourthView(!fourthView)}>
+                  <SearchIcon>
+                    <FaSearch />
+                  </SearchIcon>
+                  {fourthView && <FourthModal isModalOpen={true} />}
+                </li>
+                <Line></Line>
                 <li onClick={() => setFirstView(!firstView)}>
                   <UnderLinedStyle>예측</UnderLinedStyle>
                   {firstView && (

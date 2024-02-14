@@ -5,6 +5,8 @@ import {
   SecondDropDownMenu,
   ThirdDropDownMenu,
 } from "../../css/template/HeaderDropDownStyle";
+import { YesModal } from "../../utils/modal/YesModal";
+import { StyledSearch } from "../../css/common/StyledSearch";
 
 export const FirstDropDown = ({ onClose }) => {
   const dropdownRef = useRef(null);
@@ -146,5 +148,26 @@ export const ThirdDropDown = ({ onClose }) => {
       </li>
       <li onClick={logout}>로그아웃</li>
     </ThirdDropDownMenu>
+  );
+};
+
+// 헤더의 검색 버튼 눌렀을 때 뜨는 모달
+export const FourthModal = ({ isModalOpen }) => {
+  const navigate = useNavigate();
+  const onSearch = (searchOption, search) => {
+    navigate(`/medicineresult?searchoption=${searchOption}&search=${search}`);
+  };
+
+  return (
+    <>
+      {isModalOpen && (
+        <YesModal
+          width="60%"
+          height="65%"
+          modalOpen={isModalOpen}
+          checkMessage={<StyledSearch onSearch={onSearch()}></StyledSearch>}
+        />
+      )}
+    </>
   );
 };
