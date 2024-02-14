@@ -28,7 +28,7 @@ export const MemberAxiosApi = {
   kakaoLogin: async (data) => {
     try {
       const rsp = await axios.post(Common.KH_DOMAIN + "/member/kakaoLogin", {
-        data,
+        kakaoData: data,
       });
       console.log("카카오로그인 성공: ", data);
       return rsp;
