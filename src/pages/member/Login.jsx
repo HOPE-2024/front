@@ -60,13 +60,25 @@ export const Login = () => {
     console.log("login!!");
     try {
       const rsp = await AuthAxiosApi.login(inputId, InputPw);
+      const { authority } = rsp.data;
+
       if (rsp.data.grantType === "Bearer") {
         // 받은 토큰을 저장
         Common.setAccessToken(rsp.data.accessToken);
         Common.setRefreshToken(rsp.data.refreshToken);
         setLoginStatus(true); // 로그인 성공 시 전역 상태 true로 업데이트
         localStorage.setItem("loginStatus", "true"); // 로컬 스토리지에 로그인 상태 저장
-        navigate("/");
+
+        // 권한이 어드민인 경우 어드민 페이지로 이동
+        if (authority === "ADMIN") {
+          // authorities를 배열로 사용하는 대신 단일 권한 정보를 직접 비교
+          console.log("권한: 어드민", authority);
+          navigate("/MemberList");
+        } else {
+          console.log("권한: 일반 사용자", authority);
+          navigate("/");
+        }
+
         window.location.reload();
       } else {
         alert("잘못된 아이디 또는 비밀번호 입니다.");
