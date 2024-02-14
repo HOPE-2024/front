@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components"
-import { Button } from "../../utils/Button"
-import { InputBox, QueryCss } from "../../css/admin/QueryCss";
-import { InsertQuery } from "../../component/admin/InsertQuery";
 import { useNavigate } from "react-router-dom";
-import { AdminAxiosApi } from "../../api/AdminAxiosApi";
-import { Reply } from "../../component/admin/Reply";
+import { QueryAxiosApi } from "../../api/QueryAxiosApi";
 import { MemberListCss } from "../../css/admin/Report";
 import { QueryView } from "./QueryView";
 import { ReplyInsert } from "../../component/admin/ReplyInsert";
 const QueryViewCss = styled.div`
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
   height:  auto;
   margin-top: 40px;
@@ -44,6 +40,9 @@ const QueryViewCss = styled.div`
 
       li{
         width: 100px;    
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
@@ -80,7 +79,9 @@ const QueryViewCss = styled.div`
         width: 100px;    
         display: flex;    
         align-items: center;   
+      
       }
+     
     }
   }
   .query{
@@ -111,6 +112,7 @@ const QueryViewCss = styled.div`
           width: 100%;         
         li{
           width: 100%;
+          
         }
     }
     .p1 , .p2{
@@ -163,6 +165,12 @@ const QueryViewCss = styled.div`
    
    
 }
+.list1{
+  li{
+    justify-content: center;
+  }
+
+}
 `;
 export const QueryList = () => {
   const navigate = useNavigate();
@@ -176,7 +184,7 @@ export const QueryList = () => {
   const selectQury = async () => {
     console.log('질문 가져오는 axios 실행')
     try {
-      const res = await AdminAxiosApi.selectQueryList();
+      const res = await QueryAxiosApi.selectQueryList();
       setData(res.data);
       console.log(res.data);
     } catch (error) {
@@ -246,7 +254,7 @@ export const QueryList = () => {
           <div className="query">
             <div className="content">
               {data && data.map((pick, index) => (<>
-                <ul key={index} style={{ backgroundColor: pick.status === "답변 완료" ? " #3C84F8" : "inherit" }} onClick={() => { replyOpen(index) }}>
+                <ul className="list1" key={index} style={{ backgroundColor: pick.status === "답변 완료" ? " #3C84F8" : "inherit" }} onClick={() => { replyOpen(index) }}>
 
 
                   <li className="p1">{pick.id}</li>

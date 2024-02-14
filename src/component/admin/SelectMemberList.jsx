@@ -11,6 +11,7 @@ import { AdminAxiosApi } from "../../api/AdminAxiosApi";
 //     }
 // };
 export const SelectMemberList = async (listType, setData, currentPage, setMaxPage) => {
+
     try {
         if (listType === 'all') {
             try {

@@ -1,10 +1,10 @@
-import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+import { ReportAxiosApi } from "../../api/ReportAxiosApi";
 
 
 export const InsertReport = async (reportDto) => {
 
     try {
-        const res = await AdminAxiosApi.insertReport(reportDto);
+        const res = await ReportAxiosApi.insertReport(reportDto);
         if (res.status === 200) {
             alert("회원 신고가 완료되었습니다.")
         }

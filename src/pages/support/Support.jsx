@@ -7,11 +7,6 @@ import query1 from "../../images/query1.svg";
 import query2 from "../../images/query2.svg";
 import query3 from "../../images/query3.svg";
 
-
-
-
-
-
 const SupportScc = styled.div`
     width: 100%;
     max-width: 1280px;
@@ -24,7 +19,6 @@ const SupportScc = styled.div`
 width: 100%;
 margin-top: 40px;
 height: auto;
-
  p{
     margin-left: 20px;
     font-size: 1.5em;
@@ -33,11 +27,11 @@ height: auto;
     .content2{
         width: 100%;
 height: auto;
-
+ font-size: .7em;
 ul{
      margin-top: 30px;
     display: flex;
-flex-direction: row;
+          flex-direction: row;
 justify-content: center;
 li{
     width: 250px;
@@ -45,14 +39,19 @@ li{
     margin: 0 15px;
     //고객지원 목록 색상
     background: #e5e5e5;
+    border-radius: 50px;
     display: flex;
     flex-direction: column;
        justify-content: center;
        align-items: center;    
         font-size: 2em;  
-        padding-bottom: 20px;
+        padding-bottom: 10px;
+        @media (max-width: 768px) {
+           min-height: 150px;
+         width:150px;
+            }
+}   
 
-}
 :hover{
     background: #afc5e0;
 }
@@ -60,7 +59,8 @@ li{
 
     }
     .content3{
-        width: 100%;
+
+        width:100%;
 margin-top: 50px;
 height: auto;
 
@@ -75,11 +75,13 @@ p{
         ul{
     
             li{ margin: 0 auto;
-                width: 100%;
+                width: 90%;
                display: flex;
             }  
+        
             
             .title{
+                line-height:30px;
                 border: 1px solid black;
                 height: 40px;
                 background: #136CFB;
@@ -93,10 +95,11 @@ p{
                 }
                 h1{    margin: 0;
                     margin-right: 50px;
-                    font-weight: bold;  
+            
                 
                     transform: rotate(270deg);
                     font-size : 3em;
+
                 }
             }
               &:hover > .title{
@@ -107,6 +110,7 @@ p{
                 /* border: 1px solid red; */
                 height: auto;
                 padding: 30px;
+                padding-bottom: 0;
                p{                 
                  word-break: break-all;       
                  font-size  :1.2em ;
@@ -138,9 +142,9 @@ export const Support = () => {
             <div className="content1"> <p>고객 지원 </p></div>
             <div className="content2">
                 <ul>
-                    <li onClick={() => { setType(1) }} style={{ background: type === 1 && '#afc5e0' }}>   <img src={query1} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} />자주 묻는 질문</li>
-                    <li onClick={() => { setType(2) }} style={{ background: type === 2 && '#afc5e0' }}>  <img src={query3} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} />나의 질문 보기</li>
-                    <li onClick={() => { navigate("/QueryWrite") }}> <img src={query2} alt="Logo" width="60" height="80" style={{ marginBottom: "10px" }} />문의 작성하기</li>
+                    <li onClick={() => { setType(1) }} style={{ background: type === 1 && '#afc5e0' }}>   <img src={query1} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} /><p>자주 묻는 질문</p></li>
+                    <li onClick={() => { setType(2) }} style={{ background: type === 2 && '#afc5e0' }}>  <img src={query3} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} /><p>나의 질문 보기</p></li>
+                    <li onClick={() => { navigate("/QueryWrite") }}> <img src={query2} alt="Logo" width="60" height="80" style={{ marginBottom: "10px" }} /><p>문의 작성하기</p></li>
                 </ul>
             </div>
             {type === 1 && <Support1 ></Support1>}

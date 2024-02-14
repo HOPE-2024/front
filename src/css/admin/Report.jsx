@@ -20,22 +20,22 @@ export const MemberListCss = styled.div`
    font-weight: lighter;
    margin-top: 40px;
    @media (max-width: 768px) {            
-    
+    width: 70%;
      display: flex;
      justify-content: center;
      align-items: center;
      ul{   
-      padding-bottom: 20px;
+      padding-bottom: 20px;      width: 100%;
       li{
         border: 1px solid #3C84F8;
        margin: 0;
        padding: 0;
-      width: 140px;
-     height:30px;
+      width: 100%;
+     height:40px;
      display: flex;
     align-items: center;
     justify-content: center;
-
+   
      }  
      .font{
     margin:0;
