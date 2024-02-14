@@ -11,6 +11,8 @@ import {
 } from "../../../css/SlideStyle";
 import { FaceGenderAge } from "../FaceGenderAge";
 import { NewsSearch } from "../../../component/result/NewsSearch";
+import { FaceDesc } from "../FaceDesc";
+import { FaceType } from "../FaceType";
 
 export const FaceResultSlide = ({ result, image, model, age }) => {
   const resultAge = result[0].split(",")[1].trim();
@@ -34,12 +36,10 @@ export const FaceResultSlide = ({ result, image, model, age }) => {
       <FaceGenderAge result={result} image={image}></FaceGenderAge>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      머신 러닝(0), 딥 러닝(1) 중 어떤 모델로 얼굴 검출을 하였는지 기술 :{" "}
-      {model}
+      <FaceDesc model={model}></FaceDesc>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      사진을 입력하는 창에, 나이 입력 input 를 출력하고, 결과값과 input을
-      비교해서 동안, 노안을 판별 : {faceType}
+      <FaceType type={faceType}></FaceType>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <NewsSearch keyWord={faceType}></NewsSearch>

@@ -14,6 +14,7 @@ import { BarGraph } from "../chart/BarGraph";
 import { TypeWriter } from "../../../css/text/TypeWriter";
 import { Gauge } from "../../../component/result/Gauge";
 import { NewsSearch } from "../../../component/result/NewsSearch";
+import { DiabChatRoomList } from "../DiabChatRoomList";
 
 export const DiabResultSlide = ({
   prediction,
@@ -59,7 +60,7 @@ export const DiabResultSlide = ({
       <NewsSearch></NewsSearch>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <p>당뇨병 채팅방 목록 출력</p>
+      <DiabChatRoomList></DiabChatRoomList>
     </SlideListContent>,
   ];
 

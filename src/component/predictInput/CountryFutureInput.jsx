@@ -22,10 +22,24 @@ export const CountryFutureInput = ({ country = "Korea, Rep." }) => {
 
     try {
       const response = await MachineAxiosApi.predictFuture(userData);
-      console.log("미래 수명 : " + response.data.prediction);
+
+      let temp = JSON.parse(response.data.correlations);
+      let sum = 0;
+      temp.forEach((innerArray) => {
+        innerArray.forEach((number) => {
+          sum += number;
+        });
+      });
+      const average = Math.floor((sum / 4) * 100);
+
       navigate("/coutryfutureresult", {
         state: {
           Prediction: response.data.prediction,
+          Country: country,
+          Year: year,
+          Percent: average,
+          x: response.data.x,
+          y: response.data.y,
         },
       });
     } catch (error) {
@@ -47,7 +61,7 @@ export const CountryFutureInput = ({ country = "Korea, Rep." }) => {
       </label>
       <button type="submit" disabled={isLoading}>
         제출
-      </button>{" "}
+      </button>
       {/* 로딩 중에는 버튼을 비활성화 */}
     </form>
   );

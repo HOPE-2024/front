@@ -11,11 +11,17 @@ import {
 } from "recharts";
 import { All, Wrapper, Balloon, Icon } from "../../../css/chart/ScatterStyle";
 
-export const ScatterGraph = ({ correlation_x, correlation_y }) => {
+export const ScatterGraph = ({
+  correlation_x,
+  correlation_y,
+  domain = [30, 100],
+  yPosition = 0,
+}) => {
   const [showBalloon, setShowBalloon] = useState(false);
   const handleDescriptionClick = () => {
     setShowBalloon(!showBalloon); // 클릭 시 말풍선 표시 상태 토글
   };
+  const formatTick = (tickItem) => Math.round(tickItem);
 
   // 상관 계수 그래프용 데이터 구조 조정
   const correlationData = correlation_x.map((value, index) => {
@@ -44,7 +50,8 @@ export const ScatterGraph = ({ correlation_x, correlation_y }) => {
                 dataKey="x"
                 name="예측값"
                 label={{ value: "예측값", position: "insideBottom", dy: 10 }}
-                domain={[30, 100]} // 축의 범위
+                domain={domain} // 축의 범위
+                tickFormatter={formatTick} // X축에 정수만 표시
               />
               <YAxis
                 type="number"
@@ -54,8 +61,10 @@ export const ScatterGraph = ({ correlation_x, correlation_y }) => {
                   value: "실제값",
                   position: "insideLeft",
                   dx: -5,
+                  dy: yPosition,
                 }}
-                domain={[30, 100]}
+                domain={domain}
+                tickFormatter={formatTick}
               />
               <Tooltip cursor={{ strokeDasharray: "3 3" }} />
               <Scatter name="상관계수" data={correlationData}>
@@ -70,8 +79,7 @@ export const ScatterGraph = ({ correlation_x, correlation_y }) => {
           </ResponsiveContainer>
           <Balloon show={showBalloon}>
             이 그래프는 예측값과 실제값의 상관계수를 나타냅니다. 그래프의 점들이
-            선형 구조에 가까울수록 랜덤 포레스트 모델의 평가가 좋다는 것을
-            의미합니다."
+            선형 구조에 가까울수록 예측 모델이 우수하다는 것을 의미합니다."
           </Balloon>
         </Wrapper>
         <Icon onClick={handleDescriptionClick}></Icon>
