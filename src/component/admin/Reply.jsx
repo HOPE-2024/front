@@ -3,6 +3,7 @@ import { Button } from "../../utils/Button";
 import { useState } from "react";
 import { AdminAxiosApi } from "../../api/AdminAxiosApi";
 import { useNavigate } from "react-router-dom";
+import { QueryAxiosApi } from "../../api/QueryAxiosApi";
 const ReplyCss = styled.div`
   width  :100% ;
   height: auto;
@@ -102,35 +103,17 @@ export const Reply = ({ list, id, setRefresh, mode, setMode, submit3 }) => {
     const [show, setShow] = useState();
     const [newReply, setNewReply] = useState();
 
-    const submit = () => {
-        const ReplyDto = {
-            answer: data,
-            queryId: id,
-        };
-        InsertReply(ReplyDto)
-        setData('')
-    }
-    const submit2 = () => {
-        // DeleteQuery(id)
-    }
+
+
     const deleteSubmit = (id) => {
         DeleteReply(id)
     }
 
-    const DeleteQuery = async (id) => {
-        console.log('문의글 삭제 실행')
-        try {
-            const res = await AdminAxiosApi.deleteQuery(id);
-            console.log(res.data);
-        } catch (error) {
-            console.log(error);
-        }
-        navigate('/QueryList')
-    };
+
     const DeleteReply = async (id) => {
         console.log('댓글 삭제 실행')
         try {
-            const res = await AdminAxiosApi.deleteReply(id);
+            const res = await QueryAxiosApi.deleteReply(id);
             console.log(res.data);
         } catch (error) {
             console.log(error);
@@ -139,16 +122,7 @@ export const Reply = ({ list, id, setRefresh, mode, setMode, submit3 }) => {
         setShow();
         setRefresh(prevRefresh => !prevRefresh);
     };
-    const InsertReply = async (ReplyDto) => {
-        console.log('댓글 등록 실행')
-        try {
-            const res = await AdminAxiosApi.InsertReply(ReplyDto);
-            console.log(res.data);
-        } catch (error) {
-            console.log(error);
-        }
 
-    };
     const updateSubmit = (id) => {
         console.log(id);
         const ReplyDto = {
@@ -163,7 +137,7 @@ export const Reply = ({ list, id, setRefresh, mode, setMode, submit3 }) => {
 
         console.log('댓글 수정 실행')
         try {
-            const res = await AdminAxiosApi.UpdateReply(ReplyDto);
+            const res = await QueryAxiosApi.UpdateReply(ReplyDto);
             console.log(res.data);
         } catch (error) {
             console.log(error);

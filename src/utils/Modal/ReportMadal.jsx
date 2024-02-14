@@ -191,7 +191,9 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
         await UpdateReportActive(list.id, status);
       }
       setOpen(null);
-    }
+    } else (
+      setOpen(false)
+    )
   };
   const ReportSubmit = async () => {
     const reportDto = {
@@ -200,6 +202,8 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
       reason: why
     }
     await InsertReport(reportDto);
+    setWhat('')
+    setWhy('')
     setOpen(false)
   }
 
@@ -213,6 +217,8 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
   useEffect(() => {
     if (list && list.reported && list.reported !== ' ' && list.reported !== null) {
       ReportRead(list.id);
+      setWhat(list.check)
+      setWhy(list.reason)
       setView(list.reported.nickName + "(" + list.reported.active + ")");
     }
   }, [list]);
@@ -325,7 +331,7 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
                     submit();
                   }}
                 >
-                  확 인
+                  확 인1
                 </button>
                   <button
                     onClick={() => {

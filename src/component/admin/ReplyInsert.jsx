@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../../utils/Button";
-import { InsertReport } from "./InsertReport";
-import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+
 import { useNavigate } from "react-router-dom";
 import { DeleteQuery } from "./DeleteQuery";
+import { QueryAxiosApi } from "../../api/QueryAxiosApi";
 const ReplyInsertCss = styled.div`
   width  :100% ;
   height: auto;
@@ -19,7 +19,7 @@ const ReplyInsertCss = styled.div`
     .content1{ 
         margin: 0;
         width: 100%;
-        height: 120px; 
+        height: auto; 
         display: flex;
        justify-content: center;
 
@@ -109,7 +109,7 @@ export const ReplyInsert = ({ list, setRefresh }) => {
     const InsertReply = async (ReplyDto) => {
         console.log('댓글 등록 실행')
         try {
-            const res = await AdminAxiosApi.InsertReply(ReplyDto);
+            const res = await QueryAxiosApi.insertReply(ReplyDto);
             console.log(res.data);
             setNewReply('')
             setRefresh(prevRefresh => !prevRefresh);

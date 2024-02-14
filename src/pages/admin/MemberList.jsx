@@ -35,6 +35,8 @@ export const MemberList = () => {
   //회원 조회 클릭시 listType을 변경 후  useEffect로 변경된 데이터를 가져옵니다.
   const menuClick = (tabName) => {
     setListType(tabName);
+    setCurrentPage(0)
+
   };
 
   //화면 랜더링 시 메뉴에 맞게 데이터를 가져옵니다.

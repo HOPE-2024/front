@@ -3,7 +3,6 @@ import { Button } from "../../utils/Button";
 import { ReportMadal } from "../../utils/modal/ReportMadal";
 import { useNavigate } from "react-router-dom";
 import { MemberListCss } from "../../css/admin/Report";
-import { AdminAxiosApi } from "../../api/AdminAxiosApi";
 import { SelectReportList } from "../../component/admin/SelectReportList";
 import { SearchVar } from "../../component/admin/SearchVar";
 import { CurrentVar } from "../../component/admin/CurrentVar";
@@ -25,6 +24,8 @@ export const Report = () => {
 
   const menuClick = (tabName) => {
     setListType(tabName);
+    setCurrentPage(0)
+
   };
 
   //화면 랜더링 시 메뉴에 맞게 데이터를 가져옵니다.
@@ -58,14 +59,14 @@ export const Report = () => {
               } font`}
             onClick={() => menuClick("before")}
           >
-            처리 전
+            읽기 전
           </li>
           <li
             className={` ${listType === "after" ? "active" : ""
               } font`}
             onClick={() => menuClick("after")}
           >
-            처리 후
+            읽기 후
           </li>
           <li
             onClick={() => {

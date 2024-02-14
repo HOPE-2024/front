@@ -11,7 +11,10 @@ const CurrentVaCss = styled.div`
         width: 40px;
         height: 40px;
       margin: 0 10px;
+      border: none;
+      background: none;
     }
+    padding-bottom: 30px;
 `;
 
 
@@ -25,7 +28,7 @@ export const CurrentVar = ({ maxPage, currentPage, setCurrentPage }) => {
     const buttons = [];
     for (let i = 1; i <= maxPage; i++) {
         buttons.push(
-            <button key={i} onClick={() => handleClick(i)}>
+            <button key={i} onClick={() => handleClick(i)} style={{ color: currentPage === i - 1 ? "#3C84F8" : "black" }}>
                 {i}
             </button>
         );

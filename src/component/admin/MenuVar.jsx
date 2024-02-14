@@ -43,14 +43,14 @@ export const MenuVar = ({ listType, setListType }) => {
                     } font`}
                 onClick={() => menuClick("before")}
             >
-                처리 전
+                읽기 전
             </li>
             <li
                 className={` ${listType === "after" ? "active" : ""
                     } font`}
                 onClick={() => menuClick("after")}
             >
-                처리 후
+                읽기 후
             </li>
         </ul>
     )
