@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChatAxiosApi } from "../../api/ChatAixosApi";
+import { ChatAxiosApi } from "../../api/ChatAxiosApi";
 import { SickList } from "../../css/chat/AreaSickListCss";
 import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
 

@@ -37,6 +37,10 @@ const CloseButton = styled.span`
   }
 `;
 
+export const EditButton = styled.button`
+  font-size: 1.2em;
+`;
+
 const ImageListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -52,14 +56,13 @@ const ImageItem = styled.img`
   }
 `;
 
-const ProfileItem = styled.img`
-  height: 5vh;
+const Profile = styled.img`
+  height: 20%;
 `;
 
 export const ProfileModal = ({ memberId, onImageSelect }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [profile, setProfile] = useState("");
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -74,7 +77,7 @@ export const ProfileModal = ({ memberId, onImageSelect }) => {
     console.log("모달 데이터 확인", memberId);
     // 선택된 프로필 이미지 이름을 서버로 전송하여 업데이트
     try {
-      await MyPageAxiosApi.memberUpdate(memberId, imageName);
+      await MyPageAxiosApi.memberProfileUpdate(memberId, imageName);
     } catch (error) {
       console.error("Error updating profile:", error);
       // 에러 처리 로직 추가
@@ -118,11 +121,7 @@ export const ProfileModal = ({ memberId, onImageSelect }) => {
 
   return (
     <div>
-      <ProfileItem
-        src={`/images/profile/${selectedImage}.png`}
-        alt="Profile"
-        onClick={openModal}
-      />
+      <EditButton onClick={openModal}>프로필 수정</EditButton>
       {isModalOpen && (
         <ModalContainer>
           <ModalContent>

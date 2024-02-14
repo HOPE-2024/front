@@ -17,7 +17,7 @@ import {
 import { LineButton } from "../../component/common/LineButton";
 import { formatDate } from "../../utils/Common";
 import { AddChatModal } from "../../utils/modal/AddChatModal";
-import { ChatAxiosApi } from "../../api/ChatAixosApi";
+import { ChatAxiosApi } from "../../api/ChatAxiosApi";
 import { useNavigate } from "react-router-dom";
 
 export const ChatList = () => {
