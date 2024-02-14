@@ -54,7 +54,12 @@ export const DiabResultSlide = ({
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <Gauge bmi={bmi}></Gauge>
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
       등급 : {grade}, 건강 조언 : {advice}
+      {/* 조언 파이썬에서 삭제하고 리액트 컴포넌트 생성 */}
+      {/* 혈압 추가 */}
+      혈압 : {bp}
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <NewsSearch></NewsSearch>

@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import { MachineAxiosApi } from "../../api/MachineAxiosApi";
 
-// Styled-components로 스타일을 적용한 컴포넌트 정의
 const NewsContainer = styled.div`
-  margin: 20px;
-`;
-
-const NewsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 20px;
+  width: 70vw;
+  max-width: 1000px;
+  height: 50vh;
+  overflow: scroll;
 `;
 
 const NewsItem = styled.div`
   border: 1px solid #ddd;
+  margin: 5px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 `;
 
+const NewsLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: inherit;
+`;
+
 const NewsImage = styled.img`
-  width: 100%;
-  height: auto;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
 `;
 
 const NewsTitle = styled.p`
+  display: flex;
+  align-items: center;
   padding: 10px;
 `;
 
@@ -34,6 +42,7 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchNews = async () => {
+    console.log("검색어 : " + keyWord);
     try {
       const response = await MachineAxiosApi.fetchNews(keyWord);
       setArticles(response.data);
@@ -53,18 +62,22 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
   }, [keyWord]);
 
   return (
-    <NewsContainer>
-      {isLoading ? <h2>Loading...</h2> : <h2>검색어: {keyWord}</h2>}
-      <NewsGrid>
+    <>
+      <NewsContainer>
+        {isLoading ? <h2>Loading...</h2> : <h2>검색어: {keyWord}</h2>}
         {articles.map((article, index) => (
           <NewsItem key={index}>
-            <a href={article.link} target="_blank" rel="noopener noreferrer">
+            <NewsLink
+              href={article.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <NewsImage src={article.image} alt="news" />
               <NewsTitle>{article.title}</NewsTitle>
-            </a>
+            </NewsLink>
           </NewsItem>
         ))}
-      </NewsGrid>
-    </NewsContainer>
+      </NewsContainer>
+    </>
   );
 };

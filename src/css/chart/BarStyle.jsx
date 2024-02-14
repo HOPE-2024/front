@@ -50,8 +50,8 @@ export const Wrapper = styled.div`
 // 말풍선
 export const Balloon = styled.div`
   position: relative;
-  width: 23vw;
-  height: 20vh;
+  width: 30vw;
+  height: 25vh;
   bottom: 30vh;
   left: 15vw;
   padding: 5%;

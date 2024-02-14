@@ -13,7 +13,7 @@ import { ScatterGraph } from "../chart/ScatterGraph";
 import { BarGraph } from "../chart/BarGraph";
 import { TypeWriter } from "../../../css/text/TypeWriter";
 import { Gauge } from "../Gauge";
-import { HealthAdvice } from "../HealthAdvice";
+import { Diseases } from "../Diseases";
 import { NewsSearch } from "../NewsSearch";
 import { AlcoholDesc } from "../description/AlcoholDesc";
 
@@ -66,11 +66,11 @@ export const LifeResultSlide = ({
       ></AlcoholDesc>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <HealthAdvice
+      <Diseases
         onDiseaseInfo={handleDiseaseInfo}
         bmi={bmi}
         alcohol={alcohol}
-      ></HealthAdvice>
+      ></Diseases>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <NewsSearch keyWord={diseaseFromChild}></NewsSearch>

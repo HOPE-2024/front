@@ -76,20 +76,25 @@ export const YesModal = ({
     setModalOpen(false);
   };
 
+  const renderMessage = () => {
+    if (typeof checkMessage === "string") {
+      return checkMessage.split("\n").map((line, index) => (
+        <React.Fragment key={index}>
+          {line}
+          <br />
+        </React.Fragment>
+      ));
+    } else {
+      return checkMessage;
+    }
+  };
+
   return (
     <ModalClickCss>
       {modalOpen && (
         <ModalWrapper onClick={handleBackgroundClick}>
           <Message width={width} height={height}>
-            <MessageContent>
-              {/* \n를 줄바꿈으로 인식하게 설정 */}
-              {checkMessage.split("\n").map((line, index) => (
-                <React.Fragment key={index}>
-                  {line}
-                  <br />
-                </React.Fragment>
-              ))}
-            </MessageContent>
+            <MessageContent>{renderMessage()}</MessageContent>
             <br />
             <UnderLinedStyle fontSize="1.5rem" onClick={handleConfirmClick}>
               확인
