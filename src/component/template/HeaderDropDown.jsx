@@ -127,7 +127,7 @@ export const ThirdDropDown = ({ onClose }) => {
     <ThirdDropDownMenu ref={dropdownRef}>
       <li
         onClick={() => {
-          navigate("/MyCalender");
+          navigate("/schedule");
         }}
       >
         일정

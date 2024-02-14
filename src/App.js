@@ -11,7 +11,7 @@ import { Report } from "./pages/admin/Report";
 import { Query } from "./pages/admin/Query";
 import { QueryView } from "./pages/admin/QueryView";
 import { QueryWrite } from "./pages/admin/QueryWrite";
-import { QueryEdit } from "./pages/admin/QueryEdit"
+import { QueryEdit } from "./pages/admin/QueryEdit";
 import { QueryList } from "./pages/admin/QueryList";
 import { Signup } from "./pages/member/SignUp";
 import { ChatRoom } from "./pages/chat/ChatRoom";
@@ -35,9 +35,9 @@ import { StartFindPw } from "./pages/member/StartFindPw";
 import { MedicineDetail } from "./pages/search/MedicineDetail";
 import { EffectModal } from "./utils/modal/EffectModal";
 import { PwReset } from "./pages/member/PwReset";
-import { MyCalendar } from "./pages/myCalendar/MyCalendar";
 import { Support } from "./pages/support/Support";
 import { CoutryFutureResult } from "./pages/result/CoutryFutureResult";
+import { Schedule } from "./pages/event/Schedule";
 
 function App() {
   return (
@@ -66,7 +66,7 @@ function App() {
               <Route path="/Query" element={<Query />} />
               <Route path="/QueryWrite" element={<QueryWrite />} />
               <Route path="/Query/:id" element={<Query />} />
-              <Route path="/QueryView/:id" element={<QueryView />} /> 
+              <Route path="/QueryView/:id" element={<QueryView />} />
               <Route path="/QueryEdit/:id" element={<QueryEdit />} />
               <Route path="/QueryList" element={<QueryList />} />
               <Route path="/Report" element={<Report />} />
@@ -81,7 +81,7 @@ function App() {
               <Route path="/FaceResult" element={<FaceResult />} />
               <Route path="/CountryResult" element={<CountryResult />} />
               <Route path="/medicineresult" element={<MedicineResult />} />
-              <Route path="/MyCalendar" element={<MyCalendar />} />
+              <Route path="/schedule" element={<Schedule />} />
               <Route
                 path="/medicinedetail/:medicineId"
                 element={<MedicineDetail />}
