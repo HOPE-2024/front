@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { NoResult } from "../../component/search/NoResult";
 import { ReactComponent as HomeSvg } from "../../images/home.svg";
+import Loading from "../../component/search/Loading";
 
 export const Container = styled.div`
   width: 100vw;
@@ -87,8 +88,10 @@ export const DetailBox = styled.button`
     margin-bottom: 5%;
     display: flex;
     justify-content: flex-start;
+    color: #333;
   }
   .box3 {
+    font-weight: bold;
     @media (max-width: 768px) {
       display: flex;
       justify-content: flex-start;
@@ -156,7 +159,7 @@ export const MedicineResult = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [fields, setFields] = useState(); // 분류 (ex. 증상, 의약품명, 제조사, 성분)
-  const [dataList, setDataList] = useState([]); // 검색 결과 리스트
+  const [dataList, setDataList] = useState(1); // 검색 결과 리스트
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchOption, setSearchOption] = useState();
@@ -237,6 +240,14 @@ export const MedicineResult = () => {
     navigate(`/medicinedetail/${id}`);
   };
 
+  // 검색 중일 때 Loading 화면 출력
+  if (dataList === 1) {
+    return (
+      <>
+        <Loading text={"잠시만 기다려주세요..."}></Loading>
+      </>
+    );
+  }
   return (
     <>
       <Container>

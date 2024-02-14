@@ -58,7 +58,7 @@ export const PrevButton = styled.button`
   left: -48vw;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-size: 500%;
+  font-size: 200%;
   color: #ccc;
   display: flex;
   align-items: center;
@@ -70,7 +70,7 @@ export const PrevButton = styled.button`
   }
 
   @media screen and (min-width: 1500px) {
-    left: -38vw;
+    left: -55vw;
   }
 
   @media screen and (min-width: 1800px) {
@@ -109,7 +109,7 @@ export const NextButton = styled.button`
   right: -48vw;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-size: 500%;
+  font-size: 200%;
   color: #ccc;
   display: flex;
   align-items: center;
@@ -120,7 +120,7 @@ export const NextButton = styled.button`
   }
 
   @media screen and (min-width: 1500px) {
-    right: -38vw;
+    right: -55vw;
   }
 
   @media screen and (min-width: 1800px) {
