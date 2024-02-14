@@ -16,8 +16,8 @@ import { Button } from "../../utils/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
-import { AuthAxiosApi } from "../../api/AuthAxiosApi";
 import { Footer } from "../../component/template/Footer";
+import { EmailAxiosApi } from "../../api/EmailAxiosApi";
 
 export const FindPw = () => {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export const FindPw = () => {
     console.log("이메일 값:", email);
     // 이메일로 인증 코드 요청
     try {
-      const rsp = await AuthAxiosApi.emailSand(email);
+      const rsp = await EmailAxiosApi.emailSand(email);
       const receivedCodeFromServer = rsp.data;
       setReceivedCode(receivedCodeFromServer);
       console.log("서버로부터 온 인증코드 :", receivedCodeFromServer);

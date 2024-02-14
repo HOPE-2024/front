@@ -16,8 +16,8 @@ import { Button } from "../../utils/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
 import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
-import { AuthAxiosApi } from "../../api/AuthAxiosApi";
 import { Footer } from "../../component/template/Footer";
+import { EmailAxiosApi } from "../../api/EmailAxiosApi";
 
 export const FindId = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export const FindId = () => {
     console.log("이메일 값:", email);
     // 이메일로 인증 코드 요청
     try {
-      const rsp = await AuthAxiosApi.emailSand(email);
+      const rsp = await EmailAxiosApi.emailSand(email);
       const receivedCodeFromServer = rsp.data;
       setReceivedCode(receivedCodeFromServer);
       console.log("서버로부터 온 인증코드 :", receivedCodeFromServer);
@@ -62,7 +62,7 @@ export const FindId = () => {
       // 인증번호 일치 여부 확인
       if (inputCode === receivedCode) {
         // 인증번호가 일치하는 경우 이메일로 아이디 찾기 요청함
-        const rsp = await AuthAxiosApi.findIdByEmail(email);
+        const rsp = await EmailAxiosApi.findIdByEmail(email);
         const memberId = rsp.data;
         console.log("찾은 회원 아이디: ", memberId);
         // 찾은 아이디 가지고 페이지 이동

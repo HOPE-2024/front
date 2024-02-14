@@ -24,4 +24,16 @@ export const MemberAxiosApi = {
       data
     );
   },
+  // 카카오로그인
+  kakaoLogin: async (data) => {
+    try {
+      const rsp = await axios.post(Common.KH_DOMAIN + "/member/kakaoLogin", {
+        data,
+      });
+      console.log("카카오로그인 성공: ", data);
+      return rsp;
+    } catch (error) {
+      console.error("카카오 로그인 실패: ", error);
+    }
+  },
 };

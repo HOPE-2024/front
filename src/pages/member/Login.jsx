@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthAxiosApi } from "../../api/AuthAxiosApi";
 import { Common } from "../../utils/Common";
 import { UserContext } from "../../context/AuthContext";
+import { MemberAxiosApi } from "../../api/MemberAxiosApi";
+import KakaoLogin from "react-kakao-login";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -58,11 +60,6 @@ export const Login = () => {
     console.log("login!!");
     try {
       const rsp = await AuthAxiosApi.login(inputId, InputPw);
-      console.log(rsp.data);
-      console.log(rsp.data);
-      console.log(rsp.data);
-      console.log(rsp.data);
-      console.log(rsp.data);
       if (rsp.data.grantType === "Bearer") {
         // 받은 토큰을 저장
         Common.setAccessToken(rsp.data.accessToken);
@@ -87,19 +84,36 @@ export const Login = () => {
   };
 
   // 카카오 로그인
-  const KakaoLogin = () => {
-    const REST_API_KEY = "cea7f3c383b4104216bac4611d17d13b";
-    const REDIRECT_URI = "http://localhost:3000/auth/kakao";
-    // oauth 요청 url
-    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-    const handleLogin = () => {
-      window.location.href = kakaoURL;
-    };
+  const kakaoLoginSuccess = async (data) => {
+    console.log(
+      "카카오 로그인 시 서버에 날라가는 데이터 : " + JSON.stringify(data)
+    );
 
-    return <KakaoStyled onClick={handleLogin} />;
+    try {
+      // 카카오 서버에서 받은 액세스 토큰을 서버로 전송
+      const rsp = await MemberAxiosApi.kakaoLogin({
+        access_token: data.response.access_token,
+      });
+      console.log("카카오 서버 응답 : " + JSON.stringify(rsp));
+
+      console.log("카카오 서버 응답 : " + JSON.stringify(rsp.data));
+      console.log("카카오 액세스 토큰 : " + rsp.data.accessToken);
+      console.log("카카오 리프레시 토큰 : " + rsp.data.refreshToken);
+
+      // 서버로부터 받은 토큰을 로컬 스토리지에 저장, 로그인 상태 저장
+      window.localStorage.setItem("accessToken", rsp.data.accessToken);
+      window.localStorage.setItem("refreshToken", rsp.data.refreshToken);
+      window.localStorage.setItem("loginStatus", "true");
+      navigate("/");
+    } catch (error) {
+      console.log("memberaxiosApi.kakaoLogin 호출 중 오류 발생 :", error);
+    }
   };
 
-  const code = new URL(window.location.href).searchParams.get("code");
+  // 카카오 로그인 실패
+  const kakaoLoginFailure = (error) => {
+    console.log("카카오 로그인 실패 : ", error);
+  };
 
   return (
     <>
@@ -140,7 +154,31 @@ export const Login = () => {
         </Items>
         <Items className="item4">Or Connect with</Items>
         <Items className="item5">
-          <KakaoLogin />
+          <KakaoStyled>
+            <KakaoLogin
+              token="9d71fc4d4b2e8d934f9a4e4c22afd7e6" // javascript key
+              onSuccess={kakaoLoginSuccess}
+              onFailure={kakaoLoginFailure}
+              getProfile={true}
+              render={({ onClick }) => {
+                return (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onClick();
+                    }}
+                    style={{
+                      // 카카오 모달창
+                      background: "none",
+                      border: "none",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  ></button>
+                );
+              }}
+            />
+          </KakaoStyled>
           <NaverStyled />
         </Items>
       </LoginContainer>
