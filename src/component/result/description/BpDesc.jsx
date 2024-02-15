@@ -1,13 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { YesModal } from "../../../utils/modal/YesModal";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-`;
+import { FlexColumn } from "../../../css/common/Boxs";
 
 const Button = styled.button`
   margin-top: 20px;
@@ -45,7 +38,6 @@ const CircleProgress = styled.circle`
 const StatusText = styled.div`
   margin-top: 20px;
   font-size: 16px;
-  color: ${(props) => props.color};
 `;
 
 const BpRangeText = styled.div`
@@ -54,7 +46,7 @@ const BpRangeText = styled.div`
   color: #666;
 `;
 
-// 연령별 정상 혈압 수치 표를 위한 데이터
+// 연령별 정상 혈압 수치 데이터
 const bpRanges = [
   {
     ageRange: "15~19",
@@ -66,7 +58,31 @@ const bpRanges = [
     male: { high: 137, low: 113 },
     female: { high: 125, low: 103 },
   },
-  // 나머지 연령대에 대한 데이터 추가...
+  {
+    ageRange: "30대",
+    male: { high: 142, low: 114 },
+    female: { high: 134, low: 106 },
+  },
+  {
+    ageRange: "40대",
+    male: { high: 150, low: 126 },
+    female: { high: 146, low: 112 },
+  },
+  {
+    ageRange: "50대",
+    male: { high: 159, low: 121 },
+    female: { high: 159, low: 117 },
+  },
+  {
+    ageRange: "60대",
+    male: { high: 166, low: 124 },
+    female: { high: 166, low: 124 },
+  },
+  {
+    ageRange: "70대~",
+    male: { high: 170, low: 128 },
+    female: { high: 173, low: 131 },
+  },
 ];
 
 // 혈압 상태에 따른 조언
@@ -77,56 +93,110 @@ const adviceText = {
 };
 
 export const BpDesc = ({ age, bloodPressure, gender }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  // 새 창에서 혈압 차트를 보여주는 함수
+  const showBpChart = () => {
+    const newWindow = window.open("", "", "width=500,height=500");
+    newWindow.document.write(
+      "<html><head><title>혈압 차트</title></head><body>"
+    );
+    newWindow.document.write("<h2>연령별 정상 혈압 범위</h2>");
+    newWindow.document.write(
+      '<table border="1"><tr><th>연령</th><th>성별</th><th>최고</th><th>최저</th></tr>'
+    );
 
-  // 혈압 수치 및 범위 계산 로직
-  const calculateBpStatus = () => {
-    // 현재 예제에서는 실제 연령대와 성별에 따른 분류 로직을 단순화
-    // 혈압 상태를 판단하고, dashOffset 계산 (가상의 로직)
-    const dashOffset = 70; // 예시 값
-    const color = "#FFC107"; // 예시 색상
-    const statusText = "정상 혈압"; // 예시 상태
-    const advice = adviceText.normal; // 예시 조언
+    // 표 데이터를 HTML 형식으로 추가
+    bpRanges.forEach((range) => {
+      newWindow.document.write(
+        `<tr><td>${range.ageRange}</td><td>남자</td><td>${range.male.high}~${range.male.low}</td><td>${range.male.high}~${range.male.low}</td></tr>`
+      );
+      newWindow.document.write(
+        `<tr><td>${range.ageRange}</td><td>여자</td><td>${range.female.high}~${range.female.low}</td><td>${range.female.high}~${range.female.low}</td></tr>`
+      );
+    });
 
-    return { dashOffset, color, statusText, advice };
+    newWindow.document.write("</table>");
+    newWindow.document.write("</body></html>");
+    newWindow.document.close(); // 새 창의 문서 작성을 완료
   };
 
-  const { dashOffset, color, statusText, advice } = calculateBpStatus();
+  const [genderText, setGenderText] = useState("여자");
+  useEffect(() => {
+    if (gender === 0) setGenderText("남자");
+    else setGenderText("여자");
+  }, [gender]);
 
-  const renderModalContent = () => {
-    // 모달에 표시될 연령별 정상 혈압 수치 표를 구성
-    const bpChart = bpRanges
-      .map(
-        (range) =>
-          `${range.ageRange}\t남자: ${range.male.low}~${range.male.high}\t여자: ${range.female.low}~${range.female.high}\n`
-      )
-      .join("");
-    return bpChart;
+  // 나이와 성별에 따른 정상 혈압 범위 찾기
+  const findBpRange = () => {
+    for (let range of bpRanges) {
+      const ageBounds = range.ageRange
+        .split("~")
+        .map((ageBound) => ageBound.replace("대", ""));
+      let minAge = parseInt(ageBounds[0]);
+      let maxAge = ageBounds[1] ? parseInt(ageBounds[1]) : 150; // 최대 나이 설정
+
+      if (age >= minAge && age <= maxAge) {
+        return gender === "male" ? range.male : range.female;
+      }
+    }
+    return null; // 적절한 범위를 찾지 못한 경우
   };
+
+  const bpRange = findBpRange();
+  const normalRangeText = bpRange
+    ? `${bpRange.low}~${bpRange.high}mmHg`
+    : "데이터 없음";
+
+  // 혈압 상태 계산
+  let status, color, statusText;
+  if (bpRange) {
+    if (bloodPressure < bpRange.low) {
+      status = "low";
+      color = "#4CAF50"; // 저혈압 색상
+      statusText = "저혈압";
+    } else if (bloodPressure > bpRange.high) {
+      status = "high";
+      color = "#ff4d4d"; // 고혈압 색상
+      statusText = "고혈압";
+    } else {
+      status = "normal";
+      color = "#FFC107"; // 정상 혈압 색상
+      statusText = "정상 혈압";
+    }
+  } else {
+    status = "unknown";
+    color = "#999999"; // 데이터 없음 색상
+    statusText = "데이터 없음";
+  }
+
+  const advice = adviceText[status]; // 혈압 상태에 따른 조언
+
+  const dashOffset =
+    283 *
+    (1 -
+      (bloodPressure - bpRange?.low || 0) /
+        (bpRange?.high - bpRange?.low || 200)); // 혈압에 따른 대시 오프셋 조정
 
   return (
-    <Container>
-      <Circle width="100" height="100">
-        <CircleBackground cx="50" cy="50" r="45" />
-        <CircleProgress
-          cx="50"
-          cy="50"
-          r="45"
-          stroke={color}
-          dashOffset={dashOffset}
-        />
-      </Circle>
-      <StatusText color={color}>{statusText}</StatusText>
-      <BpRangeText>당신의 혈압: {bloodPressure} mmHg</BpRangeText>
-      <BpRangeText>{advice}</BpRangeText>
-      <Button onClick={() => setModalOpen(true)}>View Average BP Chart</Button>
-      <YesModal
-        setModalOpen={setModalOpen}
-        modalOpen={modalOpen}
-        checkMessage={renderModalContent()}
-        width="600px"
-        height="400px"
-      />
-    </Container>
+    <>
+      <FlexColumn>
+        <Circle width="100" height="100">
+          <CircleBackground cx="50" cy="50" r="45" />
+          <CircleProgress
+            cx="50"
+            cy="50"
+            r="45"
+            stroke={color}
+            stroke-dashoffset={dashOffset}
+          />
+        </Circle>
+        <StatusText style={{ color }}>{statusText}</StatusText>
+        <BpRangeText>당신의 혈압: {bloodPressure} mmHg</BpRangeText>
+        <BpRangeText>
+          {genderText}, {age}살의 평균 혈압 범위: {normalRangeText}
+        </BpRangeText>
+        <BpRangeText>{advice}</BpRangeText>
+        <Button onClick={showBpChart}>평균 혈압 차트 보기</Button>
+      </FlexColumn>
+    </>
   );
 };

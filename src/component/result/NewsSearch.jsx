@@ -11,11 +11,14 @@ const NewsContainer = styled.div`
 
 const NewsItem = styled.div`
   border: 1px solid #ddd;
-  margin: 5px;
+  margin: 10px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  &:hover {
+    transform: scale(1.015);
+  }
 `;
 
 const NewsLink = styled.a`
