@@ -48,6 +48,9 @@ export const BackGroundHeader = styled.div`
 
 export const TempHeader = styled.div`
   width: 90vw;
+  @media (max-width: 768px) {
+    width: 60vw;
+  }
 `;
 
 export const TempContent = styled.div`
