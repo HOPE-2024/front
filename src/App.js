@@ -39,6 +39,8 @@ import { Support } from "./pages/support/Support";
 import { CoutryFutureResult } from "./pages/result/CoutryFutureResult";
 import { Schedule } from "./pages/event/Schedule";
 import { Ranking } from "./component/search/Ranking";
+import { TermsofUse } from "./pages/setting/TermsofUse";
+import { Withdraw } from "./pages/setting/Withdraw";
 
 function App() {
   return (
@@ -83,6 +85,8 @@ function App() {
               <Route path="/CountryResult" element={<CountryResult />} />
               <Route path="/medicineresult" element={<MedicineResult />} />
               <Route path="/schedule" element={<Schedule />} />
+              <Route path="/termsofuse" element={<TermsofUse />} />
+              <Route path="/withdraw" element={<Withdraw />} />
               <Route
                 path="/medicinedetail/:medicineId"
                 element={<MedicineDetail />}
