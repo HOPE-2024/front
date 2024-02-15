@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChatAxiosApi } from "../../api/ChatAixosApi";
+import { ChatAxiosApi } from "../../api/ChatAxiosApi";
 import styled from "styled-components";
 
 const ChatRoomContainer = styled.div`

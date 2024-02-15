@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { LineButton } from "../../component/common/LineButton";
 import { MyPageAxiosApi } from "../../api/MyPageAxiosApi";
 import {
   MyPageCon,
@@ -6,10 +6,14 @@ import {
   Line,
   ProfileCon,
   TextCon,
+  TextInfoCon,
   EditLogo,
   EditButton,
   Input,
+  InfoCon,
   EditBtnCon,
+  NickModalBox,
+  ProfileBox,
   EditConstainer,
 } from "../../css/myPage/MyPageCss";
 import { ProfileModal } from "../../utils/modal/ProfileModal";
@@ -19,7 +23,8 @@ import styled from "styled-components";
 import Edit from "../../images/chat/Edit.png";
 
 const Profile = styled.img`
-  height: 20%;
+  height: 13em;
+  margin-bottom: 3em;
 `;
 
 export const MyPage = () => {
@@ -122,6 +127,42 @@ export const MyPage = () => {
     <MyPageCon>
       <MyPageLineCon>
         <ProfileCon>
+          <ProfileBox>
+            <Profile
+              src={`/images/profile/${memberInfo.profile}.png`}
+              alt="Profile"
+            />
+          </ProfileBox>
+          <NickModalBox>
+            {!editMode ? (
+              <></>
+            ) : (
+              isModalOpen && (
+                <ProfileModal
+                  memberId={memberId}
+                  onClick={openModal}
+                  onImageSelect={handleImageSelect}
+                />
+              )
+            )}
+            <InfoCon>
+              <TextCon>닉네임</TextCon>
+              {!editMode ? (
+                <TextInfoCon>{memberInfo.nickName}</TextInfoCon>
+              ) : (
+                <Input
+                  type="text"
+                  name="Nickname"
+                  placeholder="닉네임을 입력하세요."
+                  value={editNickName}
+                  onChange={handleChange}
+                />
+              )}
+            </InfoCon>
+          </NickModalBox>
+        </ProfileCon>
+        <Line />
+        <EditConstainer>
           {!editMode && (
             <EditLogo
               onClick={() => {
@@ -133,69 +174,46 @@ export const MyPage = () => {
               alt="edit"
             />
           )}
-          <Profile
-            src={`/images/profile/${memberInfo.profile}.png`}
-            alt="Profile"
-          />
-          {!editMode ? (
-            <></>
-          ) : (
-            isModalOpen && (
-              <ProfileModal
-                memberId={memberId}
-                onClick={openModal}
-                onImageSelect={handleImageSelect}
+          <InfoCon>
+            <TextCon>생년월일</TextCon>
+            {editMode ? (
+              <Input
+                type="date"
+                value={editBirthDate}
+                onChange={handleBirthDateChange}
               />
-            )
-          )}
-          {!editMode ? (
-            <TextCon>{memberInfo.nickName}</TextCon>
-          ) : (
-            <Input
-              type="text"
-              name="Nickname"
-              placeholder="닉네임을 입력하세요."
-              value={editNickName}
-              onChange={handleChange}
-            />
-          )}
-        </ProfileCon>
-        <Line />
-        <EditConstainer>
-          <TextCon>생년월일 : </TextCon>
-          {editMode ? (
-            <Input
-              type="date"
-              value={editBirthDate}
-              onChange={handleBirthDateChange}
-            />
-          ) : (
-            <TextCon>{memberProfile.birthDate}</TextCon>
-          )}
-          <TextCon>키 : </TextCon>
-          {editMode ? (
-            <Input
-              type="number"
-              value={editHeight}
-              onChange={handleHeightChange}
-            />
-          ) : (
-            <TextCon>{memberProfile.height}</TextCon>
-          )}
-          <TextCon>몸무게 : </TextCon>
-          {editMode ? (
-            <Input
-              type="number"
-              value={editWeight}
-              onChange={handleWeightChange}
-            />
-          ) : (
-            <TextCon>{memberProfile.weight}</TextCon>
-          )}
+            ) : (
+              <TextInfoCon>{memberProfile.birthDate}</TextInfoCon>
+            )}
+          </InfoCon>
+          <InfoCon>
+            <TextCon>키</TextCon>
+            {editMode ? (
+              <Input
+                type="number"
+                value={editHeight}
+                onChange={handleHeightChange}
+              />
+            ) : (
+              <TextInfoCon>{memberProfile.height}</TextInfoCon>
+            )}
+          </InfoCon>
+          <InfoCon>
+            <TextCon>몸무게</TextCon>
+            {editMode ? (
+              <Input
+                type="number"
+                value={editWeight}
+                onChange={handleWeightChange}
+              />
+            ) : (
+              <TextInfoCon>{memberProfile.weight}</TextInfoCon>
+            )}
+          </InfoCon>
           {editMode && (
             <EditBtnCon>
-              <EditButton onClick={handleSubmit}>수정</EditButton>
-              <EditButton onClick={() => setEditMode(false)}>취소</EditButton>
+              <LineButton onClick={handleSubmit}>수정</LineButton>
+              <LineButton onClick={() => setEditMode(false)}>취소</LineButton>
             </EditBtnCon>
           )}
         </EditConstainer>

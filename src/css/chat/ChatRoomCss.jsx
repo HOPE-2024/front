@@ -28,7 +28,6 @@ export const RoomChat = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  /* border: 2px solid var(--NAVY); */
   border-radius: 10px;
   width: 80%;
   margin: 2% 2% 2% 2%;
@@ -54,12 +53,12 @@ export const ChatTitle = styled.div`
 `;
 
 export const MsgProfile = styled.img`
-  height: 5vh;
-  width: 5vh;
-  margin-left: ${(props) =>
-    props.isSender ? "auto" : "0"}; /* 샌더일 때는 오른쪽으로 이동 */
-  margin-right: ${(props) =>
-    props.isSender ? "0" : "auto"}; /* 샌더가 아닐 때는 왼쪽으로 이동 */
+  position: absolute;
+  height: 2.5em;
+  width: 2.5em;
+  position: absolute; /* 위치 설정을 위해 다시 추가 */
+  left: ${(props) => (props.isSender ? "auto" : "0")};
+  right: ${(props) => (props.isSender ? "0" : "auto")};
 `;
 
 export const MsgCon = styled.div`
@@ -72,20 +71,25 @@ export const MsgCon = styled.div`
 `;
 
 export const MsgTextCon = styled.div`
+  position: relative;
+  display: flex;
   flex-direction: column;
+  margin-left: ${(props) => (props.isSender ? "auto" : "2.5em")};
+  margin-right: ${(props) => (props.isSender ? "2.5em" : "auto")};
+  background-color: #136cfb35;
+  border-radius: ${(props) =>
+    props.isSender ? "10px 10px 0 10px" : "10px 10px 10px 0"};
+  padding: 0.5em;
 `;
 
 export const MsgBox = styled.div`
+  position: relative;
   margin-top: 1vh;
   padding: 0.8vh;
   display: flex;
   align-items: center;
-
   max-width: ${(props) => (props.isSender ? "50%" : "40%")};
   align-self: ${(props) => (props.isSender ? "flex-end" : "flex-start")};
-  background-color: #136cfb35;
-  border-radius: ${(props) =>
-    props.isSender ? "10px 10px 0 10px" : "10px 10px 10px 0"};
 `;
 
 export const MsgSender = styled.div`
@@ -101,6 +105,8 @@ export const Msg = styled.div`
     props.isSender ? "val(--SKY)" : "val(--WHITE)"};
   border: ${(props) =>
     props.isSender ? "1px solid val(--SKY)" : "1px solid val(--WHITE)"};
+  left: ${(props) => (props.isSender ? "auto" : "0")};
+  right: ${(props) => (props.isSender ? "0" : "auto")};
 `;
 
 export const InputCon = styled.div`
