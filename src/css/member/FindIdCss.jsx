@@ -44,6 +44,9 @@ export const InputField = styled.input`
   border-radius: 18px;
   font-size: 16px;
   outline-style: none;
+  @media screen and (max-width: 768px) {
+    width: 295px;
+  }
 `;
 
 export const InputAndButtonContainer = styled.div`
