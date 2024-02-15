@@ -44,6 +44,9 @@ export const InputField = styled.input`
   border-radius: 18px;
   font-size: 16px;
   outline-style: none;
+  @media screen and (max-width: 768px) {
+    width: 295px;
+  }
 `;
 
 export const InputAndButtonContainer = styled.div`
@@ -70,6 +73,9 @@ export const Instruction = styled.div`
   font-weight: bold;
   width: 100%;
   margin: 0px 0px 5px 70px;
+  @media screen and (max-width: 768px) {
+    margin: 0px 0px 5px 130px;
+  }
 `;
 
 export const FooterContainer = styled.div`
