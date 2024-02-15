@@ -15,6 +15,8 @@ import { TypeWriter } from "../../../css/text/TypeWriter";
 import { Gauge } from "../../../component/result/Gauge";
 import { NewsSearch } from "../../../component/result/NewsSearch";
 import { DiabChatRoomList } from "../DiabChatRoomList";
+import { DiabDesc } from "../description/DiabDesc";
+import { BpDesc } from "../description/BpDesc";
 
 export const DiabResultSlide = ({
   prediction,
@@ -24,8 +26,8 @@ export const DiabResultSlide = ({
   correlation_y,
   bmi,
   bp,
-  grade,
-  advice,
+  gender,
+  age,
 }) => {
   const beforeText =
     "랜덤 포레스트 모델을 통해 예측된 결과, 당신의 1년 후의 당뇨병 진행도는 ";
@@ -44,6 +46,9 @@ export const DiabResultSlide = ({
       />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
+      <DiabDesc diabetesValue={prediction}></DiabDesc>
+    </SlideListContent>,
+    <SlideListContent style={{ backgroundColor: "none" }}>
       <ScatterGraph
         correlation_x={correlation_x}
         correlation_y={correlation_y}
@@ -56,10 +61,7 @@ export const DiabResultSlide = ({
       <Gauge bmi={bmi}></Gauge>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      등급 : {grade}, 건강 조언 : {advice}
-      {/* 조언 파이썬에서 삭제하고 리액트 컴포넌트 생성 */}
-      {/* 혈압 추가 */}
-      혈압 : {bp}
+      <BpDesc age={age} bloodPressure={bp} gender={gender}></BpDesc>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <NewsSearch></NewsSearch>

@@ -43,8 +43,6 @@ export const DiabInput = () => {
       const response = await MachineAxiosApi.predictDiab(userData);
       console.log("DiabInput bmi : " + response.data.bmi);
       console.log("DiabInput bp : " + response.data.bp);
-      console.log("DiabInput grade : " + response.data.grade);
-      console.log("DiabInput advice : " + response.data.advice);
 
       navigate("/DiabResult", {
         state: {
@@ -55,8 +53,8 @@ export const DiabInput = () => {
           correlation_y: response.data.correlation_y,
           bmi: response.data.bmi,
           bp: response.data.bp,
-          grade: response.data.grade,
-          advice: response.data.advice,
+          gender: gender,
+          age: age,
         },
       });
     } catch (error) {

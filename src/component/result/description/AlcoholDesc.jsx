@@ -60,15 +60,15 @@ export const AlcoholDesc = ({ userAlcohol, averageAlcohol }) => {
   let advice, color;
   if (percentage > 20) {
     advice =
-      "이는 평균보다 높은 수치입니다. 건강을 위해 알코올 섭취량을 줄이는 것을 고려해보세요.";
+      "즉, 당신의 알코올 섭취량은 평균보다 높은 수치입니다. 건강을 위해 알코올 섭취량을 줄이는 것을 고려해보세요.";
     color = "#ff4d4d"; // 빨간색
   } else if (percentage < -20) {
     advice =
-      "이는 평균보다 낮은 수치입니다. 현재의 알코올 섭취량을 유지해주세요. 좋은 습관이며 건강에 이롭습니다.";
+      "즉, 당신의 알코올 섭취량은 평균보다 낮은 수치입니다. 현재의 알코올 섭취량을 유지해주세요. 좋은 습관이며 건강에 이롭습니다.";
     color = "#4CAF50"; // 녹색
   } else {
     advice =
-      "이는 평균적인 수치입니다. 지금보다 알코올 섭취량을 더욱 줄이는 것도 좋을 것입니다. 앞으로도 건강한 생활을 위해서 계속 관리해주세요.";
+      "즉, 당신의 알코올 섭취량은 평균적인 수치입니다. 지금보다 알코올 섭취량을 더욱 줄이는 것도 좋을 것입니다. 앞으로도 건강한 생활을 위해서 계속 관리해주세요.";
     color = "#FFC107"; // 노란색
   }
 
@@ -78,8 +78,8 @@ export const AlcoholDesc = ({ userAlcohol, averageAlcohol }) => {
   return (
     <GaugeContainer>
       <p>
-        당신의 알코올 섭취량: {userAlcohol}, 해당 국가 알코올 섭취량 평균:{" "}
-        {averageAlcohol}
+        당신의 주간 알코올 섭취량은 {userAlcohol}L, 해당 국가의 주간 알코올
+        섭취량 평균은 {averageAlcohol}L 입니다.
       </p>
       <GaugeBackground>
         <Indicator color={color} value={gaugeValue} />

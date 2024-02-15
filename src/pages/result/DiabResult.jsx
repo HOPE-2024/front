@@ -10,8 +10,8 @@ export const DiabResult = () => {
   const { correlation_y } = location.state;
   const { bmi } = location.state;
   const { bp } = location.state;
-  const { grade } = location.state;
-  const { advice } = location.state;
+  const { gender } = location.state;
+  const { age } = location.state;
 
   return (
     <>
@@ -23,8 +23,8 @@ export const DiabResult = () => {
         correlation_y={correlation_y}
         bmi={bmi}
         bp={bp}
-        grade={grade}
-        advice={advice}
+        gender={gender}
+        age={age}
       ></DiabResultSlide>
     </>
   );

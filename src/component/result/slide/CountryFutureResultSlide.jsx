@@ -30,6 +30,7 @@ export const CountryFutureResultSlide = ({
         beforeText={beforeText}
         emphasizedText={emphasizedText}
         afterText={afterText}
+        height="15vh"
       />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>

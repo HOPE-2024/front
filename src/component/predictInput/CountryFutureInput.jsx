@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { MachineAxiosApi } from "../../api/MachineAxiosApi";
 import { useNavigate } from "react-router-dom";
+import { Input, Button } from "../../css/slideElementInput/InputStyle";
+import { MiddleBox, FlexColumn } from "../../css/common/Boxs";
+import { Spark } from "../../css/text/Spark";
+import styled from "styled-components";
+
+const Box = styled.div`
+  position: relative;
+  bottom: 20vh;
+`;
 
 export const CountryFutureInput = ({ country = "Korea, Rep." }) => {
   const [year, setYear] = useState(new Date().getFullYear());
@@ -50,19 +59,26 @@ export const CountryFutureInput = ({ country = "Korea, Rep." }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        연도:
-        {isLoading ? ( // 로딩 상태에 따라 텍스트 표시
-          <span>Loading...</span>
-        ) : (
-          <input type="number" value={year} onChange={handleYearChange} />
-        )}
-      </label>
-      <button type="submit" disabled={isLoading}>
-        제출
-      </button>
-      {/* 로딩 중에는 버튼을 비활성화 */}
-    </form>
+    <>
+      <FlexColumn>
+        <Box>
+          <Spark>해당 국가의 미래를 예측해보세요</Spark>
+        </Box>
+        <form onSubmit={handleSubmit}>
+          <MiddleBox>
+            {isLoading ? (
+              <span>Loading...</span>
+            ) : (
+              <>
+                <Input type="number" value={year} onChange={handleYearChange} />
+                <Button type="submit" disabled={isLoading}>
+                  예측
+                </Button>
+              </>
+            )}
+          </MiddleBox>
+        </form>
+      </FlexColumn>
+    </>
   );
 };
