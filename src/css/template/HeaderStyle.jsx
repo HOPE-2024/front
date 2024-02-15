@@ -59,6 +59,7 @@ export const Menu = styled.div`
     margin-top: 10px;
     font-weight: normal;
     cursor: default;
+    white-space: nowrap;
     span {
       font-size: 1.1rem;
       font-weight: bold;

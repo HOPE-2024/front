@@ -100,9 +100,8 @@ export const Header = () => {
                 {authority === "ADMIN" && (
                   <>
                     {" "}
-                    <Line></Line>
                     <li onClick={() => setFiveView(!thirdView)}>
-                      <UnderLinedStyle fontSize={"18px"}>관리</UnderLinedStyle>
+                      <UnderLinedStyle fontSize={"20px"}>관리</UnderLinedStyle>
                       {fiveView && (
                         <FiveDropDown onClose={() => setFiveView(false)} />
                       )}

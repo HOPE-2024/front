@@ -10,6 +10,7 @@ export const UnderLinedStyle = styled.div`
   background-size: 0% 100%;
   transition: background-size 0.4s;
   font-size: ${(props) => props.fontSize || "1rem"};
+  white-space: nowrap;
 
   cursor: pointer;
 
