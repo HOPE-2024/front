@@ -36,6 +36,7 @@ export const StyledLogo = styled(Logo)`
 export const Right = styled.div`
   width: 100%;
   height: 100%;
+  margin-top: 2px;
   font-size: 1rem;
   display: flex;
   justify-content: end;
@@ -50,9 +51,20 @@ export const Menu = styled.div`
   font-size: 1rem;
   height: 100%;
   list-style: none;
-  width: 500px;
+  width: 600px;
   font-weight: bold;
 
+  .list1 {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-weight: normal;
+    cursor: default;
+    span {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--NAVY);
+    }
+  }
   li {
     margin: 0 10px;
     cursor: pointer;

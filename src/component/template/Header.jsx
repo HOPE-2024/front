@@ -8,7 +8,12 @@ import {
   Menu,
   Line,
 } from "../../css/template/HeaderStyle";
-import { FirstDropDown, SecondDropDown, ThirdDropDown, FiveDropDown } from "./HeaderDropDown";
+import {
+  FirstDropDown,
+  SecondDropDown,
+  ThirdDropDown,
+  FiveDropDown,
+} from "./HeaderDropDown";
 import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
 import { Hamburger } from "./Hamburger";
 import { MemberAxiosApi } from "../../api/MemberAxiosApi";
@@ -21,7 +26,7 @@ import { FourthModal } from "./HeaderDropDown";
 export const SearchIcon = styled.div`
   position: relative;
   font-size: 1.5rem;
-  margin: 3px 10px 0 5px;
+  margin: 7px 10px 0 5px;
   height: 40px;
   width: 20px;
   cursor: pointer;
@@ -88,47 +93,50 @@ export const Header = () => {
             {loginStatus === "true" ? (
               // 로그인 O
               <Menu>
-                <li onClick={() => setFourthView(!fourthView)}>
-                  <SearchIcon>
-                    <FaSearch />
-                  </SearchIcon>
-                  {fourthView && <FourthModal isModalOpen={true} />}
+                <li className="list1">
+                  <span>{localStorage.memberId}</span>님, 오늘도 건강한 하루 !
                 </li>
 
-                {
-                  authority === "ADMIN" && <>    <Line></Line><li onClick={() => setFiveView(!thirdView)}>
-                    <UnderLinedStyle>관리</UnderLinedStyle>
-                    {fiveView && (
-                      <FiveDropDown onClose={() => setFiveView(false)} />
-                    )}
-                  </li></>}
-                <Line></Line>
+                {authority === "ADMIN" && (
+                  <>
+                    {" "}
+                    <Line></Line>
+                    <li onClick={() => setFiveView(!thirdView)}>
+                      <UnderLinedStyle fontSize={"18px"}>관리</UnderLinedStyle>
+                      {fiveView && (
+                        <FiveDropDown onClose={() => setFiveView(false)} />
+                      )}
+                    </li>
+                  </>
+                )}
+
                 <li onClick={() => setFirstView(!firstView)}>
-                  <UnderLinedStyle>예측</UnderLinedStyle>
+                  <UnderLinedStyle fontSize={"20px"}>예측</UnderLinedStyle>
                   {firstView && (
                     <FirstDropDown onClose={() => setFirstView(false)} />
                   )}
                 </li>
 
-                <Line></Line>
-
                 <li onClick={() => setSecondView(!secondView)}>
-                  <UnderLinedStyle>커뮤니티</UnderLinedStyle>
+                  <UnderLinedStyle fontSize={"20px"}>커뮤니티</UnderLinedStyle>
                   {secondView && (
                     <SecondDropDown onClose={() => setSecondView(false)} />
                   )}
                 </li>
 
-                <Line></Line>
-
                 <li onClick={() => setThirdView(!thirdView)}>
-                  <UnderLinedStyle>계정</UnderLinedStyle>
+                  <UnderLinedStyle fontSize={"20px"}>계정</UnderLinedStyle>
                   {thirdView && (
                     <ThirdDropDown onClose={() => setThirdView(false)} />
                   )}
                 </li>
 
-
+                <li onClick={() => setFourthView(!fourthView)}>
+                  <SearchIcon>
+                    <FaSearch fontSize={"20px"} />
+                  </SearchIcon>
+                  {fourthView && <FourthModal isModalOpen={true} />}
+                </li>
               </Menu>
             ) : (
               // 로그인 X

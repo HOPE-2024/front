@@ -242,7 +242,7 @@ export const LifeInput = () => {
           correlation: response.data.correlation,
           correlation_x: response.data.correlation_x,
           correlation_y: response.data.correlation_y,
-          bmi: response.data.bmi,
+          bmi: bmi,
           alcohol: response.data.alcohol,
           alcoholA: response.data.alcoholA,
         },

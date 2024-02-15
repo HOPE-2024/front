@@ -47,7 +47,7 @@ export const BackGroundHeader = styled.div`
 `;
 
 export const TempHeader = styled.div`
-  width: 60vw;
+  width: 90vw;
 `;
 
 export const TempContent = styled.div`
