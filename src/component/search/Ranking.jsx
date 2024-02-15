@@ -24,7 +24,7 @@ export const Container = styled.div`
   }
 
   .line:first-child {
-    animation: anim 30s infinite;
+    animation: anim 25s infinite;
   }
 
   @keyframes anim {
