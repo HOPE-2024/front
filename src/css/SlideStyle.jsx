@@ -55,7 +55,7 @@ export const PrevButton = styled.button`
   height: 20vh;
   font-weight: bold;
   position: absolute;
-  left: -48vw;
+  left: -55vw;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   font-size: 200%;
@@ -64,18 +64,6 @@ export const PrevButton = styled.button`
   align-items: center;
   justify-content: right;
   z-index: 1;
-
-  @media screen and (min-width: 1200px) {
-    left: -43vw;
-  }
-
-  @media screen and (min-width: 1500px) {
-    left: -55vw;
-  }
-
-  @media screen and (min-width: 1800px) {
-    left: -33vw;
-  }
 
   &:hover {
     transform: scale(1.1);
@@ -106,7 +94,7 @@ export const NextButton = styled.button`
   height: 20vh;
   font-weight: bold;
   position: absolute;
-  right: -48vw;
+  right: -55vw;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   font-size: 200%;
@@ -114,18 +102,6 @@ export const NextButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: left;
-
-  @media screen and (min-width: 1200px) {
-    right: -43vw;
-  }
-
-  @media screen and (min-width: 1500px) {
-    right: -55vw;
-  }
-
-  @media screen and (min-width: 1800px) {
-    right: -33vw;
-  }
 
   &:hover {
     transform: scale(1.1);

@@ -94,7 +94,7 @@ export const Header = () => {
               // 로그인 O
               <Menu>
                 <li className="list1">
-                  <span>{localStorage.memberId}</span>님, 오늘도 건강한 하루 !
+                  <span>{member.nickName}</span>님, 오늘도 건강한 하루 !
                 </li>
 
                 {authority === "ADMIN" && (
