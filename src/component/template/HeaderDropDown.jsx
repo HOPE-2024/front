@@ -155,6 +155,13 @@ export const ThirdDropDown = ({ onClose }) => {
         이용약관
       </li>
       <li onClick={logout}>로그아웃</li>
+      <li
+        onClick={() => {
+          navigate("/withdraw");
+        }}
+      >
+        회원탈퇴
+      </li>
     </ThirdDropDownMenu>
   );
 };
