@@ -49,7 +49,12 @@ const ProfileContainer = styled.div`
 
 const EditButton = styled.button`
   font-size: 1em;
-  height: 1.5em;
+  height: 2em;
+  border-radius: 4px;
+  color: white;
+  background-color: var(--NAVY);
+  border: 1px solid white;
+  cursor: pointer;
 `;
 
 const ImageListContainer = styled.div`

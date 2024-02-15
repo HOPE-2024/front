@@ -68,7 +68,7 @@ export const Login = () => {
         Common.setRefreshToken(rsp.data.refreshToken);
         setLoginStatus(true); // 로그인 성공 시 전역 상태 true로 업데이트
         localStorage.setItem("loginStatus", "true"); // 로컬 스토리지에 로그인 상태 저장
-
+        localStorage.setItem("authority", rsp.data.authority);
         // 권한이 어드민인 경우 어드민 페이지로 이동
         if (authority === "ADMIN") {
           // authorities를 배열로 사용하는 대신 단일 권한 정보를 직접 비교

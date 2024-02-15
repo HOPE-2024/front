@@ -331,7 +331,7 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
                     submit();
                   }}
                 >
-                  확 인1
+                  확 인
                 </button>
                   <button
                     onClick={() => {

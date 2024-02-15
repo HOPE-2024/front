@@ -129,8 +129,10 @@ export const MemberList = () => {
           ))}
 
         </div>
+
         <div className="currentVar">
-          <CurrentVar maxPage={maxPage} currentPage={currentPage} setCurrentPage={setCurrentPage}></CurrentVar>
+          {maxPage > 1 && <CurrentVar maxPage={maxPage} currentPage={currentPage} setCurrentPage={setCurrentPage}></CurrentVar>}
+
         </div>
 
       </div>

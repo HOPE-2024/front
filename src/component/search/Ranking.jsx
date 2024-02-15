@@ -64,11 +64,11 @@ export const Container = styled.div`
   }
 `;
 
-export const Ranking = ({ data }) => {
+export const Ranking = ({ title, data }) => {
   return (
     <>
       <Container>
-        <div className="title">인기 검색어</div>
+        <div className="title">{title}</div>
         <div className="animated-text">
           {data.map((item, index) => (
             <div key={item.key} className="line">{`${index + 1}. ${

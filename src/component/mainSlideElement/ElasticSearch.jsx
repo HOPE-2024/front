@@ -37,7 +37,7 @@ export const ElasticSearch = () => {
       <WordSwitcher></WordSwitcher>
       <StyledSearch onSearch={onSearch}></StyledSearch>
       <RankingBox>
-        <Ranking data={ranking}></Ranking>
+        <Ranking title={"인기 검색어"} data={ranking}></Ranking>
       </RankingBox>
     </>
   );

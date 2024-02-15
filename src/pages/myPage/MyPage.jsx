@@ -28,6 +28,7 @@ const Profile = styled.img`
 `;
 
 export const MyPage = () => {
+  const [member, setMember] = useState("");
   const [memberId, setMemberId] = useState("");
   const [memberInfo, setMemberInfo] = useState("");
   const [memberProfile, setMemberProfile] = useState("");
@@ -49,6 +50,7 @@ export const MyPage = () => {
         setMemberId(memberId);
 
         const memberProfileRsp = await MyPageAxiosApi.memberInfoAll(memberId); // 멤버 프로필 데이터 요청
+        setMember(memberProfileRsp.memberInfo);
         setMemberInfo(memberProfileRsp.memberInfo);
         setMemberProfile(memberProfileRsp.memberProfile);
 
@@ -94,26 +96,23 @@ export const MyPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const nickNameRsp = await MyPageAxiosApi.memberUpdate(
-        memberId,
-        editNickName
-      );
-      if (nickNameRsp.status === 200) {
+      const rsp = await MyPageAxiosApi.memberUpdate(memberId, editNickName);
+      if (rsp.status === 200) {
         // setNickName(editNickName);
-        const infoRsp = await MyPageAxiosApi.memberUpdateInfo(
+        const rsp = await MyPageAxiosApi.memberUpdateInfo(
           memberId,
           editBirthDate,
           editHeight,
           editWeight
         );
-        if (infoRsp.status === 200) {
+        if (rsp.status === 200) {
           setEditMode(false);
-          const updatedMemberRsp = await MyPageAxiosApi.memberInfoAll(memberId);
-          console.log("마지막업데이트 되기를", updatedMemberRsp);
-          if (updatedMemberRsp.status === 200) {
-            setMemberId(updatedMemberRsp.memberInfo.memberId);
-            setMemberInfo(updatedMemberRsp.memberInfo);
-            setMemberProfile(updatedMemberRsp.memberProfile);
+          const rsp = await MyPageAxiosApi.memberInfoAll(memberId);
+          console.log("마지막업데이트 되기를", rsp);
+          if (rsp.status === 200) {
+            setMember(rsp.memberInfo.memberId);
+            setMemberInfo(rsp.memberInfo);
+            setMemberProfile(rsp.memberProfile);
           }
         }
       }

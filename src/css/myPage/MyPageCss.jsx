@@ -11,7 +11,7 @@ export const MyPageCon = styled.div`
 export const MyPageLineCon = styled.div`
   position: relative;
   width: 90%;
-  border: 1px solid var(--BLUE);
+  border: 2px solid var(--BLUE);
   border-radius: 15px;
   padding: 1vh;
   display: flex;
@@ -67,7 +67,8 @@ export const InfoCon = styled.div`
 `;
 
 export const Line = styled.div`
-  border: 1px solid var(--BLUE);
+  border: 2.5px solid var(--BLUE);
+  border-radius: 50px;
   height: 70vh;
   margin: 2vh;
   width: 0;
@@ -93,7 +94,7 @@ export const Input = styled.input`
   width: 100%;
   text-align: center;
   font-size: 1em;
-  padding: 0.5vh;
+  padding: 0.5em;
   border: 1px solid var(--BLUE);
   border-radius: 4px;
   background-color: #136cfb35;
