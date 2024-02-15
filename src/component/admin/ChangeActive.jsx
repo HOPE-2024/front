@@ -78,7 +78,6 @@ export const ChangeActive = ({ setStatus, id, setActive }) => {
         {data &&
           data.map((type, index) => (
             <li
-              className="list"
               onClick={() => {
                 click(type);
               }}

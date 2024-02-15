@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30%;
+  margin-bottom: 5%;
   line-height: 15px;
+  overflow-y: hidden;
   @media screen and (max-width: 768px) {
     width: 100%;
   }

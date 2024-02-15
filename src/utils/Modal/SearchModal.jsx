@@ -142,7 +142,7 @@ export const SearchModal = ({
                   value={selectedSick}
                   onChange={(e) => setSelectedSick(e.target.value)}
                 >
-                  <option value="">질병 선택</option>
+                  <option value="">전체</option>
                   {SickList.map((sick, index) => (
                     <option key={index} value={sick}>
                       {sick}
