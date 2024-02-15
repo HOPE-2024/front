@@ -6,8 +6,13 @@ import {
   ThirdDropDownMenu,
   FiveDropDownMenu,
 } from "../../css/template/HeaderDropDownStyle";
-import { YesModal } from "../../utils/modal/YesModal";
 import { StyledSearch } from "../../css/common/StyledSearch";
+import styled from "styled-components";
+import { SearchModal } from "../../utils/modal/SearchModal";
+
+export const ModalBox = styled.div`
+  width: 100%;
+`;
 
 export const FirstDropDown = ({ onClose }) => {
   const dropdownRef = useRef(null);
@@ -166,27 +171,6 @@ export const ThirdDropDown = ({ onClose }) => {
   );
 };
 
-// 헤더의 검색 버튼 눌렀을 때 뜨는 모달
-export const FourthModal = ({ isModalOpen }) => {
-  const navigate = useNavigate();
-  const onSearch = (searchOption, search) => {
-    navigate(`/medicineresult?searchoption=${searchOption}&search=${search}`);
-  };
-
-  return (
-    <>
-      {isModalOpen && (
-        <YesModal
-          width="60%"
-          height="65%"
-          modalOpen={isModalOpen}
-          checkMessage={<StyledSearch onSearch={onSearch()}></StyledSearch>}
-        />
-      )}
-    </>
-  );
-};
-
 export const FiveDropDown = ({ onClose }) => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -237,5 +221,28 @@ export const FiveDropDown = ({ onClose }) => {
         문의 관리
       </li>
     </FiveDropDownMenu>
+  );
+};
+
+// 헤더의 검색 버튼 눌렀을 때 뜨는 모달
+export const FourthModal = ({ isModalOpen }) => {
+  const navigate = useNavigate();
+  const onSearch = (searchOption, search) => {
+    navigate(`/medicineresult?searchoption=${searchOption}&search=${search}`);
+  };
+
+  return (
+    <>
+      {isModalOpen && (
+        <ModalBox>
+          <SearchModal
+            width="60%"
+            height="65%"
+            modalOpen={isModalOpen}
+            checkMessage={<StyledSearch onSearch={onSearch()}></StyledSearch>}
+          />
+        </ModalBox>
+      )}
+    </>
   );
 };

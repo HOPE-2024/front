@@ -34,7 +34,7 @@ const SearchMode = styled.div`
   width: 500px;
   height: 50px;
   border-radius: 4px;
-  margin: 20px;
+  margin: 20px 0;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   background: white; // 배경색을 흰색으로 설정
   min-width: 180px;
