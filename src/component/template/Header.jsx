@@ -142,13 +142,11 @@ export const Header = () => {
               // 로그인 X
               <Menu>
                 <li onClick={() => navigate("/Login")}>
-                  <UnderLinedStyle>로그인</UnderLinedStyle>
+                  <UnderLinedStyle fontSize={"20px"}>로그인</UnderLinedStyle>
                 </li>
 
-                <Line></Line>
-
                 <li onClick={() => navigate("/AgreeCheck")}>
-                  <UnderLinedStyle>회원 가입</UnderLinedStyle>
+                  <UnderLinedStyle fontSize={"20px"}>회원 가입</UnderLinedStyle>
                 </li>
               </Menu>
             )}

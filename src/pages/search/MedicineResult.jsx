@@ -186,9 +186,6 @@ export const MedicineResult = () => {
       case "성분":
         setFields("ingredient,ingredient_en");
         break;
-      case "증상":
-        setFields(null);
-        break;
       default:
         setFields("name,name_en,company,company_en,ingredient,ingredient_en");
         break;

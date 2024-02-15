@@ -119,7 +119,7 @@ export const StyledSearch = ({ onSearch, rspSearch, rspSearchOption }) => {
   };
 
   // selectbox의 옵션 지정
-  const searchOptionList = ["전체", "의약품명", "제조사명", "성분", "증상"];
+  const searchOptionList = ["전체", "의약품명", "제조사명", "성분"];
   return (
     <>
       <SearchBox>
