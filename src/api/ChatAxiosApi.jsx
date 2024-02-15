@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Common } from "../utils/Common";
+import { Instance } from "../utils/AxiosInterceptor";
 
 export const ChatAxiosApi = {
   // 채팅 내역 전체 조회
@@ -59,5 +60,12 @@ export const ChatAxiosApi = {
     return await axios.get(
       Common.KH_DOMAIN + `/chat/all/count?page=${page}&size=${size}`
     );
+  },
+
+  // ============
+
+  // 카테고리로 채팅방 조회
+  chatListCategory: async (category) => {
+    return await Instance.get(Common.KH_DOMAIN + `/chat/chatList/${category}`);
   },
 };

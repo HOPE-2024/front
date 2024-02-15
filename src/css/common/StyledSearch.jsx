@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { Select } from "../../css/slideElementInput/InputStyle";
+import { MedicineDataAxiosApi } from "../../api/MedicineDataAxiosApi";
 const SearchBox = styled.div`
   position: absolute;
   width: 50vw;
@@ -89,12 +90,15 @@ export const StyledSearch = ({ onSearch, rspSearch, rspSearchOption }) => {
     setSearchOption(rspSearchOption);
   }, [rspSearch, rspSearchOption]);
   // 검색 버튼 클릭 시 동작할 함수
-  const searchTitle = () => {
-    if (search === "") {
+  const searchTitle = async () => {
+    if (search === "" && search === "undefined") {
       // 검색어가 없다면 alert 창 알림
       alert("검색어를 입력해주세요.");
     } else {
-      // 검색어가 있다면 onSearch() 호출하여 필터, 검색어 부모에게 전달
+      // 검색어가 있다면 검색어 저장
+      const rsp = await MedicineDataAxiosApi.addSearchLog(search);
+      console.log("검색어 저장 : ", rsp.data);
+      // onSearch() 호출하여 필터, 검색어 부모에게 전달
       onSearch(searchOption, search);
       // 해당 경로로 이동
       navigate(`/medicineresult?searchoption=${searchOption}&search=${search}`);

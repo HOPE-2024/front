@@ -18,7 +18,7 @@ export const SearchAxiosApi = {
   // documentId에 따른 의약품 검색(상세보기)
   searchId: async (documentId) => {
     return await axios.get(
-      Common.KH_DOMAIN + `/elastic/medicine/searchId/?documentId=${documentId}`
+      Common.KH_DOMAIN + `/elastic/medicine/search-id/?documentId=${documentId}`
     );
   },
 

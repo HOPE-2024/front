@@ -23,6 +23,10 @@ const ModalContent = styled.div`
   width: 80%;
 `;
 
+const EditBtnCon = styled.div`
+  padding-bottom: 5vh;
+`;
+
 const CloseButton = styled.span`
   color: #aaa;
   float: right;
@@ -37,8 +41,15 @@ const CloseButton = styled.span`
   }
 `;
 
-export const EditButton = styled.button`
-  font-size: 1.2em;
+const ProfileContainer = styled.div`
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+`;
+
+const EditButton = styled.button`
+  font-size: 1em;
+  height: 1.5em;
 `;
 
 const ImageListContainer = styled.div`
@@ -54,10 +65,6 @@ const ImageItem = styled.img`
   &:hover {
     border: 2px solid #333;
   }
-`;
-
-const Profile = styled.img`
-  height: 20%;
 `;
 
 export const ProfileModal = ({ memberId, onImageSelect }) => {
@@ -120,8 +127,10 @@ export const ProfileModal = ({ memberId, onImageSelect }) => {
   ];
 
   return (
-    <div>
-      <EditButton onClick={openModal}>프로필 수정</EditButton>
+    <ProfileContainer>
+      <EditBtnCon>
+        <EditButton onClick={openModal}>프로필 수정</EditButton>
+      </EditBtnCon>
       {isModalOpen && (
         <ModalContainer>
           <ModalContent>
@@ -140,6 +149,6 @@ export const ProfileModal = ({ memberId, onImageSelect }) => {
           </ModalContent>
         </ModalContainer>
       )}
-    </div>
+    </ProfileContainer>
   );
 };

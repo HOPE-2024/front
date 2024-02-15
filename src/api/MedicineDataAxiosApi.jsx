@@ -24,7 +24,7 @@ export const MedicineDataAxiosApi = {
       precautions: props.precautions, // 주의사항
     };
     return await axios.post(
-      Common.KH_DOMAIN + "elastic/medicine/add",
+      Common.KH_DOMAIN + "/elastic/medicine/add",
       medicineData
     );
   },
@@ -32,8 +32,21 @@ export const MedicineDataAxiosApi = {
   // 의약품 삭제
   deleteData: async (documentId) => {
     return await axios.delete(
-      Common.KH_DOMAIN + "elastic/medicine/delete",
-      documentId
+      Common.KH_DOMAIN + `/elastic/medicine/delete?documentId=${documentId}`
+    );
+  },
+
+  // 검색어 저장
+  addSearchLog: async (keyword) => {
+    return await axios.post(
+      Common.KH_DOMAIN + `/elastic/medicine/add-search-log?keyword=${keyword}`
+    );
+  },
+
+  // 검색어 빈도 집계
+  getSearchLog: async () => {
+    return await axios.get(
+      Common.KH_DOMAIN + "/elastic/medicine/get-search-log"
     );
   },
 };

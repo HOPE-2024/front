@@ -38,6 +38,7 @@ import { PwReset } from "./pages/member/PwReset";
 import { Support } from "./pages/support/Support";
 import { CoutryFutureResult } from "./pages/result/CoutryFutureResult";
 import { Schedule } from "./pages/event/Schedule";
+import { Ranking } from "./component/search/Ranking";
 
 function App() {
   return (
@@ -91,6 +92,7 @@ function App() {
                 path="/coutryfutureresult"
                 element={<CoutryFutureResult />}
               />
+              <Route path="/ranking" element={<Ranking />} />
             </Route>
           </Routes>
         </BrowserRouter>

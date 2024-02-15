@@ -19,7 +19,7 @@ import {
   ReportBox,
 } from "../../css/chat/ChatRoomCss";
 import { KH_SOCKET_URL } from "../../utils/Common";
-import { ChatAxiosApi } from "../../api/ChatAixosApi";
+import { ChatAxiosApi } from "../../api/ChatAxiosApi";
 import { MyPageAxiosApi } from "../../api/MyPageAxiosApi";
 import { ReportMadal } from "../../utils/modal/ReportMadal";
 
@@ -195,6 +195,24 @@ export const ChatRoom = () => {
     }
   }, [chatList]);
 
+  useEffect(() => {
+    const handleClickOutsideMenu = (event) => {
+      const contextMenu = document.getElementById("contextMenu");
+      if (contextMenu && !contextMenu.contains(event.target)) {
+        // 클릭된 요소가 contextMenu의 자식 요소가 아니면 메뉴를 닫음
+        contextMenu.style.display = "none";
+      }
+    };
+
+    // mousedown 이벤트를 사용하여 메뉴 밖을 클릭했을 때 처리
+    document.addEventListener("mousedown", handleClickOutsideMenu);
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideMenu);
+    };
+  }, []);
+
   return (
     <ChatRoomContainer>
       <ChatInner>
@@ -211,22 +229,42 @@ export const ChatRoom = () => {
           <MsgCon ref={chatConRef}>
             {chatList.map((chat, index) => {
               if (chat.type !== "ENTER" && chat.type !== "CLOSE") {
-                // 입장 및 퇴장 메시지가 아닌 경우에만 출력
+                // 내가 보낸 메시지인지 여부를 판단
+                const isMyMessage = chat.sender === sender;
+                // 내가 보낸 메시지이면 ReportBox를 렌더링하지 않음
+                if (isMyMessage) {
+                  return (
+                    <MsgBox key={index} isSender={isMyMessage}>
+                      <MsgProfile
+                        isSender={isMyMessage}
+                        src={`/images/profile/${
+                          chat.profile || "Ellipse3"
+                        }.png`}
+                        alt="Profile"
+                      />
+                      <MsgTextCon isSender={isMyMessage}>
+                        <MsgSender isSender={isMyMessage}>
+                          {`${chat.sender}`}
+                        </MsgSender>
+                        <Msg isSender={isMyMessage}>{`${chat.msg}`}</Msg>
+                      </MsgTextCon>
+                    </MsgBox>
+                  );
+                }
+                // 내가 보낸 메시지가 아닌 경우에만 ReportBox를 렌더링
                 return (
-                  <MsgBox key={index} isSender={chat.sender === sender}>
+                  <MsgBox key={index} isSender={isMyMessage}>
                     <MsgProfile
-                      isSender={chat.sender === sender}
-                      src={`/images/profile/${chat.profile || "Ellipse5"}.png`}
+                      isSender={isMyMessage}
+                      src={`/images/profile/${chat.profile || "Ellipse3"}.png`}
                       alt="Profile"
                       onContextMenu={handleRightClick(chat.sender)}
                     />
                     <MsgTextCon>
-                      <MsgSender isSender={chat.sender === sender}>
+                      <MsgSender isSender={isMyMessage}>
                         {`${chat.sender}`}
                       </MsgSender>
-                      <Msg isSender={chat.sender === sender}>
-                        {`${chat.msg}`}
-                      </Msg>
+                      <Msg isSender={isMyMessage}>{`${chat.msg}`}</Msg>
                     </MsgTextCon>
                   </MsgBox>
                 );
