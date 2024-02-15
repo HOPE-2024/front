@@ -28,9 +28,9 @@ export const Support2 = () => {
             <div className="content4">
                 {data.map((option, index) => (
                     <div key={index} >
-                        <ul>
-                            <li className="title" onClick={() => { open(index) }}> <p>{option.title}</p>
-                                {view === index ? <h1>＞</h1> : <h1 style={{ color: "white" }}>＜</h1>}
+                        <ul >
+                            <li className="title" style={{ background: view === index ? "#023382" : "#3C84F8", }} onClick={() => { open(index) }}> <p>{option.title}</p>
+                                {view === index ? <h1>＞</h1> : <h1>＜</h1>}
                             </li>
                             {view === index && <>
                                 <li className="content">

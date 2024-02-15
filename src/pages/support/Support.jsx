@@ -49,11 +49,12 @@ li{
         @media (max-width: 768px) {
            min-height: 150px;
          width:150px;
+         height: 100%;
             }
 }   
 
-:hover{
-    background: #afc5e0;
+   &>:hover{
+    background: #105eda;
 }
 }
 
@@ -72,6 +73,7 @@ p{
     .content4{       
         height: auto;
          margin-top: 20px;
+         padding-bottom: 100px;
         ul{
     
             li{ margin: 0 auto;
@@ -84,7 +86,7 @@ p{
                 line-height:30px;
                 border: 1px solid black;
                 height: 40px;
-                background: #136CFB;
+                background: #3C84F8;
                 display: flex;
                 justify-content: space-between;
                 p{               
@@ -95,7 +97,7 @@ p{
                 }
                 h1{    margin: 0;
                     margin-right: 50px;
-            
+                    color: white;
                 
                     transform: rotate(270deg);
                     font-size : 3em;
@@ -103,7 +105,7 @@ p{
                 }
             }
               &:hover > .title{
-                background: #488eff;
+                background:  #b8c3d4;
             }
          
             .content{   
@@ -117,6 +119,12 @@ p{
                }
              
             }
+        }
+        .faq{
+            min-height: 400px;
+            background: #efefef;
+            width: 90%;
+            border: 1px solid black;
         }
     }
     .content5{
@@ -142,8 +150,8 @@ export const Support = () => {
             <div className="content1"> <p>고객 지원 </p></div>
             <div className="content2">
                 <ul>
-                    <li onClick={() => { setType(1) }} style={{ background: type === 1 && '#afc5e0' }}>   <img src={query1} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} /><p>자주 묻는 질문</p></li>
-                    <li onClick={() => { setType(2) }} style={{ background: type === 2 && '#afc5e0' }}>  <img src={query3} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} /><p>나의 질문 보기</p></li>
+                    <li onClick={() => { setType(1) }} style={{ background: type === 1 && ' #3C84F8' }}>   <img src={query1} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} /><p>자주 묻는 질문</p></li>
+                    <li onClick={() => { setType(2) }} style={{ background: type === 2 && ' #3C84F8' }}>  <img src={query3} alt="Logo" width="100" height="80" style={{ marginBottom: "10px" }} /><p>나의 질문 보기</p></li>
                     <li onClick={() => { navigate("/QueryWrite") }}> <img src={query2} alt="Logo" width="60" height="80" style={{ marginBottom: "10px" }} /><p>문의 작성하기</p></li>
                 </ul>
             </div>

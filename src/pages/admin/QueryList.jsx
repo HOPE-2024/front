@@ -261,7 +261,7 @@ export const QueryList = () => {
                   <li className="p1">{pick.division}</li>
                   {/* <li className="p1">{pick.queryImg}</li> */}
                   <li style={{ width: "400px" }}>{pick.title}</li>
-                  {pick.often === "자주 하는 질문" ?
+                  {pick.often === "FAQ" ?
                     <li>  <p className="p3">"FAQ"</p></li>
                     : <li className="p1">{pick.questioner.nickName}</li>
 

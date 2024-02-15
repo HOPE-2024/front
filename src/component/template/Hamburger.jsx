@@ -96,7 +96,7 @@ export const Hamburger = () => {
                   <Content href="/MyPage">내 정보 수정</Content>
                 </ContentBox>
                 <ContentBox>
-                  <Content href="//Support/1">고객 지원</Content>
+                  <Content href="/Support/1">고객 지원</Content>
                 </ContentBox>
                 <ContentBox>
                   <Content onClick={logout}>로그아웃</Content>

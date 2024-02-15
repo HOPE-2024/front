@@ -91,7 +91,8 @@ export const MemberListCss = styled.div`
             display: flex;
         flex-wrap:wrap;
         margin-top: -20px;   
-        height: 500px;
+        height: auto;
+       padding-bottom: 50px;
         .list1 {
     border: 1px solid #023B96;
     width: 250px;      

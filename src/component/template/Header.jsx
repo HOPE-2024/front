@@ -8,7 +8,7 @@ import {
   Menu,
   Line,
 } from "../../css/template/HeaderStyle";
-import { FirstDropDown, SecondDropDown, ThirdDropDown } from "./HeaderDropDown";
+import { FirstDropDown, SecondDropDown, ThirdDropDown, FiveDropDown } from "./HeaderDropDown";
 import { UnderLinedStyle } from "../../css/common/UnderLinedStyle";
 import { Hamburger } from "./Hamburger";
 import { MemberAxiosApi } from "../../api/MemberAxiosApi";
@@ -40,12 +40,13 @@ export const Header = () => {
   const [secondView, setSecondView] = useState(false);
   const [thirdView, setThirdView] = useState(false);
   const [fourthView, setFourthView] = useState(false);
+  const [fiveView, setFiveView] = useState(false);
 
   // 로그인 전역관리
   const context = useContext(UserContext);
   const { setLoginStatus, loginStatus } = context;
   const [member, setMember] = useState({});
-
+  const authority = localStorage.getItem("authority");
   useEffect(() => {
     const getMember = async () => {
       // 로컬 스토리지에서 액세스 토큰 읽기
@@ -93,6 +94,14 @@ export const Header = () => {
                   </SearchIcon>
                   {fourthView && <FourthModal isModalOpen={true} />}
                 </li>
+
+                {
+                  authority === "ADMIN" && <>    <Line></Line><li onClick={() => setFiveView(!thirdView)}>
+                    <UnderLinedStyle>관리</UnderLinedStyle>
+                    {fiveView && (
+                      <FiveDropDown onClose={() => setFiveView(false)} />
+                    )}
+                  </li></>}
                 <Line></Line>
                 <li onClick={() => setFirstView(!firstView)}>
                   <UnderLinedStyle>예측</UnderLinedStyle>
@@ -118,6 +127,8 @@ export const Header = () => {
                     <ThirdDropDown onClose={() => setThirdView(false)} />
                   )}
                 </li>
+
+
               </Menu>
             ) : (
               // 로그인 X

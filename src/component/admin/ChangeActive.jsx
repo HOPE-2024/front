@@ -64,7 +64,7 @@ const ActiveChangeCss = styled.div`
   }
 `;
 export const ChangeActive = ({ setStatus, id, setActive }) => {
-  const data = ["일반 회원", "채팅 7일 정지", "채팅 30일 정지", "회원 정지"];
+  const data = ["일반 회원", "7일 정지", "30일 정지", "회원 정지"];
 
   const click = async (type) => {
     await UpdateActive(id, type);

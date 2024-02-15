@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../../utils/Button";
 import { storage } from "../../api/Firebase";
 import { InputBox, QueryCss, Select } from "../../css/admin/QueryCss";
-import { InsertQuery } from "../../component/admin/InsertQuery";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { SelectQuery } from "../../component/admin/SelectQuery";
 import { UpdateQuery } from "../../component/admin/UpdateQuery";
