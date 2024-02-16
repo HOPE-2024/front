@@ -333,14 +333,6 @@ export const MedicineDetail = () => {
                   <div className="contents">{data.name_en}</div>
                 </div>
                 <div className="item">
-                  <div className="title">성분</div>
-                  <div className="contents1">{data.ingredient}</div>
-                </div>
-                <div className="item">
-                  <div className="title">영문명</div>
-                  <div className="contents">{data.ingredient_en}</div>
-                </div>
-                <div className="item">
                   <div className="title">제조사</div>
                   <div className="contents">{data.company}</div>
                 </div>
@@ -348,6 +340,15 @@ export const MedicineDetail = () => {
                   <div className="title">영문명</div>
                   <div className="contents">{data.company_en}</div>
                 </div>
+                <div className="item">
+                  <div className="title">성분</div>
+                  <div className="contents1">{data.ingredient}</div>
+                </div>
+                <div className="item">
+                  <div className="title">영문명</div>
+                  <div className="contents">{data.ingredient_en}</div>
+                </div>
+
                 <div className="item">
                   <div className="title">품번</div>
                   <div className="contents">{data.code}</div>
