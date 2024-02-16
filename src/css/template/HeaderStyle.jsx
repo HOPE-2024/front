@@ -56,7 +56,7 @@ export const Menu = styled.div`
 
   .list1 {
     font-size: 0.9rem;
-    margin-top: 10px;
+    margin-top: 9px;
     font-weight: normal;
     cursor: default;
     white-space: nowrap;
