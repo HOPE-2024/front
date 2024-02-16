@@ -7,7 +7,7 @@ export const FaceResult = () => {
   const { image } = location.state;
   const { age } = location.state;
   const { model } = location.state;
-  console.log(result);
+  console.log("얼굴 검출 결과 " + result);
 
   return (
     <>

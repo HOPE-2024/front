@@ -37,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
   article, aside, canvas, details, embed,
   figure, figcaption, footer, header, hgroup,
   menu, nav, output, ruby, section, summary,
-  time, mark, audio, video, textarea, input{
+  time, mark, audio, video, textarea, input, button{
     font-family: 'SUIT-Regular', sans-serif;
     color: #333333;
   }
@@ -69,4 +69,5 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 `;
+
 export default GlobalStyle;

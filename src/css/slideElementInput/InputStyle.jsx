@@ -77,3 +77,12 @@ export const Image = styled.div`
     transform: scale(1.1);
   }
 `;
+
+export const FaceBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 25vh;
+`;

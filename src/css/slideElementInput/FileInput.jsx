@@ -1,5 +1,10 @@
-import { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+
+export const ImageBox = styled.img`
+  width: 175px;
+  border-radius: 20px;
+`;
 
 const HiddenFileInput = styled.input`
   display: none;
@@ -10,42 +15,43 @@ const CustomButton = styled.button`
   width: 200px;
   height: 50px;
   border-radius: 4px;
-  margin: 10px;
+  margin-top: 10px;
   font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  background-color: white;
+
   &:hover {
     transform: scale(1.02);
     font-weight: bold;
   }
 `;
 
-const FileName = styled.div`
-  margin: 10px;
-  font-size: 1rem;
-`;
+export const FileInput = ({ onFileSelect }) => {
+  const fileInputRef = React.useRef();
 
-export const FileInput = () => {
-  const [fileName, setFileName] = useState("");
+  const handleFileInput = (e) => {
+    // 선택된 파일을 부모 컴포넌트로 전달
+    onFileSelect(e.target.files[0]);
+  };
 
-  // 파일 선택 시 호출되는 함수
-  const handleFileChange = (event) => {
-    const file = event.target.files[0]; // 선택된 첫 번째 파일
-    if (file) {
-      setFileName(file.name); // 파일 이름 업데이트
-    }
+  const handleClick = () => {
+    fileInputRef.current.click();
   };
 
   return (
     <>
-      <HiddenFileInput type="file" id="file" onChange={handleFileChange} />
-      {fileName && <FileName>{fileName}</FileName>}
-      <CustomButton as="label" htmlFor="file">
-        파일 선택
-      </CustomButton>
+      {fileInputRef.current?.files[0]
+        ? fileInputRef.current.files[0].name
+        : "선택된 파일 없음"}
+      <HiddenFileInput
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileInput}
+      />
+      <CustomButton onClick={handleClick}>파일 선택</CustomButton>
     </>
   );
 };
