@@ -47,10 +47,7 @@ export const BackGroundHeader = styled.div`
 `;
 
 export const TempHeader = styled.div`
-  width: 90vw;
-  @media (max-width: 1200px) {
-    width: 80vw;
-  }
+  width: 90%;
   @media (max-width: 768px) {
     width: 50vw;
   }

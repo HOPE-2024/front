@@ -234,14 +234,12 @@ export const FourthModal = ({ isModalOpen }) => {
   return (
     <>
       {isModalOpen && (
-        <ModalBox>
-          <SearchModal
-            width="60%"
-            height="65%"
-            modalOpen={isModalOpen}
-            checkMessage={<StyledSearch onSearch={onSearch()}></StyledSearch>}
-          />
-        </ModalBox>
+        <SearchModal
+          width="60%"
+          height="65%"
+          modalOpen={isModalOpen}
+          checkMessage={<StyledSearch onSearch={onSearch()}></StyledSearch>}
+        />
       )}
     </>
   );
