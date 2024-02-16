@@ -1,3 +1,4 @@
+import { Navigate, useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
@@ -6,6 +7,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 
   .title {
     width: 28%;
@@ -65,15 +67,22 @@ export const Container = styled.div`
 `;
 
 export const Ranking = ({ title, data }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
         <div className="title">{title}</div>
         <div className="animated-text">
           {data.map((item, index) => (
-            <div key={item.key} className="line">{`${index + 1}. ${
-              item.key
-            }`}</div>
+            <div
+              key={item.key}
+              className="line"
+              onClick={() =>
+                navigate(
+                  `/medicineresult?searchoption=undefined&search=${item.key}`
+                )
+              }
+            >{`${index + 1}. ${item.key}`}</div>
           ))}
         </div>
       </Container>
