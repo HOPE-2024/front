@@ -6,7 +6,7 @@ export const FirstDropDownMenu = styled.ul`
   margin: 0;
   position: absolute;
   top: 120%;
-  right: 18%;
+  right: 29%;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -33,7 +33,7 @@ export const SecondDropDownMenu = styled.ul`
   margin: 0;
   position: absolute;
   top: 120%;
-  right: 6%;
+  right: 17%;
   background-color: #ffffff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -59,7 +59,7 @@ export const ThirdDropDownMenu = styled.ul`
   margin: 0;
   position: absolute;
   top: 120%;
-  right: -8%;
+  right: 3%;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -76,9 +76,7 @@ export const ThirdDropDownMenu = styled.ul`
       background-color: #f0f0f0;
       font-weight: bold;
     }
-  
   }
-
 `;
 
 export const FiveDropDownMenu = styled.ul`
@@ -104,7 +102,5 @@ export const FiveDropDownMenu = styled.ul`
       background-color: #f0f0f0;
       font-weight: bold;
     }
-  
   }
-
 `;
