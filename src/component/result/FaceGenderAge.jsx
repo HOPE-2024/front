@@ -3,13 +3,6 @@ import { FlexColumn } from "../../css/common/Boxs";
 import styled from "styled-components";
 import { TypeWriter } from "../../css/text/TypeWriter";
 
-const TextBox = styled.div`
-  width: 500px;
-  height: 100px;
-  font-size: 40px;
-  position: relative;
-`;
-
 const ImageBox = styled.img`
   border-radius: 20px;
   width: 35vw;
