@@ -8,7 +8,8 @@ import {
   TextCon,
   TextInfoCon,
   EditLogo,
-  EditButton,
+  SettingBtn,
+  SettionCon,
   Input,
   InfoCon,
   EditBtnCon,
@@ -53,6 +54,7 @@ export const MyPage = () => {
         setMember(memberProfileRsp.memberInfo);
         setMemberInfo(memberProfileRsp.memberInfo);
         setMemberProfile(memberProfileRsp.memberProfile);
+        console.log(memberProfileRsp);
 
         setIsCurrentMember(true);
       } catch (error) {
@@ -114,6 +116,7 @@ export const MyPage = () => {
             setMemberInfo(rsp.memberInfo);
             setMemberProfile(rsp.memberProfile);
           }
+          window.location.reload();
         }
       }
     } catch (error) {
@@ -128,7 +131,7 @@ export const MyPage = () => {
         <ProfileCon>
           <ProfileBox>
             <Profile
-              src={`/images/profile/${memberInfo.profile}.png`}
+              src={`/images/profile/${memberInfo.profile || "Ellipse19"}.png`}
               alt="Profile"
             />
           </ProfileBox>
@@ -144,21 +147,21 @@ export const MyPage = () => {
                 />
               )
             )}
-            <InfoCon>
-              <TextCon>닉네임</TextCon>
-              {!editMode ? (
-                <TextInfoCon>{memberInfo.nickName}</TextInfoCon>
-              ) : (
-                <Input
-                  type="text"
-                  name="Nickname"
-                  placeholder="닉네임을 입력하세요."
-                  value={editNickName}
-                  onChange={handleChange}
-                />
-              )}
-            </InfoCon>
           </NickModalBox>
+          <SettionCon>
+            {!editMode ? (
+              <>
+                <InfoCon>
+                  <SettingBtn>이용약관, 개인정보 처리방침</SettingBtn>
+                </InfoCon>
+                <InfoCon>
+                  <SettingBtn>회 원 탈 퇴</SettingBtn>
+                </InfoCon>
+              </>
+            ) : (
+              isModalOpen && <></>
+            )}
+          </SettionCon>
         </ProfileCon>
         <Line />
         <EditConstainer>
@@ -174,6 +177,54 @@ export const MyPage = () => {
             />
           )}
           <InfoCon>
+            <TextCon>아이디</TextCon>
+            {!editMode ? (
+              <TextInfoCon>{memberInfo.memberId}</TextInfoCon>
+            ) : (
+              <Input
+                type="text"
+                name="Nickname"
+                placeholder={memberInfo.memberId}
+                value={editNickName}
+                onChange={handleChange}
+                readOnly
+              />
+            )}
+          </InfoCon>
+          <InfoCon>
+            <TextCon>이름</TextCon>
+            {!editMode ? (
+              <TextInfoCon>
+                {memberInfo.name || "이름을 입력해주세요"}
+              </TextInfoCon>
+            ) : (
+              <Input
+                type="text"
+                name="Nickname"
+                placeholder={memberInfo.name}
+                value={editNickName}
+                onChange={handleChange}
+                readOnly
+              />
+            )}
+          </InfoCon>
+          <InfoCon>
+            <TextCon>닉네임</TextCon>
+            {!editMode ? (
+              <TextInfoCon>
+                {memberInfo.nickName || "닉네임을 만들어주세요"}
+              </TextInfoCon>
+            ) : (
+              <Input
+                type="text"
+                name="Nickname"
+                placeholder="닉네임을 입력하세요."
+                value={editNickName}
+                onChange={handleChange}
+              />
+            )}
+          </InfoCon>
+          <InfoCon>
             <TextCon>생년월일</TextCon>
             {editMode ? (
               <Input
@@ -182,7 +233,9 @@ export const MyPage = () => {
                 onChange={handleBirthDateChange}
               />
             ) : (
-              <TextInfoCon>{memberProfile.birthDate}</TextInfoCon>
+              <TextInfoCon>
+                {memberProfile.birthDate || "생년월일을 입력해주세요"}
+              </TextInfoCon>
             )}
           </InfoCon>
           <InfoCon>
@@ -194,7 +247,9 @@ export const MyPage = () => {
                 onChange={handleHeightChange}
               />
             ) : (
-              <TextInfoCon>{memberProfile.height}</TextInfoCon>
+              <TextInfoCon>
+                {memberProfile.height || "키를 입력해주세요"}
+              </TextInfoCon>
             )}
           </InfoCon>
           <InfoCon>
@@ -206,7 +261,9 @@ export const MyPage = () => {
                 onChange={handleWeightChange}
               />
             ) : (
-              <TextInfoCon>{memberProfile.weight}</TextInfoCon>
+              <TextInfoCon>
+                {memberProfile.weight || "몸무게를 입력해주세요"}
+              </TextInfoCon>
             )}
           </InfoCon>
           {editMode && (

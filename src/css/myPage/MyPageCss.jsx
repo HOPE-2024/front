@@ -29,7 +29,7 @@ export const ProfileCon = styled.div`
 export const ProfileBox = styled.div`
   padding: 3vh;
   position: absolute;
-  top: 3vh;
+  top: 3.5vh;
 `;
 
 export const EditConstainer = styled.div`
@@ -44,17 +44,35 @@ export const EditConstainer = styled.div`
 export const TextCon = styled.div`
   font-size: 100%;
   color: var(--BLACK);
-  height: 3em;
+  height: 1.5em;
   text-align: center;
 `;
 export const TextInfoCon = styled.div`
   font-size: 150%;
-  width: 100%;
+  width: 13em;
   color: var(--BLACK);
   border-radius: 14px;
   background-color: #136cfb35;
   padding: 1vh 2vh;
   text-align: center;
+`;
+
+export const SettionCon = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 40vh;
+`;
+
+export const SettingBtn = styled.button`
+  font-size: 150%;
+  width: 100%;
+  color: var(--BLACK);
+  border-radius: 14px;
+  border: none;
+  background-color: #136cfb35;
+  padding: 1vh 2vh;
+  text-align: center;
+  cursor: pointer;
 `;
 
 export const NickModalBox = styled.div`
@@ -63,7 +81,7 @@ export const NickModalBox = styled.div`
 `;
 
 export const InfoCon = styled.div`
-  height: 10em;
+  height: 6em;
 `;
 
 export const Line = styled.div`
@@ -79,7 +97,7 @@ export const EditLogo = styled.img`
   top: 0;
   right: 0;
   width: 4%;
-  height: 4%;
+  height: 3.5%;
   justify-content: right;
 `;
 

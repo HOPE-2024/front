@@ -63,12 +63,14 @@ export const ChatList = () => {
         navigate(`/chatting/${response.data}`);
       } catch (e) {
         alert("error : 채팅방을 생성하지 못했습니다.");
-      } finally {
-        setModalOpen(false);
       }
-    } else {
-      alert("채팅방이 생성 되었습니다.");
+      //  finally {
+      //   setModalOpen(false);
+      // }
     }
+    // else {
+    //   alert("채팅방이 생성 되었습니다.");
+    // }
   };
 
   useEffect(() => {
@@ -82,10 +84,10 @@ export const ChatList = () => {
         alert(
           "error : 채팅방 목록을 불러오지 못했습니다. 이전 페이지로 이동합니다."
         );
-        navigate(-1);
+        // navigate(-1);
       }
     };
-    const intervalID = setInterval(getChatRoom, 2000);
+    const intervalID = setInterval(getChatRoom, 1000);
     return () => {
       clearInterval(intervalID);
     };

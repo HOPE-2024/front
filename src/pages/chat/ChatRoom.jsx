@@ -33,6 +33,7 @@ export const ChatRoom = () => {
   const [chatMember, setChatMember] = useState([]);
   const [profile, setProfile] = useState("");
   const ws = useRef(null);
+  const [nickName, setNickName] = useState("");
   const navigate = useNavigate(); // useNavigate 훅 추가
   const [reportModalOpen, setReportModalOpen] = useState(false); // 신고하기 모달 오픈 상태 추가
   const [selectedProfile, setSelectedProfile] = useState(null); // 선택된 프로필 정보 추가
@@ -76,6 +77,7 @@ export const ChatRoom = () => {
             sender: sender,
             msg: inputMsg,
             profile: profile,
+            nickName: nickName,
           })
         );
         setInputMsg("");
@@ -112,8 +114,9 @@ export const ChatRoom = () => {
     const getMember = async () => {
       try {
         const rsp = await MyPageAxiosApi.memberInfo(localStorage.memberId);
-        console.log("멤버 데이터 들어옴? : ", rsp.data.profile);
-        setSender(rsp.data.nickName);
+        console.log("멤버 데이터 들어옴? : ", rsp.data);
+        setSender(rsp.data.memberId);
+        setNickName(rsp.data.nickName);
         setProfile(rsp.data.profile);
       } catch (error) {
         alert(
@@ -163,6 +166,7 @@ export const ChatRoom = () => {
           roomId: roomId,
           sender: sender,
           profile: profile,
+          nickName: nickName,
           msg: "처음으로 접속 합니다.",
         })
       );
@@ -181,6 +185,7 @@ export const ChatRoom = () => {
           roomId: roomId,
           sender: sender,
           profile: profile,
+          nickName: nickName,
           msg: "종료 합니다.",
         })
       );
@@ -244,7 +249,7 @@ export const ChatRoom = () => {
                       />
                       <MsgTextCon isSender={isMyMessage}>
                         <MsgSender isSender={isMyMessage}>
-                          {`${chat.sender}`}
+                          {`${chat.nickName || "Unknown"}`}
                         </MsgSender>
                         <Msg isSender={isMyMessage}>{`${chat.msg}`}</Msg>
                       </MsgTextCon>
@@ -256,13 +261,13 @@ export const ChatRoom = () => {
                   <MsgBox key={index} isSender={isMyMessage}>
                     <MsgProfile
                       isSender={isMyMessage}
-                      src={`/images/profile/${chat.profile || "Ellipse3"}.png`}
+                      src={`/images/profile/${chat.profile || "Ellipse19"}.png`}
                       alt="Profile"
                       onContextMenu={handleRightClick(chat.sender)}
                     />
                     <MsgTextCon>
                       <MsgSender isSender={isMyMessage}>
-                        {`${chat.sender}`}
+                        {`${chat.nickName}`}
                       </MsgSender>
                       <Msg isSender={isMyMessage}>{`${chat.msg}`}</Msg>
                     </MsgTextCon>

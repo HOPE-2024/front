@@ -24,7 +24,7 @@ const ModalContent = styled.div`
 `;
 
 const EditBtnCon = styled.div`
-  padding-bottom: 5vh;
+  padding-bottom: 15vh;
 `;
 
 const CloseButton = styled.span`
@@ -48,8 +48,8 @@ const ProfileContainer = styled.div`
 `;
 
 const EditButton = styled.button`
-  font-size: 1em;
-  height: 2em;
+  font-size: 1.5em;
+  padding: 0.5em 1em;
   border-radius: 4px;
   color: white;
   background-color: var(--NAVY);
