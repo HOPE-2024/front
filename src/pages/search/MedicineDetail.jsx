@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { SearchAxiosApi } from "../../api/SearchAxiosApi";
 import styled from "styled-components";
@@ -211,6 +212,27 @@ export const MedicineDetail = () => {
   const precautionsRef = useRef(null);
   const manualRef = useRef(null);
 
+  // 데이터 가공
+  const formatPrecautions = (precautions) => {
+    if (!precautions) return "";
+    // 모든 HTML 태그를 제거하고
+    const cleanPrecautions = precautions.replace(/<[^>]*>/g, "");
+
+    // 숫자와 점 뒤에 두 줄바꿈이 있는 경우와 한 줄바꿈이 있는 경우를 감지하여 적절하게 처리
+    let formatted = cleanPrecautions.replace(/(\d+\.)(\s*\n\s*\n)/g, "<br>$1 ");
+    formatted = formatted.replace(/(\d+\.)(\s*\n)/g, "<br><br>$1 ");
+
+    // 숫자와 괄호 뒤에 줄바꿈을 추가
+    formatted = formatted.replace(/(\d+\))/g, "<br>$1 ");
+
+    return formatted.split("<br>").map((part, index) => (
+      <React.Fragment key={index}>
+        {index > 0 && <br />}
+        {part}
+      </React.Fragment>
+    ));
+  };
+
   // params로 얻은 id로 의약품 상세 조회, 즐겨찾기 여부 조회
   useEffect(() => {
     const medicineData = async () => {
@@ -413,15 +435,21 @@ export const MedicineDetail = () => {
                 </MenuTable>
                 <div className="item4" ref={effectRef}>
                   <div className="title2">효능효과</div>
-                  <div className="contents">{data.effect}</div>
+                  <div className="contents">
+                    {formatPrecautions(data.effect)}
+                  </div>
                 </div>
                 <div className="item4" ref={usagesRef}>
                   <div className="title2">용법용량</div>
-                  <div className="contents">{data.usages}</div>
+                  <div className="contents">
+                    {formatPrecautions(data.usages)}
+                  </div>
                 </div>
                 <div className="item4" ref={precautionsRef}>
                   <div className="title2">주의사항</div>
-                  <div className="contents">{data.precautions}</div>
+                  <div className="contents">
+                    {formatPrecautions(data.precautions)}
+                  </div>
                 </div>
                 <div className="item4" ref={manualRef}>
                   <div className="title2">설명서</div>

@@ -178,7 +178,7 @@ const Glitch = styled.p`
 // React 컴포넌트
 export const WordSwitcher = () => {
   const [currentItem, setCurrentItem] = useState(0);
-  const count = 4; // 변경될 단어의 개수
+  const count = 3; // 변경될 단어의 개수
 
   useEffect(() => {
     const doChange = () => {
@@ -193,21 +193,19 @@ export const WordSwitcher = () => {
   // 단어의 길이에 맞춰서 공백을 조정
   const generateSpaces = () => {
     switch (currentItem) {
-      case 0: // 증상
-        return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
-      case 1: // 의약품명
+      case 0: // 의약품명
         return (
           <>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </>
         );
-      case 2: // 제조사명
+      case 1: // 제조사명
         return (
           <>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </>
         );
-      case 3: // 성분
+      case 2: // 성분
         return <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
       default:
         return null;
@@ -222,27 +220,20 @@ export const WordSwitcher = () => {
         <Switcher id="word-switcher" className="in">
           <Glitch
             className={`glitch ${currentItem === 0 ? "active" : ""}`}
-            data-text="design"
-            data-oid="0"
-          >
-            증상
-          </Glitch>
-          <Glitch
-            className={`glitch ${currentItem === 1 ? "active" : ""}`}
             data-text="develop"
             data-oid="1"
           >
             의약품명
           </Glitch>
           <Glitch
-            className={`glitch ${currentItem === 2 ? "active" : ""}`}
+            className={`glitch ${currentItem === 1 ? "active" : ""}`}
             data-text="love"
             data-oid="2"
           >
             제조사명
           </Glitch>
           <Glitch
-            className={`glitch ${currentItem === 3 ? "active" : ""}`}
+            className={`glitch ${currentItem === 2 ? "active" : ""}`}
             data-text="love"
             data-oid="2"
           >
