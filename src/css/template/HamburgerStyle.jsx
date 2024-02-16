@@ -68,7 +68,7 @@ export const Items = styled.ul`
   padding: 100%;
   position: absolute;
   top: -5vw;
-  left: -50vw;
+  left: -55vw;
   z-index: 494;
   transition: transform 0.3s ease-in-out;
   box-shadow: 5px 0 10px rgba(255, 255, 255, 0.5), -5px 0 10px black;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MachineAxiosApi } from "../../api/MachineAxiosApi";
+import { EarthLoading } from "../../css/common/EarthLoading";
 
 const NewsContainer = styled.div`
   width: 70vw;
@@ -67,7 +68,11 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
   return (
     <>
       <NewsContainer>
-        {isLoading ? <h2>Loading...</h2> : <h2>검색어: {keyWord}</h2>}
+        {isLoading ? (
+          <EarthLoading top="125px"></EarthLoading>
+        ) : (
+          <h2>검색어: {keyWord}</h2>
+        )}
         {articles.map((article, index) => (
           <NewsItem key={index}>
             <NewsLink

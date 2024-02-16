@@ -5,6 +5,7 @@ import { Input, Button } from "../../css/slideElementInput/InputStyle";
 import { MiddleBox, FlexColumn } from "../../css/common/Boxs";
 import { Spark } from "../../css/text/Spark";
 import styled from "styled-components";
+import { EarthLoading } from "../../css/common/EarthLoading";
 
 const Box = styled.div`
   position: relative;
@@ -67,7 +68,7 @@ export const CountryFutureInput = ({ country = "Korea, Rep." }) => {
         <form onSubmit={handleSubmit}>
           <MiddleBox>
             {isLoading ? (
-              <span>Loading...</span>
+              <EarthLoading></EarthLoading>
             ) : (
               <>
                 <Input type="number" value={year} onChange={handleYearChange} />
