@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   @media (max-width: 500px) {
     @media (max-height: 1000px) {
       width: 60vw;
-      height: 60vh;
+      height: 30vh;
       font-size: 28px;
       line-height: 40px;
     }
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 
     @media (max-width: 300px) {
       width: 60vw;
-      height: 50vh;
+      height: 30vh;
       font-size: 16px;
       line-height: 30px;
     }
