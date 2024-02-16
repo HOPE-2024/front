@@ -94,34 +94,12 @@ export const SearchModal = ({
   // 모달 바깥 부분 클릭 시,
   const modalClick = (e) => {
     if (e.target === e.currentTarget) {
-      setModalOpen();
+      setModalOpen(false);
     }
   };
 
   // 확인
-  const CheckClick = () => {
-    if (inputValue.trim() === "") {
-      alert("채팅방 제목을 입력하세요.");
-      return;
-    }
-    if (selectedSick === "") {
-      alert("질병을 선택하세요.");
-      return;
-    }
-
-    onSubmit(inputValue);
-
-    ChatAxiosApi.freeChatCreate(inputValue, selectedSick)
-      .then((response) => {
-        console.log("채팅방 생성 성공");
-        navigate(0);
-      })
-      .catch((error) => {
-        console.log("채팅방 생성 실패");
-      });
-
-    setModalOpen();
-  };
+  const CheckClick = () => {};
 
   // 취소
   const closeClick = () => {

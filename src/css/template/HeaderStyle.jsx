@@ -25,7 +25,6 @@ export const StyledLogo = styled(Logo)`
 
   @media (max-width: 1200px) {
     position: relative;
-    right: 75px;
   }
 
   @media (max-width: 768px) {
