@@ -55,8 +55,8 @@ export const Withdraw = () => {
         <SubContainer>
           <p className="subTitle">
             HOPE를 이용해주신 시간에 감사드립니다. <br />
-            고객님이 느끼셨던 점을 저희에게 공유해주시면 주시면 더 나은 서비스
-            개선에 더욱 힘쓰겠습니다.
+            고객님이 느끼셨던 점을 저희에게 공유해 주시면 더 나은 서비스 개선에
+            더욱 힘쓰겠습니다.
           </p>
         </SubContainer>
         <SubContainer>
