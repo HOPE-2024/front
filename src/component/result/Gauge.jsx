@@ -1,7 +1,8 @@
 import React from "react";
 import GaugeChart from "react-gauge-chart";
 
-export const Gauge = ({ bmi }) => {
+export const Gauge = ({ bmi, bmiA }) => {
+  console.log("계기판 : " + bmi);
   const chartSegments = [
     {
       color: "#5BE12C",

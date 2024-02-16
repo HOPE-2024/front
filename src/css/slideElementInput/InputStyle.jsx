@@ -18,7 +18,11 @@ export const Input = styled.input`
   border-radius: 4px;
   margin: 10px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
+
+  &:hover {
+    font-weight: bold;
+  }
 `;
 
 export const Select = styled.select`

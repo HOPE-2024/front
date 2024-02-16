@@ -9,6 +9,7 @@ export const LifeResult = () => {
   const { correlation_x } = location.state;
   const { correlation_y } = location.state;
   const { bmi } = location.state;
+  const { bmiA } = location.state;
   const { alcohol } = location.state;
   const { alcoholA } = location.state;
 
@@ -21,6 +22,7 @@ export const LifeResult = () => {
         correlation_x={correlation_x}
         correlation_y={correlation_y}
         bmi={bmi}
+        bmiA={bmiA}
         alcohol={alcohol}
         alcoholA={alcoholA}
       ></LifeResultSlide>

@@ -24,6 +24,7 @@ export const LifeResultSlide = ({
   correlation_x,
   correlation_y,
   bmi,
+  bmiA,
   alcohol,
   alcoholA,
 }) => {
@@ -57,7 +58,7 @@ export const LifeResultSlide = ({
       <BarGraph featureImportances={featureImportances} />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <Gauge Bmi={bmi}></Gauge>
+      <Gauge bmi={bmi} bmiA={bmiA}></Gauge>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <AlcoholDesc

@@ -8,6 +8,14 @@ const NewsContainer = styled.div`
   max-width: 1000px;
   height: 50vh;
   overflow: scroll;
+
+  /* 웹킷 기반 브라우저를 위한 스타일 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 파이어폭스를 위한 스타일 */
+  scrollbar-width: none;
 `;
 
 const NewsItem = styled.div`

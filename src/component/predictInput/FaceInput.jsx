@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { Wrapper, Input, Button } from "../../css/slideElementInput/InputStyle";
 import { MachineAxiosApi } from "../../api/MachineAxiosApi";
+import { FileInput } from "../../css/slideElementInput/FileInput";
+import { Spark } from "../../css/text/Spark";
 
 export const FaceInput = () => {
   const navigate = useNavigate();
@@ -43,13 +45,17 @@ export const FaceInput = () => {
   return (
     <>
       <Wrapper>
-        <Input type="file" onChange={handleFileSelect} />
+        <Spark top="-8vh">ㅋㅋㅋ병신</Spark>
+        <FileInput type="file" onChange={handleFileSelect} />
+
         <Input
           type="number"
-          placeholder="나이 입력"
+          placeholder="    나이 입력"
           value={age}
           onChange={handleAgeChange}
         />
+        <br />
+        <br />
         <Button onClick={handleUpload}>Upload</Button>
       </Wrapper>
     </>
