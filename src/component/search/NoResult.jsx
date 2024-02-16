@@ -25,9 +25,9 @@ export const ContentsBox = styled.div`
   background-color: white;
   display: flex;
   justify-content: center;
+
   flex-direction: column;
   width: 100%;
-  /* height: 100px; */
 
   &.box1 {
     padding: 7% 0 8% 30%;
@@ -39,7 +39,9 @@ export const ContentsBox = styled.div`
   }
 
   .Box {
-    width: 70%;
+  }
+
+  .Box2 {
   }
 
   @media (max-width: 768px) {
@@ -82,22 +84,38 @@ export const ContentsBox = styled.div`
     }
   }
 `;
+
+export const ContentsSubBox = styled.div`
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const BtnBox = styled.div`
+  width: 100%;
+
+  &.Box2 {
+    display: flex;
+    flex-direction: row;
+  }
+`;
+
 export const ButtonBox = styled.button`
-  width: 49%;
+  width: 50%;
   height: 130px;
   border: none;
   background-color: white; /* 배경 투명하게 설정 */
   box-shadow: 1px 2px 5px 1px #d5d5d5;
   &:hover {
-    box-shadow: 1px 1px 5px 1px var(--SKY);
+    box-shadow: 1px 2px 5px 1px #e3e3e3;
   }
   &:active {
-    box-shadow: 1px 0.5px 5px 0.5px var(--BLUE);
+    box-shadow: 1px 0.5px 5px 0.5px gray;
   }
   cursor: pointer;
   &.btn1 {
-    width: 70%;
-    margin: 2%;
+    width: 100%;
+    margin-bottom: 2%;
   }
   &.btn2 {
     margin-right: 1%;
@@ -107,7 +125,17 @@ export const ButtonBox = styled.button`
   }
 
   .text4 {
-    font-size: 1.1em;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      color: var(--NAVY);
+      font-weight: bold;
+      font-size: 1.3em;
+    }
   }
 `;
 export const NoResult = ({ keyword }) => {
@@ -127,7 +155,7 @@ export const NoResult = ({ keyword }) => {
               <br />
               필터를 올바르게 설정했는지 확인해주세요.
             </p>
-            <button className="btn4" onClick={() => navigate("/query/write")}>
+            <button className="btn4" onClick={() => navigate("/Support/1")}>
               <br />
               <br />
               원하는 의약품 정보 요청하기
@@ -137,17 +165,27 @@ export const NoResult = ({ keyword }) => {
             <p className="text3">
               찾으시는 검색 결과가 없다면 이런 기능은 어떠신가요?
             </p>
-            <ButtonBox className="btn1">
-              <p className="text4">가장 많이 검색된 의약품 순위</p>
-            </ButtonBox>
-            <div className="Box">
-              <ButtonBox className="btn2" onClick={() => navigate("/country")}>
-                <p className="text4">나의 평균 수명 예측</p>
-              </ButtonBox>
-              <ButtonBox className="btn3" onClick={() => navigate("/chatlist")}>
-                <p className="text4">고민이 있는 사람들과 대화하기</p>
-              </ButtonBox>
-            </div>
+            <ContentsSubBox>
+              <BtnBox className="Box1">
+                <ButtonBox className="btn1">
+                  <p className="text4">가장 많이 검색된 의약품 순위</p>
+                </ButtonBox>
+              </BtnBox>
+              <BtnBox className="Box2">
+                <ButtonBox
+                  className="btn2"
+                  onClick={() => navigate("/country")}
+                >
+                  <p className="text4">나의 평균 수명 예측</p>
+                </ButtonBox>
+                <ButtonBox
+                  className="btn3"
+                  onClick={() => navigate("/chatlist")}
+                >
+                  <p className="text4">고민이 있는 사람들과 대화하기</p>
+                </ButtonBox>
+              </BtnBox>
+            </ContentsSubBox>
           </ContentsBox>
         </SubContainer>
       </Container>

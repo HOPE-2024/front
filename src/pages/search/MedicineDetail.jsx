@@ -378,14 +378,7 @@ export const MedicineDetail = () => {
                 </div>
               </TextBox>
               <ImageBox>
-                {/* <img
-                  src="https://firebasestorage.googleapis.com/v0/b/hopeimage2.appspot.com/o/img_noimage.jpg?alt=media&token=883ba6ad-bc2e-4ec1-a7ff-5853bb377dcd"
-                  alt="이미지"
-                /> */}
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/hopeimage-74788.appspot.com/o/img_195900043.jpg?alt=media&token=afe578c0-e3d0-480a-9be4-5fe5439787b9"
-                  alt="이미지"
-                />
+                <img src={data.path} alt="이미지" />
                 <p>&lt;그림 1&gt;&nbsp;낱알 식별 이미지</p>
               </ImageBox>
               <FavoritesBox onClick={() => onClickFavorites()}>

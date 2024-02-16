@@ -41,6 +41,7 @@ import { Schedule } from "./pages/event/Schedule";
 import { Ranking } from "./component/search/Ranking";
 import { TermsofUse } from "./pages/setting/TermsofUse";
 import { Withdraw } from "./pages/setting/Withdraw";
+import { Test } from "./pages/search/Test";
 
 function App() {
   return (
@@ -97,6 +98,7 @@ function App() {
                 element={<CoutryFutureResult />}
               />
               <Route path="/ranking" element={<Ranking />} />
+              <Route path="/test" element={<Test />} />
             </Route>
           </Routes>
         </BrowserRouter>

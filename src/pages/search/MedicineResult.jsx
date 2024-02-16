@@ -272,10 +272,7 @@ export const MedicineResult = () => {
             <ListBox>
               {dataList.map((data) => (
                 <DetailBox key={data.id} onClick={() => onClickBtn(data.id)}>
-                  <img
-                    src="https://firebasestorage.googleapis.com/v0/b/hopeimage-74788.appspot.com/o/img_195900043.jpg?alt=media&token=afe578c0-e3d0-480a-9be4-5fe5439787b9"
-                    alt="이미지"
-                  />
+                  <img src={data.sourceAsMap.path} alt="이미지" />
                   <div className="Box">
                     <div className="box1">
                       <p className="box2">제품명</p>
