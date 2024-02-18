@@ -18,7 +18,6 @@ export const LineButton = styled.div`
   }
 
   &.clicked {
-    line-height: 1.2;
     background-size: 100% 100%;
   }
 `;

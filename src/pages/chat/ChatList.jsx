@@ -14,7 +14,7 @@ import {
   ChatListCon,
   ChatInfoCon,
 } from "../../css/chat/AreaSickListCss";
-import { LineButton } from "../../component/common/LineButton";
+import { Hover3 } from "../../component/common/MenuBtn";
 import { formatDate } from "../../utils/Common";
 import { AddChatModal } from "../../utils/modal/AddChatModal";
 import { ChatAxiosApi } from "../../api/ChatAxiosApi";
@@ -31,6 +31,7 @@ export const ChatList = () => {
 
   // 버튼 클릭 핸들러
   const handleListClick = (item, index) => {
+    console.log(selectedItems);
     // 이미 선택된 항목이고 선택된 버튼이라면 선택 해제
     if (selectedItems.includes(item) && selectedButton === index) {
       setSelectedItems(
@@ -108,14 +109,14 @@ export const ChatList = () => {
         <ChatListOutLine>
           <InLineLeft>
             {SickList.map((item, index) => (
-              <LineButton
+              <Hover3
                 key={index}
                 onClick={() => handleListClick(item)}
                 className={`${selectedItems.includes(item) ? "clicked" : ""}`}
                 selected={selectedButton === index} // 선택된 버튼인지 확인`}
               >
-                {item}
-              </LineButton>
+                💊{item}
+              </Hover3>
             ))}
           </InLineLeft>
           <InLineRight>

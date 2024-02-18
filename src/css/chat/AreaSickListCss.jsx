@@ -70,12 +70,12 @@ export const ChatDate = styled.p`
 
 export const InLineLeft = styled.div`
   color: var(--BLACK);
-  /* gap: 1em; */
+  gap: 1em;
   font-size: 2vh;
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 20%;
   margin: 2% 2% 2% 2%;
 `;

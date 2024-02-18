@@ -27,6 +27,7 @@ import { MedicineResult } from "./pages/search/MedicineResult";
 import { FindId } from "./pages/member/FindId";
 import { FindPw } from "./pages/member/FindPw";
 import { MyPage } from "./pages/myPage/MyPage";
+import { TabComponent } from "./component/common/MenuBtn";
 import { DiabResult } from "./pages/result/DiabResult";
 import { FaceResult } from "./pages/result/FaceResult";
 import { CountryResult } from "./pages/result/CountryResult";
@@ -65,6 +66,7 @@ function App() {
               <Route path="/ChatList" element={<ChatList />} />
               <Route path="/ChatRoom/:roomId" element={<ChatRoom />} />
               <Route path="MyPage" element={<MyPage />} />
+              <Route path="MenuTest" element={<TabComponent />} />
               <Route path="/MemberList2" element={<MemberList2 />} />
               <Route path="/MemberList" element={<MemberList />} />
               <Route path="/Query" element={<Query />} />

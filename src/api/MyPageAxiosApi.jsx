@@ -37,19 +37,21 @@ export const MyPageAxiosApi = {
     return await axios.put(Common.KH_DOMAIN + `/myPage/modify`, member);
   },
 
-  memberUpdateInfo: async (memberId, birthDate, height, weight) => {
+  memberUpdateInfo: async (memberId, birthDate, height, weight, bmi) => {
     console.log(
       "memberUpdateInfo 프로필 수정 정보 들어가나? ",
       memberId,
       birthDate,
       height,
-      weight
+      weight,
+      bmi
     );
     const data = {
       memberId: memberId,
       birthDate: birthDate,
       height: height,
       weight: weight,
+      bmi: bmi,
     };
     return await axios.put(
       Common.KH_DOMAIN + `/member-info/modify/${memberId}`,

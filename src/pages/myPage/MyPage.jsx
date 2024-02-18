@@ -42,6 +42,7 @@ export const MyPage = () => {
   const [editBirthDate, setEditBirthDate] = useState("");
   const [editHeight, setEditHeight] = useState("");
   const [editWeight, setEditWeight] = useState("");
+  const [editBmi, setEditBmi] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,6 +96,10 @@ export const MyPage = () => {
     setEditWeight(e.target.value);
   };
 
+  const handleBmiChange = (e) => {
+    setEditBmi(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -105,7 +110,8 @@ export const MyPage = () => {
           memberId,
           editBirthDate,
           editHeight,
-          editWeight
+          editWeight,
+          editBmi
         );
         if (rsp.status === 200) {
           setEditMode(false);
@@ -263,6 +269,16 @@ export const MyPage = () => {
             ) : (
               <TextInfoCon>
                 {memberProfile.weight || "몸무게를 입력해주세요"}
+              </TextInfoCon>
+            )}
+          </InfoCon>
+          <InfoCon>
+            <TextCon>BMI</TextCon>
+            {editMode ? (
+              <Input type="number" value={editBmi} onChange={handleBmiChange} />
+            ) : (
+              <TextInfoCon>
+                {memberProfile.bmi || "BMI를 입력해주세요"}
               </TextInfoCon>
             )}
           </InfoCon>
