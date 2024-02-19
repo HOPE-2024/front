@@ -168,9 +168,7 @@ export const MyPage = () => {
             {!editMode ? (
               <>
                 <InfoCon>
-                  <SettingBtn onClick={goToTerm}>
-                    이용약관, 개인정보 처리방침
-                  </SettingBtn>
+                  <SettingBtn onClick={goToTerm}>홈페이지 이용약관</SettingBtn>
                 </InfoCon>
                 <InfoCon>
                   <SettingBtn onClick={goToWithdraw}>회 원 탈 퇴</SettingBtn>
