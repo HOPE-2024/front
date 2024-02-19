@@ -84,10 +84,12 @@ export const Hover2 = styled.h3`
 `;
 
 export const Hover3 = styled.div`
+  /* border-radius: 4px; */
   font-size: 1.2em;
+  padding-right: 0.3em;
   cursor: pointer;
-  --b: 0.2em; /* the thickness of the line */
-  --c: var(--NAVY); /* the color */
+  --b: 0.2em;
+  --c: var(--NAVY);
 
   color: #0000;
   padding-block: var(--b);
@@ -98,11 +100,13 @@ export const Hover3 = styled.div`
   -webkit-background-clip: text, padding-box;
   background-clip: text, padding-box;
   transition: 0.3s var(--_s, 0s) linear,
-    background-size 0.3s calc(0.3s - var(--_s, 0s));
+    background-size 0.3s calc(0.3s - var(--_s, 0s)),
+    background-color 0.3s calc(0.3s - var(--_s, 0s));
   &:hover,
   &.clicked {
     --_p: 100%;
     --_s: 0.3s;
+    background-color: #ffffff;
   }
 `;
 

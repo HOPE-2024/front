@@ -25,7 +25,6 @@ export const ChatListOutLine = styled.div`
 
 export const ChatCon = styled.div`
   list-style-type: none;
-  margin: 1.2vh;
   padding: 0;
   position: relative;
   overflow: hidden;
@@ -142,12 +141,12 @@ export const AddChatListStyled = styled.img.attrs({
 `;
 
 export const CustomSelect = styled.select`
-  /* appearance: none; */
   background-color: white;
   border: none;
   border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 1rem;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1em;
   color: var(--BLACK);
   cursor: pointer;
   outline: none;

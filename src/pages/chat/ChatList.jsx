@@ -125,7 +125,7 @@ export const ChatList = () => {
                     }
                   }}
                 >
-                  <CustomOption value="">채팅방 카테고리 선택</CustomOption>
+                  <CustomOption value="">채팅 카테고리</CustomOption>
                   {SickList.map((item, index) => (
                     <CustomOption key={index} value={item}>
                       ⚕️{item}
