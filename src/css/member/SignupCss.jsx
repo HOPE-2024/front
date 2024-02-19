@@ -64,3 +64,10 @@ export const Items = styled.div`
     display: flex;
   }
 `;
+export const InputAndButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 45px;
+  @media screen and (max-width: 768px) {
+  }
+`;

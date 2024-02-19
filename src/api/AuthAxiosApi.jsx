@@ -4,7 +4,15 @@ import { Instance } from "../utils/AxiosInterceptor";
 
 export const AuthAxiosApi = {
   // 회원가입
-  memberJoin: async (id, password, name, nickName, email, phoneNumber) => {
+  memberJoin: async (
+    id,
+    password,
+    name,
+    nickName,
+    email,
+    phoneNumber,
+    inputCode
+  ) => {
     try {
       const data = {
         memberId: id,
@@ -13,6 +21,7 @@ export const AuthAxiosApi = {
         nickName: nickName,
         email: email,
         phone: phoneNumber,
+        verificationCode: inputCode,
       };
       return await axios.post(Common.KH_DOMAIN + "/auth/signup", data);
     } catch (error) {

@@ -9,8 +9,11 @@ import {
   Input,
   Instruction,
   Instruction2,
+  InputAndButtonContainer,
 } from "../../css/member/SignupCss";
 import { AuthAxiosApi } from "../../api/AuthAxiosApi";
+import { EmailAxiosApi } from "../../api/EmailAxiosApi";
+import { Button } from "../../utils/Button";
 
 export const Signup = () => {
   // 회원가입 정보 입력
@@ -21,6 +24,9 @@ export const Signup = () => {
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(""); // 휴대폰 인증후 번호 받음.
+  const [verificationCode, setVerificationCode] = useState(""); // 입력 인증번호 확인 문구
+  const [receivedCode, setReceivedCode] = useState(""); // 받은 인증번호
+  const [inputCode, setInputCode] = useState(""); // 입력 인증번호
 
   // 오류 메세지
   const [idMessage, setIdMessage] = useState("");
@@ -169,6 +175,10 @@ export const Signup = () => {
     }
   };
 
+  const handleInputCodeChange = (e) => {
+    setInputCode(e.target.value);
+  };
+
   // 휴대폰 번호 맞는지 확인
   const onChangePhone = (e) => {
     const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
@@ -203,7 +213,8 @@ export const Signup = () => {
         name,
         nickName,
         email,
-        phoneNumber
+        phoneNumber,
+        inputCode
       );
       console.log("가입 응답 : ", rsp);
       if (rsp.status === 200) {
@@ -214,6 +225,29 @@ export const Signup = () => {
       }
     } catch (error) {
       alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
+
+  const handleSendCode = async () => {
+    console.log("이메일 값:", email);
+    // 이메일로 인증 코드 요청
+    try {
+      const rsp = await EmailAxiosApi.emailSand(email);
+      const receivedCodeFromServer = rsp.data;
+      setReceivedCode(receivedCodeFromServer);
+      console.log("서버로부터 온 인증코드 :", receivedCodeFromServer);
+      alert("인증번호가 전송되었습니다.");
+    } catch (error) {
+      console.log("인증 코드 요청 실패 !!", error);
+    }
+  };
+
+  // 인증번호가 일치하면 회원가입 진행
+  const handleCompareCode = () => {
+    if (inputCode === receivedCode) {
+      setVerificationCode("인증번호가 일치합니다.");
+    } else {
+      setVerificationCode("인증번호가 일치하지 않습니다. 다시 확인해 주세요.");
     }
   };
 
@@ -273,19 +307,39 @@ export const Signup = () => {
         <Items className="item2">
           <Instruction>{nickNameMessage}</Instruction>
         </Items>
-        <Items className="item1">
-          <Input
-            placeholder="Email 입력"
-            value={email}
-            onChange={onChangeMail}
-          />
-        </Items>
+        <InputAndButtonContainer>
+          <Items className="item1">
+            <Input
+              placeholder="Email 입력"
+              value={email}
+              onChange={onChangeMail}
+            />
+          </Items>
+          <Button fontSize="10px" width="50px" clickEvt={handleSendCode}>
+            인증번호 요청
+          </Button>
+        </InputAndButtonContainer>
         <Instruction2>
           추후 아이디/비밀번호 찾기에 활용되니 자주 사용하는 이메일로 기재해
           주세요
         </Instruction2>
         <Items className="item2">
           <Instruction>{emailMessage}</Instruction>
+        </Items>
+        <InputAndButtonContainer>
+          <Items className="item1">
+            <Input
+              placeholder="인증번호 입력"
+              value={inputCode}
+              onChange={handleInputCodeChange}
+            />
+          </Items>
+          <Button fontSize="12px" width="50px" clickEvt={handleCompareCode}>
+            확인
+          </Button>
+        </InputAndButtonContainer>
+        <Items className="item2">
+          <Instruction>{verificationCode}</Instruction>
         </Items>
         <Items className="item1">
           <Input

@@ -22,9 +22,11 @@ import { useEffect, useState } from "react";
 import { MemberAxiosApi } from "../../api/MemberAxiosApi";
 import styled from "styled-components";
 import Edit from "../../images/chat/Edit.png";
+import { useNavigate } from "react-router-dom";
 
 const Profile = styled.img`
   height: 13em;
+  margin-bottom: 3em;
 `;
 
 export const MyPage = () => {
@@ -42,6 +44,7 @@ export const MyPage = () => {
   const [editHeight, setEditHeight] = useState("");
   const [editWeight, setEditWeight] = useState("");
   const [editBmi, setEditBmi] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -130,6 +133,14 @@ export const MyPage = () => {
     }
   };
 
+  const goToTerm = () => {
+    navigate("/termsofuse");
+  };
+
+  const goToWithdraw = () => {
+    navigate("/withdraw");
+  };
+
   return (
     <MyPageCon>
       <MyPageLineCon>
@@ -157,10 +168,12 @@ export const MyPage = () => {
             {!editMode ? (
               <>
                 <InfoCon>
-                  <SettingBtn>이용약관, 개인정보 처리방침</SettingBtn>
+                  <SettingBtn onClick={goToTerm}>
+                    이용약관, 개인정보 처리방침
+                  </SettingBtn>
                 </InfoCon>
                 <InfoCon>
-                  <SettingBtn>회 원 탈 퇴</SettingBtn>
+                  <SettingBtn onClick={goToWithdraw}>회 원 탈 퇴</SettingBtn>
                 </InfoCon>
               </>
             ) : (
@@ -184,7 +197,7 @@ export const MyPage = () => {
           <InfoCon>
             <TextCon>아이디</TextCon>
             {!editMode ? (
-              <TextInfoCon>{memberInfo.memberId || "???"}</TextInfoCon>
+              <TextInfoCon>{memberInfo.memberId}</TextInfoCon>
             ) : (
               <Input
                 type="text"
@@ -199,7 +212,9 @@ export const MyPage = () => {
           <InfoCon>
             <TextCon>이름</TextCon>
             {!editMode ? (
-              <TextInfoCon>{memberInfo.name || "???"}</TextInfoCon>
+              <TextInfoCon>
+                {memberInfo.name || "이름을 입력해주세요"}
+              </TextInfoCon>
             ) : (
               <Input
                 type="text"
@@ -247,7 +262,6 @@ export const MyPage = () => {
               <Input
                 type="number"
                 value={editHeight}
-                placeholder="키를 입력하세요."
                 onChange={handleHeightChange}
               />
             ) : (
@@ -262,7 +276,6 @@ export const MyPage = () => {
               <Input
                 type="number"
                 value={editWeight}
-                placeholder="몸무게를 입력하세요."
                 onChange={handleWeightChange}
               />
             ) : (
@@ -274,12 +287,7 @@ export const MyPage = () => {
           <InfoCon>
             <TextCon>BMI</TextCon>
             {editMode ? (
-              <Input
-                placeholder="BMI 입력하세요."
-                type="number"
-                value={editBmi}
-                onChange={handleBmiChange}
-              />
+              <Input type="number" value={editBmi} onChange={handleBmiChange} />
             ) : (
               <TextInfoCon>
                 {memberProfile.bmi || "BMI를 입력해주세요"}
