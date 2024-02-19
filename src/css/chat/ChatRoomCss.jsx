@@ -4,15 +4,16 @@ export const ChatRoomContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 75vh;
 `;
 
 export const ChatInner = styled.div`
   background-color: #136cfb35;
+  padding: 2%;
+  margin: 2%;
   border-radius: 12px;
   width: 80%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
 
 export const RoomJoiners = styled.div`
@@ -28,10 +29,8 @@ export const RoomChat = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  width: 80%;
-  margin: 2% 2% 2% 2%;
-  padding: 2vh;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 export const ChatTitleCon = styled.div`
   display: flex;
@@ -41,8 +40,7 @@ export const ChatTitleCon = styled.div`
 
 export const ChatTitle = styled.div`
   background-color: var(--NAVY);
-  margin-bottom: 0.5vh;
-  padding: 0.5rem;
+  padding: 0.8em;
   width: 100%;
   font-size: 2vh;
   color: white;
@@ -64,10 +62,30 @@ export const MsgProfile = styled.img`
 export const MsgCon = styled.div`
   display: flex;
   flex-direction: column;
-  height: 75vh;
+  height: 70vh;
   overflow-y: auto;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 0 1%;
+  /* 스크롤바 디자인 */
+  &::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 */
+  }
+
+  /* 스크롤바 트랙 */
+  &::-webkit-scrollbar-track {
+    background: transparent; /* 스크롤바 트랙의 배경색 */
+  }
+
+  /* 스크롤바 색상 */
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--NAVY); /* 스크롤바 색상 */
+    border-radius: 4px; /* 스크롤바 모서리의 반경 */
+    border: 2px solid white; /* 스크롤바 테두리 */
+  }
+
+  /* 스크롤바의 버튼 부분 */
+  &::-webkit-scrollbar-button {
+    display: none; /* 스크롤바의 버튼 숨김 */
+  }
 `;
 
 export const MsgTextCon = styled.div`
@@ -113,13 +131,13 @@ export const InputCon = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
-  bottom: 20%;
+  /* bottom: 20%; */
 `;
 
 export const Input = styled.input`
   margin: 1vh;
   padding: 0.7vh;
-  width: 55vh;
+  width: 60%;
   border-radius: 2px;
   border: 1px solid var(--SKY);
   background: none;

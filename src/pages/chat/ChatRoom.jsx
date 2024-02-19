@@ -221,16 +221,16 @@ export const ChatRoom = () => {
   return (
     <ChatRoomContainer>
       <ChatInner>
-        <RoomJoiners>
+        {/* <RoomJoiners>
           채팅방 참여자
           {chatMember.map((member, index) => (
             <span key={index}>{member}</span>
           ))}
-        </RoomJoiners>
+        </RoomJoiners> */}
+        <ChatTitleCon>
+          <ChatTitle> {roomName} </ChatTitle>
+        </ChatTitleCon>
         <RoomChat>
-          <ChatTitleCon>
-            <ChatTitle> {roomName} </ChatTitle>
-          </ChatTitleCon>
           <MsgCon ref={chatConRef}>
             {chatList.map((chat, index) => {
               if (chat.type !== "ENTER" && chat.type !== "CLOSE") {
@@ -243,7 +243,7 @@ export const ChatRoom = () => {
                       <MsgProfile
                         isSender={isMyMessage}
                         src={`/images/profile/${
-                          chat.profile || "Ellipse3"
+                          chat.profile || "Ellipse19"
                         }.png`}
                         alt="Profile"
                       />

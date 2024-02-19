@@ -14,8 +14,13 @@ export const ChatListOutLine = styled.div`
   display: flex;
   justify-content: center;
   width: 80%;
-  height: 75vh;
+  height: 80%;
   border-radius: 12px;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ChatCon = styled.div`
@@ -76,8 +81,12 @@ export const InLineLeft = styled.div`
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
-  width: 20%;
-  margin: 2% 2% 2% 2%;
+  width: 12em;
+  margin: 2%;
+  @media screen and (max-width: 500px) {
+    align-items: center;
+    width: 80%;
+  }
 `;
 
 export const ChatListCon = styled.div`
@@ -100,10 +109,23 @@ export const InLineRight = styled.div`
   background-color: white;
   color: var(--BLACK);
   width: 80%;
+  height: 75vh;
   border-radius: 10px;
-  margin: 2% 2% 2% 2%;
+  margin: 2%;
   position: relative;
   padding: 2vh;
+  @media screen and (max-width: 500px) {
+    width: 90%;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const SelectCon = styled.div`
+  display: flex;
+  justify-content: c;
+  align-items: center;
 `;
 
 export const AddChatListStyled = styled.img.attrs({
@@ -117,6 +139,22 @@ export const AddChatListStyled = styled.img.attrs({
   right: 0;
   cursor: pointer;
   z-index: 1;
+`;
+
+export const CustomSelect = styled.select`
+  /* appearance: none; */
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  color: var(--BLACK);
+  cursor: pointer;
+  outline: none;
+`;
+
+export const CustomOption = styled.option`
+  color: var(--BLACK);
 `;
 
 export const SickList = [

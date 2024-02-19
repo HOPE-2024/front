@@ -13,6 +13,9 @@ import {
   ChatCategory,
   ChatListCon,
   ChatInfoCon,
+  SelectCon,
+  CustomSelect,
+  CustomOption,
 } from "../../css/chat/AreaSickListCss";
 import { Hover3 } from "../../component/common/MenuBtn";
 import { formatDate } from "../../utils/Common";
@@ -108,16 +111,40 @@ export const ChatList = () => {
       <Container>
         <ChatListOutLine>
           <InLineLeft>
-            {SickList.map((item, index) => (
-              <Hover3
-                key={index}
-                onClick={() => handleListClick(item)}
-                className={`${selectedItems.includes(item) ? "clicked" : ""}`}
-                selected={selectedButton === index} // 선택된 버튼인지 확인`}
-              >
-                💊{item}
-              </Hover3>
-            ))}
+            {window.innerWidth <= 500 ? (
+              <SelectCon>
+                <CustomSelect
+                  value={selectedItems}
+                  onChange={(e) => {
+                    const selectedValue = e.target.value;
+                    // 빈 값이 선택되면 선택 해제
+                    if (selectedValue === "") {
+                      setSelectedItems([]);
+                    } else {
+                      setSelectedItems([selectedValue]);
+                    }
+                  }}
+                >
+                  <CustomOption value="">채팅방 카테고리 선택</CustomOption>
+                  {SickList.map((item, index) => (
+                    <CustomOption key={index} value={item}>
+                      ⚕️{item}
+                    </CustomOption>
+                  ))}
+                </CustomSelect>
+              </SelectCon>
+            ) : (
+              SickList.map((item, index) => (
+                <Hover3
+                  key={index}
+                  onClick={() => handleListClick(item)}
+                  className={`${selectedItems.includes(item) ? "clicked" : ""}`}
+                  selected={selectedButton === index} // 선택된 버튼인지 확인`}
+                >
+                  ⚕️{item}
+                </Hover3>
+              ))
+            )}
           </InLineLeft>
           <InLineRight>
             <ChatListCon>채팅방 리스트</ChatListCon>

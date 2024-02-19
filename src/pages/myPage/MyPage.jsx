@@ -25,7 +25,6 @@ import Edit from "../../images/chat/Edit.png";
 
 const Profile = styled.img`
   height: 13em;
-  margin-bottom: 3em;
 `;
 
 export const MyPage = () => {
@@ -185,7 +184,7 @@ export const MyPage = () => {
           <InfoCon>
             <TextCon>아이디</TextCon>
             {!editMode ? (
-              <TextInfoCon>{memberInfo.memberId}</TextInfoCon>
+              <TextInfoCon>{memberInfo.memberId || "???"}</TextInfoCon>
             ) : (
               <Input
                 type="text"
@@ -200,9 +199,7 @@ export const MyPage = () => {
           <InfoCon>
             <TextCon>이름</TextCon>
             {!editMode ? (
-              <TextInfoCon>
-                {memberInfo.name || "이름을 입력해주세요"}
-              </TextInfoCon>
+              <TextInfoCon>{memberInfo.name || "???"}</TextInfoCon>
             ) : (
               <Input
                 type="text"
@@ -250,6 +247,7 @@ export const MyPage = () => {
               <Input
                 type="number"
                 value={editHeight}
+                placeholder="키를 입력하세요."
                 onChange={handleHeightChange}
               />
             ) : (
@@ -264,6 +262,7 @@ export const MyPage = () => {
               <Input
                 type="number"
                 value={editWeight}
+                placeholder="몸무게를 입력하세요."
                 onChange={handleWeightChange}
               />
             ) : (
@@ -275,7 +274,12 @@ export const MyPage = () => {
           <InfoCon>
             <TextCon>BMI</TextCon>
             {editMode ? (
-              <Input type="number" value={editBmi} onChange={handleBmiChange} />
+              <Input
+                placeholder="BMI 입력하세요."
+                type="number"
+                value={editBmi}
+                onChange={handleBmiChange}
+              />
             ) : (
               <TextInfoCon>
                 {memberProfile.bmi || "BMI를 입력해주세요"}

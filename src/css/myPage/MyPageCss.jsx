@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MyPageCon = styled.div`
   background-color: #ffffff9a;
   width: 100%;
-  padding: 1vh;
+  padding: 1.5em 0;
   display: flex;
   justify-content: center;
 `;
@@ -13,8 +13,13 @@ export const MyPageLineCon = styled.div`
   width: 90%;
   border: 2px solid var(--BLUE);
   border-radius: 15px;
-  padding: 1vh;
+  padding: 2vh 0;
   display: flex;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const ProfileCon = styled.div`
@@ -24,12 +29,16 @@ export const ProfileCon = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    order: 1;
+    margin-bottom: 2em;
+  }
 `;
 
 export const ProfileBox = styled.div`
-  padding: 3vh;
   position: absolute;
-  top: 3.5vh;
+  top: 4vh;
 `;
 
 export const EditConstainer = styled.div`
@@ -39,6 +48,11 @@ export const EditConstainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    order: 2;
+    width: 100%;
+  }
 `;
 
 export const TextCon = styled.div`
@@ -60,11 +74,11 @@ export const TextInfoCon = styled.div`
 export const SettionCon = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 40vh;
+  margin-top: 30vh;
 `;
 
 export const SettingBtn = styled.button`
-  font-size: 150%;
+  font-size: 130%;
   width: 100%;
   color: var(--BLACK);
   border-radius: 14px;
@@ -78,27 +92,40 @@ export const SettingBtn = styled.button`
 export const NickModalBox = styled.div`
   position: absolute;
   bottom: 10%;
+  @media screen and (max-width: 500px) {
+    position: relative;
+    top: 80%;
+  }
 `;
 
 export const InfoCon = styled.div`
-  height: 6em;
+  height: 5.5em;
+  padding: 0 1em;
 `;
 
 export const Line = styled.div`
-  border: 2.5px solid var(--BLUE);
+  border: 2px solid var(--BLUE);
   border-radius: 50px;
-  height: 70vh;
-  margin: 2vh;
+  height: 100%;
   width: 0;
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 
 export const EditLogo = styled.img`
   position: absolute;
   top: 0;
   right: 0;
-  width: 4%;
-  height: 3.5%;
+  width: 1.5em;
+  margin: 0 1em;
   justify-content: right;
+  @media screen and (max-width: 500px) {
+    width: 2em;
+    position: relative;
+    margin-bottom: 1em;
+  }
 `;
 
 export const EditBtnCon = styled.div`

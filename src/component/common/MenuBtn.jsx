@@ -84,9 +84,8 @@ export const Hover2 = styled.h3`
 `;
 
 export const Hover3 = styled.div`
-  font-size: 1em;
+  font-size: 1.2em;
   cursor: pointer;
-  padding: 0 0.1em;
   --b: 0.2em; /* the thickness of the line */
   --c: var(--NAVY); /* the color */
 
