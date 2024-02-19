@@ -106,7 +106,6 @@ export const Login = () => {
       const rsp = await MemberAxiosApi.kakaoLogin({
         access_token: data.response.access_token,
       });
-      console.log("카카오 서버 응답 : " + JSON.stringify(rsp));
 
       console.log("카카오 서버 응답 : " + JSON.stringify(rsp.data));
       console.log("카카오 액세스 토큰 : " + rsp.data.accessToken);
@@ -117,6 +116,7 @@ export const Login = () => {
       window.localStorage.setItem("refreshToken", rsp.data.refreshToken);
       window.localStorage.setItem("loginStatus", "true");
       navigate("/");
+      // window.location.reload();
     } catch (error) {
       console.log("memberaxiosApi.kakaoLogin 호출 중 오류 발생 :", error);
     }
@@ -125,6 +125,20 @@ export const Login = () => {
   // 카카오 로그인 실패
   const kakaoLoginFailure = (error) => {
     console.log("카카오 로그인 실패 : ", error);
+  };
+
+  // 네이버 로그인
+  const NaverLogin = () => {
+    const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+    const REDIRECT_URI = process.env.REACT_APP_NAVER_REDIRECT_URI;
+    const STATE = "false";
+    const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state=${STATE}`;
+
+    const handleNaverLogin = () => {
+      window.location.href = NAVER_AUTH_URL;
+    };
+
+    return <NaverStyled onClick={handleNaverLogin} />;
   };
 
   return (
@@ -191,7 +205,7 @@ export const Login = () => {
               }}
             />
           </KakaoStyled>
-          <NaverStyled />
+          <NaverLogin />
         </Items>
       </LoginContainer>
     </>

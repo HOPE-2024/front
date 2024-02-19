@@ -36,4 +36,24 @@ export const MemberAxiosApi = {
       console.error("카카오 로그인 실패: ", error);
     }
   },
+
+  // 네이버 토큰
+  getNaverToken: async (code) => {
+    const data = {
+      grant_type: "authorization_code",
+      client_id: process.env.REACT_APP_NAVER_CLIENT_ID,
+      redirect_uri: process.env.REACT_APP_NAVER_REDIRECT_URI,
+      code: code,
+    };
+    return await axios.post("https://nid.naver.com/oauth2.0/token", data, {
+      headers: {
+        "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      },
+    });
+  },
+
+  // 네이버 회원 정보 가져오기
+  getNaverInfo: async (token) => {
+    return await Instance.post("/member/navermember");
+  },
 };

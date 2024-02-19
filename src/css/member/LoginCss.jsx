@@ -105,4 +105,14 @@ export const NaverStyled = styled.img.attrs({
   width: 80px;
   height: 38px;
   margin-right: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+  }
 `;
