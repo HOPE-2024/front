@@ -25,6 +25,8 @@ const NewsItem = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: white;
+
   &:hover {
     transform: scale(1.015);
   }
@@ -38,8 +40,8 @@ const NewsLink = styled.a`
 `;
 
 const NewsImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 96px;
+  height: 96px;
   margin-right: 10px;
 `;
 

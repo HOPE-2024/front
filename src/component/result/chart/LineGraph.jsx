@@ -177,7 +177,7 @@ export const LineGraph = ({ Country, dataString, onTrendAnalyzed }) => {
         </Wrapper>
         <br />
         <br />
-        <Description>{Country} 평균 수명 변화 </Description>
+        <Description>{Country}의 평균 수명 변화 </Description>
       </FlexColumn>
     </>
   );

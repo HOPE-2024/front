@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import axios from "axios";
 import { MyCalendar } from "../../component/event/MyCalendar";
 import { Diary } from "../../component/event/Diary";
@@ -6,6 +7,27 @@ import { EventForm } from "../../component/event/EventForm";
 import { EventEditForm } from "../../component/event/EventEditForm";
 import { EventList } from "../../component/event/EventList";
 import { Alarm } from "../../component/event/Alarm";
+
+const LayoutWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; // 컴포넌트 간의 간격
+  padding: 20px;
+`;
+
+const LeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1; // 좌우 컬럼이 동일한 비율을 유지하도록 설정
+  gap: 20px;
+`;
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 20px;
+`;
 
 export const Schedule = () => {
   const [events, setEvents] = useState([]);
@@ -56,26 +78,24 @@ export const Schedule = () => {
   });
 
   return (
-    <div>
-      <MyCalendar setSelectedDate={setSelectedDate} />
-      {selectedEvent ? (
-        <EventEditForm event={selectedEvent} updateEvent={updateEvent} />
-      ) : (
-        <EventForm addEvent={addEvent} />
-      )}
-      <EventList
-        events={selectedDateEvents} // 선택된 날짜에 해당하는 일정만 표시
-        deleteEvent={deleteEvent}
-        setSelectedEvent={setSelectedEvent}
-      />
-      {selectedEvent && <Diary selectedEvent={selectedEvent} />}
-      {/* 선택된 일정이 있을 때만 Diary 컴포넌트를 표시 */}
-
-      <br />
-      <br />
-      <br />
-
-      <Alarm></Alarm>
-    </div>
+    <LayoutWrapper>
+      <LeftColumn>
+        <MyCalendar setSelectedDate={setSelectedDate} />
+        <EventList
+          events={selectedDateEvents}
+          deleteEvent={deleteEvent}
+          setSelectedEvent={setSelectedEvent}
+        />
+      </LeftColumn>
+      <RightColumn>
+        {selectedEvent ? (
+          <EventEditForm event={selectedEvent} updateEvent={updateEvent} />
+        ) : (
+          <EventForm addEvent={addEvent} />
+        )}
+        {selectedEvent && <Diary selectedEvent={selectedEvent} />}
+        <Alarm />
+      </RightColumn>
+    </LayoutWrapper>
   );
 };

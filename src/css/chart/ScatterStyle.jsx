@@ -51,9 +51,11 @@ export const Wrapper = styled.div`
 export const Balloon = styled.div`
   position: relative;
   width: 23vw;
+  min-width: 300px;
   height: 20vh;
+  min-height: 200px;
   bottom: 30vh;
-  left: 15vw;
+  left: 17vw;
   padding: 5%;
   background: white;
   border-radius: 10px;
