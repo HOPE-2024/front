@@ -12,16 +12,34 @@ export const QueryViewCss = styled.div`
   height: 300px;
  }
   .Viewa {
-    width: 70%;
+    width: 100%;
     margin: 0 ;
     height: 40px;
     display: flex;
-    z-index: 33;
+    z-index: 33;   
     position: relative;     
-    .c{
+    .inputA{
       width: 300px;
       height: 40px;
       padding-left: 10px;
+    }
+    .inputB{
+      width: 100%;
+      input{
+        width: 100%;
+      }
+      height: 40px;
+      padding-left: 10px;  
+    }
+    .type{
+      width: 100%;
+      background: red;
+      margin-top: 10px; 
+      input{
+        width: 100%;
+        height: 40px;
+        padding-left: 10px;
+      }
     }
   }
   .Viewb {

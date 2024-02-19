@@ -4,9 +4,12 @@ import { SelectMember } from "./SelectMember";
 import styled from "styled-components";
 const SearchVarCss = styled.div`
     width: 400px;
+
     height: 100%;
     display: flex;
-z-index: 5;
+    position: relative;
+    right: 0;
+    margin-right: 50px;
     .content4 {
         width: 100px;
         background: #ffffffd0;
@@ -42,42 +45,18 @@ z-index: 5;
     .content5{
         width: 200px;
         input{
+            width: 100%;
             background: #ffffffd0;
+            border: 2px solid #3C84F8;
             height: 30px;}
     }
-    @media (max-width: 768px) {   
-     flex-direction: column;
-      justify-content: center;
-      align-items: center;
- 
-      .content4 {
-    height: auto;  
-    width: 200px;
-    li{
-        width: 140px;
-    }
-    } 
-    .content5 {
-        display: flex;
-        margin: 0;  
-        width: 100%;   
-        margin-top :10px ;
-        input{
-            width:200px;
-            margin: 0;
-            padding: 0;
-        
+    .content6{
+        margin-left: 10px;
+        button{
+            background: #3C84F8;
         }
     }
-    .content6{      
-        margin-top :10px ;
-        button{
-            margin-left: -10px;
-        width: 200px;
-     }
-    }
-    
-  }
+   
   
 `;
 

@@ -9,8 +9,14 @@ export const QueryView = ({ list, setRefresh }) => {
     return (
         <QueryViewCss>
             <div className="Viewa">
+                <div>
+                    <input value={list.division} className="inputA"></input>
+                </div>
+
+            </div>
+            <div className="Viewa">
                 <div className="type">
-                    <input value={list.division} className="c"></input>
+                    <input value={list.title} ></input>
                 </div>
             </div>
             <div className="Viewb">

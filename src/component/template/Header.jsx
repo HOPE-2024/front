@@ -60,6 +60,7 @@ export const Header = () => {
         const rsp = await MemberAxiosApi.memberGetOne();
         setMember(rsp.data);
         window.localStorage.setItem("memberId", rsp.data.memberId);
+        window.localStorage.setItem("nickName", rsp.data.nickName);
       } catch (e) {
         // 액세스 토큰 만료시 401 에러 발생, 회원 정보 상세 조회 실패시 500 에러
         if (e.response.status === 401 || e.response.status === 500) {

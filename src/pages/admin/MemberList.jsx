@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import { Button } from "../../utils/Button";
 import { ChangeActive } from "../../component/admin/ChangeActive";
 import { useNavigate } from "react-router-dom";
-import { MemberListCss } from "../../css/admin/Report";
-import { AdminAxiosApi } from "../../api/AdminAxiosApi";
+import { MemberListCss } from "../../css/admin/ReportCss";
 import { SelectMemberList } from '../../component/admin/SelectMemberList';
-import { ChattingMemberList } from '../../component/admin/ChattingMemberList';
-import { StopMemberList } from '../../component/admin/StopMemberList';
-import { SelectMember } from '../../component/admin/SelectMember';
 import { SearchVar } from "../../component/admin/SearchVar";
 import { CurrentVar } from "../../component/admin/CurrentVar";
+
 
 
 export const MemberList = () => {
@@ -48,7 +44,7 @@ export const MemberList = () => {
 
   return (
     <MemberListCss>
-      <div className="content1">
+      <div className="left">
         <ul>
           <li className={` ${listType === "all" || listType === "chatting" || listType === "stop" ? "active" : ""} `}>회원 관리</li>
           <li
@@ -88,7 +84,7 @@ export const MemberList = () => {
         </ul>
       </div>
 
-      <div className="content2">
+      <div className="right">
         <div className="search">
           <SearchVar list={"member"} setData={setData} >
 
@@ -96,36 +92,33 @@ export const MemberList = () => {
 
         </div>
         <div className="list">
+          <div className="list1 backA">
+            <ul>
+              <li className="fontA">아이디</li>
+              <li className="fontA">이름</li>
+              <li className="fontA">닉네임</li>
+              <li className="fontB">이메일</li>
+              <li className="fontB">연락처</li>
+              <li className="fontA">상태</li>
+            </ul>
+          </div>
           {data && data.map((item, index) => (
-
-            <div key={index} className={`list1 ${index % 2 === 0 ? "blue" : ""}`}
-              onClick={() => { setStatus(index); setId(item.id); setActive(item.active) }}>
-              <div className="list1-1 listOption">
-                <ul>
-                  <li>아이디</li>
-                  <li>이름</li>
-                  <li>닉네임</li>
-                  <li style={{ height: "30px" }}>이메일</li>
-                  <li>연락처</li>
-                  <li>상태</li>
-                </ul>
-              </div>
-              <div className="list1-2 listOption">
-                <ul>
-                  <li>{item.memberId}</li>
-                  <li>{item.name}</li>
-                  <li>{item.nickName}</li>
-                  <li className="email" style={{ height: "30px", marginTop: "7px" }}>
-                    {item.email}
-                  </li>
-                  <li>{item.phone}</li>
-                  <li>
-                    {item.active}
-                  </li>
-                </ul>
-                {index === status && <ChangeActive setStatus={setStatus} id={id} setActive={setActive} />}
-              </div>
+            <div className="list1 memberA">
+              <ul onClick={() => { setStatus(index); setId(item.id); setActive(item.active) }}>
+                <li className="fontA">{item.memberId}</li>
+                <li className="fontA">{item.name}</li>
+                <li className="fontA">{item.nickName}</li>
+                <li className="fontB" >
+                  <p> {item.email}</p>
+                </li>
+                <li className="fontB">{item.phone}</li>
+                <li className="fontA">
+                  {item.active}
+                </li>
+              </ul>
+              {index === status && <ChangeActive setStatus={setStatus} id={id} setActive={setActive} />}
             </div>
+
           ))}
 
         </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../../utils/Button";
 import { ReportMadal } from "../../utils/modal/ReportMadal";
 import { useNavigate } from "react-router-dom";
-import { MemberListCss } from "../../css/admin/Report";
+import { MemberListCss } from "../../css/admin/ReportCss";
 import { SelectReportList } from "../../component/admin/SelectReportList";
 import { SearchVar } from "../../component/admin/SearchVar";
 import { CurrentVar } from "../../component/admin/CurrentVar";
@@ -37,7 +37,7 @@ export const Report = () => {
 
   return (
     <MemberListCss>
-      <div className="content1">
+      <div className="left">
         <ul>
           <li
             onClick={() => {
@@ -78,45 +78,40 @@ export const Report = () => {
         </ul>
       </div>
 
-      <div className="content2">
+      <div className="right">
         <div className="search">
           <SearchVar list={"report"} setData={setData} >
           </SearchVar>
         </div>
         <div className="list">
-
+          <div className="list1 backA">
+            <ul>
+              <li>신고대상</li>
+              <li>신고자</li>
+              <li>신고일</li>
+              <li>신고 분류</li>
+              <li>신고 사유</li>
+              <li>상태</li>
+            </ul>
+          </div>
           {data.map((item, index) => (
-            <div
-              key={index}
-              className={`list1 ${index % 2 === 0 ? "blue" : ""}`}
-              onClick={() => {
+
+
+            <div key={index} className="list1 memberA">
+              <ul onClick={() => {
                 // 모달이 이미 열려 있지 않은 경우에만 열기
                 setOpen(true);
                 setList(item);
-              }}
-            >
-              <div className="list1-1 listOption">
-                <ul>
-                  <li>신고대상</li>
-                  <li>신고자</li>
-                  <li>신고일</li>
-                  <li>신고 분류</li>
-                  <li>신고 사유</li>
-                  <li>상태</li>
-                </ul>
-              </div>
-
-              <div className="list1-2 listOption">
-                <ul>
-                  <li>{item.reported.nickName}</li>
-                  <li>{item.reporter.nickName}</li>
-                  <li>{redate(item.date)}</li>
-                  <li>{item.check}</li>
-                  <li>{item.reason}</li>
-                  <li>{item.status}</li>
-                </ul>
-              </div>
+              }}>
+                <li>{item.reported.nickName}</li>
+                <li>{item.reporter.nickName}</li>
+                <li>{redate(item.date)}</li>
+                <li>{item.check}</li>
+                <li>{item.reason}</li>
+                <li>{item.status}</li>
+              </ul>
             </div>
+
           ))}
         </div>
         <div className="currentVar">
