@@ -243,7 +243,7 @@ export const ChatRoom = () => {
                       <MsgProfile
                         isSender={isMyMessage}
                         src={`/images/profile/${
-                          chat.profile || "Ellipse19"
+                          chat.profile || "Ellipse3"
                         }.png`}
                         alt="Profile"
                       />
