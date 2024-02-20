@@ -5,6 +5,7 @@ import { QueryAxiosApi } from "../../api/QueryAxiosApi";
 import { MemberListCss } from "../../css/admin/ReportCss";
 import { QueryView } from "./QueryView";
 import { ReplyInsert } from "../../component/admin/ReplyInsert";
+import { AdminMenu } from "../../component/admin/AdminMenu";
 
 export const QueryList = () => {
   const navigate = useNavigate();
@@ -33,47 +34,15 @@ export const QueryList = () => {
     }
 
   }
+  const menuClick = (tabName) => {
+    setListType(tabName);
+
+  };
   return (
 
     <MemberListCss>
       <div className="left">
-        <ul>
-          <li
-            onClick={() => {
-              navigate("/memberList");
-            }}
-          >
-            회원 관리
-          </li>
-          <li
-            onClick={() => {
-              navigate("/Report");
-            }}
-          >
-            신고 관리
-          </li>
-          <li
-            className={` ${listType !== "" ? "active" : ""
-              } `}
-            onClick={() => { setListType("after") }}
-          >
-            문의 관리
-          </li>
-          <li
-            className={` ${listType === "after" ? "active" : ""
-              } font`}
-            onClick={() => { setListType("after") }}
-          >
-            문의 보기
-          </li>
-          <li
-            className={` ${listType === "before" ? "active" : ""
-              } font`}
-            onClick={() => { navigate("../QueryWrite") }}
-          >
-            FAQ 등록
-          </li>
-        </ul>
+        <AdminMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></AdminMenu>
       </div>
       <div className="right qureyList">
         <div className="list1 backA">

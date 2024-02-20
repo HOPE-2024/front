@@ -16,15 +16,20 @@ background:#ffffff;
     min-height: 100vh;
     background:#3C84F8;     
     font-size: 1.5em;
-    ul{
-      margin-top: 50px;    
+    ul{    
+      width: 100%;
+    margin-left: 7px;
+      margin-top: 50px;  
+
     }
-    li{
+    li{ 
+      width: 75%;
       margin: 10px;  
       color: #a69d9d;
       background: white;
       border-radius: 10px;
       padding: 10px;
+   
     }
     .active {
       color: #023382;

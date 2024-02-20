@@ -28,6 +28,7 @@ import { FindId } from "./pages/member/FindId";
 import { FindPw } from "./pages/member/FindPw";
 import { MyPage } from "./pages/myPage/MyPage";
 import { TabComponent } from "./component/common/MenuBtn";
+import { MedicineWrite } from "./pages/search/MedicineWrite";
 import { DiabResult } from "./pages/result/DiabResult";
 import { FaceResult } from "./pages/result/FaceResult";
 import { CountryResult } from "./pages/result/CountryResult";
@@ -90,6 +91,7 @@ function App() {
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/termsofuse" element={<TermsofUse />} />
               <Route path="/withdraw" element={<Withdraw />} />
+              <Route path="/MedicineWrite" element={<MedicineWrite />} />
               <Route
                 path="/medicinedetail/:medicineId"
                 element={<MedicineDetail />}

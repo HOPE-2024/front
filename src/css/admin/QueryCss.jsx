@@ -111,6 +111,7 @@ export const QueryCss = styled.div`
   
     width: 70%;
     height: 350px;
+
     display: flex;
     margin: 0 auto;
     margin-top: 25px;

@@ -345,7 +345,7 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
                     ReportSubmit();
                   }}
                 >
-                  확 인
+                  확 인1111
                 </button>
                   <button
                     onClick={() => {

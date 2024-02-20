@@ -4,6 +4,7 @@ import { storage } from "../../api/Firebase";
 import { InputBox, QueryCss, Select } from "../../css/admin/QueryCss";
 import { InsertQuery } from "../../component/admin/InsertQuery";
 import { useNavigate } from "react-router-dom";
+import { Quill1 } from "./Quill1";
 
 export const QueryWrite = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const QueryWrite = () => {
   const fileInputRef = useRef(null);
 
   const submit = async () => {
+    alert(1)
     const queryDto = {
       division: division,
       title: title,
@@ -92,24 +94,18 @@ export const QueryWrite = () => {
       </div>
       <div className="content3">
         <div className="textBox">
-          <InputBox
-            value={substance}
-            onChange={(e) => {
-              setSubstance(e.target.value);
-            }}
-          />
-          {/* <img src={url} alt="1"></img> */}
+          <Quill1 substance={substance} setSubstance={setSubstance}></Quill1>
         </div>
       </div>
-      <div className="content4">
+      {/* <div className="content4">
         <div className="filebox">
           {url ? <>     <img src={url} alt=""></img></> : <>   <button onClick={openFileInput}>파일 첨부</button>
-            {/* 파일 선택 input 요소, 스타일 수정 */}
+         
             <input ref={fileInputRef} id="fileInput" type="file" style={{ display: 'none' }} onChange={fileChange}></input>
           </>}
 
         </div>
-      </div>
+      </div> */}
       <div className="content5">
         <Button children={"확인"} clickEvt={submit}></Button>
         <Button children={"취소"} clickEvt={() => { navigate(-1) }}></Button>

@@ -238,6 +238,7 @@ export const MedicineDetail = () => {
     const medicineData = async () => {
       // 해당 의약품 상세 조회
       const rsp = await SearchAxiosApi.searchId(medicineId, "id");
+
       // 해당 의약품에 대한 즐겨찾기 정보 조회하여 favorites에 저장
       const rsp2 = await SearchAxiosApi.getLikes(
         localStorage.getItem("memberId"),
@@ -246,6 +247,7 @@ export const MedicineDetail = () => {
       if (rsp) {
         console.log("상세 조회 성공 : ", rsp.data.hits.hits[0]);
         setData(rsp.data.hits.hits[0].sourceAsMap);
+
         if (rsp2.data) {
           setFavorites(true);
         } else {
