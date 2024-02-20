@@ -22,8 +22,6 @@ export const FaceResultSlide = ({ result, image, model, age }) => {
     if (result && result.length > 0) {
       // resultAge를 정수로 변환
       const resultAge = parseInt(result[0].split(",")[1].trim(), 10);
-      console.log("와꾸 수준 1 : " + resultAge); // 예: 5
-      console.log("age : " + age); // 예: 30
 
       // age 또한 정수로 확실하게 변환 (age가 문자열일 가능성에 대비)
       const intAge = parseInt(age, 10);
@@ -66,7 +64,6 @@ export const FaceResultSlide = ({ result, image, model, age }) => {
       // 마지막 이미지에서 다음 버튼을 누르면
       setI(0); // 첫번째 이미지로 이동
     }
-    console.log("Now in : " + i);
   }, [i, list.length]);
 
   // 현재 활성화

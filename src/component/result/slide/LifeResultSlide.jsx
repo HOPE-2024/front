@@ -35,10 +35,10 @@ export const LifeResultSlide = ({
   alcoholA,
 }) => {
   const beforeText = "당신은 ";
-  const emphasizedText = `${Math.round(prediction)}살`;
-  const afterText = `까지 살 것으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
+  const emphasizedText = `${Math.round(prediction)}살 `;
+  const afterText = `까지 살 것으로 예상됩니다. 해당 예측 모델의 신뢰도는 ${Math.round(
     (correlation[1][0] + correlation[0][1]) * 50
-  )}% 입니다. 평가된 모델의 성능을 자세히 알고 싶으시다면 슬라이드를 넘겨주세요.`;
+  )}% 입니다. 예측 모델에 대한 세부적인 정보와 개인 맞춤형 건강 조언을 듣고 싶으시다면, 슬라이드를 다음으로 넘겨주세요.`;
   const [diseaseFromChild, setDiseaseFromChild] = useState("");
 
   const handleDiseaseInfo = (disease) => {
@@ -49,13 +49,11 @@ export const LifeResultSlide = ({
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
       <ResultCon>
-        <TextCon>
-          <MiddleText>랜덤포레스트</MiddleText> <SmallText>예측 결과</SmallText>
-        </TextCon>
         <TypeWriter
           beforeText={beforeText}
           emphasizedText={emphasizedText}
           afterText={afterText}
+          height="25vh"
         />
       </ResultCon>
     </SlideListContent>,
@@ -101,7 +99,6 @@ export const LifeResultSlide = ({
       // 마지막 이미지에서 다음 버튼을 누르면
       setI(0); // 첫번째 이미지로 이동
     }
-    console.log("Now in : " + i);
   }, [i, list.length]);
 
   // 현재 활성화

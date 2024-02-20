@@ -54,8 +54,8 @@ export const Balloon = styled.div`
   min-width: 300px;
   height: 20vh;
   min-height: 200px;
-  bottom: 30vh;
-  left: 17vw;
+  bottom: 27vh;
+  left: 16vw;
   padding: 5%;
   background: white;
   border-radius: 10px;
@@ -85,7 +85,7 @@ export const Icon = styled.div`
   height: 80px;
   position: absolute;
   top: 56vh;
-  left: 68.5vw;
+  left: 66.5vw;
   cursor: pointer;
 
   &:hover {

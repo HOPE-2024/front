@@ -1,8 +1,37 @@
 import React from "react";
 import GaugeChart from "react-gauge-chart";
+import styled from "styled-components";
+import { FlexColumn } from "../../css/common/Boxs";
+
+const Title = styled.p`
+  font-weight: bold;
+  font-size: 2em;
+  color: #023b96;
+  text-align: center;
+  margin-bottom: 20px;
+`;
+
+const Box = styled.div`
+  width: 30vw;
+`;
+
+const Desc = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 24vw;
+  margin-bottom: 40px;
+  font-weight: bold;
+  font-size: 1.2em;
+`;
+
+const Content = styled.p`
+  font-weight: bold;
+  font-size: 1.5em;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+`;
 
 export const Gauge = ({ bmi, bmiA }) => {
-  console.log("계기판 : " + bmi);
   const chartSegments = [
     {
       color: "#5BE12C",
@@ -48,40 +77,39 @@ export const Gauge = ({ bmi, bmiA }) => {
   const { color, text, advice } = chartSegments[segmentIndex];
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "fit-content",
-        marginBottom: "20px",
-      }}
-    >
-      <span>BMI</span>
-      <GaugeChart
-        id="bmi-gauge"
-        nrOfLevels={chartSegments.length}
-        arcsLength={chartSegments.map((segment) => 1 / chartSegments.length)}
-        colors={chartSegments.map((segment) => segment.color)}
-        percent={Math.min(segmentIndex / chartSegments.length, 1)}
-        arcPadding={0.02}
-        textColor="black"
-      />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "20px",
-        }}
-      >
-        {chartSegments.map((segment, index) => (
-          <span key={index} style={{ color: segment.color }}>
-            {segment.text}
-          </span>
-        ))}
-      </div>
-      {/* BMI 상태 중 특정 단어에만 색상 적용 */}
-      <p style={{ marginTop: "20px", fontSize: "16px", color: "#333" }}>
-        당신은 <span style={{ color: color }}>{text}</span>입니다. {advice}
-      </p>
-    </div>
+    <>
+      <FlexColumn>
+        <Title>
+          당신의 신체 질량 지수(BMI)는 {bmi.toFixed(1)}
+          입니다.
+        </Title>
+        <Box>
+          <GaugeChart
+            id="bmi-gauge"
+            nrOfLevels={chartSegments.length}
+            arcsLength={chartSegments.map(
+              (segment) => 1 / chartSegments.length
+            )}
+            colors={chartSegments.map((segment) => segment.color)}
+            percent={Math.min(segmentIndex / chartSegments.length, 1)}
+            arcPadding={0.02}
+            textColor="black"
+          />
+        </Box>
+        <Desc>
+          {chartSegments.map((segment, index) => (
+            <span key={index} style={{ color: segment.color }}>
+              {segment.text}
+            </span>
+          ))}
+        </Desc>
+        {/* BMI 상태 중 특정 단어에만 색상 적용 */}
+        <Content>
+          당신은{" "}
+          <span style={{ color: color, fontSize: "1.5em" }}>{text} </span>
+          입니다. {advice}
+        </Content>
+      </FlexColumn>
+    </>
   );
 };

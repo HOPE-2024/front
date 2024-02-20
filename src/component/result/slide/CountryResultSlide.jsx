@@ -81,7 +81,6 @@ export const CountryResultSlide = ({ Country, CountryResult }) => {
       // 마지막 이미지에서 다음 버튼을 누르면
       setI(0); // 첫번째 이미지로 이동
     }
-    console.log("Now in : " + i);
   }, [i, list.length]);
 
   // 현재 활성화

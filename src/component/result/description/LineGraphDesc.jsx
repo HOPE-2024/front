@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   width: 40vw;
   height: 30vh;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 1.5;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.5);
@@ -62,7 +62,6 @@ export const LineGraphDesc = ({
     <Wrapper>
       <FontStyle>{CountryText}</FontStyle>
       {lifeExpectancyInfo}
-      <br />
       {trendStory}
     </Wrapper>
   );

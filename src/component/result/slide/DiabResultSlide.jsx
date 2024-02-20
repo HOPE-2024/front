@@ -29,12 +29,11 @@ export const DiabResultSlide = ({
   gender,
   age,
 }) => {
-  const beforeText =
-    "랜덤 포레스트 모델을 통해 예측된 결과, 당신의 1년 후의 당뇨병 진행도는 ";
+  const beforeText = "당신의 1년 후의 당뇨병 진행도는 ";
   const emphasizedText = `${Math.round(prediction)}`;
-  const afterText = `으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
+  const afterText = `으로 예상됩니다. 해당 예측 모델의 신뢰도는 ${Math.round(
     (correlation[1][0] + correlation[0][1]) * 50
-  )}% 입니다. 평가된 모델의 성능을 자세히 알고 싶으시다면 슬라이드를 넘겨주세요.`;
+  )}% 입니다. 예측 모델에 대한 세부적인 정보와 개인 맞춤형 건강 조언을 듣고 싶으시다면, 슬라이드를 다음으로 넘겨주세요.`;
 
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
@@ -43,6 +42,7 @@ export const DiabResultSlide = ({
         beforeText={beforeText}
         emphasizedText={emphasizedText}
         afterText={afterText}
+        height="25vh"
       />
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
@@ -83,7 +83,6 @@ export const DiabResultSlide = ({
       // 마지막 이미지에서 다음 버튼을 누르면
       setI(0); // 첫번째 이미지로 이동
     }
-    console.log("Now in : " + i);
   }, [i, list.length]);
 
   // 현재 활성화
