@@ -1,7 +1,10 @@
 import Typist from "react-typist";
 import styled from "styled-components";
+import { SmallTextTwo, TextCon } from "../../css/result/ResultCss";
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   width: ${(props) => props.width || "40vw"};
   height: ${(props) => props.height || "30vh"};
   position: relative;
@@ -75,18 +78,22 @@ export const TypeWriter = ({
   ...rest // 위 선언된 props 이외의 모든 props를 호출, Wrapper 에 props 전달 가능
 }) => {
   return (
-    <>
+    <TextCon>
       {/* 전체 타이핑 딜레이 */}
       <Typist cursor={{ show: false }} avgTypingDelay={20}>
         <Wrapper {...rest}>
-          <Normal> {beforeText} </Normal>
+          <SmallTextTwo>
+            {beforeText}
+            <Special>{emphasizedText}</Special>
+            {afterText}
+          </SmallTextTwo>
           {/* 문자열 사이의 딜레이 */}
-          <Typist.Delay ms={100} />
-          <Special>{emphasizedText}</Special>
-          <Typist.Delay ms={100} />
-          <Normal> {afterText} </Normal>
+          {/* <Typist.Delay ms={100} />
+            <SmallList></SmallList>
+            <Typist.Delay ms={100} />
+            <SmallList> </SmallList> */}
         </Wrapper>
       </Typist>
-    </>
+    </TextCon>
   );
 };

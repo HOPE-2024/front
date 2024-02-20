@@ -16,6 +16,12 @@ import { Gauge } from "../Gauge";
 import { Diseases } from "../Diseases";
 import { NewsSearch } from "../NewsSearch";
 import { AlcoholDesc } from "../description/AlcoholDesc";
+import {
+  ResultCon,
+  SmallText,
+  MiddleText,
+  TextCon,
+} from "../../../css/result/ResultCss";
 
 export const LifeResultSlide = ({
   prediction,
@@ -28,7 +34,7 @@ export const LifeResultSlide = ({
   alcohol,
   alcoholA,
 }) => {
-  const beforeText = "랜덤 포레스트 모델을 통해 예측된 결과, 당신은 ";
+  const beforeText = "당신은 ";
   const emphasizedText = `${Math.round(prediction)}살`;
   const afterText = `까지 살 것으로 예상됩니다. 해당 모델의 신뢰도는 ${Math.round(
     (correlation[1][0] + correlation[0][1]) * 50
@@ -42,11 +48,16 @@ export const LifeResultSlide = ({
   // 슬라이더에 사용될 이미지 URL들을 저장하는 배열
   const list = [
     <SlideListContent style={{ backgroundColor: "none" }}>
-      <TypeWriter
-        beforeText={beforeText}
-        emphasizedText={emphasizedText}
-        afterText={afterText}
-      />
+      <ResultCon>
+        <TextCon>
+          <MiddleText>랜덤포레스트</MiddleText> <SmallText>예측 결과</SmallText>
+        </TextCon>
+        <TypeWriter
+          beforeText={beforeText}
+          emphasizedText={emphasizedText}
+          afterText={afterText}
+        />
+      </ResultCon>
     </SlideListContent>,
     <SlideListContent style={{ backgroundColor: "none" }}>
       <ScatterGraph

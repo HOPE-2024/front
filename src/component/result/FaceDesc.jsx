@@ -1,4 +1,10 @@
 import React from "react";
+import {
+  ResultCon,
+  MiddleText,
+  TextConTwo,
+  ExplaneCon,
+} from "../../css/result/ResultCss";
 
 export const FaceDesc = ({ model }) => {
   const getDescription = () => {
@@ -13,9 +19,11 @@ export const FaceDesc = ({ model }) => {
   };
 
   return (
-    <div>
-      <h2>얼굴 검출기 설명</h2>
-      <p>{getDescription()}</p>
-    </div>
+    <ResultCon>
+      <TextConTwo>
+        <MiddleText>얼굴 검출기 설명</MiddleText>
+        <ExplaneCon>{getDescription()}</ExplaneCon>
+      </TextConTwo>
+    </ResultCon>
   );
 };

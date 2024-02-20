@@ -77,10 +77,10 @@ export const AlcoholDesc = ({ userAlcohol, averageAlcohol }) => {
 
   return (
     <GaugeContainer>
-      <p>
+      <AdviceText>
         당신의 주간 알코올 섭취량은 {userAlcohol}L, 해당 국가의 주간 알코올
-        섭취량 평균은 {averageAlcohol}L 입니다.
-      </p>
+        섭취량 평균은 {averageAlcohol.toFixed(3)}L 입니다.
+      </AdviceText>
       <GaugeBackground>
         <Indicator color={color} value={gaugeValue} />
         <MarksContainer>

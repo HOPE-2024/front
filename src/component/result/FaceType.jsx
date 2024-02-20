@@ -1,12 +1,12 @@
 import React from "react";
-import styled from "styled-components";
-import { ResultCon } from "../../css/result/ResultCss";
-
-const FaceImage = styled.img`
-  width: 10em;
-  border-radius: 10px;
-  border: 3px solid var(--NAVY);
-`;
+import {
+  ResultCon,
+  FaceImage,
+  SmallText,
+  MiddleText,
+  TextCon,
+  ExplaneCon,
+} from "../../css/result/ResultCss";
 
 export const FaceType = ({ type }) => {
   console.log("와꾸 수준 : " + type);
@@ -24,10 +24,13 @@ export const FaceType = ({ type }) => {
   };
 
   return (
-    <div>
+    <ResultCon>
       <FaceImage src={"/images/face/" + type + ".jpg"} />
-      <h2>당신은 {type}입니다.</h2>
-      <p>{getAdvice()}</p>
-    </div>
+      <TextCon>
+        <SmallText>당신은</SmallText> <MiddleText>{type}</MiddleText>
+        <SmallText>입니다</SmallText>
+      </TextCon>
+      <ExplaneCon>{getAdvice()}</ExplaneCon>
+    </ResultCon>
   );
 };

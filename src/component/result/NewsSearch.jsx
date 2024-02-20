@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MachineAxiosApi } from "../../api/MachineAxiosApi";
 import { EarthLoading } from "../../css/common/EarthLoading";
+import {
+  ResultCon,
+  BlackBiggerText,
+  SkyBiggerText,
+  TextCon,
+} from "../../css/result/ResultCss";
 
 const NewsContainer = styled.div`
   width: 70vw;
@@ -76,13 +82,13 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
   }, [keyWord]);
 
   return (
-    <>
+    <ResultCon>
+      <TextCon>
+        <SkyBiggerText>{keyWord}</SkyBiggerText>{" "}
+        <BlackBiggerText>관련 뉴스 기사</BlackBiggerText>
+      </TextCon>
       <NewsContainer>
-        {isLoading ? (
-          <EarthLoading top="125px"></EarthLoading>
-        ) : (
-          <h2>검색어: {keyWord}</h2>
-        )}
+        {isLoading ? <EarthLoading top="125px"></EarthLoading> : <></>}
         {articles.map((article, index) => (
           <NewsItem key={index}>
             <NewsLink
@@ -96,6 +102,6 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
           </NewsItem>
         ))}
       </NewsContainer>
-    </>
+    </ResultCon>
   );
 };
