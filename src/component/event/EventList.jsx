@@ -73,7 +73,7 @@ export const EventList = ({ events, deleteEvent, setSelectedEvent }) => {
           </EventItem>
         ))
       ) : (
-        <EventLine>등록된 이벤트가 없습니다.</EventLine>
+        <EventLine>등록된 일정이 없습니다.</EventLine>
       )}
     </EventListWrapper>
   );

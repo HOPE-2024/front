@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { MyCalendar } from "../../component/event/MyCalendar";
 import { Diary } from "../../component/event/Diary";
 import { EventForm } from "../../component/event/EventForm";
 import { EventEditForm } from "../../component/event/EventEditForm";
 import { EventList } from "../../component/event/EventList";
 import { Alarm } from "../../component/event/Alarm";
+import { EventAxiosApi } from "../../api/EventAxiosApi";
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,43 +42,52 @@ export const Schedule = () => {
   }, []);
 
   const fetchEvents = async () => {
-    const response = await axios.get("http://localhost:8111/event");
-    setEvents(
-      response.data.map((event) => ({
-        ...event,
-        date: new Date(event.date).toLocaleDateString(), // 날짜 형식 변환
-      }))
-    );
+    try {
+      const data = await EventAxiosApi.fetchEvents();
+      setEvents(
+        data.map((event) => ({
+          ...event,
+          date: new Date(event.date).toLocaleDateString(),
+        }))
+      );
+    } catch (e) {
+      console.log("일정 호출 오류 발생 : " + e);
+    }
   };
 
   const addEvent = async (event) => {
-    // 국제 표준 시, 즉 런던 시간을 기준으로 일정이 입력되는 것을 방지
-    const offset = selectedDate.getTimezoneOffset() * 60000;
-    const kstOffset = 9 * 60 * 60000;
-    const kstDate = new Date(selectedDate.getTime() - offset + kstOffset);
-    const formattedDate = `${kstDate.getFullYear()}-${(kstDate.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}-${kstDate.getDate().toString().padStart(2, "0")}`;
-
-    await axios.post("http://localhost:8111/event", {
-      ...event,
-      date: formattedDate,
-    });
+    await EventAxiosApi.addEvent(event, selectedDate);
     fetchEvents();
   };
 
   const updateEvent = async (updatedEvent) => {
-    await axios.put(
-      `http://localhost:8111/event/${updatedEvent.id}`,
-      updatedEvent
-    );
-    fetchEvents();
-    setSelectedEvent(null);
+    try {
+      console.log("1 : " + updatedEvent.id);
+      console.log("2 : " + JSON.stringify(updatedEvent));
+      await EventAxiosApi.updateEvent(updatedEvent.id, updatedEvent);
+      fetchEvents();
+      setSelectedEvent(null);
+      alert("일정이 성공적으로 수정되었습니다.");
+    } catch (e) {
+      alert("일정 수정 중 오류가 발생했습니다 : " + e);
+    }
   };
 
   const deleteEvent = async (id) => {
-    await axios.delete(`http://localhost:8111/event/${id}`);
-    fetchEvents();
+    const isConfirmed = window.confirm("선택한 일정을 삭제하시겠습니까?");
+
+    if (isConfirmed) {
+      try {
+        await EventAxiosApi.deleteEvent(id);
+        alert("일정이 성공적으로 삭제되었습니다.");
+      } catch (e) {
+        alert("일정을 삭제하는데 오류가 발생했습니다: " + e);
+      }
+
+      fetchEvents();
+    } else {
+      // 취소
+    }
   };
 
   // 선택된 날짜에 해당하는 일정을 필터링

@@ -7,11 +7,16 @@ export const EventForm = ({ addEvent }) => {
   const [drug, setDrug] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    addEvent({ title, description, drug });
-    setTitle("");
-    setDescription("");
-    setDrug("");
+    try {
+      e.preventDefault();
+      addEvent({ title, description, drug });
+      setTitle("");
+      setDescription("");
+      setDrug("");
+      alert("일정이 추가되었습니다.");
+    } catch (e) {
+      alert("일정을 추가하는데 오류가 발생했습니다 : " + e);
+    }
   };
 
   return (

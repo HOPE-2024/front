@@ -1,19 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { Title } from "../../css/event/EventCss";
 
 const DiaryWrapper = styled.div`
   padding: 20px;
   border-radius: 8px;
   background-color: #ebf2fa;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
   font-family: "Arial", sans-serif;
-`;
-
-const Title = styled.h2`
-  color: #023b96;
-  margin-bottom: 15px;
-  font-weight: bold;
 `;
 
 const Detail = styled.p`
