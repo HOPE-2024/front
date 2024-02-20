@@ -1,4 +1,12 @@
 import React from "react";
+import styled from "styled-components";
+import { ResultCon } from "../../css/result/ResultCss";
+
+const FaceImage = styled.img`
+  width: 10em;
+  border-radius: 10px;
+  border: 3px solid var(--NAVY);
+`;
 
 export const FaceType = ({ type }) => {
   console.log("와꾸 수준 : " + type);
@@ -17,6 +25,7 @@ export const FaceType = ({ type }) => {
 
   return (
     <div>
+      <FaceImage src={"/images/face/" + type + ".jpg"} />
       <h2>당신은 {type}입니다.</h2>
       <p>{getAdvice()}</p>
     </div>
