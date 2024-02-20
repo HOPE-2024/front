@@ -87,6 +87,10 @@ export const SettingBtn = styled.button`
   padding: 1vh 2vh;
   text-align: center;
   cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const NickModalBox = styled.div`

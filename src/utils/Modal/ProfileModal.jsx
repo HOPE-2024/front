@@ -23,19 +23,24 @@ const ModalContent = styled.div`
   width: 80%;
 `;
 
+const ProfileChoose = styled.div`
+  font-size: 1.5em;
+  color: #ccc;
+`;
+
 const EditBtnCon = styled.div`
   padding-bottom: 15vh;
 `;
 
 const CloseButton = styled.span`
-  color: #aaa;
+  color: #ccc;
   float: right;
-  font-size: 28px;
+  font-size: 2em;
   font-weight: bold;
 
   &:hover,
   &:focus {
-    color: #353535;
+    color: #a1a1a1;
     text-decoration: none;
     cursor: pointer;
   }
@@ -140,7 +145,7 @@ export const ProfileModal = ({ memberId, onImageSelect }) => {
         <ModalContainer>
           <ModalContent>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <h3>프로필 사진 선택</h3>
+            <ProfileChoose>프로필 사진 선택</ProfileChoose>
             <ImageListContainer>
               {imageList.map((imageName) => (
                 <ImageItem
