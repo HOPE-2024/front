@@ -1,37 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background-color: #ebf2fa;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(32, 33, 36, 0.28);
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #a0c4ff;
-  &:focus {
-    outline: none;
-    border-color: #4f98ca;
-  }
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #4f98ca;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  &:hover {
-    background-color: #3c8dbc;
-  }
-`;
+import { Form, Title, Input, Button } from "../../css/event/EventCss";
 
 export const EventForm = ({ addEvent }) => {
   const [title, setTitle] = useState("");
@@ -48,6 +16,7 @@ export const EventForm = ({ addEvent }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <Title>일정 추가</Title>
       <Input
         type="text"
         placeholder="제목"

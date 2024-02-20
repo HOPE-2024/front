@@ -11,14 +11,15 @@ const DiaryWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  color: #4f98ca;
+  color: #023b96;
   margin-bottom: 15px;
+  font-weight: bold;
 `;
 
 const Detail = styled.p`
   color: #083d77;
   margin: 5px 0;
-  font-size: 16px;
+  font-size: 1.2rem;
 `;
 
 const NoSelectionMessage = styled.div`
@@ -34,9 +35,9 @@ export const Diary = ({ selectedEvent }) => {
   return (
     <DiaryWrapper>
       <Title>일정 상세 정보</Title>
-      <Detail>제목: {selectedEvent.title}</Detail>
-      <Detail>설명: {selectedEvent.description}</Detail>
-      <Detail>날짜: {selectedEvent.date}</Detail>
+      <Detail>제목 : {selectedEvent.title}</Detail>
+      <Detail>설명 : {selectedEvent.description}</Detail>
+      <Detail>날짜 : {selectedEvent.date}</Detail>
     </DiaryWrapper>
   );
 };

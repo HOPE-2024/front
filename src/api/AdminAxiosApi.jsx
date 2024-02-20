@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Common } from "../utils/Common";
 import { Instance } from "../utils/AxiosInterceptor";
 
@@ -65,7 +64,6 @@ export const AdminAxiosApi = {
 
   //채팅 정지 회원 페이지네이션으로 출력
   chatingMember: async (page, size) => {
-
     return await Instance.get(
       Common.KH_DOMAIN + `/admin/chatting/page?page=${page}&size=${size}`,
       {}
@@ -74,9 +72,9 @@ export const AdminAxiosApi = {
 
   //채팅 정지 회원 페이지 수 확인
   chatingMemberPage: async (page, size) => {
-
     return await Instance.get(
-      Common.KH_DOMAIN + `/admin/chatting/count?page=${page}&size=${size}`, {}
+      Common.KH_DOMAIN + `/admin/chatting/count?page=${page}&size=${size}`,
+      {}
     );
   },
 
@@ -94,6 +92,4 @@ export const AdminAxiosApi = {
       Common.KH_DOMAIN + `/admin/stop/count?page=${page}&size=${size}`
     );
   },
-
-
 };

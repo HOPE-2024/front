@@ -20,10 +20,18 @@ export const FaceResultSlide = ({ result, image, model, age }) => {
 
   useEffect(() => {
     if (result && result.length > 0) {
-      const resultAge = result[0].split(",")[1].trim();
-      if (resultAge > age) {
+      // resultAge를 정수로 변환
+      const resultAge = parseInt(result[0].split(",")[1].trim(), 10);
+      console.log("와꾸 수준 1 : " + resultAge); // 예: 5
+      console.log("age : " + age); // 예: 30
+
+      // age 또한 정수로 확실하게 변환 (age가 문자열일 가능성에 대비)
+      const intAge = parseInt(age, 10);
+
+      // 정수형으로 변환된 값들을 비교
+      if (resultAge > intAge) {
         setFaceType("노안");
-      } else if (resultAge === age) {
+      } else if (resultAge === intAge) {
         setFaceType("적절");
       } else {
         setFaceType("동안");

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Title, Input, Button } from "../../css/event/EventCss";
 
 const AlarmWrapper = styled.div`
   color: #083d77;
@@ -10,14 +11,8 @@ const AlarmWrapper = styled.div`
   margin: 20px 0;
 `;
 
-const Title = styled.h1`
-  color: #4f98ca;
-  text-align: center;
-`;
-
 const CurrentTime = styled.div`
-  font-size: 20px;
-  text-align: center;
+  font-size: 1.4rem;
   margin: 10px 0 20px;
 `;
 
@@ -25,36 +20,12 @@ const TimeSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-size: 1.2rem;
 `;
 
 const Label = styled.label`
-  margin-bottom: 5px;
+  margin-top: 10px;
   font-weight: bold;
-`;
-
-const Input = styled.input`
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #a0c4ff;
-  &:focus {
-    outline: none;
-    border-color: #4f98ca;
-  }
-`;
-
-const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #4f98ca;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  &:hover {
-    background-color: #3c8dbc;
-  }
-  display: block;
-  width: 100%;
-  margin-top: 20px;
 `;
 
 export const Alarm = () => {
@@ -123,14 +94,14 @@ export const Alarm = () => {
       <Title>약 먹는 시간 알람 기능</Title>
       <CurrentTime>현재 시간: {currentTime}</CurrentTime>
       <TimeSection>
-        <Label>알람 날짜를 입력하세요.</Label>
+        <Label>알람 날짜</Label>
         <Input type="date" value={date} onChange={handleDateChange} />
-        <Label>알람 시간을 입력하세요.</Label>
+        <Label>알람 시간</Label>
         <Input type="time" value={time} onChange={handleTimeChange} />
-        <Label>약물 이름 입력</Label>
+        <Label>메모</Label>
         <Input
           type="text"
-          placeholder="약물 이름"
+          placeholder="메모"
           value={drug}
           onChange={(e) => setDrug(e.target.value)}
         />

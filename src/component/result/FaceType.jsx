@@ -1,6 +1,7 @@
 import React from "react";
 
 export const FaceType = ({ type }) => {
+  console.log("와꾸 수준 : " + type);
   const getAdvice = () => {
     switch (type) {
       case "노안":
