@@ -81,6 +81,14 @@ export const MemberList = () => {
           >
             문의 관리
           </li>
+          <li
+            onClick={() => {
+              navigate("/MedicineWrite");
+            }}
+          >
+            약품 등록
+          </li>
+
         </ul>
       </div>
 

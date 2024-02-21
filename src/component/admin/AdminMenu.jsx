@@ -66,19 +66,20 @@ export const AdminMenu = ({ listType, menuClick, navigate, setListType }) => {
                     문의 관리
                 </li>
                 <li
-                    className={` ${listType === "" ? "active" : ""
-                        } `}
-                    onClick={() => { setListType("after") }}
+                    onClick={() => {
+                        navigate("/MedicineWrite");
+                    }}
                 >
                     약품 등록
                 </li>
-                <li
+
+                {/* <li
                     className={` ${listType === "" ? "active" : ""
                         } `}
                     onClick={() => { setListType("after") }}
                 >
                     약품 수정
-                </li>
+                </li> */}
             </ul>
 
         </>
