@@ -42,7 +42,51 @@ export const QueryList = () => {
 
     <MemberListCss>
       <div className="left">
-        <AdminMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></AdminMenu>
+        {/* <AdminMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></AdminMenu> */}
+        <ul>
+          <li
+            onClick={() => {
+              navigate("/memberList");
+            }}
+          >
+            회원 관리
+          </li>
+          <li
+            onClick={() => {
+              navigate("/Report");
+            }}
+          >
+            신고 관리
+          </li>
+          <li
+            className={` ${listType !== "" ? "active" : ""
+              } `}
+            onClick={() => { setListType("after") }}
+          >
+            문의 관리
+          </li>
+          <li
+            className={` ${listType === "after" ? "active" : ""
+              } font`}
+            onClick={() => { setListType("after") }}
+          >
+            문의 보기
+          </li>
+          <li
+            className={` ${listType === "before" ? "active" : ""
+              } font`}
+            onClick={() => { navigate("../QueryWrite") }}
+          >
+            FAQ 등록
+          </li>
+          <li
+            onClick={() => {
+              navigate("/MedicineWrite");
+            }}
+          >
+            약품 등록
+          </li>
+        </ul>
       </div>
       <div className="right qureyList">
         <div className="list1 backA">

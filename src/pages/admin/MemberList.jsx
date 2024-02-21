@@ -5,6 +5,7 @@ import { MemberListCss } from "../../css/admin/ReportCss";
 import { SelectMemberList } from '../../component/admin/SelectMemberList';
 import { SearchVar } from "../../component/admin/SearchVar";
 import { CurrentVar } from "../../component/admin/CurrentVar";
+import { AdminMenu } from "../../component/admin/AdminMenu";
 
 
 
@@ -45,6 +46,7 @@ export const MemberList = () => {
   return (
     <MemberListCss>
       <div className="left">
+        {/* <AdminMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></AdminMenu> */}
         <ul>
           <li className={` ${listType === "all" || listType === "chatting" || listType === "stop" ? "active" : ""} `}>회원 관리</li>
           <li
@@ -88,7 +90,6 @@ export const MemberList = () => {
           >
             약품 등록
           </li>
-
         </ul>
       </div>
 
