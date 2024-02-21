@@ -7,6 +7,7 @@ import { SelectReportList } from "../../component/admin/SelectReportList";
 import { SearchVar } from "../../component/admin/SearchVar";
 import { CurrentVar } from "../../component/admin/CurrentVar";
 import { AdminMenu } from "../../component/admin/AdminMenu";
+import { ReportMenu } from "../../component/admin/ReportMenu";
 
 export const Report = () => {
   //회원 조회 axios를 선택할 때 사용
@@ -32,16 +33,15 @@ export const Report = () => {
   //화면 랜더링 시 메뉴에 맞게 데이터를 가져옵니다.
   useEffect(() => {
     SelectReportList(listType, setData, currentPage, setMaxPage);
-
   }, [listType, open, currentPage]);
 
 
   return (
     <MemberListCss>
       <div className="left">
-        {/* <AdminMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></AdminMenu>
-         */}
-        <ul>
+        <ReportMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></ReportMenu>
+
+        {/* <ul>
           <li
             onClick={() => {
               navigate("/memberList");
@@ -85,7 +85,7 @@ export const Report = () => {
           >
             약품 등록
           </li>
-        </ul>
+        </ul> */}
       </div>
 
       <div className="right">

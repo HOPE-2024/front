@@ -6,6 +6,7 @@ import { SelectMemberList } from '../../component/admin/SelectMemberList';
 import { SearchVar } from "../../component/admin/SearchVar";
 import { CurrentVar } from "../../component/admin/CurrentVar";
 import { AdminMenu } from "../../component/admin/AdminMenu";
+import { MemberListMenu } from "../../component/admin/MemberListMenu";
 
 
 
@@ -46,8 +47,8 @@ export const MemberList = () => {
   return (
     <MemberListCss>
       <div className="left">
-        {/* <AdminMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></AdminMenu> */}
-        <ul>
+        <MemberListMenu listType={listType} menuClick={menuClick} navigate={navigate} setListType={setListType}></MemberListMenu>
+        {/* <ul>
           <li className={` ${listType === "all" || listType === "chatting" || listType === "stop" ? "active" : ""} `}>회원 관리</li>
           <li
             className={` ${listType === "all" ? "active" : ""} font`}
@@ -90,7 +91,7 @@ export const MemberList = () => {
           >
             약품 등록
           </li>
-        </ul>
+        </ul> */}
       </div>
 
       <div className="right">
