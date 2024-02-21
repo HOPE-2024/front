@@ -169,15 +169,15 @@ width: 100%;
 min-width: 200px;
   }
 `;
+
 export const TextArea123 = styled.textarea`
   width: 100%;
   padding: 10px;
-  border: none;
+  
   border-radius: 4px;
   font-size: 16px;
-  height: 100%;
+  min-height: 100px; /* 최소 높이 설정 */
 `;
-
 export const MenuTable = styled.div`
   display: flex;
   margin-bottom: 3%;
@@ -283,7 +283,7 @@ export const MedicineWrite = () => {
     } catch (error) {
       console.log(error);
     }
-
+    navigate(-1)
 
   }
   const [File, setFile] = useState("");
@@ -476,14 +476,25 @@ export const MedicineWrite = () => {
                 <div className="item4" >
                   <div className="title2">용법용량</div>
                   <div className="contents">
-                    <input className="input2" type="text" value={usages} onChange={(e) => { setUsages(e.target.value) }}></input>
+                    <TextArea123
+                      id="content"
+                      name="content"
+                      value={usages}
+                      onChange={(e) => { setUsages(e.target.value) }} placeholder="내용"
+                    />
+
                   </div>
                 </div>
                 <div className="item4" >
                   <div className="title2">주의사항</div>
                   <div className="contents">
-                    <input className="input2" type="text" value={precautions} onChange={(e) => { setPrecautions(e.target.value) }}></input>
-                    {/* {formatPrecautions(data.precautions)} */}
+                    <TextArea123
+                      id="content"
+                      name="content"
+                      value={precautions}
+                      onChange={(e) => { setPrecautions(e.target.value) }} placeholder="내용"
+                    />
+
                   </div>
                 </div>
                 <div className="item4" >
