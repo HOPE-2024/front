@@ -275,6 +275,7 @@ export const MedicineWrite = () => {
       effect: effect, // 효능효과
       usages: usages, // 용법용량
       precautions: precautions, // 주의사항
+      path: url // 약 이미지
     };
     try {
       const res = await MedicineDataAxiosApi.addData(medicineData);
