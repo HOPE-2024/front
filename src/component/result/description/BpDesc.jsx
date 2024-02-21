@@ -9,6 +9,8 @@ const Button = styled.button`
   border-radius: 5px;
   background-color: #007bff;
   color: white;
+  font-size: 1.2em;
+
   cursor: pointer;
 
   &:hover {
@@ -37,12 +39,14 @@ const CircleProgress = styled.circle`
 
 const StatusText = styled.div`
   margin-top: 20px;
-  font-size: 16px;
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 20px;
 `;
 
 const BpRangeText = styled.div`
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: 15px;
+  font-size: 1.5em;
   color: #666;
 `;
 

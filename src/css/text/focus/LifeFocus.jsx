@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 // Animation
 const maskAnimation = keyframes`
   to {
-    transform: translateX(-220px);
+    transform: translateX(-210px);
   }
 `;
 
@@ -148,7 +148,7 @@ export const LifeFocus = () => {
           &nbsp;기
         </Highlight>
         <Highlight ref={letterRefs[1]} highlight={highlights[1]}>
-          대
+          대&nbsp;
         </Highlight>
         <Highlight ref={letterRefs[2]} highlight={highlights[2]}>
           수

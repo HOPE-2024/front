@@ -79,7 +79,7 @@ export const ScatterGraph = ({
           </ResponsiveContainer>
           <Balloon show={showBalloon}>
             이 그래프는 예측값과 실제값의 상관계수를 나타냅니다. 그래프의 점들이
-            선형 구조에 가까울수록 예측 모델이 우수하다는 것을 의미합니다."
+            선형 구조에 가까울수록 예측 모델이 우수하다는 것을 의미합니다.
           </Balloon>
         </Wrapper>
         <Icon onClick={handleDescriptionClick}></Icon>

@@ -191,21 +191,19 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
         await UpdateReportActive(list.id, status);
       }
       setOpen(null);
-    } else (
-      setOpen(false)
-    )
+    } else setOpen(false);
   };
   const ReportSubmit = async () => {
     const reportDto = {
       reporter: { nickName: member },
       check: what,
-      reason: why
-    }
+      reason: why,
+    };
     await InsertReport(reportDto);
-    setWhat('')
-    setWhy('')
-    setOpen(false)
-  }
+    setWhat("");
+    setWhy("");
+    setOpen(false);
+  };
 
   //취소 클릭시
   const cancel = () => {
@@ -215,10 +213,15 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
   const [isOpen, setIsOpen] = useState(false);
   const data = ["일반 회원", "7일 정지", "30일 정지", "회원 정지"];
   useEffect(() => {
-    if (list && list.reported && list.reported !== ' ' && list.reported !== null) {
+    if (
+      list &&
+      list.reported &&
+      list.reported !== " " &&
+      list.reported !== null
+    ) {
       ReportRead(list.id);
-      setWhat(list.check)
-      setWhy(list.reason)
+      setWhat(list.check);
+      setWhy(list.reason);
       setView(list.reported.nickName + "(" + list.reported.active + ")");
     }
   }, [list]);
@@ -230,7 +233,7 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
             <div className="title">
               <p>신고하기</p>
             </div>
-            {type === '채팅' ?
+            {type === "채팅" ? (
               <ButtonVar
                 onMouseOver={() => setIsOpen(true)}
                 onMouseOut={() => setIsOpen(false)}
@@ -239,7 +242,7 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
                   <p style={{ height: "30px", marginLeft: "0" }}>{member}</p>{" "}
                 </div>
               </ButtonVar>
-              :
+            ) : (
               <ButtonVar
                 onMouseOver={() => setIsOpen(true)}
                 onMouseOut={() => setIsOpen(false)}
@@ -262,7 +265,8 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
                       </li>
                     ))}
                 </ul>
-              </ButtonVar>}
+              </ButtonVar>
+            )}
 
             <div className="content1 item1">
               <RadioLabel>
@@ -317,52 +321,58 @@ export const ReportMadal = ({ open, setOpen, list, member, type }) => {
               </RadioLabel>
             </div>
             <div className="content1 item2">
-
-              <AA id="content"
+              <AA
+                id="content"
                 name="content"
                 value={why}
-                onChange={(e) => { setWhy(e.target.value) }}
-                placeholder="신고 내용"></AA>
+                onChange={(e) => {
+                  setWhy(e.target.value);
+                }}
+                placeholder="신고 내용"
+              ></AA>
             </div>
             <div className=" item3">
-              {type !== '채팅' ?
-                <>   <button
-                  onClick={() => {
-                    submit();
-                  }}
-                >
-                  확 인
-                </button>
+              {type !== "채팅" ? (
+                <>
+                  {" "}
+                  <button
+                    onClick={() => {
+                      submit();
+                    }}
+                  >
+                    확 인
+                  </button>
                   <button
                     onClick={() => {
                       cancel();
                     }}
                   >
                     삭 제
-                  </button></> :
-                <>   <button
-                  onClick={() => {
-                    ReportSubmit();
-                  }}
-                >
-                  확 인1111
-                </button>
+                  </button>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <button
+                    onClick={() => {
+                      ReportSubmit();
+                    }}
+                  >
+                    확 인
+                  </button>
                   <button
                     onClick={() => {
                       setOpen(false);
                     }}
                   >
                     닫 기
-                  </button></>
-
-              }
-
-
-
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
       )}
     </ModalStyle>
   );
-}
+};

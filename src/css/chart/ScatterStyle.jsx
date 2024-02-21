@@ -65,6 +65,7 @@ export const Balloon = styled.div`
   z-index: 50;
   visibility: ${(props) => (props.show ? "visible" : "hidden")};
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 6px 20px rgba(0, 0, 0, 0.1);
+  font-size: 1.4em;
 
   &::before {
     content: "";

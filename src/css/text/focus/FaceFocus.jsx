@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 // Animation
 const maskAnimation = keyframes`
   to {
-    transform: translateX(-200px);
+    transform: translateX(-190px);
   }
 `;
 
@@ -145,7 +145,7 @@ export const FaceFocus = () => {
           &nbsp;얼
         </Highlight>
         <Highlight ref={letterRefs[1]} highlight={highlights[1]}>
-          굴
+          굴&nbsp;
         </Highlight>
         <Highlight ref={letterRefs[2]} highlight={highlights[2]}>
           나

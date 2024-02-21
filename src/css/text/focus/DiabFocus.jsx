@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 // Animation
 const maskAnimation = keyframes`
   to {
-    transform: translateX(-330px);
+    transform: translateX(-315px);
   }
 `;
 
@@ -171,7 +171,7 @@ export const DiabFocus = () => {
           뇨
         </Highlight>
         <Highlight ref={letterRefs[2]} highlight={highlights[2]}>
-          병
+          병&nbsp;
         </Highlight>
         <Highlight ref={letterRefs[3]} highlight={highlights[3]}>
           진

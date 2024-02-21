@@ -3,8 +3,8 @@ import moment from "moment";
 import "moment/locale/ko"; // 한글 로컬라이제이션
 moment.locale("ko"); // 한글 설정 적용
 
-export const FLASK_SERVER = "http://localhost:5000";
-export const KH_SOCKET_URL = "ws://localhost:8111/ws/chat";
+export const FLASK_SERVER = "http://192.168.10.19:5000";
+export const KH_SOCKET_URL = "ws://192.168.10.19:8111/ws/chat";
 
 export const timeFromNow = (timestamp) => {
   return moment(timestamp).fromNow();
@@ -26,7 +26,7 @@ export const Reload = (navigate) => {
 };
 
 export const Common = {
-  KH_DOMAIN: "http://localhost:8111",
+  KH_DOMAIN: "http://192.168.10.19:8111",
 
   // 로컬에 저장된 토큰 정보 가져옴
   getAccessToken: () => {

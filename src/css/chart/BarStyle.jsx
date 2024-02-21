@@ -74,6 +74,10 @@ export const Balloon = styled.div`
     right: -3%;
     bottom: 15%;
   }
+
+  ul {
+    font-size: 1.3em;
+  }
 `;
 
 export const Icon = styled.div`

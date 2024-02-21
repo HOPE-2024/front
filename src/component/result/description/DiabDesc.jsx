@@ -14,20 +14,26 @@ const Container = styled.div`
 const Title = styled.h2`
   margin: 0;
   padding-bottom: 20px;
-  color: #333;
+  color: #023382;
+  font-weight: bold;
+  font-size: 3em; /* 폰트 크기를 em 단위로 크게 설정 */
 `;
 
 const RiskLevel = styled.div`
   margin: 20px 0;
-  padding: 10px;
+  padding: 15px; /* 바의 패딩을 더 두껍게 설정 */
   background-color: ${(props) => props.backgroundColor};
   color: #fff;
   border-radius: 5px;
+  font-size: 2em; /* 폰트 크기를 em 단위로 크게 설정 */
+  font-weight: bold;
 `;
 
 const Advice = styled.p`
   margin: 20px 0;
   color: #666;
+  font-size: 1.5em; /* 폰트 크기를 em 단위로 크게 설정 */
+  font-weight: bold;
 `;
 
 export const DiabDesc = ({ diabetesValue }) => {

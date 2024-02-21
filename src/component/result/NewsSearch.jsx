@@ -47,8 +47,8 @@ const NewsLink = styled.a`
 `;
 
 const NewsImage = styled.img`
-  width: 96px;
-  height: 96px;
+  width: 80px;
+  height: 80px;
   margin-right: 10px;
 `;
 
@@ -56,6 +56,7 @@ const NewsTitle = styled.p`
   display: flex;
   align-items: center;
   padding: 10px;
+  font-size: 1.4em;
 `;
 
 export const NewsSearch = ({ keyWord = "당뇨" }) => {
