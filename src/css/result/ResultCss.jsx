@@ -8,17 +8,16 @@ export const ResultCon = styled.div`
 `;
 
 export const FaceImage = styled.img`
-  width: 18em;
-  border-radius: 10px;
+  width: 24em;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 export const TextConTwo = styled.div`
   display: flex;
-  border: 1px solid red;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* align-items: flex-start; */
 `;
 
 export const TextCon = styled.div`
@@ -26,11 +25,11 @@ export const TextCon = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+  font-weight: bold;
 `;
 
 export const SmallText = styled.div`
   font-size: 2.2em;
-  padding: 0 0.5em;
 `;
 
 export const MiddleText = styled.div`
@@ -39,26 +38,34 @@ export const MiddleText = styled.div`
   color: var(--SKY);
 `;
 
+export const NoWrap = styled.span`
+  white-space: nowrap;
+
+  @media (orientation: portrait) {
+    white-space: normal;
+  }
+`;
+
 export const SkyText = styled.span`
   color: var(--SKY);
   font-size: 1.5em;
-  display: flex;
-  font-weight: 800;
-  text-align: center;
-  border: 1px solid blue;
+  font-weight: bold;
 `;
+
 export const SkyBiggerText = styled.span`
   color: var(--SKY);
   font-size: 2em;
   display: flex;
+  font-weight: bold;
 `;
+
 export const BlackText = styled.span`
   color: var(--BLACK);
   font-size: 1em;
   display: flex;
-  text-align: center;
   border: 1px solid blue;
 `;
+
 export const BlackBiggerText = styled.span`
   color: var(--BLACK);
   font-size: 1.5em;
@@ -66,19 +73,26 @@ export const BlackBiggerText = styled.span`
 `;
 
 export const ExplaneCon = styled.div`
-  width: 70vh;
+  width: 70vw;
   font-size: 1.5em;
   padding: 5px;
-  text-align: justify;
+  position: relative;
+  bottom: 20px;
+  font-weight: bold;
 `;
 
 export const ResertCon = styled.div`
-  width: 70vh;
-  font-size: 1.5em;
+  margin-top: 20px;
+  width: 60vw;
+  font-size: 2em;
   padding: 5px;
-  /* text-align: justify; */
-  align-items: center;
-  border: 1px solid red;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: bold;
+
+  @media (orientation: portrait) {
+    font-size: 1.5em;
+  }
 `;
 
 export const SmallTextTwo = styled.span`

@@ -1,12 +1,22 @@
 import React from "react";
-import {
-  ResultCon,
-  FaceImage,
-  SmallText,
-  MiddleText,
-  TextCon,
-  ExplaneCon,
-} from "../../css/result/ResultCss";
+import { SmallText, MiddleText, ExplaneCon } from "../../css/result/ResultCss";
+import styled from "styled-components";
+import { FlexColumn } from "../../css/common/Boxs";
+
+const Image = styled.img`
+  width: 15em;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+`;
+
+const Content = styled.div`
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
 
 export const FaceType = ({ type }) => {
   console.log("와꾸 수준 : " + type);
@@ -24,13 +34,15 @@ export const FaceType = ({ type }) => {
   };
 
   return (
-    <ResultCon>
-      <FaceImage src={"/images/face/" + type + ".jpg"} />
-      <TextCon>
-        <SmallText>당신은</SmallText> <MiddleText>{type}</MiddleText>
-        <SmallText>입니다</SmallText>
-      </TextCon>
-      <ExplaneCon>{getAdvice()}</ExplaneCon>
-    </ResultCon>
+    <>
+      <FlexColumn>
+        <Image src={"/images/face/" + type + ".jpg"} />
+        <Content>
+          <SmallText>당신은&nbsp;</SmallText> <MiddleText>{type}</MiddleText>
+          <SmallText>&nbsp;입니다.</SmallText>
+        </Content>
+        <ExplaneCon>{getAdvice()}</ExplaneCon>
+      </FlexColumn>
+    </>
   );
 };

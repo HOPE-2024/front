@@ -9,6 +9,7 @@ const ImageBox = styled.img`
   height: 35vw;
   max-width: 400px;
   max-height: 400px;
+  box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.8);
 
   // Apple
   /* box-shadow: 2px 4px 12px rgba(100, 100, 100, 0.8); */
@@ -57,13 +58,12 @@ export const FaceGenderAge = ({ result, image }) => {
     <>
       <FlexColumn>
         <ImageBox src={`data:image/png;base64,${image}`} alt="Detected Faces" />
-        <br />
         {messageB && messageE && messageA && (
           <TypeWriter
             beforeText={messageB}
             emphasizedText={messageE}
             afterText={messageA}
-            height="15vh"
+            height="16vh"
           />
         )}
       </FlexColumn>

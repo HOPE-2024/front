@@ -3,9 +3,8 @@ import {
   ResultCon,
   SkyText,
   FaceImage,
-  ExplaneCon,
   ResertCon,
-  BlackText,
+  NoWrap,
 } from "../../css/result/ResultCss";
 
 export const Diseases = ({ bmi, alcohol = 0, onDiseaseInfo }) => {
@@ -29,47 +28,49 @@ export const Diseases = ({ bmi, alcohol = 0, onDiseaseInfo }) => {
 
     // 알코올 섭취량에 따른 질병 추가
     if (alcohol > 21) {
-      diseases.push("알코올의존");
+      diseases.push("알코올_의존");
     } else if (alcohol > 14) {
       diseases.push("간질환");
       diseases.push("고혈압");
     } else if (alcohol > 7) {
-      diseases.push("알코올중독");
+      diseases.push("알코올_중독");
     }
 
     // 추가적인 세분화 로직
     if (bmi >= 25 && alcohol > 14) {
       diseases.push("당뇨병");
-      diseases.push("심장질환");
+      diseases.push("심장_질환");
     }
     if (bmi >= 35) {
-      diseases.push("수면무호흡");
+      diseases.push("수면_무호흡");
       diseases.push("관절염");
     }
 
-    return diseases.join(" "); // 질병들을 공백으로 구분하여 하나의 문자열로 반환
+    return diseases.join(", "); // 질병들을 공백으로 구분하여 하나의 문자열로 반환
   };
 
   useEffect(() => {
     const updatedDiseasesInfo = getDiseaseInfo();
     setDiseasesInfo(updatedDiseasesInfo); // 질병 정보 업데이트
-
-    // 질병 정보에 따라 이미지 URL 업데이트
-    const firstDisease = updatedDiseasesInfo.split(" ")[0];
-
     onDiseaseInfo(updatedDiseasesInfo); // 상위 컴포넌트에 질병 정보 전달
   }, [bmi, alcohol]); // BMI, 알코올 섭취량 변경 시 업데이트
 
   return (
     <ResultCon>
-      <ExplaneCon>{`BMI 지수 : ${bmi.toFixed(3)}`}</ExplaneCon>
-      <ExplaneCon>{`주간알콜섭취량(L) : ${alcohol}`}</ExplaneCon>
       <FaceImage
-        src={"/images/illness/" + diseasesInfo.split(" ")[0] + ".webp"}
+        src={
+          "/images/illness/" +
+          diseasesInfo.split(", ")[0].replace("_", "") +
+          ".webp"
+        }
         alt="질병 관련 이미지"
       />
       <ResertCon>
-        <BlackText>예상되는 질병</BlackText> <SkyText>{diseasesInfo}</SkyText>
+        당신의 건강 정보를 기반으로 예상되는 질병은,
+        <br />
+        <NoWrap>
+          <SkyText> {diseasesInfo.replace(/_/g, " ")} </SkyText>입니다.
+        </NoWrap>
       </ResertCon>
     </ResultCon>
   );

@@ -50,11 +50,11 @@ export const Wrapper = styled.div`
 // 말풍선
 export const Balloon = styled.div`
   position: relative;
-  width: 25vw;
+  width: 27vw;
   min-width: 350px;
   height: 25vh;
-  bottom: 30vh;
-  left: 15vw;
+  bottom: 33.5vh;
+  left: 12vw;
   padding: 5%;
   background: white;
   border-radius: 10px;
@@ -83,8 +83,8 @@ export const Icon = styled.div`
   width: 80px;
   height: 80px;
   position: absolute;
-  top: 56vh;
-  left: 68.5vw;
+  top: 57vh;
+  left: 66vw;
   cursor: pointer;
 
   &:hover {
@@ -93,20 +93,19 @@ export const Icon = styled.div`
 
   @media (max-width: 1200px) {
     top: 52vh;
-    left: 62vw;
+    left: 60vw;
   }
 
   @media (min-width: 1200px) {
-    top: 43vh;
+    top: 42vh;
   }
 
   @media (orientation: portrait) {
     top: 44vh;
-    left: 70vw;
+    left: 68vw;
 
     @media (min-height: 1000px) {
       top: 45vh;
-      left: 70vw;
     }
 
     @media (min-height: 1100px) {

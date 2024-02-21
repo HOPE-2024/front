@@ -28,6 +28,13 @@ const Description = styled.div`
   color: rgba(0, 0, 0, 0.45);
 `;
 
+const CountryText = styled.span`
+  font-weight: bold;
+  color: #023b96;
+  font-size: 1.5em;
+  text-shadow: 2.5px 2.5px 0px rgba(0, 0, 0, 0.25);
+`;
+
 export const LineGraph = ({ Country, dataString, onTrendAnalyzed }) => {
   // 데이터 전처리 및 파싱
   const sanitizedDataString = dataString.replace(/NaN/g, "null");
@@ -177,7 +184,10 @@ export const LineGraph = ({ Country, dataString, onTrendAnalyzed }) => {
         </Wrapper>
         <br />
         <br />
-        <Description>{Country}의 평균 수명 변화 </Description>
+        <Description>
+          연도에 따른 <CountryText>{Country}</CountryText>의 평균 수명
+          변화입니다.
+        </Description>
       </FlexColumn>
     </>
   );

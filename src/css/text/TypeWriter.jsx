@@ -54,11 +54,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Normal = styled.span`
-  /* font-family: "DungGeunMo", sans-serif; */
-  color: black;
-`;
-
 const Special = styled.span`
   /* font-family: "DungGeunMo", sans-serif; */
   font-weight: bold;

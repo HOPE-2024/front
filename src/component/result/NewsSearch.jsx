@@ -32,6 +32,7 @@ const NewsItem = styled.div`
   flex-direction: column;
   overflow: hidden;
   background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transform: scale(1.015);
@@ -62,7 +63,6 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchNews = async () => {
-    console.log("검색어 : " + keyWord);
     try {
       const response = await MachineAxiosApi.fetchNews(keyWord);
       setArticles(response.data);
@@ -76,16 +76,19 @@ export const NewsSearch = ({ keyWord = "당뇨" }) => {
   };
 
   useEffect(() => {
-    if (keyWord.length > 0) {
-      fetchNews();
+    let modifiedKeyWord = keyWord.replace(/_/g, " ");
+
+    if (modifiedKeyWord.length > 0) {
+      console.log("검색어 : " + modifiedKeyWord);
+      fetchNews(modifiedKeyWord);
     }
   }, [keyWord]);
 
   return (
     <ResultCon>
       <TextCon>
-        <SkyBiggerText>{keyWord}</SkyBiggerText>{" "}
-        <BlackBiggerText>관련 뉴스 기사</BlackBiggerText>
+        <SkyBiggerText>{keyWord.replace(/_/g, " ")}</SkyBiggerText>{" "}
+        <BlackBiggerText>&nbsp;관련 뉴스 기사입니다.</BlackBiggerText>
       </TextCon>
       <NewsContainer>
         {isLoading ? <EarthLoading top="125px"></EarthLoading> : <></>}

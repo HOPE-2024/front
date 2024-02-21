@@ -23,6 +23,23 @@ export const CountryFutureInput = ({ country = "Korea, Rep." }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 로컬 스토리지에서 loginStatus 값을 확인합니다.
+    const isLoggedIn = localStorage.getItem("loginStatus") === "true";
+
+    // 로그인 상태가 아니라면, confirm 대화 상자를 표시합니다.
+    if (!isLoggedIn) {
+      const moveToLogin = window.confirm(
+        "회원 전용 서비스입니다. 로그인 페이지로 이동하시겠습니까?"
+      );
+      if (moveToLogin) {
+        // 사용자가 확인을 누르면 로그인 페이지로 이동합니다.
+        navigate("/login");
+      }
+      return; // 로그인 상태가 아니면 함수 실행을 여기서 종료합니다.
+    }
+
+    // 로그인 상태인 경우에는 원래 로직대로 진행합니다.
     setIsLoading(true); // 데이터를 보내기 시작할 때 로딩 상태를 true로 설정
 
     const userData = {
@@ -63,7 +80,7 @@ export const CountryFutureInput = ({ country = "Korea, Rep." }) => {
     <>
       <FlexColumn>
         <Box>
-          <Spark>해당 국가의 미래를 예측해보세요</Spark>
+          <Spark>해당 국가의 향후 기대수명을 예측해보세요</Spark>
         </Box>
         <form onSubmit={handleSubmit}>
           <MiddleBox>

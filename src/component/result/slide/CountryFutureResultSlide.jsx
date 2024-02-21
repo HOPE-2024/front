@@ -20,7 +20,7 @@ export const CountryFutureResultSlide = ({
   x,
   y,
 }) => {
-  const beforeText = `${year}년, ${country}의 평균 수명은 ${percent}%확률로`;
+  const beforeText = `${year}년, ${country}의 평균 수명은 ${percent}%확률로 `;
   const emphasizedText = `${Math.round(prediction)}`;
   const afterText = `살로 예상됩니다. 인류의 평균 수명은 계속적으로 증가중에 있습니다. 이러한 긍정적인 추세에는 현대 의료 기술의 지속적인 발전이 크게 기여하고 있습니다. 의료 기술의 발전은 질병의 조기 진단과 치료를 가능하게 하였고, 건강 관리 기술에 혁신을 불러일으켰기 때문입니다.`;
 
@@ -51,7 +51,6 @@ export const CountryFutureResultSlide = ({
     } else if (i >= list.length) {
       setI(0);
     }
-    console.log("Now in : " + i);
   }, [i, list.length]);
 
   const NowWatching = () => {
