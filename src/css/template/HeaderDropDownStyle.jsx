@@ -6,7 +6,7 @@ export const FirstDropDownMenu = styled.ul`
   margin: 0;
   position: absolute;
   top: 90%;
-  right: 29%;
+  right: 28%;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -59,7 +59,7 @@ export const ThirdDropDownMenu = styled.ul`
   margin: 0;
   position: absolute;
   top: 90%;
-  right: 3%;
+  right: 5%;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -85,7 +85,7 @@ export const FiveDropDownMenu = styled.ul`
   margin: 0;
   position: absolute;
   top: 90%;
-  right: 35%;
+  right: 40%;
   background-color: #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;

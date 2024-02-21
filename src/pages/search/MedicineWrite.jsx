@@ -170,7 +170,7 @@ min-width: 200px;
   }
 `;
 
-export const TextArea123 = styled.textarea`
+export const TextArea = styled.textarea`
   width: 100%;
   padding: 10px;
   
@@ -465,7 +465,7 @@ export const MedicineWrite = () => {
                   <div className="title2">효능효과</div>
                   <div className="contents">
                     {/* <input className="input2" type="text" value={effect} onChange={(e) => { setEffect(e.target.value) }}></input> */}
-                    <TextArea123
+                    <TextArea
                       id="content"
                       name="content"
                       value={effect}
@@ -476,7 +476,7 @@ export const MedicineWrite = () => {
                 <div className="item4" >
                   <div className="title2">용법용량</div>
                   <div className="contents">
-                    <TextArea123
+                    <TextArea
                       id="content"
                       name="content"
                       value={usages}
@@ -488,7 +488,7 @@ export const MedicineWrite = () => {
                 <div className="item4" >
                   <div className="title2">주의사항</div>
                   <div className="contents">
-                    <TextArea123
+                    <TextArea
                       id="content"
                       name="content"
                       value={precautions}
